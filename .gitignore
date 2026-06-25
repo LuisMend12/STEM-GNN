@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+data/
+ckpts/
+logs/
+cache_data/

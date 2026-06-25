@@ -3,7 +3,7 @@ from dataset.process_datasets import span_node_and_edge_idx, filter_unnecessary_
 
 def pre_node(dataset):
     dataset = span_node_and_edge_idx(dataset)
-    dataset = filter_unnecessary_attrs(dataset)
+    dataset = filter_unnecessary_attrs(dataset, mode="finetune")
     return dataset
 
 

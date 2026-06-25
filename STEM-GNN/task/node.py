@@ -4,14 +4,14 @@ from utils.eval import evaluate, task2metric
 from utils.others import get_device_from_model
 
 
-def _run_full_batch(model, dataset, labels, split, params):
+def _run_full_batch(model, dataset, labels, split, params, aux_router_feat=None):
     device = get_device_from_model(model)
     x = dataset.node_text_feat.to(device)
     edge_index = dataset.edge_index.to(device)
     edge_attr = dataset.edge_text_feat[dataset.xe].to(device)
     y = labels.to(device)
 
-    z = model.encode(x, edge_index, edge_attr)
+    z = model.encode(x, edge_index, edge_attr, aux_router_feat=aux_router_feat)
     return z, y
 
 
@@ -34,7 +34,7 @@ def _accumulate_minibatch_predictions(model, loader, device):
     return torch.cat(preds, dim=0), torch.cat(gts, dim=0)
 
 
-def ft_node(model, dataset, loader, optimizer, split, labels, params, scheduler=None, **kwargs):
+def ft_node(model, dataset, loader, optimizer, split, labels, params, scheduler=None, aux_router_feat=None, **kwargs):
     assert params["setting"] == "standard", "Only standard setting is supported"
     model.train()
 
@@ -43,7 +43,7 @@ def ft_node(model, dataset, loader, optimizer, split, labels, params, scheduler=
     lambda_act = 1.0
 
     if loader is None:
-        z, y = _run_full_batch(model, dataset, labels, split, params)
+        z, y = _run_full_batch(model, dataset, labels, split, params, aux_router_feat=aux_router_feat)
         train_mask = split["train"].to(z.device)
         z_train, y_train = z[train_mask], y[train_mask]
 
@@ -107,14 +107,14 @@ def ft_node(model, dataset, loader, optimizer, split, labels, params, scheduler=
     }
 
 
-def eval_node(model, dataset, loader, split, labels, params, **kwargs):
+def eval_node(model, dataset, loader, split, labels, params, aux_router_feat=None, **kwargs):
     assert params["setting"] == "standard", "Only standard setting is supported"
     model.eval()
     device = get_device_from_model(model)
 
     with torch.no_grad():
         if loader is None:
-            z, y = _run_full_batch(model, dataset, labels, split, params)
+            z, y = _run_full_batch(model, dataset, labels, split, params, aux_router_feat=aux_router_feat)
             pred = model.get_lin_logits(z).mean(1).softmax(dim=-1)
         else:
             pred, y = _accumulate_minibatch_predictions(model, loader, device)

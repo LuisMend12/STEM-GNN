@@ -107,6 +107,17 @@ def get_args_finetune(default_params=None):
     parser.add_argument('--moe_experts', '--K', type=int, default=3)
     parser.add_argument('--moe_tau', '--tau', type=float, default=1.0)
     parser.add_argument('--lamda_env', type=float, default=0.0)
+    parser.add_argument(
+        '--use_aux_router', action='store_true',
+        help="Feed the layer-0 MoE router a per-node class-similarity profile "
+             "(cosine sim of node_text_feat to class_node_text_feat) in addition to its hidden state."
+    )
+    parser.add_argument(
+        '--router_init', type=str, default='random', choices=['random', 'kmeans'],
+        help="Layer-0 MoE router weight init. 'kmeans' pre-assigns each expert to a "
+             "k-means cluster of the router's input features (e.g. LLM text embeddings) "
+             "instead of random weights, to avoid arbitrary early symmetry-breaking."
+    )
 
     # Fine-Tune Parameters
     parser.add_argument("--finetune_dataset", "--dataset", "--data", type=str, default="cora")

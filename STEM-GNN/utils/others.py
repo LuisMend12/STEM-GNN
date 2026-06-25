@@ -186,6 +186,16 @@ def visualize(embedding, label=None):
     plt.show()
 
 
+def compute_class_similarity_profile(node_text_feat, class_node_text_feat):
+    """Cosine similarity between each node's text embedding and every class's
+    text embedding -> [N, num_classes]. Depends only on the node's own raw
+    text, not its neighborhood, so it's stable under degree/homophily shift.
+    Does not leak the true label since it's similarity to all classes."""
+    node_norm = torch.nn.functional.normalize(node_text_feat, dim=-1)
+    class_norm = torch.nn.functional.normalize(class_node_text_feat, dim=-1)
+    return node_norm @ class_norm.t()
+
+
 def mask2idx(mask):
     return torch.where(mask == True)[0]
 

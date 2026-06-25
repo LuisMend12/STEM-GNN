@@ -773,13 +773,13 @@ def main():
         if dataset not in dataset2task:
             raise ValueError(f"Unsupported dataset: {dataset}")
         task = dataset2task[dataset]
-        with open(osp.join(osp.dirname(__file__), "..", "config", "finetune.yaml"), "r") as f:
+        with open(osp.join(osp.dirname(__file__), "..", "..", "config", "finetune.yaml"), "r") as f:
             default_params = yaml.safe_load(f)
         params = get_args_with_noise(default_params=default_params[task][dataset])
 
     ensure_finetune_lr(params)
-    params["data_path"] = osp.join(osp.dirname(__file__), "..", "data")
-    params["pt_model_path"] = osp.join(osp.dirname(__file__), "..", "ckpts", "pretrain_model")
+    params["data_path"] = osp.join(osp.dirname(__file__), "..", "..", "data")
+    params["pt_model_path"] = osp.join(osp.dirname(__file__), "..", "..", "ckpts", "pretrain_model")
 
     dataset = params["finetune_dataset"]
     if dataset not in dataset2task:

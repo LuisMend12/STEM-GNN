@@ -55,8 +55,8 @@ class TaskModel(nn.Module):
             return module.weight
         raise TypeError(f"Unsupported decoder module: {type(module).__name__}")
 
-    def encode(self, x, edge_index, edge_attr=None):
-        return self.encoder(x, edge_index, edge_attr)
+    def encode(self, x, edge_index, edge_attr=None, aux_router_feat=None):
+        return self.encoder(x, edge_index, edge_attr, aux_router_feat=aux_router_feat)
 
     def encode_graph(self, x, edge_index, edge_attr=None, batch=None, pool="mean"):
         z = self.encoder(x, edge_index, edge_attr)
@@ -102,6 +102,6 @@ class TaskModel(nn.Module):
             pred = self.decoder(z).reshape(-1, 1, self.num_classes)
         return pred
 
-    def forward(self, x, edge_index, edge_attr=None):
-        z = self.encoder(x, edge_index, edge_attr)
+    def forward(self, x, edge_index, edge_attr=None, aux_router_feat=None):
+        z = self.encoder(x, edge_index, edge_attr, aux_router_feat=aux_router_feat)
         return self.get_lin_logits(z)

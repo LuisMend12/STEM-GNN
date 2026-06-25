@@ -134,7 +134,7 @@ class Encoder(nn.Module):
                  activation, num_layers, backbone='sage',
                  normalize='none', dropout=0.0,
                  moe=False, num_experts=3, tau=1.0,
-                 moe_layers='all'):
+                 moe_layers='all', aux_router_dim=0):
         super(Encoder, self).__init__()
 
         self.input_dim = input_dim
@@ -146,6 +146,7 @@ class Encoder(nn.Module):
         self.num_experts = num_experts
         self.tau = tau
         self.moe_layers = moe_layers
+        self.aux_router_dim = aux_router_dim
 
         self.activation = activation()
         self.layers = nn.ModuleList()
@@ -166,7 +167,8 @@ class Encoder(nn.Module):
             if self.moe_layer_flags[layer_idx] and self.backbone == 'sage':
                 moe_layer = MixtureSageLayer(in_dim, out_dim, self.num_experts, residual=True)
                 self.layers.append(moe_layer)
-                self.env_encoders.append(nn.Linear(in_dim, self.num_experts))
+                router_in_dim = in_dim + self.aux_router_dim if layer_idx == 0 else in_dim
+                self.env_encoders.append(nn.Linear(router_in_dim, self.num_experts))
                 env_layer_idx += 1
             else:
                 self.layers.append(self._build_conv(in_dim, out_dim))
@@ -216,6 +218,42 @@ class Encoder(nn.Module):
 
     def _reset_moe_usage(self):
         self._moe_usage = None
+
+    def init_router_kmeans(self, layer_idx: int, features: Tensor, seed: int = 0):
+        """Initialize a MoE layer's router so each expert starts pre-assigned to a
+        distinct k-means cluster of `features` (e.g. LLM text embeddings), instead
+        of random weights. This removes the random early symmetry-breaking that
+        drives expert collapse: with random init, whichever expert gets a small
+        accidental edge captures all gradient signal and the others starve. With
+        cluster-based init, experts start in genuinely different regions of input
+        space, so there's no arbitrary winner to collapse onto.
+
+        Sets weight rows to (normalized) cluster centroids and bias to
+        -0.5*||centroid||^2, so argmax_k(x . w_k + b_k) reproduces the nearest-centroid
+        (k-means) assignment at initialization, while remaining an ordinary learnable
+        nn.Linear afterward.
+        """
+        from sklearn.cluster import KMeans
+
+        if not self.moe_layer_flags[layer_idx]:
+            raise ValueError(f"Layer {layer_idx} is not a MoE layer.")
+        env_idx = sum(self.moe_layer_flags[:layer_idx])
+        linear = self.env_encoders[env_idx]
+
+        feat_np = features.detach().cpu().numpy()
+        kmeans = KMeans(n_clusters=self.num_experts, random_state=seed, n_init=10).fit(feat_np)
+        centroids = torch.tensor(kmeans.cluster_centers_, dtype=linear.weight.dtype)
+
+        expected_dim = linear.weight.size(1)
+        if centroids.size(1) != expected_dim:
+            raise ValueError(
+                f"Clustering features have dim {centroids.size(1)}, but router expects {expected_dim}. "
+                "If aux_router_dim > 0, cluster on the same concatenated features used at routing time."
+            )
+
+        with torch.no_grad():
+            linear.weight.copy_(centroids)
+            linear.bias.copy_(-0.5 * (centroids ** 2).sum(dim=1))
 
     def enable_router_cache(self, flag: bool = True):
         self._cache_router = flag
@@ -276,11 +314,11 @@ class Encoder(nn.Module):
             self._reset_moe_usage()
         return usage
 
-    def forward(self, x, edge_index, edge_attr=None):
-        z = self.encode(x, edge_index, edge_attr)
+    def forward(self, x, edge_index, edge_attr=None, aux_router_feat=None):
+        z = self.encode(x, edge_index, edge_attr, aux_router_feat=aux_router_feat)
         return z
 
-    def encode(self, x, edge_index, edge_attr=None):
+    def encode(self, x, edge_index, edge_attr=None, aux_router_feat=None):
         z = x
         env_idx = 0
         env_reg_total: Optional[Tensor] = None
@@ -290,7 +328,10 @@ class Encoder(nn.Module):
         for i in range(self.num_layers):
             layer = self.layers[i]
             if isinstance(layer, MixtureSageLayer):
-                logits = self.env_encoders[env_idx](z)
+                router_input = z
+                if i == 0 and aux_router_feat is not None:
+                    router_input = torch.cat([z, aux_router_feat], dim=-1)
+                logits = self.env_encoders[env_idx](router_input)
                 if self.training:
                     weights = F.gumbel_softmax(logits, tau=self.tau, dim=-1)
                     reg = self._reg_loss(weights, logits)

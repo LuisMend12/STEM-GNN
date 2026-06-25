@@ -875,7 +875,7 @@ def main():
     base_dir = osp.dirname(__file__)
 
     if params["use_params"]:
-        config_path = osp.join(base_dir, '..', 'config', 'finetune.yaml')
+        config_path = osp.join(base_dir, '..', '..', 'config', 'finetune.yaml')
         if not osp.exists(config_path):
             raise FileNotFoundError(f"Config file not found at {config_path}")
         import yaml
@@ -891,21 +891,23 @@ def main():
             params[key] = value
 
     ensure_finetune_lr(params)
-    params['data_path'] = osp.join(base_dir, '..', 'data')
-    params['pt_model_path'] = osp.join(base_dir, '..', 'ckpts', 'pretrain_model')
+    params['data_path'] = osp.join(base_dir, '..', '..', 'data')
+    params['pt_model_path'] = osp.join(base_dir, '..', '..', 'ckpts', 'pretrain_model')
 
     params.setdefault("display_step", 10)
 
     pretrain_run_id = get_pretrain_run_id(params)
-    default_pretrain_path = osp.join(base_dir, "..", "ckpts", "pretrain_model", pretrain_run_id)
+    default_pretrain_path = osp.join(base_dir, "..", "..", "ckpts", "pretrain_model", pretrain_run_id)
     DEFAULT_PRETRAIN_SEED = 42
     DEFAULT_PRETRAIN_EPOCH = 25
 
     explicit_pretrain_path = str(params.get("pretrain_path", "") or "").strip()
-    if not explicit_pretrain_path or explicit_pretrain_path.lower() in {"default", "auto"}:
-        params["pretrain_path"] = default_pretrain_path
-    else:
+    if explicit_pretrain_path and explicit_pretrain_path.lower() not in {"default", "auto"}:
         params["pretrain_path"] = explicit_pretrain_path
+    elif params.get("pretrain_dataset", "na") == "na":
+        params["pretrain_path"] = ""
+    else:
+        params["pretrain_path"] = default_pretrain_path
 
     if "pretrain_model_epoch" not in params or params["pretrain_model_epoch"] in (None, ""):
         params["pretrain_model_epoch"] = DEFAULT_PRETRAIN_EPOCH
