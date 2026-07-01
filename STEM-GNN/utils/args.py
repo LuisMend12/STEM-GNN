@@ -113,6 +113,12 @@ def get_args_finetune(default_params=None):
              "(cosine sim of node_text_feat to class_node_text_feat) in addition to its hidden state."
     )
     parser.add_argument(
+        '--llm_routing_reg', type=float, default=0.0,
+        help="Strength of LLM-guided routing consistency loss. Penalizes nodes with "
+             "similar LLM class-similarity profiles from having different routing "
+             "distributions. Requires class_node_text_feat on the dataset."
+    )
+    parser.add_argument(
         '--router_init', type=str, default='random', choices=['random', 'kmeans'],
         help="Layer-0 MoE router weight init. 'kmeans' pre-assigns each expert to a "
              "k-means cluster of the router's input features (e.g. LLM text embeddings) "

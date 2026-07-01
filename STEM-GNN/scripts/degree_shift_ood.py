@@ -294,13 +294,21 @@ def run(params):
     print(f"Using device: {device}")
 
     use_aux_router = bool(params.get("use_aux_router", False))
-    if use_aux_router and not (hasattr(data, "class_node_text_feat") and data.class_node_text_feat is not None):
+    llm_routing_reg = float(params.get("llm_routing_reg", 0.0))
+    has_class_feat = hasattr(data, "class_node_text_feat") and data.class_node_text_feat is not None
+    if use_aux_router and not has_class_feat:
         raise AttributeError(
             "--use_aux_router requires data.class_node_text_feat, but it is missing for this dataset."
+        )
+    if llm_routing_reg > 0.0 and not has_class_feat:
+        raise AttributeError(
+            "--llm_routing_reg requires data.class_node_text_feat, but it is missing for this dataset."
         )
     aux_router_dim = num_classes if use_aux_router else 0
     if use_aux_router:
         print(f"Aux router signal enabled: layer-0 router gets a {num_classes}-dim class-similarity profile.")
+    if llm_routing_reg > 0.0:
+        print(f"LLM routing consistency loss enabled: llm_routing_reg={llm_routing_reg}")
 
     base_encoder = Encoder(
         input_dim=params["input_dim"],
@@ -371,8 +379,11 @@ def run(params):
     labels = labels.to(device)
 
     aux_router_feat = None
+    class_sim = None
+    if use_aux_router or llm_routing_reg > 0.0:
+        class_sim = compute_class_similarity_profile(data.node_text_feat, data.class_node_text_feat)
     if use_aux_router:
-        aux_router_feat = compute_class_similarity_profile(data.node_text_feat, data.class_node_text_feat)
+        aux_router_feat = class_sim
 
     router_init = params.get("router_init", "random")
     if router_init == "kmeans" and base_encoder.moe and base_encoder.moe_layer_flags[0]:
@@ -399,6 +410,8 @@ def run(params):
             num_classes=num_classes,
             params=params,
         ).to(device)
+        if llm_routing_reg > 0.0 and getattr(task_model.encoder, 'moe', False):
+            task_model.encoder.enable_router_weight_storage(True)
         print(f"[Run {run + 1:02d}] MoE enabled: {getattr(task_model.encoder, 'moe', False)} | "
               f"MoE layers: {getattr(task_model.encoder, 'moe_layer_flags', [])}")
 
@@ -451,6 +464,7 @@ def run(params):
                 params=params,
                 num_neighbors=[30] * params["num_layers"],
                 aux_router_feat=aux_router_feat,
+                class_sim=class_sim,
             )
 
             pred = compute_predictions(task_model, data, labels, params, train_mask, aux_router_feat=aux_router_feat)

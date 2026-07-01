@@ -34,7 +34,7 @@ def _accumulate_minibatch_predictions(model, loader, device):
     return torch.cat(preds, dim=0), torch.cat(gts, dim=0)
 
 
-def ft_node(model, dataset, loader, optimizer, split, labels, params, scheduler=None, aux_router_feat=None, **kwargs):
+def ft_node(model, dataset, loader, optimizer, split, labels, params, scheduler=None, aux_router_feat=None, class_sim=None, **kwargs):
     assert params["setting"] == "standard", "Only standard setting is supported"
     model.train()
 
@@ -50,7 +50,12 @@ def ft_node(model, dataset, loader, optimizer, split, labels, params, scheduler=
         act_loss = model.compute_activation_loss(z_train, y_train) * lambda_act
         jac_loss = model.decoder_jacobian_penalty()
         env_loss = lamda_env * model.get_env_reg()
-        loss = act_loss + jac_loss + env_loss
+        llm_routing_reg = params.get("llm_routing_reg", 0.0)
+        if llm_routing_reg > 0.0 and class_sim is not None:
+            llm_loss = llm_routing_reg * model.get_llm_routing_consistency_loss(class_sim)
+        else:
+            llm_loss = torch.zeros(1, device=z.device)
+        loss = act_loss + jac_loss + env_loss + llm_loss
 
         optimizer.zero_grad()
         loss.backward()
@@ -62,6 +67,7 @@ def ft_node(model, dataset, loader, optimizer, split, labels, params, scheduler=
             "act_loss": act_loss.item(),
             "jac_loss": jac_loss.item(),
             "env_loss": env_loss.item(),
+            "llm_loss": llm_loss.item(),
             "loss": loss.item(),
         }
 

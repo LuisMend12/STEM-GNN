@@ -157,6 +157,7 @@ class Encoder(nn.Module):
         self._moe_usage: Optional[list] = None
         self._router_cache: Optional[list] = None
         self._cache_router = False
+        self._training_router_weights: Optional[list] = None
 
         self.moe_layer_flags = self._build_moe_layer_flags()
 
@@ -265,6 +266,17 @@ class Encoder(nn.Module):
             self._router_cache = [] if self._cache_router else None
         return out
 
+    def enable_router_weight_storage(self, flag: bool = True):
+        """Enable storing router weights WITH gradients during training forward passes,
+        for use in auxiliary losses like the LLM routing consistency loss."""
+        self._training_router_weights = [] if flag else None
+
+    def get_training_router_weights(self, reset: bool = True) -> list:
+        out = self._training_router_weights or []
+        if reset:
+            self._training_router_weights = [] if self._training_router_weights is not None else None
+        return out
+
     def _ensure_moe_usage(self, device, dtype):
         if not self.moe:
             return
@@ -343,6 +355,8 @@ class Encoder(nn.Module):
                     if self._router_cache is None:
                         self._router_cache = []
                     self._router_cache.append(weights.detach())
+                if self._training_router_weights is not None and self.training:
+                    self._training_router_weights.append(weights)
                 self._update_moe_usage(env_idx, weights)
 
                 expert_outputs = layer(z, edge_index, edge_attr)

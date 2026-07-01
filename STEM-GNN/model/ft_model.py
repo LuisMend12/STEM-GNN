@@ -68,6 +68,38 @@ class TaskModel(nn.Module):
             z = global_max_pool(z, batch)
         return z
 
+    def get_llm_routing_consistency_loss(self, class_sim: torch.Tensor) -> torch.Tensor:
+        """LLM-guided routing consistency loss.
+
+        Encourages nodes that are semantically similar (per LLM class embeddings)
+        to have similar routing distributions. For each MoE layer, computes a
+        per-class mean routing distribution using soft LLM class assignments, then
+        penalizes each node's deviation from its class's mean routing.
+
+        class_sim: [N, C] cosine similarities between node text features and class
+                   text features (from compute_class_similarity_profile).
+        """
+        if not getattr(self.encoder, 'moe', False):
+            return torch.zeros(1, device=next(self.parameters()).device)
+
+        router_weights_list = self.encoder.get_training_router_weights(reset=True)
+        if not router_weights_list:
+            return torch.zeros(1, device=next(self.parameters()).device)
+
+        soft_class = class_sim.softmax(dim=-1)  # [N, C]
+        class_mass = soft_class.sum(0, keepdim=True).t() + 1e-8  # [C, 1]
+
+        total_loss = torch.zeros(1, device=class_sim.device)
+        for W in router_weights_list:  # W: [N, K] — has gradients
+            # Per-class mean routing distribution [C, K]
+            class_routing = (soft_class.t() @ W) / class_mass
+            # Each node's LLM-guided target: mix of class routing means [N, K]
+            target = soft_class @ class_routing.detach()
+            # MSE between node's actual routing and its semantic target
+            total_loss = total_loss + ((W - target) ** 2).mean()
+
+        return total_loss / max(len(router_weights_list), 1)
+
     def get_env_reg(self, reset=True):
         if hasattr(self.encoder, "get_env_reg"):
             return self.encoder.get_env_reg(reset=reset)
