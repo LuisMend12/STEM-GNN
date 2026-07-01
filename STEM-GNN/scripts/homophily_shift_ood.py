@@ -330,6 +330,10 @@ def run(params):
     params["activation"] = activation
     print(f"Using device: {device}")
 
+    use_llm_router = params.get("use_llm_router", False)
+    if use_llm_router:
+        print("LLM direct router enabled: routing uses raw LLM text features (structure-invariant).")
+
     base_encoder = Encoder(
         input_dim=params["input_dim"],
         hidden_dim=params["hidden_dim"],
@@ -342,6 +346,7 @@ def run(params):
         num_experts=params.get("moe_experts", params.get("K", 3)),
         tau=params.get("moe_tau", params.get("tau", 1.0)),
         moe_layers=params.get("moe_layers", "none"),
+        use_llm_router=use_llm_router,
     )
 
     base_vq = VectorQuantize(

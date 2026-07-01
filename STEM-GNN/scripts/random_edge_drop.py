@@ -449,6 +449,7 @@ def run(params):
         num_experts=params.get("moe_experts", params.get("K", 3)),
         tau=params.get("moe_tau", params.get("tau", 1.0)),
         moe_layers=params.get("moe_layers", "none"),
+        use_llm_router=params.get("use_llm_router", False),
     )
 
     vq = VectorQuantize(
