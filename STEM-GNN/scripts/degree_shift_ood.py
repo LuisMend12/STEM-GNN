@@ -177,6 +177,54 @@ def compute_routing_cache(model, data, aux_router_feat=None) -> List[torch.Tenso
     return cache
 
 
+def compute_expert_semantic_purity(
+    router_cache: List[torch.Tensor],
+    moe_layer_indices: List[int],
+    labels: torch.Tensor,
+    num_classes: int,
+) -> Dict[int, Dict]:
+    """
+    Measures how semantically coherent each expert's routing is.
+
+    For each MoE layer, hard-assigns every node to its top-1 expert, then
+    computes P(class | expert k) — the class distribution within that expert's
+    pool. Returns per-layer:
+      - class_purity: float in [1/C, 1.0] — mean of each expert's majority-class
+        fraction (1.0 = perfectly class-pure, 1/C = uniform).
+      - usage: list[K] — fraction of all nodes assigned to each expert.
+      - dominant_class: list[K] — class index that most nodes in each expert belong to.
+    """
+    results: Dict[int, Dict] = {}
+    for cache_idx, layer_idx in enumerate(moe_layer_indices):
+        weights = router_cache[cache_idx]  # [N, K]
+        num_experts = weights.size(1)
+        labels_dev = labels.to(weights.device)
+
+        assignments = weights.argmax(dim=-1)  # [N]
+
+        class_per_expert = torch.zeros(num_experts, num_classes, device=weights.device)
+        usage = torch.zeros(num_experts, device=weights.device)
+        for k in range(num_experts):
+            mask_k = assignments == k
+            cnt = mask_k.sum().item()
+            usage[k] = cnt / labels_dev.size(0)
+            if cnt > 0:
+                for c in range(num_classes):
+                    class_per_expert[k, c] = (labels_dev[mask_k] == c).float().sum() / cnt
+
+        # purity: avg fraction of majority class per expert (weighted by usage)
+        majority_frac = class_per_expert.max(dim=-1).values  # [K]
+        purity = (majority_frac * usage).sum().item() / usage.sum().clamp_min(1e-12).item()
+
+        results[layer_idx] = {
+            "class_purity": purity,
+            "class_per_expert": class_per_expert.cpu(),
+            "usage": usage.cpu().tolist(),
+            "dominant_class": class_per_expert.argmax(dim=-1).cpu().tolist(),
+        }
+    return results
+
+
 def _entropy(p: torch.Tensor, eps: float = 1e-12) -> float:
     p = p.clamp_min(eps)
     return float(-(p * p.log()).sum().item())
@@ -310,6 +358,10 @@ def run(params):
     if llm_routing_reg > 0.0:
         print(f"LLM routing consistency loss enabled: llm_routing_reg={llm_routing_reg}")
 
+    use_llm_router = params.get("use_llm_router", False)
+    if use_llm_router:
+        print("LLM direct router enabled: routing uses raw LLM text features (structure-invariant).")
+
     base_encoder = Encoder(
         input_dim=params["input_dim"],
         hidden_dim=params["hidden_dim"],
@@ -323,6 +375,7 @@ def run(params):
         tau=params.get("moe_tau", params.get("tau", 1.0)),
         moe_layers=params.get("moe_layers", "none"),
         aux_router_dim=aux_router_dim,
+        use_llm_router=use_llm_router,
     )
 
     base_vq = VectorQuantize(
@@ -565,6 +618,22 @@ def run(params):
                     )
                     routing_wandb_payload[f"moe/layer{layer_idx}/shift_{name}/tv_distance"] = sh["tv_distance"]
                     routing_wandb_payload[f"moe/layer{layer_idx}/shift_{name}/kl_id_to_ood"] = sh["kl_id_to_ood"]
+
+            # Semantic expert analysis: class purity per expert
+            num_classes = int(labels.max().item()) + 1
+            semantic = compute_expert_semantic_purity(router_cache, moe_layer_indices, labels, num_classes)
+            print(f"Run {run + 1:02d} expert semantic purity:")
+            for layer_idx in moe_layer_indices:
+                sem = semantic[layer_idx]
+                usage_str = ", ".join(f"{u:.3f}" for u in sem["usage"])
+                dom_str = ", ".join(str(c) for c in sem["dominant_class"])
+                print(
+                    f"  Layer {layer_idx}: class_purity={sem['class_purity']:.3f} "
+                    f"usage=[{usage_str}] dominant_class=[{dom_str}]"
+                )
+                routing_wandb_payload[f"moe/layer{layer_idx}/class_purity"] = sem["class_purity"]
+            routing_summary["semantic"] = semantic
+
             try:
                 wandb.log(routing_wandb_payload)
             except Exception:
@@ -623,6 +692,12 @@ def run(params):
                 )
                 agg_payload[f"moe_summary/layer{layer_idx}/shift_{name}/tv_distance_mean"] = float(tvs.mean())
                 agg_payload[f"moe_summary/layer{layer_idx}/shift_{name}/kl_id_to_ood_mean"] = float(kls.mean())
+            if all("semantic" in s for s in run_routing_summaries):
+                purities = torch.tensor([s["semantic"][layer_idx]["class_purity"] for s in run_routing_summaries])
+                print(
+                    f"  Layer {layer_idx} expert class_purity: {purities.mean():.3f}±{purities.std(unbiased=False):.3f}"
+                )
+                agg_payload[f"moe_summary/layer{layer_idx}/class_purity_mean"] = float(purities.mean())
         try:
             wandb.log(agg_payload)
         except Exception:

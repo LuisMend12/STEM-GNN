@@ -134,7 +134,8 @@ class Encoder(nn.Module):
                  activation, num_layers, backbone='sage',
                  normalize='none', dropout=0.0,
                  moe=False, num_experts=3, tau=1.0,
-                 moe_layers='all', aux_router_dim=0):
+                 moe_layers='all', aux_router_dim=0,
+                 use_llm_router=False):
         super(Encoder, self).__init__()
 
         self.input_dim = input_dim
@@ -147,6 +148,7 @@ class Encoder(nn.Module):
         self.tau = tau
         self.moe_layers = moe_layers
         self.aux_router_dim = aux_router_dim
+        self.use_llm_router = use_llm_router and self.moe
 
         self.activation = activation()
         self.layers = nn.ModuleList()
@@ -168,7 +170,11 @@ class Encoder(nn.Module):
             if self.moe_layer_flags[layer_idx] and self.backbone == 'sage':
                 moe_layer = MixtureSageLayer(in_dim, out_dim, self.num_experts, residual=True)
                 self.layers.append(moe_layer)
-                router_in_dim = in_dim + self.aux_router_dim if layer_idx == 0 else in_dim
+                if self.use_llm_router:
+                    # Router uses original LLM text features (input_dim) — structure-invariant
+                    router_in_dim = input_dim
+                else:
+                    router_in_dim = in_dim + self.aux_router_dim if layer_idx == 0 else in_dim
                 self.env_encoders.append(nn.Linear(router_in_dim, self.num_experts))
                 env_layer_idx += 1
             else:
@@ -332,6 +338,7 @@ class Encoder(nn.Module):
 
     def encode(self, x, edge_index, edge_attr=None, aux_router_feat=None):
         z = x
+        x_orig = x  # preserve original LLM features for structure-invariant routing
         env_idx = 0
         env_reg_total: Optional[Tensor] = None
         env_layers = 0
@@ -340,9 +347,13 @@ class Encoder(nn.Module):
         for i in range(self.num_layers):
             layer = self.layers[i]
             if isinstance(layer, MixtureSageLayer):
-                router_input = z
-                if i == 0 and aux_router_feat is not None:
-                    router_input = torch.cat([z, aux_router_feat], dim=-1)
+                if self.use_llm_router:
+                    # Route using original LLM text features — invariant to graph structure shifts
+                    router_input = x_orig
+                else:
+                    router_input = z
+                    if i == 0 and aux_router_feat is not None:
+                        router_input = torch.cat([z, aux_router_feat], dim=-1)
                 logits = self.env_encoders[env_idx](router_input)
                 if self.training:
                     weights = F.gumbel_softmax(logits, tau=self.tau, dim=-1)

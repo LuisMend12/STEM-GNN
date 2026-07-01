@@ -119,6 +119,11 @@ def get_args_finetune(default_params=None):
              "distributions. Requires class_node_text_feat on the dataset."
     )
     parser.add_argument(
+        '--use_llm_router', action='store_true', default=False,
+        help="Use raw LLM text features (structure-invariant) as router input instead of "
+             "GNN hidden states. Makes routing robust to graph-structural distribution shift."
+    )
+    parser.add_argument(
         '--router_init', type=str, default='random', choices=['random', 'kmeans'],
         help="Layer-0 MoE router weight init. 'kmeans' pre-assigns each expert to a "
              "k-means cluster of the router's input features (e.g. LLM text embeddings) "
