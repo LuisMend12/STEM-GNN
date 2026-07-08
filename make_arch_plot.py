@@ -1,218 +1,235 @@
 """
-Architecture diagram: Trust Gate as a complement to STEM-GNN.
-Shows where the new component plugs into the existing backbone.
+Architecture diagram — fixed spacing, no overlaps.
 """
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
+from matplotlib.patches import FancyBboxPatch, Rectangle
 
-BG    = "#12141A"; CARD  = "#1A1E28"; DARK2 = "#0E1118"
-BLUE  = "#459BFF"; TEAL  = "#45C4FF"; ORNG  = "#FF7F2A"
-GREEN = "#2ECC71"; GOLD  = "#FFC107"; RED   = "#FF4D4D"
-GREY  = "#8A93A8"; WHITE = "#FFFFFF"; MUTED = "#6A7385"
-BORD  = "#35404A"
+BG="#FFFFFF"; FRAME="#2D3748"; TEXT="#1A202C"; MUT="#718096"; MGREY="#CBD5E0"
+H1="#2B6CB0"; H2="#276749"; H3="#553C9A"; H4="#9C4221"
+CB1=("#BEE3F8","#2B6CB0"); CB2=("#C6F6D5","#276749")
+CB3=("#D6BCFA","#553C9A"); CB4=("#FEEBC8","#C05621")
+CB5=("#FED7D7","#C53030"); CB6=("#E2E8F0","#4A5568")
 
-fig, ax = plt.subplots(figsize=(15, 7))
+fig, ax = plt.subplots(figsize=(19, 9.0))
 fig.patch.set_facecolor(BG)
 ax.set_facecolor(BG)
-ax.set_xlim(0, 15); ax.set_ylim(0, 7)
+ax.set_xlim(0,19); ax.set_ylim(0,9.0)
 ax.axis("off")
 
-# ── helpers ────────────────────────────────────────────────────────────────
-def box(cx, cy, w, h, label, sub="", fc=CARD, ec=BORD, lw=1.2,
-        fsz=10, sfz=8.5, fc_txt=WHITE, ec_alpha=1.0, radius=0.22):
-    rect = FancyBboxPatch((cx - w/2, cy - h/2), w, h,
-                           boxstyle=f"round,pad=0.0,rounding_size={radius}",
-                           facecolor=fc, edgecolor=ec,
-                           linewidth=lw, zorder=3)
-    ax.add_patch(rect)
+def sec(x,y,w,h,hdr,hc,fc="#F7FAFC"):
+    ax.add_patch(Rectangle((x,y),w,h,facecolor=fc,edgecolor=FRAME,lw=1.8,zorder=2))
+    ax.add_patch(Rectangle((x,y+h-0.66),w,0.66,facecolor=hc,edgecolor=hc,lw=0,zorder=3))
+    ax.text(x+w/2,y+h-0.33,hdr,ha="center",va="center",fontsize=11,
+            fontweight="bold",color="white",zorder=4)
+
+def cbox(x,y,w,h,txt,sub="",fc="#EBF8FF",ec="#2B6CB0",tsz=10,ssz=8.5,tc=TEXT):
+    ax.add_patch(FancyBboxPatch((x,y),w,h,
+        boxstyle="round,pad=0.07,rounding_size=0.12",
+        facecolor=fc,edgecolor=ec,lw=1.3,zorder=4))
+    ty = y+h/2+(0.14 if sub else 0)
+    ax.text(x+w/2,ty,txt,ha="center",va="center",fontsize=tsz,
+            fontweight="bold",color=tc,zorder=5)
     if sub:
-        ax.text(cx, cy + 0.115, label, ha="center", va="center",
-                fontsize=fsz, fontweight="bold", color=fc_txt, zorder=4)
-        ax.text(cx, cy - 0.155, sub, ha="center", va="center",
-                fontsize=sfz, color=MUTED, zorder=4, style="italic")
-    else:
-        ax.text(cx, cy, label, ha="center", va="center",
-                fontsize=fsz, fontweight="bold", color=fc_txt, zorder=4)
+        ax.text(x+w/2,y+h/2-0.21,sub,ha="center",va="center",
+                fontsize=ssz,color=MUT,style="italic",zorder=5)
 
-def arr(x1, y1, x2, y2, col=GREY, lw=1.5, style="->", ls="-"):
-    ax.annotate("", xy=(x2, y2), xytext=(x1, y1),
-                arrowprops=dict(arrowstyle=style, color=col,
-                                lw=lw, linestyle=ls,
-                                connectionstyle="arc3,rad=0.0"),
-                zorder=2)
+def rect(x,y,w,h,fc,ec,lw=1.0):
+    ax.add_patch(Rectangle((x,y),w,h,facecolor=fc,edgecolor=ec,lw=lw,zorder=3))
 
-def curve(x1, y1, x2, y2, col=TEAL, lw=1.8, rad=0.25):
-    ax.annotate("", xy=(x2, y2), xytext=(x1, y1),
-                arrowprops=dict(arrowstyle="->", color=col, lw=lw,
-                                connectionstyle=f"arc3,rad={rad}"),
-                zorder=2)
+def arr(x1,y1,x2,y2,col=FRAME,lw=1.8,lbl="",ldy=0.18,ldx=0):
+    ax.annotate("",xy=(x2,y2),xytext=(x1,y1),
+        arrowprops=dict(arrowstyle="-|>",color=col,lw=lw,
+                        mutation_scale=15,connectionstyle="arc3,rad=0.0"),zorder=6)
+    if lbl:
+        ax.text((x1+x2)/2+ldx,(y1+y2)/2+ldy,lbl,ha="center",
+                fontsize=9,color=col,style="italic",zorder=7)
 
-def label(x, y, txt, col=MUTED, sz=9, bold=False, ha="center"):
-    ax.text(x, y, txt, ha=ha, va="center", fontsize=sz,
-            color=col, fontweight="bold" if bold else "normal", zorder=5)
+def t(x,y,s,col=MUT,sz=9,ha="center",bold=False):
+    ax.text(x,y,s,ha=ha,va="center",fontsize=sz,
+            color=col,fontweight="bold" if bold else "normal",zorder=5)
 
-# ══════════════════════════════════════════════════════════════════════════
-# SECTION HEADERS
-# ══════════════════════════════════════════════════════════════════════════
-# Existing STEM-GNN band (top)
-existing_band = FancyBboxPatch((0.15, 4.45), 14.7, 2.25,
-    boxstyle="round,pad=0.0,rounding_size=0.2",
-    facecolor="#14181E", edgecolor=ORNG, linewidth=1.0,
-    linestyle="--", alpha=0.55, zorder=1)
-ax.add_patch(existing_band)
-label(0.75, 6.52, "STEM-GNN (existing)", col=ORNG, sz=8.5, bold=True, ha="left")
+# ── global ─────────────────────────────────────────────────────────────────
+SY=0.55; SH=7.80
+MID=SY+SH/2        # 4.45
+S1X,S1W = 0.15, 3.05
+S2X,S2W = 3.40, 3.30
+S3X,S3W = 6.90, 6.10
+S4X,S4W = 13.20, 5.65
 
-# New component band (bottom)
-new_band = FancyBboxPatch((0.15, 0.35), 14.7, 3.75,
-    boxstyle="round,pad=0.0,rounding_size=0.2",
-    facecolor="#0C1620", edgecolor=TEAL, linewidth=1.4,
-    linestyle="-", alpha=0.45, zorder=1)
-ax.add_patch(new_band)
-label(0.75, 3.92, "Trust Gate  (new complement)", col=TEAL, sz=8.5, bold=True, ha="left")
+t(9.4,8.78,"Framework of Trust Gate  —  Complement to STEM-GNN",
+  col=TEXT,sz=15,bold=True)
 
 # ══════════════════════════════════════════════════════════════════════════
-# TOP ROW — STEM-GNN backbone
+# S1  Input Graph
 # ══════════════════════════════════════════════════════════════════════════
-# [Node Text] → [LLM φ] → e_v → [VQ Codebook] → z_v → [MoE AGG*] → [Head]
+sec(S1X,SY,S1W,SH,"Input Graph",H1,"#EBF8FF")
 
-TOP = 5.55
-XS  = [1.1, 3.3, 5.2, 7.2, 9.1, 11.2, 13.5]
+nX=[0.82,1.52,2.42,1.76,1.06]; nY=[6.25,7.05,6.50,5.45,4.95]
+for i,j in [(0,1),(0,4),(1,2),(1,3),(2,3),(3,4)]:
+    ax.plot([nX[i],nX[j]],[nY[i],nY[j]],color=MGREY,lw=1.3,zorder=3)
+for k,(nx,ny) in enumerate(zip(nX,nY)):
+    ax.scatter(nx,ny,s=180,color=H1 if k==0 else "#63B3ED",
+               zorder=5,edgecolors=FRAME,lw=0.9)
+    lbl="v" if k==0 else "u"
+    off=(-0.25,0) if k==0 else (0.22,0)
+    ax.text(nx+off[0],ny+off[1],lbl,ha="center",va="center",fontsize=9.5,
+            fontweight="bold",color=H1 if k==0 else MUT,zorder=6)
 
-box(XS[0], TOP, 1.55, 0.75, "Node Text", "t_v",
-    fc="#1A1E28", ec=GREY, lw=1.0)
+cbox(S1X+0.12,3.95,1.32,0.70,"Node  v","text  t_v",*CB1,tsz=9.5)
+cbox(S1X+1.60,3.95,1.32,0.70,"Nbrs  N(v)","{t_u}",*CB6,tsz=9.5)
 
-box(XS[1], TOP, 1.65, 0.75, "LLM Encoder", "φ  (frozen)",
-    fc="#1C2030", ec=BLUE, lw=1.2)
+rect(S1X+0.12,1.72,S1W-0.24,1.88,"#FFF5F5","#FC8181",lw=1.0)
+t(S1X+S1W/2,3.38,"OOD Stress Conditions",col="#C53030",sz=9.5,bold=True)
+for i,(s,c) in enumerate([
+    ("① Confusing-edge injection","#C53030"),
+    ("   text-similar, wrong-class","#C53030"),
+    ("② Structural heterophily","#C05621"),
+    ("   Texas h=0.31 / Wisc h=0.20","#C05621"),
+]):
+    t(S1X+0.22,3.02-i*0.34,s,col=c,sz=8.5,ha="left")
 
-# e_v junction dot
-ax.scatter([XS[2]], [TOP], color=BLUE, s=70, zorder=5)
-label(XS[2], TOP + 0.44, "e_v  ∈ ℝ^768", col=BLUE, sz=9.5, bold=True)
-
-box(XS[3], TOP, 1.55, 0.75, "VQ Codebook", "discrete tokens",
-    fc="#1C2030", ec=ORNG, lw=1.2)
-
-# z_v dot
-ax.scatter([XS[4]], [TOP], color=ORNG, s=70, zorder=5)
-label(XS[4], TOP + 0.44, "z_v  (tokens)", col=ORNG, sz=9.5, bold=True)
-
-box(XS[5], TOP, 1.65, 0.75, "MoE Expert", "router (post-VQ)",
-    fc="#1C2030", ec=ORNG, lw=1.2)
-
-box(XS[6], TOP, 1.45, 0.75, "Task Head", "classification",
-    fc="#1A1E28", ec=GREY, lw=1.0)
-
-# Backbone arrows
-for i in range(len(XS) - 1):
-    if i == 1:          # encoder → e_v
-        arr(XS[1]+0.83, TOP, XS[2]-0.08, TOP, col=BLUE, lw=1.5)
-    elif i == 2:        # e_v → VQ
-        arr(XS[2]+0.08, TOP, XS[3]-0.78, TOP, col=ORNG, lw=1.5)
-    elif i == 3:        # VQ → z_v
-        arr(XS[3]+0.78, TOP, XS[4]-0.08, TOP, col=ORNG, lw=1.5)
-    elif i == 4:        # z_v → MoE
-        arr(XS[4]+0.08, TOP, XS[5]-0.83, TOP, col=ORNG, lw=1.5)
-    elif i == 5:        # MoE → Head
-        arr(XS[5]+0.83, TOP, XS[6]-0.73, TOP, col=GREY, lw=1.5)
-    else:
-        arr(XS[i]+0.78, TOP, XS[i+1]-0.78, TOP, col=GREY, lw=1.5)
+arr(S1X+S1W,MID,S2X,MID)
 
 # ══════════════════════════════════════════════════════════════════════════
-# BOTTOM SECTION — Trust Gate new component
+# S2  Frozen Text Encoder
 # ══════════════════════════════════════════════════════════════════════════
+sec(S2X,SY,S2W,SH,"Frozen Text Encoder",H2,"#F0FFF4")
 
-# Row for neighbor inputs (y=2.9)
-NEI_Y = 2.9
+cbox(S2X+0.18,5.55,S2W-0.36,1.72,"LLM Encoder   φ",
+     "SentenceTransformer  (frozen)",*CB2,tsz=12,ssz=9.5)
 
-box(XS[0], NEI_Y, 1.55, 0.72, "Neighbor Text", "{t_u}",
-    fc="#1A1E28", ec=GREY, lw=1.0)
-box(XS[1], NEI_Y, 1.65, 0.72, "LLM Encoder", "φ  (frozen, shared)",
-    fc="#1C2030", ec=BLUE, lw=1.2)
-ax.scatter([XS[2]], [NEI_Y], color=BLUE, s=70, zorder=5)
-label(XS[2], NEI_Y - 0.42, "{e_u}  neighbors", col=BLUE, sz=9.5, bold=True)
+t(S2X+0.28,5.22,"t_v  →",col=H2,sz=10.5,bold=True,ha="left")
+t(S2X+1.28,5.22,"e_v  ∈  ℝ^768",col=H2,sz=10,bold=True,ha="left")
+t(S2X+0.28,4.80,"{t_u}  →",col="#4A5568",sz=10.5,bold=True,ha="left")
+t(S2X+1.28,4.80,"{e_u}  ∈  ℝ^768",col="#4A5568",sz=10,bold=True,ha="left")
 
-arr(XS[0]+0.78, NEI_Y, XS[1]-0.83, NEI_Y, col=GREY, lw=1.5)
-arr(XS[1]+0.83, NEI_Y, XS[2]-0.08, NEI_Y, col=BLUE, lw=1.5)
+t(S2X+S2W/2,4.40,"Key Properties",col=TEXT,sz=10,bold=True)
+for i,p in enumerate([
+    "• Shared encoder for  v  and  u",
+    "• Fully frozen — no fine-tuning",
+    "• 768-dim semantic embeddings",
+    "• Operates PRE-VQ codebook",
+    "• Bypasses quantisation noise",
+    "• Drop-in to any STEM-GNN run",
+]):
+    t(S2X+0.22,4.08-i*0.39,p,col=MUT,sz=9,ha="left")
 
-# Trust Gate box (center, y=1.4)
-GATE_X = 6.2; GATE_Y = 1.4
-box(GATE_X, GATE_Y, 3.5, 1.1,
-    "Semantic Trust Gate",
-    "β_v = σ( f(e_v, mean{e_u}) )",
-    fc="#0A1E28", ec=TEAL, lw=2.0, fsz=12, sfz=9.5, fc_txt=TEAL)
-
-label(GATE_X, GATE_Y - 0.72,
-      "Q: 'Is neighbour u semantically relevant for v\\'s class?'",
-      col=GOLD, sz=9, bold=False)
-
-# Gated Aggregation box (right, y=1.4)
-AGG_X = 11.0; AGG_Y = 1.4
-box(AGG_X, AGG_Y, 3.2, 1.45,
-    "Gated Aggregation",
-    "",
-    fc="#0A201C", ec=GREEN, lw=2.0, fsz=12, fc_txt=GREEN)
-label(AGG_X, AGG_Y + 0.12,
-      "h_v = β_v · W_self(e_v)", col=WHITE, sz=9.5, bold=False, ha="center")
-label(AGG_X, AGG_Y - 0.22,
-      " + (1−β_v) · W_neigh(mean e_u)", col=WHITE, sz=9.5, bold=False, ha="center")
-
-# ── connections: e_v (junction) down to gate ──────────────────────────────
-arr(XS[2], TOP - 0.38, XS[2], NEI_Y + 0.38, col=BLUE, lw=1.6)
-
-# e_v & {e_u} → Trust Gate
-curve(XS[2], TOP - 0.38, GATE_X - 1.75, GATE_Y + 0.3, col=BLUE, lw=1.5, rad=-0.18)
-arr(XS[2], NEI_Y - 0.38, GATE_X - 1.75, GATE_Y - 0.1, col=BLUE, lw=1.5)
-
-# Trust Gate → β_v → Gated Aggregation
-arr(GATE_X + 1.75, GATE_Y, AGG_X - 1.6, AGG_Y, col=TEAL, lw=2.0)
-label((GATE_X + 1.75 + AGG_X - 1.6) / 2, GATE_Y + 0.32,
-      "β_v  ∈ [0, 1]", col=TEAL, sz=10, bold=True)
-
-# Gated Aggregation → Task Head (feeds back up)
-curve(AGG_X + 1.6, AGG_Y + 0.4, XS[6] - 0.08, TOP - 0.38,
-      col=GREEN, lw=2.0, rad=-0.3)
-label(13.9, 3.6, "h_v", col=GREEN, sz=11, bold=True)
-
-# Also e_u feeds into Gated Aggregation
-arr(XS[2] + 0.08, NEI_Y, AGG_X - 1.6, AGG_Y - 0.22, col=BLUE, lw=1.3, ls="--")
-
-# ── STEM-GNN router label (corruption note) ───────────────────────────────
-ax.annotate("uses z_v (post-VQ)\n→ routing corrupted\nby noisy neighbours",
-            xy=(XS[5], TOP - 0.38), xytext=(XS[5] - 0.5, 4.58),
-            fontsize=8, color=ORNG, ha="center",
-            arrowprops=dict(arrowstyle="->", color=ORNG, lw=0.9),
-            zorder=6)
-
-# ── Trust gate advantage note ─────────────────────────────────────────────
-ax.annotate("uses e_v (pre-VQ)\n→ clean semantic\njudgment",
-            xy=(GATE_X, GATE_Y + 0.56), xytext=(GATE_X - 2.5, 3.45),
-            fontsize=8, color=TEAL, ha="center",
-            arrowprops=dict(arrowstyle="->", color=TEAL, lw=0.9),
-            zorder=6)
+arr(S2X+S2W,MID,S3X,MID)
 
 # ══════════════════════════════════════════════════════════════════════════
-# LEGEND
+# S3  Semantic Trust Gate
 # ══════════════════════════════════════════════════════════════════════════
-legend_items = [
-    (ORNG, "──",  "Existing STEM-GNN component"),
-    (BLUE, "──",  "LLM embeddings (shared encoder)"),
-    (TEAL, "──",  "Trust gate signal (β_v)"),
-    (GREEN,"──",  "Gated output (h_v)"),
+sec(S3X,SY,S3W,SH,"Semantic Trust Gate",H3,"#FAF5FF")
+
+# ── Gating Network sub-panel (y=5.30 to header at 7.69) ──
+rect(S3X+0.20,5.30,S3W-0.40,2.04,"#EDE9FE",H3,lw=1.2)
+t(S3X+S3W/2,7.10,"Gating Network  (Router)",col=H3,sz=10.5,bold=True)
+
+cbox(S3X+0.32,5.76,S3W-0.64,0.84,
+     'Q : "Is neighbour  u  semantically relevant for  v\'s  label?"',
+     "",*CB3,tsz=10.5)
+cbox(S3X+0.32,5.34,S3W-0.64,0.38,
+     "β_v  =  σ ( f ( e_v ,  mean { e_u } ) )",
+     "","#EDE9FE",H3,tsz=11.5,tc=H3)
+
+# ── Gate Signal Variants label (y=5.14) ──
+t(S3X+S3W/2,5.15,"Gate Signal Variants",col=TEXT,sz=10.5,bold=True)
+
+# ── Row 1: A, B  (y=4.12 to 5.05) ──
+GW=(S3W-0.56)/2; GH=0.90
+row1 = [
+    ("A   Cosine",       "cos( h_v ,  mean h_u )",         CB5),
+    ("B   Confidence",   "1 − max softmax( logits_u )",     CB4),
 ]
-for li, (col, sym, lbl) in enumerate(legend_items):
-    lx = 0.45 + li * 3.72
-    ax.plot([lx, lx + 0.38], [0.52, 0.52], color=col, lw=2.2)
-    label(lx + 0.52, 0.52, lbl, col=col, sz=8.5, ha="left")
+for gi,(name,formula,(fc,ec)) in enumerate(row1):
+    gx=S3X+0.18+gi*(GW+0.20)
+    cbox(gx,4.12,GW,GH,name,formula,fc,ec,tsz=9.5,ssz=8.5)
 
-# Title
-ax.text(7.5, 6.87,
-        "LLM-Guided Semantic Trust Gate  —  Architecture Diagram",
-        ha="center", va="center", fontsize=14, fontweight="bold",
-        color=WHITE, zorder=6)
+# ── Row 2: C, D  (y=3.06 to 3.99) ──
+row2 = [
+    ("C   Learned MLP",  "MLP( e_v  ‖  mean e_u ).σ(·)",   CB3),
+    ("D   LLM cosine ✱", "cos( e_v ,  mean e_u )",         CB1),
+]
+for gi,(name,formula,(fc,ec)) in enumerate(row2):
+    gx=S3X+0.18+gi*(GW+0.20)
+    cbox(gx,3.06,GW,GH,name,formula,fc,ec,tsz=9.5,ssz=8.5)
+
+# ── Weighted Gate Output banner (y=1.88 to 2.88) — clear of row 2 bottom 3.06 ──
+rect(S3X+0.20,1.88,S3W-0.40,1.00,"#E9D8FD",H3,lw=1.0)
+t(S3X+S3W/2,2.65,"Weighted Gate Output",col=H3,sz=10.5,bold=True)
+t(S3X+S3W/2,2.35,"β_v  ∈  [0, 1]  —  per-node trust scalar",col=H3,sz=11)
+t(S3X+S3W/2,2.05,
+  "β_v → 1 : trust self  (noisy nbrs)          β_v → 0 : trust neighbours  (reliable)",
+  col=MUT,sz=8.8)
+
+# ── footnotes (y=1.62 to 0.68, inside section) ──
+t(S3X+0.22,1.65,
+  "✱ D uses pre-VQ LLM embeddings.  Full proposal replaces with LLM label-support query.",
+  col=MUT,sz=8.3,ha="left")
+t(S3X+0.22,1.38,
+  "  Baselines: A (GNNGuard), B (Mowst/confidence), C (ACM-GNN), D (TAPE-style).",
+  col=MUT,sz=8.3,ha="left")
+t(S3X+0.22,1.11,
+  "  No existing method handles both injection + heterophily simultaneously.",
+  col="#C53030",sz=8.3,ha="left")
+
+arr(S3X+S3W,MID,S4X,MID)
+
+# ══════════════════════════════════════════════════════════════════════════
+# S4  Gated Aggregation
+# ══════════════════════════════════════════════════════════════════════════
+sec(S4X,SY,S4W,SH,"Gated Aggregation",H4,"#FFFAF0")
+
+t(S4X+S4W/2,7.08,"Aggregation Rule",col=H4,sz=10.5,bold=True)
+
+# equation boxes
+cbox(S4X+0.22,6.14,S4W-0.44,0.74,"h_v  =  β_v · W_self ( e_v )","",*CB4,tsz=13)
+cbox(S4X+0.22,5.24,S4W-0.44,0.74,"+ ( 1 − β_v ) · W_neigh ( mean e_u )","",*CB4,tsz=12)
+
+arr(S4X+S4W/2,5.24,S4X+S4W/2,4.95,col=H4,lw=1.5)
+
+# interpretation
+rect(S4X+0.22,3.85,S4W-0.44,1.02,"#FEFEFE",MGREY,lw=0.8)
+t(S4X+S4W/2,4.65,"Interpretation",col=TEXT,sz=10,bold=True)
+hw=(S4W-0.60)/2
+cbox(S4X+0.22,3.88,hw,0.70,"β_v → 1","Noisy / heterophilic\nneighbourhood",*CB5,tsz=9.5,ssz=8)
+cbox(S4X+0.22+hw+0.16,3.88,hw,0.70,"β_v → 0","Reliable structural\nsignal",*CB2,tsz=9.5,ssz=8)
+
+arr(S4X+S4W/2,3.85,S4X+S4W/2,3.58,col=H4,lw=1.5)
+
+# bounded effect
+rect(S4X+0.22,2.68,S4W-0.44,0.82,"#FEFCBF","#B7791F",lw=1.1)
+t(S4X+S4W/2,3.28,"Bounded Effect  (cf. STEM-GNN Lipschitz reg.)",col="#92400E",sz=9.5,bold=True)
+t(S4X+S4W/2,2.94,"ℒ  =  ℒ_task  +  λ_lip · ‖ W ‖²_F",col="#92400E",sz=12)
+
+arr(S4X+S4W/2,2.68,S4X+S4W/2,2.42,col=H4,lw=1.5)
+
+# task head
+cbox(S4X+0.55,1.68,S4W-1.10,0.68,
+     "Downstream Task Head",
+     "node classification  /  link prediction",*CB3,tsz=11,ssz=9)
+
+arr(S4X+S4W/2,1.68,S4X+S4W/2,1.46,col=H4,lw=1.5)
+
+# loss labels
+lw2=(S4W-1.2)/2
+for i,(lt,lc) in enumerate([("ℒ_task","#276749"),("ℒ_lip","#553C9A")]):
+    lx=S4X+0.55+i*(lw2+0.10)
+    ax.add_patch(FancyBboxPatch((lx,0.80),lw2,0.55,
+        boxstyle="round,pad=0.06,rounding_size=0.08",
+        facecolor="#FAFAFA",edgecolor=lc,lw=1.2,zorder=4))
+    t(lx+lw2/2,1.075,lt,col=lc,sz=11,bold=True)
+
+# ── bottom bar ─────────────────────────────────────────────────────────────
+rect(0.15,0.60,18.7,0.46,"#EBF4FF","#90CDF4",lw=0.8)
+t(9.4,0.83,
+  "Trust Gate taps  e_v  BEFORE  VQ Codebook  ——  clean semantic signal, "
+  "bypassing the quantisation noise that corrupts STEM-GNN's post-VQ MoE router",
+  col=H1,sz=9.5)
 
 plt.tight_layout(pad=0)
-out = "/home/lam23005/STEM-GNN/arch_diagram.png"
-plt.savefig(out, dpi=160, bbox_inches="tight", facecolor=BG)
+out="/home/lam23005/STEM-GNN/arch_diagram.png"
+plt.savefig(out,dpi=160,bbox_inches="tight",facecolor=BG)
 print(f"Saved → {out}")
