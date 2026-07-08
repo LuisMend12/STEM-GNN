@@ -1,0 +1,101 @@
+/home/lam23005/miniconda3/envs/STEM-GNN/lib/python3.9/site-packages/torch_geometric/data/in_memory_dataset.py:157: UserWarning: It is not recommended to directly access the internal storage format `data` of an 'InMemoryDataset'. If you are absolutely certain what you are doing, access the internal storage via `InMemoryDataset._data` instead to suppress this warning. Alternatively, you can access stacked individual attributes of every graph via `dataset.{attr_name}`.
+  warnings.warn(msg)
+Downloading https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/master/new_data/wisconsin/out1_node_feature_label.txt
+Downloading https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/master/new_data/wisconsin/out1_graph_edges.txt
+Downloading https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/master/splits/wisconsin_split_0.6_0.2_0.npz
+Downloading https://raw.githubusercontent.com/graphdml-uiuc-jlu/geom-gcn/master/splits/wisconsin_split_0.6_0.2_1.npz
+Traceback (most recent call last):
+  File "/home/lam23005/STEM-GNN/STEM-GNN/scripts/trust_sweep.py", line 219, in <module>
+    hetero = run_heterophily(WEBKB_DIR, seeds=SEEDS, epochs=EPOCHS)
+  File "/home/lam23005/STEM-GNN/STEM-GNN/scripts/trust_sweep.py", line 145, in run_heterophily
+    ds   = WebKB(webkb_root, name=ds_name)
+  File "/home/lam23005/miniconda3/envs/STEM-GNN/lib/python3.9/site-packages/torch_geometric/datasets/webkb.py", line 73, in __init__
+    super().__init__(root, transform, pre_transform)
+  File "/home/lam23005/miniconda3/envs/STEM-GNN/lib/python3.9/site-packages/torch_geometric/data/in_memory_dataset.py", line 57, in __init__
+    super().__init__(root, transform, pre_transform, pre_filter, log)
+  File "/home/lam23005/miniconda3/envs/STEM-GNN/lib/python3.9/site-packages/torch_geometric/data/dataset.py", line 94, in __init__
+    self._download()
+  File "/home/lam23005/miniconda3/envs/STEM-GNN/lib/python3.9/site-packages/torch_geometric/data/dataset.py", line 199, in _download
+    self.download()
+  File "/home/lam23005/miniconda3/envs/STEM-GNN/lib/python3.9/site-packages/torch_geometric/datasets/webkb.py", line 98, in download
+    download_url(f'{self.url}/splits/{f}', self.raw_dir)
+  File "/home/lam23005/miniconda3/envs/STEM-GNN/lib/python3.9/site-packages/torch_geometric/data/download.py", line 38, in download_url
+    data = urllib.request.urlopen(url, context=context)
+  File "/home/lam23005/miniconda3/envs/STEM-GNN/lib/python3.9/urllib/request.py", line 214, in urlopen
+    return opener.open(url, data, timeout)
+  File "/home/lam23005/miniconda3/envs/STEM-GNN/lib/python3.9/urllib/request.py", line 523, in open
+    response = meth(req, response)
+  File "/home/lam23005/miniconda3/envs/STEM-GNN/lib/python3.9/urllib/request.py", line 632, in http_response
+    response = self.parent.error(
+  File "/home/lam23005/miniconda3/envs/STEM-GNN/lib/python3.9/urllib/request.py", line 561, in error
+    return self._call_chain(*args)
+  File "/home/lam23005/miniconda3/envs/STEM-GNN/lib/python3.9/urllib/request.py", line 494, in _call_chain
+    result = func(*args)
+  File "/home/lam23005/miniconda3/envs/STEM-GNN/lib/python3.9/urllib/request.py", line 641, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 429: Too Many Requests
+ERROR conda.cli.main_run:execute(148): `conda run python STEM-GNN/scripts/trust_sweep.py` failed. (See above for error)
+/home/lam23005/STEM-GNN/STEM-GNN/scripts/../dataset
+
+=== CORA injection sweep ===
+
+--- ratio=0%  edges=10556 ---
+  none             78.74%
+  A_cosine         79.55%
+  B_confidence     71.31%
+  C_learned        71.60%
+  D_llm            79.59%
+
+--- ratio=10%  edges=11096 ---
+  none             76.87%
+  A_cosine         77.82%
+  B_confidence     70.95%
+  C_learned        69.89%
+  D_llm            78.01%
+
+--- ratio=20%  edges=11638 ---
+  none             76.06%
+  A_cosine         74.98%
+  B_confidence     69.52%
+  C_learned        67.75%
+  D_llm            75.05%
+
+--- ratio=30%  edges=12180 ---
+  none             74.45%
+  A_cosine         74.16%
+  B_confidence     69.33%
+  C_learned        67.55%
+  D_llm            74.73%
+
+--- ratio=40%  edges=12722 ---
+  none             73.74%
+  A_cosine         72.87%
+  B_confidence     68.81%
+  C_learned        66.55%
+  D_llm            72.45%
+
+--- ratio=50%  edges=13264 ---
+  none             71.82%
+  A_cosine         71.15%
+  B_confidence     67.75%
+  C_learned        65.72%
+  D_llm            71.23%
+
+=== Heterophily (Texas + Wisconsin) ===
+
+Texas: 183 nodes | homophily=0.308
+  Texas split=0 none             81.08%
+  Texas split=0 A_cosine         64.86%
+  Texas split=0 B_confidence     78.38%
+  Texas split=0 C_learned        78.38%
+  Texas split=0 D_llm            67.57%
+  Texas split=1 none             75.68%
+  Texas split=1 A_cosine         64.86%
+  Texas split=1 B_confidence     91.89%
+  Texas split=1 C_learned        91.89%
+  Texas split=1 D_llm            62.16%
+  Texas split=2 none             72.97%
+  Texas split=2 A_cosine         45.95%
+  Texas split=2 B_confidence     72.97%
+  Texas split=2 C_learned        72.97%
+  Texas split=2 D_llm            51.35%

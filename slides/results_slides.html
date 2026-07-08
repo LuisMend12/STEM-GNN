@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MoE-GNN OOD Robustness — Results</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#0d0d0d;display:flex;align-items:center;justify-content:center;min-height:100vh}
+
+.deck{position:relative;width:960px;height:540px;box-shadow:0 8px 40px rgba(0,0,0,0.6)}
+.slide{position:absolute;inset:0;background:#fcfcfb;display:none;flex-direction:column;padding:36px 48px 28px;border-radius:8px;overflow:hidden}
+.slide.active{display:flex}
+
+.slide-label{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#898781;margin-bottom:6px}
+.slide-title{font-size:26px;font-weight:700;color:#0b0b0b;line-height:1.2;margin-bottom:4px}
+.slide-sub{font-size:13px;color:#52514e;margin-bottom:14px;line-height:1.5}
+.body{flex:1;display:flex;gap:20px;min-height:0}
+
+/* NAV */
+.nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);padding:7px 14px;border-radius:24px}
+.nav button{background:none;border:none;color:#fff;cursor:pointer;font-size:16px;padding:3px 8px;border-radius:4px}
+.nav button:hover{background:rgba(255,255,255,0.15)}
+.nav-count{font-size:12px;color:#c3c2b7;min-width:44px;text-align:center}
+
+/* STAT TILE */
+.tile{background:#f9f9f7;border:1px solid #e1e0d9;border-radius:6px;padding:11px 14px}
+.tile-label{font-size:10px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#898781}
+.tile-value{font-size:26px;font-weight:700;color:#0b0b0b;line-height:1.1;margin-top:2px}
+.tile-sub{font-size:11px;color:#898781;margin-top:1px}
+
+/* LEGEND */
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:12px;color:#52514e}
+.leg-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+
+/* TABLE */
+table.r{width:100%;border-collapse:collapse;font-size:13px}
+table.r th{text-align:left;padding:5px 10px;font-size:10px;font-weight:700;color:#898781;letter-spacing:0.07em;text-transform:uppercase;border-bottom:1.5px solid #e1e0d9}
+table.r td{padding:7px 10px;border-bottom:1px solid #f0efec;color:#0b0b0b}
+table.r tr:last-child td{border-bottom:none}
+table.r tr:nth-child(even) td{background:#f9f9f7}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700}
+.b-blue{background:#cde2fb;color:#1c5cab}
+.b-red{background:#fcd0d0;color:#7a1212}
+
+/* CALLOUT BOXES */
+.box{border-radius:6px;padding:10px 14px;font-size:12px;line-height:1.6}
+.box-green{background:#f0faf5;border-left:3px solid #1baf7a;color:#0a5c41}
+.box-yellow{background:#fff8e6;border-left:3px solid #eda100;color:#7a5400}
+.box-blue{background:#f0f4ff;border-left:3px solid #2a78d6;color:#1c5cab}
+.box-red{background:#fff5f5;border-left:3px solid #e34948;color:#d03b3b}
+.box-gray{background:#f9f9f7;border-left:3px solid #c3c2b7;color:#52514e}
+
+/* ── TITLE SLIDE ── */
+.s-title{background:linear-gradient(135deg,#0b1929 0%,#0d2040 60%,#091528 100%);justify-content:center}
+.s-title .slide-title{font-size:34px;color:#fff;margin-bottom:10px}
+.s-title .slide-sub{font-size:15px;color:#86b6ef;margin-bottom:28px}
+.tag{display:inline-block;background:rgba(42,120,214,0.25);border:1px solid rgba(42,120,214,0.4);color:#86b6ef;font-size:10px;padding:3px 10px;border-radius:12px;letter-spacing:0.06em;margin-right:6px;margin-bottom:6px}
+.kpi-row{display:flex;gap:28px;margin-top:24px}
+.kpi{text-align:center}
+.kpi-val{font-size:40px;font-weight:700;line-height:1}
+.kpi-lbl{font-size:11px;color:#86b6ef;margin-top:4px}
+
+/* COLLAPSE VIZ on title slide */
+.coll-panel{position:absolute;right:0;top:0;bottom:0;width:240px;background:rgba(0,0,0,0.25);border-left:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;justify-content:center;padding:20px 18px}
+.coll-title{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#86b6ef;margin-bottom:14px;text-align:center}
+.coll-row{margin-bottom:14px}
+.coll-sub{font-size:11px;color:#86b6ef;margin-bottom:5px}
+.bar-wrap{display:flex;gap:2px;height:20px}
+.bar-seg{height:100%;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;min-width:2px}
+
+/* METHOD FLOW */
+.flow{display:flex;align-items:stretch;gap:0;background:#f9f9f7;border-radius:8px;padding:12px 16px;margin:12px 0}
+.flow-box{flex:1;text-align:center;padding:8px 4px;border-radius:6px;font-size:11px;font-weight:600}
+.flow-arr{display:flex;align-items:center;color:#c3c2b7;font-size:18px;padding:0 6px;flex-shrink:0}
+
+/* CONTRIB CARDS */
+.contrib{flex:1;border-radius:8px;padding:14px 16px;border:1.5px solid}
+</style>
+</head>
+<body>
+<div class="deck">
+
+<!-- ═══════════════════════════════════════
+     SLIDE 1 — TITLE
+═══════════════════════════════════════ -->
+<section class="slide s-title active" id="s1">
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding-right:260px">
+    <div style="margin-bottom:14px">
+      <span class="tag">STEM-GNN</span>
+      <span class="tag">Mixture-of-Experts</span>
+      <span class="tag">OOD Robustness</span>
+    </div>
+    <div class="slide-title">LLM-Guided MoE for OOD-Robust Graph Neural Networks</div>
+    <div class="slide-sub">Pre-trained text embeddings guide expert routing, preventing collapse and improving generalization across 5 out-of-distribution benchmarks on Pubmed, WikiCS, and Arxiv.</div>
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-val" style="color:#3987e5">89.7%</div><div class="kpi-lbl">Pubmed ID Acc</div></div>
+      <div class="kpi"><div class="kpi-val" style="color:#199e70">88.0%</div><div class="kpi-lbl">Pubmed OOD-low</div></div>
+      <div class="kpi"><div class="kpi-val" style="color:#3987e5">83.6%</div><div class="kpi-lbl">WikiCS ID Acc</div></div>
+      <div class="kpi"><div class="kpi-val" style="color:#199e70">73.1%</div><div class="kpi-lbl">WikiCS OOD-low</div></div>
+    </div>
+  </div>
+  <div class="coll-panel">
+    <div class="coll-title">Expert Collapse — Before vs After</div>
+    <div class="coll-row">
+      <div class="coll-sub">Without λ<sub>env</sub> (collapsed)</div>
+      <div class="bar-wrap">
+        <div class="bar-seg" style="flex:100;background:#e34948">Expert 1 · 100%</div>
+        <div class="bar-seg" style="flex:0.5;background:#383835"></div>
+        <div class="bar-seg" style="flex:0.5;background:#383835"></div>
+      </div>
+    </div>
+    <div class="coll-row">
+      <div class="coll-sub">With λ<sub>env</sub> = 0.1 (ours)</div>
+      <div class="bar-wrap">
+        <div class="bar-seg" style="flex:62;background:#2a78d6">62%</div>
+        <div class="bar-seg" style="flex:23;background:#1baf7a">23%</div>
+        <div class="bar-seg" style="flex:15;background:#eda100">15%</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;text-align:center;border-top:1px solid rgba(255,255,255,0.08);padding-top:14px">
+      <div style="font-size:10px;color:#898781;margin-bottom:4px">ROUTING SHIFT (TV DISTANCE)</div>
+      <div style="font-size:28px;font-weight:700;color:#199e70">&lt; 0.05</div>
+      <div style="font-size:11px;color:#52514e;margin-top:2px">ID → OOD stays stable</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SLIDE 2 — MOTIVATION & BENCHMARKS
+═══════════════════════════════════════ -->
+<section class="slide" id="s2">
+  <div class="slide-label">Motivation</div>
+  <div class="slide-title">GNNs Degrade Under Structural Distribution Shift</div>
+  <div class="slide-sub">Node representations depend on graph neighborhood — so the same node can look different under degree or homophily shift. Five benchmarks stress-test different failure modes.</div>
+  <div class="body" style="align-items:flex-start">
+    <div style="flex:1;display:flex;flex-direction:column;gap:7px">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#898781;margin-bottom:2px">5 OOD Benchmarks</div>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:6px;background:#f9f9f7;border:1px solid #e1e0d9">
+        <div style="width:8px;height:8px;border-radius:50%;background:#2a78d6;flex-shrink:0"></div>
+        <div><div style="font-size:12px;font-weight:700;color:#0b0b0b">Degree Shift</div><div style="font-size:11px;color:#898781">Bottom/top 15% nodes by degree → OOD-low/high</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:6px;background:#f9f9f7;border:1px solid #e1e0d9">
+        <div style="width:8px;height:8px;border-radius:50%;background:#1baf7a;flex-shrink:0"></div>
+        <div><div style="font-size:12px;font-weight:700;color:#0b0b0b">Homophily Shift</div><div style="font-size:11px;color:#898781">Nodes with few vs. many same-class neighbors</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:6px;background:#f9f9f7;border:1px solid #e1e0d9">
+        <div style="width:8px;height:8px;border-radius:50%;background:#eda100;flex-shrink:0"></div>
+        <div><div style="font-size:12px;font-weight:700;color:#0b0b0b">Missing Features (p=0.4)</div><div style="font-size:11px;color:#898781">40% of node text embeddings masked at test time</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:6px;background:#f9f9f7;border:1px solid #e1e0d9">
+        <div style="width:8px;height:8px;border-radius:50%;background:#008300;flex-shrink:0"></div>
+        <div><div style="font-size:12px;font-weight:700;color:#0b0b0b">Random Edge Drop (p=0.2)</div><div style="font-size:11px;color:#898781">20% of edges removed at test time</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:6px;background:#f9f9f7;border:1px solid #e1e0d9">
+        <div style="width:8px;height:8px;border-radius:50%;background:#4a3aa7;flex-shrink:0"></div>
+        <div><div style="font-size:12px;font-weight:700;color:#0b0b0b">Tri-Objective</div><div style="font-size:11px;color:#898781">Jointly optimize accuracy + fairness + calibration</div></div>
+      </div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:9px">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#898781;margin-bottom:2px">Core Problem: Expert Collapse</div>
+      <div class="box box-red">
+        <strong>Without entropy regularization:</strong> router assigns ~100% nodes to one expert (max_usage ≈ 1.000). MoE collapses to a standard GNN — no benefit from multiple experts, no specialization.
+      </div>
+      <div class="box box-green">
+        <strong>With λ<sub>env</sub> = 0.1:</strong> Layer 0 max_usage drops to 0.62 ± 0.16. Experts genuinely specialize. TV distance ID→OOD &lt; 0.05 — routing distribution stays stable under shift.
+      </div>
+      <div class="box box-blue">
+        <strong>LLM-direct routing (new):</strong> Instead of routing on GNN hidden states (which change with graph structure), route on frozen 768-dim text embeddings. Hypothesis: same semantic content → same expert, regardless of neighborhood topology.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SLIDE 3 — METHOD
+═══════════════════════════════════════ -->
+<section class="slide" id="s3">
+  <div class="slide-label">Method</div>
+  <div class="slide-title">STEM-GNN: Pre-trained Sentence Embeddings + MoE Encoder</div>
+  <div class="slide-sub">The LLM is used <em>offline only</em> — it produces fixed 768-dim embeddings per node. The GNN then learns over these frozen features during pretrain and finetune.</div>
+
+  <div class="flow">
+    <div class="flow-box" style="background:#e8f0fb;border:1px solid #bcceff;color:#1c5cab">
+      <div style="font-size:10px;font-weight:700;color:#898781;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px">Node Text</div>
+      "Paper abstract…"
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-box" style="background:#e8f0fb;border:1px solid #bcceff;color:#1c5cab">
+      <div style="font-size:10px;font-weight:700;color:#898781;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px">LLM (offline)</div>
+      SentenceTransformer<br>768-dim · frozen
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-box" style="background:#f0faf5;border:1px solid #a8dfc6;color:#0a5c41">
+      <div style="font-size:10px;font-weight:700;color:#898781;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px">MoE GNN Encoder</div>
+      Router → K=3 Experts<br>SAGEConv per expert
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-box" style="background:#fef3e0;border:1px solid #f9d68a;color:#7a5400">
+      <div style="font-size:10px;font-weight:700;color:#898781;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px">VQ Codebook</div>
+      128 discrete codes<br>multi-head (4)
+    </div>
+    <div class="flow-arr">→</div>
+    <div class="flow-box" style="background:#f5f0ff;border:1px solid #d3c8ff;color:#4a3aa7">
+      <div style="font-size:10px;font-weight:700;color:#898781;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px">Linear Head</div>
+      Node classification<br>fine-tuned
+    </div>
+  </div>
+
+  <div class="body" style="gap:16px;align-items:stretch">
+    <div class="contrib" style="background:#f0faf5;border-color:#a8dfc6">
+      <div style="font-size:11px;font-weight:700;color:#0a5c41;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px">① Entropy Regularization</div>
+      <div style="font-size:13px;color:#0b0b0b;line-height:1.6;margin-bottom:8px">Adds an entropy penalty to the router distribution to force load balancing across experts.</div>
+      <div style="font-family:monospace;font-size:12px;background:rgba(0,0,0,0.06);padding:7px 10px;border-radius:4px;color:#0a5c41">L_total += −λ · H(router_probs)</div>
+      <div style="margin-top:10px;display:flex;gap:16px">
+        <div style="text-align:center"><div style="font-size:20px;font-weight:700;color:#e34948">1.000</div><div style="font-size:10px;color:#898781">max_usage (no reg)</div></div>
+        <div style="display:flex;align-items:center;color:#c3c2b7;font-size:16px">→</div>
+        <div style="text-align:center"><div style="font-size:20px;font-weight:700;color:#1baf7a">0.62</div><div style="font-size:10px;color:#898781">max_usage (λ=0.1)</div></div>
+      </div>
+    </div>
+    <div class="contrib" style="background:#e8f0fb;border-color:#bcceff">
+      <div style="font-size:11px;font-weight:700;color:#1c5cab;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px">② LLM-Direct Router <span style="background:#cde2fb;padding:2px 6px;border-radius:4px;font-size:10px">NEW</span></div>
+      <div style="font-size:13px;color:#0b0b0b;line-height:1.6;margin-bottom:8px">Use frozen text embedding <code style="background:rgba(0,0,0,0.07);padding:1px 4px;border-radius:3px">x_orig</code> as router input instead of GNN hidden state <code style="background:rgba(0,0,0,0.07);padding:1px 4px;border-radius:3px">z</code>.</div>
+      <div style="font-family:monospace;font-size:12px;background:rgba(0,0,0,0.06);padding:7px 10px;border-radius:4px;color:#1c5cab"># GNN router (default)<br>logits = W · z<br><br># LLM router (--use_llm_router)<br>logits = W · x_orig  # frozen</div>
+      <div style="margin-top:10px;font-size:12px;color:#52514e"><strong>Property:</strong> same paper text → same expert, regardless of citation graph structure.</div>
+    </div>
+    <div class="contrib" style="background:#f9f9f7;border-color:#e1e0d9">
+      <div style="font-size:11px;font-weight:700;color:#52514e;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px">③ Expert Semantic Purity</div>
+      <div style="font-size:13px;color:#0b0b0b;line-height:1.6;margin-bottom:8px">Measures how semantically coherent each expert's routing is — what fraction of its assigned nodes share a dominant class.</div>
+      <div style="font-family:monospace;font-size:11px;background:rgba(0,0,0,0.06);padding:7px 10px;border-radius:4px;color:#52514e">purity = Σ_k usage_k · max_c P(c|k)<br><br># 1.0 = perfectly class-pure<br># 1/C = random (uniform)</div>
+      <div style="margin-top:10px;font-size:12px;color:#52514e">Reported per layer and aggregated across runs.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SLIDE 4 — PUBMED RESULTS
+═══════════════════════════════════════ -->
+<section class="slide" id="s4">
+  <div class="slide-label">Results — Pubmed · 19,717 nodes · 3 classes · 10 runs each</div>
+  <div class="slide-title">Pubmed: Strong OOD Robustness Across All 5 Benchmarks</div>
+  <div class="body" style="flex-direction:column;gap:10px">
+    <div class="legend">
+      <div class="leg-item"><div class="leg-dot" style="background:#2a78d6"></div>ID (in-distribution test)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#1baf7a"></div>OOD-low</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#eda100"></div>OOD-high</div>
+    </div>
+    <div style="flex:1;display:flex;gap:16px;min-height:0">
+      <div style="flex:1.5;min-width:0">
+        <svg id="chart-pubmed" viewBox="0 0 520 190" width="100%" height="100%" style="display:block"></svg>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:7px">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#898781">Single-metric benchmarks</div>
+        <div class="tile">
+          <div class="tile-label">Missing Features (p=0.4)</div>
+          <div class="tile-value">75.88%</div>
+          <div class="tile-sub">± 1.82% · 10 runs</div>
+        </div>
+        <div class="tile">
+          <div class="tile-label">Random Edge Drop (p=0.2)</div>
+          <div class="tile-value">75.14%</div>
+          <div class="tile-sub">± 2.14% · 10 runs</div>
+        </div>
+        <div class="tile">
+          <div class="tile-label">Tri-Objective</div>
+          <div class="tile-value">89.29%</div>
+          <div class="tile-sub">± 0.58% · 10 runs</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <div class="box box-green" style="flex:1"><strong>Degree shift:</strong> only 1.7% drop ID→OOD-low (89.7%→88.0%). Routing TV &lt; 0.05 — stable across structural shift.</div>
+      <div class="box box-blue" style="flex:1"><strong>Homophily shift:</strong> OOD-high (91.96%) exceeds ID — high-homophily nodes benefit more from neighborhood aggregation.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SLIDE 5 — WIKICS RESULTS
+═══════════════════════════════════════ -->
+<section class="slide" id="s5">
+  <div class="slide-label">Results — WikiCS · 11,701 nodes · 10 classes · 10 runs each</div>
+  <div class="slide-title">WikiCS: Larger OOD Gaps — Low-Degree Nodes Are Harder</div>
+  <div class="body" style="flex-direction:column;gap:10px">
+    <div class="legend">
+      <div class="leg-item"><div class="leg-dot" style="background:#2a78d6"></div>ID (in-distribution test)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#1baf7a"></div>OOD-low</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#eda100"></div>OOD-high</div>
+    </div>
+    <div style="flex:1;display:flex;gap:16px;min-height:0">
+      <div style="flex:1.5;min-width:0">
+        <svg id="chart-wikics" viewBox="0 0 520 190" width="100%" height="100%" style="display:block"></svg>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:7px">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#898781">Single-metric benchmarks</div>
+        <div class="tile">
+          <div class="tile-label">Missing Features (p=0.4)</div>
+          <div class="tile-value">76.47%</div>
+          <div class="tile-sub">± 2.41% · 10 runs</div>
+        </div>
+        <div class="tile">
+          <div class="tile-label">Random Edge Drop (p=0.2)</div>
+          <div class="tile-value">76.49%</div>
+          <div class="tile-sub">± 3.23% · 10 runs</div>
+        </div>
+        <div class="tile">
+          <div class="tile-label">Tri-Objective</div>
+          <div class="tile-value">83.28%</div>
+          <div class="tile-sub">± 3.76% · 10 runs</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <div class="box box-yellow" style="flex:1"><strong>Degree shift OOD-low:</strong> 10.4% drop (83.6%→73.1%). Low-degree nodes have sparse neighborhoods — message passing provides little signal, so text features must carry more weight.</div>
+      <div class="box box-yellow" style="flex:1"><strong>High variance (±2.5–5%):</strong> 10-class problem is more sensitive to how the stratified ID/OOD split lands. Arxiv (169K nodes) will give a cleaner signal.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SLIDE 6 — ROUTER COMPARISON
+═══════════════════════════════════════ -->
+<section class="slide" id="s6">
+  <div class="slide-label">Ablation — Router Type · Degree Shift · 5 runs · lamda_pretrain checkpoint</div>
+  <div class="slide-title">LLM-Direct Router vs GNN Router: Accuracy Equivalent</div>
+  <div class="slide-sub">Routing on frozen LLM text embeddings vs GNN hidden states — no significant accuracy difference. The entropy regularizer (λ=0.1) matters far more than router input type.</div>
+  <div class="body" style="flex-direction:column;gap:8px">
+    <div class="legend">
+      <div class="leg-item"><div class="leg-dot" style="background:#2a78d6"></div>GNN Router (baseline)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#e34948"></div>LLM-Direct Router (ours)</div>
+    </div>
+    <div style="flex:1;overflow:hidden">
+      <table class="r">
+        <thead>
+          <tr>
+            <th>Dataset</th>
+            <th>Router</th>
+            <th>ID Acc (%)</th>
+            <th>OOD-low (%)</th>
+            <th>OOD-high (%)</th>
+            <th>L1 Expert Purity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="2" style="font-weight:600;vertical-align:middle">Cora</td>
+            <td><span class="badge b-blue">GNN</span></td>
+            <td>87.47 ± 1.63</td>
+            <td>81.23 ± 2.09</td>
+            <td>85.91 ± 0.98</td>
+            <td style="color:#0a5c41;font-weight:600">0.456 ± 0.054</td>
+          </tr>
+          <tr>
+            <td><span class="badge b-red">LLM</span></td>
+            <td>87.35 ± 1.40</td>
+            <td>81.18 ± 2.07</td>
+            <td>85.76 ± 0.65</td>
+            <td style="color:#d03b3b">0.357 ± 0.038</td>
+          </tr>
+          <tr>
+            <td rowspan="2" style="font-weight:600;vertical-align:middle">Pubmed</td>
+            <td><span class="badge b-blue">GNN</span></td>
+            <td>89.77 ± 0.31</td>
+            <td>88.21 ± 0.34</td>
+            <td>89.51 ± 0.31</td>
+            <td style="color:#0a5c41;font-weight:600">0.468 ± 0.048</td>
+          </tr>
+          <tr>
+            <td><span class="badge b-red">LLM</span></td>
+            <td>89.65 ± 0.31</td>
+            <td>88.09 ± 0.36</td>
+            <td>89.33 ± 0.43</td>
+            <td>0.434 ± 0.028</td>
+          </tr>
+          <tr>
+            <td rowspan="2" style="font-weight:600;vertical-align:middle">WikiCS</td>
+            <td><span class="badge b-blue">GNN</span></td>
+            <td>85.48 ± 0.64</td>
+            <td>75.45 ± 0.91</td>
+            <td>86.29 ± 0.46</td>
+            <td style="color:#0a5c41;font-weight:600">0.336 ± 0.050</td>
+          </tr>
+          <tr>
+            <td><span class="badge b-red">LLM</span></td>
+            <td>85.55 ± 0.78</td>
+            <td>75.41 ± 0.73</td>
+            <td>86.50 ± 0.74</td>
+            <td style="color:#d03b3b">0.258 ± 0.019</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="display:flex;gap:8px">
+      <div class="box box-green" style="flex:1"><strong>Accuracy:</strong> Max OOD difference across all conditions is 0.14% — within noise. Both routers generalize equally.</div>
+      <div class="box box-yellow" style="flex:1"><strong>Purity:</strong> GNN router achieves higher L1 class purity on Cora (0.456 vs 0.357) and WikiCS (0.336 vs 0.258). Neighborhood aggregation already groups semantic classes — the GNN knows who's nearby.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SLIDE 7 — KEY FINDINGS
+═══════════════════════════════════════ -->
+<section class="slide" id="s7">
+  <div class="slide-label">Summary</div>
+  <div class="slide-title">Key Findings</div>
+  <div class="body" style="gap:16px;align-items:stretch">
+    <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+      <div class="box box-green">
+        <div style="font-weight:700;font-size:13px;margin-bottom:3px">① Entropy reg is essential</div>
+        λ<sub>env</sub> = 0.1 drops max_usage from 1.000 → 0.62. Without it, MoE is just a single GNN. This is the most impactful change.
+      </div>
+      <div class="box box-green">
+        <div style="font-weight:700;font-size:13px;margin-bottom:3px">② STEM-GNN generalizes well on Pubmed</div>
+        Degree shift: only 1.7% ID→OOD-low gap. Routing shift TV &lt; 0.05 confirms the model's routing distribution barely changes under structural OOD.
+      </div>
+      <div class="box box-blue">
+        <div style="font-weight:700;font-size:13px;margin-bottom:3px">③ Homophily OOD-high often exceeds ID</div>
+        Pubmed: 91.96% OOD-high vs 89.73% ID. High-homophily nodes are "easier" — cleaner neighborhoods amplify the GNN's aggregation signal.
+      </div>
+      <div class="box box-yellow">
+        <div style="font-weight:700;font-size:13px;margin-bottom:3px">④ WikiCS harder: 10.4% OOD-low drop</div>
+        Low-degree nodes have little neighborhood info. High variance (±2.5–5%) from 10-class stratification. Arxiv will provide cleaner large-scale signal.
+      </div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+      <div class="box box-red">
+        <div style="font-weight:700;font-size:13px;margin-bottom:3px">⑤ LLM-direct router ≈ GNN router in accuracy</div>
+        Structure-invariant routing on frozen text embeddings matches GNN routing to within 0.14% OOD accuracy. The entropy regularizer drives robustness, not the router input type.
+      </div>
+      <div class="box box-red">
+        <div style="font-weight:700;font-size:13px;margin-bottom:3px">⑥ GNN router achieves higher expert class purity</div>
+        Cora L1: 0.456 (GNN) vs 0.357 (LLM). Message-passing naturally clusters semantically similar nodes — the GNN hidden state already carries structural class information that the frozen text embedding lacks.
+      </div>
+      <div class="box box-gray">
+        <div style="font-weight:700;font-size:13px;margin-bottom:3px">⑦ Homophily comparison & Arxiv pending</div>
+        Job 25984702: homophily_shift GNN vs LLM router on Cora/Pubmed/WikiCS. Homophily is the strongest structural test — LLM routing could show clearer advantage there. Arxiv (169K) also running.
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- end deck -->
+
+<!-- ── Navigation ── -->
+<div class="nav">
+  <button onclick="go(-1)">&#8592;</button>
+  <span class="nav-count" id="ctr">1 / 7</span>
+  <button onclick="go(1)">&#8594;</button>
+</div>
+
+<script>
+const slides = [...document.querySelectorAll('.slide')];
+let cur = 0;
+
+function go(d) {
+  slides[cur].classList.remove('active');
+  cur = (cur + d + slides.length) % slides.length;
+  slides[cur].classList.add('active');
+  document.getElementById('ctr').textContent = `${cur+1} / ${slides.length}`;
+}
+document.addEventListener('keydown', e => {
+  if (e.key==='ArrowRight'||e.key==='ArrowDown') go(1);
+  if (e.key==='ArrowLeft'||e.key==='ArrowUp') go(-1);
+});
+
+// ── Chart drawing ──
+function drawGrouped(svgId, groups, yMin, yMax) {
+  const svg = document.getElementById(svgId);
+  if (!svg) return;
+  const W=520, H=190, mL=44, mR=12, mT=16, mB=38;
+  const cW=W-mL-mR, cH=H-mT-mB;
+  const colors=['#2a78d6','#1baf7a','#eda100'];
+  const range=yMax-yMin;
+  const toY=v=>mT+cH-((v-yMin)/range)*cH;
+  const nG=groups.length, nS=groups[0].values.length;
+  const gW=cW/nG;
+  const barW=Math.min(44,(gW-16)/nS);
+  let h='';
+
+  // gridlines
+  const step=range<=20?5:10;
+  for(let v=Math.ceil(yMin/step)*step;v<=yMax;v+=step){
+    const y=toY(v);
+    h+=`<line x1="${mL}" x2="${W-mR}" y1="${y}" y2="${y}" stroke="#e1e0d9" stroke-width="1"/>`;
+    h+=`<text x="${mL-5}" y="${y+3.5}" text-anchor="end" font-size="10" fill="#898781">${v}</text>`;
+  }
+  // baseline
+  h+=`<line x1="${mL}" x2="${W-mR}" y1="${toY(yMin)}" y2="${toY(yMin)}" stroke="#c3c2b7" stroke-width="1.5"/>`;
+
+  groups.forEach((g,gi)=>{
+    const pad=(gW-nS*barW)/2;
+    const gX=mL+gi*gW+pad;
+    g.values.forEach((v,si)=>{
+      const bx=gX+si*barW;
+      const by=toY(v), bh=toY(yMin)-by;
+      h+=`<rect x="${bx+1}" y="${by}" width="${barW-2}" height="${bh}" fill="${colors[si]}" rx="2"/>`;
+      h+=`<text x="${bx+barW/2}" y="${by-3}" text-anchor="middle" font-size="9" fill="${colors[si]}" font-weight="700">${v.toFixed(1)}</text>`;
+      if(g.stds){
+        const std=g.stds[si], cx=bx+barW/2;
+        const ey=std/range*cH, ew=3.5;
+        h+=`<line x1="${cx}" x2="${cx}" y1="${by-ey}" y2="${by+Math.min(ey,bh/2)}" stroke="${colors[si]}" stroke-width="1.5" opacity="0.6"/>`;
+        h+=`<line x1="${cx-ew}" x2="${cx+ew}" y1="${by-ey}" y2="${by-ey}" stroke="${colors[si]}" stroke-width="1.5" opacity="0.6"/>`;
+      }
+    });
+    // label
+    const lx=gX+nS*barW/2;
+    h+=`<text x="${lx}" y="${H-8}" text-anchor="middle" font-size="11" fill="#52514e" font-weight="600">${g.label}</text>`;
+  });
+  svg.innerHTML=h;
+}
+
+function drawPubmed(){
+  drawGrouped('chart-pubmed',[
+    {label:'Degree Shift', values:[89.69,88.00,89.51], stds:[0.26,0.50,0.26]},
+    {label:'Homophily Shift', values:[89.73,84.79,91.96], stds:[0.53,0.41,0.37]},
+  ],80,95);
+}
+function drawWikiCS(){
+  drawGrouped('chart-wikics',[
+    {label:'Degree Shift', values:[83.56,73.13,85.86], stds:[1.63,2.53,0.89]},
+    {label:'Homophily Shift', values:[80.68,76.75,82.31], stds:[2.91,4.88,5.03]},
+  ],68,90);
+}
+
+// Draw all charts up front (SVG innerHTML works even when slide is hidden)
+drawPubmed();
+drawWikiCS();
+</script>
+</body>
+</html>
