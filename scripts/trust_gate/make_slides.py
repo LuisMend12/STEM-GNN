@@ -34,9 +34,12 @@ W, H = Inches(13.33), Inches(7.5)   # 16:9 widescreen
 with open("/home/lam23005/STEM-GNN/results/sweep_results.json") as f:
     DATA = json.load(f)
 
-CORA   = DATA["cora_sweep"]
-TEXAS  = DATA["heterophily"]["Texas"]
-RATIOS = [r * 100 for r in CORA["ratios"]]
+CORA    = DATA["cora_sweep"]
+PUBMED  = DATA["pubmed_sweep"]
+TEXAS   = DATA["heterophily"]["Texas"]
+WISC    = DATA["heterophily"]["Wisconsin"]
+CORNELL = DATA["heterophily"]["Cornell"]
+RATIOS  = [r * 100 for r in CORA["ratios"]]
 
 GATES = ["none", "A_cosine", "B_confidence", "C_learned", "D_llm"]
 GLABEL = {
@@ -311,92 +314,119 @@ def make_cora_fig():
     fig.tight_layout()
     return fig
 
+def make_injection_fig():
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 4.5), gridspec_kw={"wspace": 0.38})
+    for ax in (ax1, ax2): ax.set_facecolor("white")
+    fig.patch.set_facecolor("white")
+    # Lines
+    for gate in GATES:
+        c_accs = [v * 100 for v in CORA["results"][gate]]
+        p_accs = [v * 100 for v in PUBMED["results"][gate]]
+        lw = 2.2 if gate != "none" else 1.6; ls = "--" if gate == "none" else "-"
+        ax1.plot(RATIOS, c_accs, color=GCOLOR[gate], lw=lw, ls=ls,
+                 marker="o", markersize=4, label=GLABEL[gate])
+        ax1.plot(RATIOS, p_accs, color=GCOLOR[gate], lw=lw, ls=ls,
+                 marker="s", markersize=4, alpha=0.38)
+    ax1.set_xlabel("Injected confusing edges (%)"); ax1.set_ylabel("Test accuracy (%)")
+    ax1.set_title("Cora (●)  &  PubMed (■, faded)", fontsize=11, fontweight="bold")
+    ax1.set_xticks(RATIOS); ax1.set_ylim(60, 84)
+    ax1.grid(axis="y", alpha=0.2, ls="--", color="#CCC")
+    ax1.spines["top"].set_visible(False); ax1.spines["right"].set_visible(False)
+    ax1.legend(fontsize=9, framealpha=0, loc="lower left")
+    # Drop bars
+    drops_c = [(CORA["results"][g][-1]   - CORA["results"][g][0])   * 100 for g in GATES]
+    drops_p = [(PUBMED["results"][g][-1] - PUBMED["results"][g][0]) * 100 for g in GATES]
+    xs = np.arange(len(GATES)); w = 0.36
+    ax2.barh(xs + w/2, drops_c, height=w, color=[GCOLOR[g] for g in GATES], alpha=0.85, label="Cora")
+    ax2.barh(xs - w/2, drops_p, height=w, color=[GCOLOR[g] for g in GATES],
+             alpha=0.38, hatch="///", edgecolor="white", label="PubMed")
+    for i, (dc, dp) in enumerate(zip(drops_c, drops_p)):
+        ax2.text(dc - 0.1, xs[i]+w/2, f"{dc:+.1f}", va="center", ha="right",
+                 fontsize=9, color=GCOLOR[GATES[i]], fontweight="bold")
+        ax2.text(dp - 0.1, xs[i]-w/2, f"{dp:+.1f}", va="center", ha="right",
+                 fontsize=9, color=GCOLOR[GATES[i]])
+    ax2.set_yticks(xs); ax2.set_yticklabels([GLABEL[g] for g in GATES], fontsize=9)
+    for tick, g in zip(ax2.get_yticklabels(), GATES): tick.set_color(GCOLOR[g])
+    ax2.set_xlabel("Accuracy drop (pp)"); ax2.set_title("Drop: clean → 50% injection", fontsize=11, fontweight="bold")
+    ax2.axvline(0, color="#AAA", lw=0.8); ax2.grid(axis="x", alpha=0.2, ls="--", color="#CCC")
+    ax2.spines["top"].set_visible(False); ax2.spines["right"].set_visible(False)
+    ax2.legend(fontsize=9, framealpha=0)
+    fig.tight_layout(); return fig
+
 def slide_cora(prs):
     sl = blank_slide(prs); bg(sl, C_WHITE)
-    header_bar(sl, "Result 1 — Injection Robustness on Cora",
-               "B (confidence) degrades least: only −3.6 pp at 50% injection", C_BROWN)
-    buf = fig_to_img(make_cora_fig())
-    add_img(sl, buf, Inches(0.3), Inches(1.25), Inches(8.8))
+    header_bar(sl, "Result 1 — Injection Robustness (Cora + PubMed)",
+               "Gate B most robust on both datasets: −3.6 pp (Cora), −2.6 pp (PubMed)", C_BROWN)
+    buf = fig_to_img(make_injection_fig())
+    add_img(sl, buf, Inches(0.3), Inches(1.25), Inches(9.5))
 
-    # Key takeaways box
-    rect(sl, Inches(9.3), Inches(1.25), Inches(3.8), Inches(5.9),
+    rect(sl, Inches(9.95), Inches(1.25), Inches(3.15), Inches(5.9),
          RGBColor(0xFF, 0xF8, 0xF3), line=C_BROWN, lw=1.2)
-    txbox(sl, "Key Takeaways", Inches(9.4), Inches(1.35), Inches(3.6), Inches(0.5),
+    txbox(sl, "Key Takeaways", Inches(10.05), Inches(1.35), Inches(2.95), Inches(0.5),
           size=13, bold=True, color=C_BROWN)
     bullets = [
-        "Gate B (confidence) most robust: −3.6 pp",
-        "Cosine gates (A, D) track baseline — offer no extra robustness",
-        "Gate C (learned) degrades faster than B",
-        "All gates converge at 50% injection (≈71%)",
+        "B (confidence) most robust on both Cora (−3.6) and PubMed (−2.6 pp)",
+        "C (learned MLP) also stable: −5.9 pp Cora, −1.1 pp PubMed",
+        "Cosine gates (A, D): −8.4 pp — no robustness benefit",
+        "Pattern consistent across two independent datasets",
     ]
     for i, b in enumerate(bullets):
-        txbox(sl, f"• {b}", Inches(9.4), Inches(1.95 + i * 1.1),
-              Inches(3.6), Inches(1.0), size=11.5, color=C_DARK)
+        txbox(sl, f"• {b}", Inches(10.05), Inches(1.95 + i * 1.1),
+              Inches(2.95), Inches(1.0), size=11, color=C_DARK)
 
 # ─────────────────────────────────────────────────────────────────────────────
 # SLIDE 7 — TEXAS HETEROPHILY RESULTS
 # ─────────────────────────────────────────────────────────────────────────────
-def make_texas_fig():
-    TEXAS_LIT = {"GNNGuard (NeurIPS'20)": 52.2,
-                 "H2GCN (NeurIPS'20)":    84.9,
-                 "GPR-GNN (ICLR'21)":     92.9}
-    our_names  = [GLABEL[g] for g in GATES]
-    our_accs   = [TEXAS["results"][g]*100 for g in GATES]
-    our_colors = [GCOLOR[g] for g in GATES]
-    pub_names  = list(TEXAS_LIT.keys())
-    pub_accs   = list(TEXAS_LIT.values())
-
-    all_names  = our_names + [""] + pub_names
-    all_accs   = our_accs  + [0]  + pub_accs
-    all_colors = our_colors + ["white"] + ["#CCCCCC"]*3
-    all_hatch  = [""]*5 + [""] + ["////"]*3
-    ys = np.arange(len(all_names))
-
+def make_hetero_fig():
+    hetero_datasets = [
+        ("Texas\nh=0.31",     TEXAS["results"]),
+        ("Wisconsin\nh=0.37", WISC["results"]),
+        ("Cornell\nh=0.34",   CORNELL["results"]),
+    ]
+    n_ds = len(hetero_datasets); w = 0.13; group_gap = 0.85
+    xs_g = np.arange(n_ds) * group_gap
     fig, ax = plt.subplots(figsize=(9, 4.8))
     fig.patch.set_facecolor("white"); ax.set_facecolor("white")
-    for i, (name, acc, col, hatch) in enumerate(zip(all_names,all_accs,all_colors,all_hatch)):
-        if name == "": continue
-        ax.barh(ys[i], acc, height=0.6, color=col, hatch=hatch,
-                edgecolor="#DDDDDD" if hatch else "white", linewidth=0.8)
-        if acc > 0:
-            ax.text(acc+0.8, ys[i], f"{acc:.1f}%", va="center", fontsize=9.5,
-                    color="#888888" if i>5 else "#222222",
-                    fontweight="bold" if i<=4 else "normal")
-    ax.axhline(5.5, color="#CCCCCC", lw=1.0)
-    ax.text(33, 5.7, "published ↑", fontsize=8, color="#AAAAAA", style="italic")
-    ax.text(33, 5.3, "ours ↓", fontsize=8, color="#555555", style="italic", va="top")
-    ax.axvline(TEXAS["results"]["none"]*100, color="#888888", lw=1.2, ls="--", alpha=0.5)
-    ax.set_yticks(ys); ax.set_yticklabels(all_names, fontsize=9)
-    for i, (tick, col) in enumerate(zip(ax.get_yticklabels(), all_colors)):
-        if col not in ("white","#CCCCCC"): tick.set_color(col)
-    ax.set_xlabel("Test accuracy (%)", fontsize=11)
-    ax.set_title("Texas Heterophily (h = 0.31) — Our Gates vs. Published", fontsize=12, fontweight="bold")
-    ax.set_xlim(30, 106)
-    ax.grid(axis="x", alpha=0.2, ls="--", color="#CCCCCC")
+    for gi, gate in enumerate(GATES):
+        offsets = (gi - n_ds + 0.5) * w * 1.15
+        accs = [ds[gate] * 100 for _, ds in hetero_datasets]
+        ax.bar(xs_g + offsets, accs, width=w, color=GCOLOR[gate],
+               label=GLABEL[gate], alpha=0.85)
+    for i, (_, ds_res) in enumerate(hetero_datasets):
+        ax.plot([xs_g[i] - 0.38, xs_g[i] + 0.38],
+                [ds_res["none"]*100]*2,
+                color="#888888", lw=1.5, ls="--", alpha=0.7, zorder=5)
+    ax.set_xticks(xs_g)
+    ax.set_xticklabels([lbl for lbl, _ in hetero_datasets], fontsize=11)
+    ax.set_ylabel("Test accuracy (%)"); ax.set_ylim(35, 105)
+    ax.set_title("Texas / Wisconsin / Cornell  (dashed = no-gate baseline)",
+                 fontsize=11, fontweight="bold")
+    ax.grid(axis="y", alpha=0.2, ls="--", color="#CCC")
     ax.spines["top"].set_visible(False); ax.spines["right"].set_visible(False)
-    fig.tight_layout()
-    return fig
+    ax.legend(fontsize=9, framealpha=0, loc="upper right")
+    fig.tight_layout(); return fig
 
 def slide_texas(prs):
     sl = blank_slide(prs); bg(sl, C_WHITE)
-    header_bar(sl, "Result 2 — Heterophily Generalization on Texas",
-               "Gates B & C reach 81.1% — outperforming GraphSAGE by +4.5 pp", C_GREEN)
-    buf = fig_to_img(make_texas_fig())
-    add_img(sl, buf, Inches(0.3), Inches(1.25), Inches(8.8))
+    header_bar(sl, "Result 2 — Heterophily Generalization (3 Datasets)",
+               "B & C improve over baseline on ALL three datasets; cosine gates consistently hurt", C_GREEN)
+    buf = fig_to_img(make_hetero_fig())
+    add_img(sl, buf, Inches(0.3), Inches(1.25), Inches(9.0))
 
-    rect(sl, Inches(9.3), Inches(1.25), Inches(3.8), Inches(5.9),
+    rect(sl, Inches(9.5), Inches(1.25), Inches(3.6), Inches(5.9),
          RGBColor(0xF0, 0xFF, 0xF4), line=C_GREEN, lw=1.2)
-    txbox(sl, "Key Takeaways", Inches(9.4), Inches(1.35), Inches(3.6), Inches(0.5),
+    txbox(sl, "Key Takeaways", Inches(9.6), Inches(1.35), Inches(3.4), Inches(0.5),
           size=13, bold=True, color=C_GREEN)
     bullets = [
-        "B & C: 81.1% — best among our gates",
-        "A & D (cosine) HURT vs. baseline: 58.6%, 60.4%",
-        "Cosine similarity ≠ class compatibility on heterophilic graphs",
-        "Gap to GPR-GNN (92.9%) — specialist vs. general method",
+        "Texas:     B & C → 81.1%  (+4.5 pp)",
+        "Wisconsin: B & C → 86.9%  (+5.9 pp)",
+        "Cornell:   B     → 76.6%  (+4.5 pp)",
+        "Cosine gates (A, D) hurt on ALL three — drop 15–20 pp below baseline",
+        "Confidence signal reliable regardless of graph structure",
     ]
     for i, b in enumerate(bullets):
-        txbox(sl, f"• {b}", Inches(9.4), Inches(1.95 + i * 1.1),
-              Inches(3.6), Inches(1.0), size=11.5, color=C_DARK)
+        txbox(sl, f"• {b}", Inches(9.6), Inches(1.95 + i * 0.98),
+              Inches(3.4), Inches(0.92), size=11, color=C_DARK)
 
 # ─────────────────────────────────────────────────────────────────────────────
 # SLIDE 8 — COMBINED SUMMARY FIGURE
