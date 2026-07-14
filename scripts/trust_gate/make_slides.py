@@ -239,14 +239,14 @@ def slide_method(prs):
     sl = blank_slide(prs); bg(sl, C_WHITE)
     header_bar(sl, "Our Method: Semantic Trust Gate", "β_v gates how much each node trusts its neighbours", C_PURPLE)
 
-    # Embed the simple arch diagram
-    img = "/home/lam23005/STEM-GNN/figures/arch_simple.png"
-    add_img(sl, img, Inches(0.3), Inches(1.3), Inches(12.7))
+    # Embed the decoupled backbone architecture diagram
+    img = "/home/lam23005/STEM-GNN/figures/arch_backbone.png"
+    add_img(sl, img, Inches(0.3), Inches(1.25), Inches(12.7))
 
     txbox(sl,
-          "Key insight: use pre-VQ embeddings e_v (clean semantic signal) — "
-          "bypassing the quantisation noise in STEM-GNN's post-VQ MoE router.",
-          Inches(0.3), Inches(6.45), Inches(12.7), Inches(0.8),
+          "Key design: backbone (GCN/SAGE) encodes graph structure while frozen LLM embeddings "
+          "act as a semantic oracle — generating β_v without entering the training signal.",
+          Inches(0.3), Inches(6.4), Inches(12.7), Inches(0.85),
           size=13, italic=True, color=C_PURPLE, align=PP_ALIGN.CENTER)
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -429,7 +429,34 @@ def slide_texas(prs):
               Inches(3.4), Inches(0.92), size=11, color=C_DARK)
 
 # ─────────────────────────────────────────────────────────────────────────────
-# SLIDE 8 — COMBINED SUMMARY FIGURE
+# SLIDE 8 — BACKBONE COMPARISON (GCN vs SAGE + LLM gate)
+# ─────────────────────────────────────────────────────────────────────────────
+def slide_backbone(prs):
+    sl = blank_slide(prs); bg(sl, C_WHITE)
+    header_bar(sl, "Result 3 — Backbone Comparison: GCN vs GraphSAGE + LLM gate",
+               "LLM gate rescues GCN from −21.8 pp collapse; confidence gate matches SAGE on heterophily",
+               C_BLUE)
+    img = "/home/lam23005/STEM-GNN/figures/backbone_comparison.png"
+    add_img(sl, img, Inches(0.3), Inches(1.2), Inches(9.5))
+
+    rect(sl, Inches(9.95), Inches(1.2), Inches(3.15), Inches(6.0),
+         RGBColor(0xEB, 0xF4, 0xFF), line=C_BLUE, lw=1.2)
+    txbox(sl, "Key Takeaways", Inches(10.05), Inches(1.3), Inches(2.95), Inches(0.5),
+          size=13, bold=True, color=C_BLUE)
+    bullets = [
+        "GCN alone: −21.8 pp drop at 50% injection (catastrophic)",
+        "GCN + LLM gate: only −5.2 pp — gate absorbs the noise",
+        "GCN alone weak on heterophily (44–55%)",
+        "GCN + LLM gate recovers to 65–71%",
+        "GCN + confidence gate matches or beats SAGE baseline",
+        "LLM oracle signal generalises across backbone architectures",
+    ]
+    for i, b in enumerate(bullets):
+        txbox(sl, f"• {b}", Inches(10.05), Inches(1.9 + i * 0.85),
+              Inches(2.95), Inches(0.8), size=11, color=C_DARK)
+
+# ─────────────────────────────────────────────────────────────────────────────
+# SLIDE 9 — COMBINED SUMMARY FIGURE
 # ─────────────────────────────────────────────────────────────────────────────
 def slide_summary_fig(prs):
     sl = blank_slide(prs); bg(sl, C_WHITE)
@@ -492,15 +519,16 @@ def slide_future(prs):
 # BUILD DECK
 # ─────────────────────────────────────────────────────────────────────────────
 prs = new_prs()
-slide_title(prs)
-slide_motivation(prs)
-slide_baselines(prs)
-slide_method(prs)
-slide_gates(prs)
-slide_cora(prs)
-slide_texas(prs)
-slide_summary_fig(prs)
-slide_future(prs)
+slide_title(prs)       # 1 — Title
+slide_motivation(prs)  # 2 — Problem
+slide_baselines(prs)   # 3 — Prior work
+slide_method(prs)      # 4 — Decoupled arch (GCN backbone + LLM gate)
+slide_gates(prs)       # 5 — 4 gate variants
+slide_cora(prs)        # 6 — Injection results (SAGE backbone)
+slide_texas(prs)       # 7 — Heterophily results (SAGE backbone)
+slide_backbone(prs)    # 8 — Backbone comparison (GCN vs SAGE + LLM gate)
+slide_summary_fig(prs) # 9 — Summary 4-panel
+slide_future(prs)      # 10 — Research direction
 
 out = "/home/lam23005/STEM-GNN/slides/trust_gate_deck.pptx"
 prs.save(out)

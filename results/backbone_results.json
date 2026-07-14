@@ -1,0 +1,110 @@
+{
+  "cora_backbone": {
+    "ratios": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.5
+    ],
+    "results": {
+      "sage+none": [
+        0.7874,
+        0.7666,
+        0.7623,
+        0.7476,
+        0.7189
+      ],
+      "sage+llm_cosine": [
+        0.7959,
+        0.7718,
+        0.7513,
+        0.746,
+        0.7203
+      ],
+      "sage+confidence": [
+        0.6933,
+        0.6857,
+        0.6873,
+        0.6823,
+        0.6718
+      ],
+      "sage+learned": [
+        0.6583,
+        0.6523,
+        0.6493,
+        0.6491,
+        0.6473
+      ],
+      "gcn+none": [
+        0.7057,
+        0.6691,
+        0.6494,
+        0.538,
+        0.4879
+      ],
+      "gcn+llm_cosine": [
+        0.7324,
+        0.7249,
+        0.715,
+        0.6937,
+        0.6804
+      ],
+      "gcn+confidence": [
+        0.6591,
+        0.661,
+        0.6573,
+        0.6552,
+        0.6526
+      ],
+      "gcn+learned": [
+        0.6423,
+        0.642,
+        0.6404,
+        0.6443,
+        0.6406
+      ]
+    }
+  },
+  "webkb_backbone": {
+    "Texas": {
+      "homophily": 0.3078,
+      "results": {
+        "sage+none": 0.7658,
+        "sage+llm_cosine": 0.6216,
+        "sage+confidence": 0.8108,
+        "sage+learned": 0.8018,
+        "gcn+none": 0.5496,
+        "gcn+llm_cosine": 0.7117,
+        "gcn+confidence": 0.8018,
+        "gcn+learned": 0.8198
+      }
+    },
+    "Wisconsin": {
+      "homophily": 0.3659,
+      "results": {
+        "sage+none": 0.8104,
+        "sage+llm_cosine": 0.6928,
+        "sage+confidence": 0.8693,
+        "sage+learned": 0.8562,
+        "gcn+none": 0.5229,
+        "gcn+llm_cosine": 0.7386,
+        "gcn+confidence": 0.8366,
+        "gcn+learned": 0.8431
+      }
+    },
+    "Cornell": {
+      "homophily": 0.3432,
+      "results": {
+        "sage+none": 0.7207,
+        "sage+llm_cosine": 0.5405,
+        "sage+confidence": 0.7748,
+        "sage+learned": 0.7478,
+        "gcn+none": 0.4414,
+        "gcn+llm_cosine": 0.6486,
+        "gcn+confidence": 0.7388,
+        "gcn+learned": 0.7658
+      }
+    }
+  }
+}
