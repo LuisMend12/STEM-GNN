@@ -13,17 +13,29 @@ with open("/home/lam23005/STEM-GNN/results/llm_gates_results.json") as f:
 # ── Methods to show ───────────────────────────────────────────────────────────
 # Baselines (published)
 BASELINES = {
-    "bl_mlp":   ("MLP (no graph)",          "#78716C", "--", "^", 7),
-    "bl_gcn":   ("GCN (Kipf 2017)",         "#9CA3AF", "-",  "s", 6),
-    "bl_gat":   ("GAT (Veličković 2018)",    "#6B7280", "-",  "D", 6),
-    "bl_appnp": ("APPNP (Klicpera 2019)",   "#374151", "-",  "v", 6),
+    "bl_mlp":     ("MLP (no graph)",               "#78716C", "--", "^", 7),
+    "bl_gcn":     ("GCN (Kipf 2017)",              "#9CA3AF", "-",  "s", 6),
+    "bl_gat":     ("GAT (Veličković 2018)",         "#6B7280", "-",  "D", 6),
+    "bl_appnp":   ("APPNP (Klicpera 2019)",        "#374151", "-",  "v", 6),
+    "robust_gcn": ("RobustGCN (Zhu 2019) ▲",       "#DC2626", "-",  "P", 7),
+    "gnn_guard":  ("GNNGuard (Zhang 2020) ▲",      "#B45309", "-",  "h", 7),
 }
-# Ours
+# Ours — existing best gates
 OURS = {
-    "none":     ("GraphSAGE + BOW (no gate)", "#94A3B8", "--", "o", 5),
-    "variance": ("Ours: LLM Variance Gate ★", "#10B981",  "-",  "o", 8),
-    "mlp":      ("Ours: LLM MLP Gate ★",      "#7C3AED",  "-",  "o", 7),
-    "cos_std":  ("Ours: LLM Cosine-Std Gate ★","#2563EB", "-",  "o", 7),
+    "none":         ("GraphSAGE + BOW (no gate)",        "#94A3B8", "--", "o", 5),
+    "variance":     ("Ours: D — LLM Variance ★",         "#10B981", "-",  "o", 8),
+    "mlp":          ("Ours: C — LLM MLP ★",              "#7C3AED", "-",  "o", 7),
+    # New signals
+    "attn_entropy": ("Ours: O — Attn Entropy",           "#F59E0B", "-",  "D", 7),
+    "energy_dist":  ("Ours: P — Energy Distance",        "#EF4444", "-",  "D", 7),
+    "spectral":     ("Ours: Q — Spectral Coherence",     "#8B5CF6", "-",  "D", 7),
+    # New fusion (novel — subgraph robustness focus)
+    "llm_gat":      ("Ours: R — LLM-GAT (per-edge) ◆",  "#0EA5E9", "-",  "*", 9),
+    "llm_appnp":    ("Ours: S — LLM-APPNP ◆",           "#F97316", "-",  "*", 9),
+    "moe_fusion":   ("Ours: T — MoE Fusion ◆",           "#22C55E", "-",  "*", 9),
+    "llm_trimmed":  ("Ours: U — LLM Trimmed ◆",          "#06B6D4", "-",  "*", 9),
+    "llm_consensus":("Ours: V — LLM Consensus ◆",        "#A855F7", "-",  "*", 9),
+    "llm_multiscale":("Ours: W — LLM Multi-Scale ◆",     "#F43F5E", "-",  "*", 9),
 }
 
 plt.rcParams.update({
@@ -98,6 +110,7 @@ for g in SHOW:
 
 sorted_g = sorted(drops, key=lambda g: drops[g], reverse=True)
 ys = np.arange(len(sorted_g))
+NEW_FUSION = {"llm_gat", "llm_appnp", "moe_fusion"}
 is_ours = {k for k in OURS if k != "none"}
 
 for yi, g in enumerate(sorted_g):
@@ -137,8 +150,8 @@ ax3.text(ax3.get_xlim()[0], boundary - 0.5,
          va="center", ha="left", fontsize=8, color="#94A3B8")
 
 fig.suptitle(
-    "LLM-Guided Semantic Trust Gate  vs.  Published Baselines\n"
-    "BOW backbone (GraphSAGE) + Frozen DistilBERT gate signal · Cora & PubMed",
+    "LLM-Guided Semantic Trust Gate  vs.  Published Baselines (▲ = robustness baselines)\n"
+    "BOW backbone (GraphSAGE) + Frozen DistilBERT · ◆ = novel subgraph fusion · Cora & PubMed",
     fontsize=13, fontweight="bold", y=0.98
 )
 
