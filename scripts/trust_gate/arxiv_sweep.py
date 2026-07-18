@@ -345,18 +345,27 @@ METHODS = [
 # ══════════════════════════════════════════════════════════════════════════════
 # RUN
 # ══════════════════════════════════════════════════════════════════════════════
-with open(RESULTS) as f:
-    results = json.load(f)
+def save_result(key, res):
+    """Read-modify-write so concurrent sweeps don't clobber each other."""
+    with open(RESULTS) as f:
+        data = json.load(f)
+    if "arxiv_sweep" not in data:
+        data["arxiv_sweep"] = {"dataset": "ogbn-arxiv", "results": {}}
+    data["arxiv_sweep"]["results"][key] = res
+    with open(RESULTS, "w") as f:
+        json.dump(data, f, indent=2)
 
-if "arxiv_sweep" not in results:
-    results["arxiv_sweep"] = {"dataset": "ogbn-arxiv", "results": {}}
+def already_done(key):
+    with open(RESULTS) as f:
+        data = json.load(f)
+    return key in data.get("arxiv_sweep", {}).get("results", {})
 
 skey = "arxiv_sweep"
 
 print(f"\n{'='*60}\n  OGBN-Arxiv\n{'='*60}", flush=True)
 
 for key, model_fn, is_rgcn in METHODS:
-    if key in results[skey]["results"]:
+    if already_done(key):
         print(f"  SKIP {key}", flush=True)
         continue
     print(f"\n  ── {key} ──", flush=True)
@@ -368,9 +377,7 @@ for key, model_fn, is_rgcn in METHODS:
         acc = float(np.mean(accs))
         res.append(round(acc, 4))
         print(f"  {key:<18} r={r:.0%}  {acc*100:.2f}%", flush=True)
-    results[skey]["results"][key] = res
-    with open(RESULTS, "w") as f:
-        json.dump(results, f, indent=2)
+    save_result(key, res)
     print(f"  Saved {key}", flush=True)
 
 print("\n=== OGBN-Arxiv DONE ===", flush=True)
