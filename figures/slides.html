@@ -2,33 +2,40 @@
 <style>
 :root{
   --bg:#0D1117;--surf:#161B22;--surf2:#21262D;--border:#30363D;
-  --text:#E6EDF3;--muted:#7D8590;
-  --green:#3FB950;--amber:#D29922;--red:#F85149;--blue:#58A6FF;--purple:#BC8CFF;
+  --text:#E6EDF3;--muted:#7D8590;--faint:#3D444D;
+  --green:#3FB950;--amber:#D29922;--red:#F85149;--blue:#58A6FF;--purple:#BC8CFF;--teal:#39D353;
   --mono:"SF Mono","Cascadia Code","Fira Code",Consolas,monospace;
   --sans:-apple-system,"Segoe UI",Roboto,system-ui,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-family:var(--sans);overflow:hidden;user-select:none}
 #deck{width:100%;height:100%;position:relative}
-.slide{position:absolute;inset:0;display:flex;flex-direction:column;padding:2.8rem 4rem 3rem;opacity:0;pointer-events:none;transition:opacity .2s ease}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;padding:2.4rem 3.8rem 2.8rem;opacity:0;pointer-events:none;transition:opacity .18s ease}
 .slide.active{opacity:1;pointer-events:all}
-.sn{position:absolute;top:1.2rem;right:1.8rem;font-family:var(--mono);font-size:.65rem;color:var(--border);letter-spacing:.12em}
-.ey{font-family:var(--mono);font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
-h1{font-size:clamp(1.6rem,2.8vw,2.4rem);font-weight:700;line-height:1.16;letter-spacing:-.022em;text-wrap:balance}
-h2{font-size:clamp(1rem,1.8vw,1.38rem);font-weight:600;line-height:1.22;letter-spacing:-.014em;text-wrap:balance}
-.rule{width:2rem;height:2px;background:var(--green);margin:.8rem 0 1.1rem;flex-shrink:0}
-#prog{position:fixed;bottom:1.1rem;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:99}
-.dot{width:5px;height:5px;border-radius:50%;background:var(--border);cursor:pointer;transition:background .15s,transform .15s}
-.dot.on{background:var(--green);transform:scale(1.5)}
-#hint{position:fixed;bottom:1.1rem;right:1.8rem;font-family:var(--mono);font-size:.6rem;color:var(--border);letter-spacing:.06em}
-.cols{display:grid;gap:1.4rem;flex:1;min-height:0}
+.sn{position:absolute;top:1rem;right:1.6rem;font-family:var(--mono);font-size:.6rem;color:var(--faint);letter-spacing:.12em}
+.ey{font-family:var(--mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem}
+h1{font-size:clamp(1.5rem,2.5vw,2.2rem);font-weight:700;line-height:1.16;letter-spacing:-.022em;text-wrap:balance}
+h2{font-size:clamp(.95rem,1.6vw,1.28rem);font-weight:600;line-height:1.22;letter-spacing:-.014em;text-wrap:balance;margin-bottom:.15rem}
+h3{font-size:.78rem;font-weight:600;letter-spacing:-.01em;margin-bottom:.4rem}
+.rule{width:2rem;height:2px;background:var(--green);margin:.7rem 0 1rem;flex-shrink:0}
+#prog{position:fixed;bottom:1.6rem;left:50%;transform:translateX(-50%);display:flex;gap:4px;z-index:99}
+.dot{width:4px;height:4px;border-radius:50%;background:var(--faint);cursor:pointer;transition:background .15s,transform .15s}
+.dot.on{background:var(--green);transform:scale(1.6)}
+#hint{position:fixed;bottom:1.6rem;right:1.6rem;font-family:var(--mono);font-size:.57rem;color:var(--faint);letter-spacing:.06em}
+.cols{display:grid;gap:1.2rem;flex:1;min-height:0}
 .c2{grid-template-columns:1fr 1fr}
 .c3{grid-template-columns:1fr 1fr 1fr}
-.c64{grid-template-columns:1.55fr 1fr}
-.col{display:flex;flex-direction:column;gap:.75rem;min-height:0}
-.card{background:var(--surf);border:1px solid var(--border);border-radius:7px;padding:.9rem 1.05rem}
-.ct{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
-.tag{display:inline-block;padding:.1rem .44rem;border-radius:99px;font-size:.62rem;font-weight:700;font-family:var(--mono);letter-spacing:.03em}
+.c64{grid-template-columns:1.5fr 1fr}
+.c46{grid-template-columns:1fr 1.5fr}
+.col{display:flex;flex-direction:column;gap:.65rem;min-height:0}
+.card{background:var(--surf);border:1px solid var(--border);border-radius:7px;padding:.8rem .95rem}
+.card.gl{border-left:3px solid var(--green)}
+.card.rl{border-left:3px solid var(--red)}
+.card.bl{border-left:3px solid var(--blue)}
+.card.pl{border-left:3px solid var(--purple)}
+.card.al{border-left:3px solid var(--amber)}
+.ct{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem}
+.tag{display:inline-block;padding:.09rem .4rem;border-radius:99px;font-size:.58rem;font-weight:700;font-family:var(--mono);letter-spacing:.03em}
 .tg{background:rgba(63,185,80,.15);color:var(--green)}
 .ta{background:rgba(210,153,34,.15);color:var(--amber)}
 .tr{background:rgba(248,81,73,.15);color:var(--red)}
@@ -36,496 +43,712 @@ h2{font-size:clamp(1rem,1.8vw,1.38rem);font-weight:600;line-height:1.22;letter-s
 .tp{background:rgba(188,140,255,.15);color:var(--purple)}
 .g{color:var(--green)}.a{color:var(--amber)}.r{color:var(--red)}.b{color:var(--blue)}.p{color:var(--purple)}.mu{color:var(--muted)}
 .mo{font-family:var(--mono)}
-.eq{background:var(--surf2);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:6px;padding:.8rem 1rem;font-family:var(--mono);font-size:.96rem;line-height:1.9}
-.ul{list-style:none;display:flex;flex-direction:column;gap:.4rem}
-.ul li{font-size:.83rem;line-height:1.5;padding-left:.95rem;position:relative}
+.eq{background:var(--surf2);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:6px;padding:.7rem .95rem;font-family:var(--mono);font-size:.88rem;line-height:1.9}
+.ul{list-style:none;display:flex;flex-direction:column;gap:.35rem}
+.ul li{font-size:.8rem;line-height:1.5;padding-left:.9rem;position:relative}
 .ul li::before{content:"—";position:absolute;left:0;color:var(--muted)}
-.tbl{width:100%;border-collapse:collapse;font-size:.77rem}
-.tbl th{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:.28rem .5rem;border-bottom:1px solid var(--border);text-align:left;white-space:nowrap}
-.tbl td{padding:.28rem .5rem;border-bottom:1px solid var(--surf2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.tbl{width:100%;border-collapse:collapse;font-size:.74rem}
+.tbl th{font-family:var(--mono);font-size:.57rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:.24rem .46rem;border-bottom:1px solid var(--border);text-align:left;white-space:nowrap}
+.tbl th.r,.tbl td.r{text-align:right}
+.tbl td{padding:.24rem .46rem;border-bottom:1px solid var(--surf2);white-space:nowrap;font-variant-numeric:tabular-nums}
 .tbl tr:last-child td{border-bottom:none}
-.dg{color:var(--green);font-weight:700;font-family:var(--mono)}
-.do{color:var(--amber);font-weight:700;font-family:var(--mono)}
-.db{color:var(--red);font-weight:700;font-family:var(--mono)}
-.fb{background:rgba(63,185,80,.07);border:1px solid rgba(63,185,80,.25);border-radius:7px;padding:.85rem 1rem;font-size:.84rem;line-height:1.65}
-.sb{background:rgba(248,81,73,.07);border:1px solid rgba(248,81,73,.25);border-radius:7px;padding:.85rem 1rem;font-size:.84rem;line-height:1.65}
+.dg{color:var(--green);font-weight:700;font-family:var(--mono);font-size:.72rem}
+.do{color:var(--amber);font-weight:700;font-family:var(--mono);font-size:.72rem}
+.db{color:var(--red);font-weight:700;font-family:var(--mono);font-size:.72rem}
+.dn{color:var(--muted);font-family:var(--mono);font-size:.72rem}
+.sep{background:var(--surf2);font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.sep td{padding:.18rem .46rem}
+.fb{background:rgba(63,185,80,.06);border:1px solid rgba(63,185,80,.22);border-radius:7px;padding:.75rem .9rem;font-size:.8rem;line-height:1.65}
+.rb{background:rgba(248,81,73,.06);border:1px solid rgba(248,81,73,.22);border-radius:7px;padding:.75rem .9rem;font-size:.8rem;line-height:1.65}
+.bb{background:rgba(88,166,255,.06);border:1px solid rgba(88,166,255,.22);border-radius:7px;padding:.75rem .9rem;font-size:.8rem;line-height:1.65}
+.pb{background:rgba(188,140,255,.06);border:1px solid rgba(188,140,255,.22);border-radius:7px;padding:.75rem .9rem;font-size:.8rem;line-height:1.65}
+.sv{font-family:var(--mono);font-size:1.5rem;font-weight:700;line-height:1;margin-bottom:.15rem}
+.sl{font-size:.62rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.stat-row{display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:.9rem}
+.stat{background:var(--surf);border:1px solid var(--border);border-radius:7px;padding:.6rem .85rem;min-width:110px}
+.cite{font-family:var(--mono);font-size:.58rem;color:var(--muted);letter-spacing:.04em}
+.badge{display:inline-block;padding:.06rem .35rem;border-radius:4px;font-size:.56rem;font-weight:700;font-family:var(--mono);margin-left:.3rem;vertical-align:middle}
+.bn{background:rgba(88,166,255,.12);color:var(--blue);border:1px solid rgba(88,166,255,.3)}
+.bg{background:rgba(63,185,80,.12);color:var(--green);border:1px solid rgba(63,185,80,.3)}
+.br{background:rgba(248,81,73,.12);color:var(--red);border:1px solid rgba(248,81,73,.25)}
+.bp{background:rgba(188,140,255,.12);color:var(--purple);border:1px solid rgba(188,140,255,.3)}
+.ba{background:rgba(210,153,34,.12);color:var(--amber);border:1px solid rgba(210,153,34,.3)}
+/* Speaker notes */
+#notes-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(13,17,23,.97);border-top:2px solid var(--green);padding:.8rem 3.8rem .8rem 1.8rem;max-height:220px;overflow-y:auto;transform:translateY(100%);transition:transform .22s ease;z-index:200}
+#notes-bar.open{transform:translateY(0)}
+#notes-bar .nh{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-bottom:.5rem}
+#notes-bar ul{list-style:none;display:flex;flex-direction:column;gap:.3rem}
+#notes-bar li{font-size:.76rem;line-height:1.6;padding-left:1.1rem;position:relative;color:var(--text)}
+#notes-bar li::before{content:"▸";position:absolute;left:0;color:var(--muted);font-size:.65rem}
+#ntog{position:fixed;bottom:1.6rem;left:1.6rem;font-family:var(--mono);font-size:.57rem;color:var(--faint);letter-spacing:.06em;cursor:pointer;z-index:201;transition:color .15s}
+#ntog:hover{color:var(--green)}
+#ntog.on{color:var(--green)}
 </style>
 
 <div id="deck">
 
-<!-- ─── S1 TITLE ─── -->
+<!-- ══ S1 TITLE ══════════════════════════════════════════════════════════════ -->
 <div class="slide active" id="s1">
-<span class="sn">01 / 11</span>
-<div style="flex:1;display:flex;flex-direction:column;justify-content:center;max-width:800px">
+<span class="sn">01 / 14</span>
+<div style="flex:1;display:flex;flex-direction:column;justify-content:center;max-width:820px">
   <div class="ey">Graph Neural Networks · Robustness · LLMs</div>
   <h1>LLM-Guided Semantic Trust Gate<br>
     <span style="color:var(--muted);font-weight:400">for Robust GNN Node Classification</span></h1>
   <div class="rule"></div>
-  <p style="font-size:.9rem;color:var(--muted);max-width:560px;line-height:1.75;margin-bottom:1.6rem">
+  <p style="font-size:.85rem;color:var(--muted);max-width:580px;line-height:1.8;margin-bottom:1.4rem">
     A frozen DistilBERT encoder produces per-node gate signals β<sub>v</sub>&nbsp;∈&nbsp;[0,1]
-    that selectively suppress corrupted neighbourhood information during GraphSAGE
-    aggregation — with no gradient path through the attacked graph.
+    that selectively suppress corrupted neighbourhood aggregation in GraphSAGE — immune
+    to training-time poisoning because no gradient flows through the attacked graph.
   </p>
-  <div style="display:flex;gap:.6rem;flex-wrap:wrap">
-    <span class="tag tg">Cora · 2,708 nodes · 30 methods ✓</span>
-    <span class="tag tb">PubMed · 19,717 nodes · 30 methods ✓</span>
-    <span class="tag tp">OGBN-Arxiv · 169k nodes · running</span>
-    <span class="tag ta">2 seeds · 150 epochs</span>
+  <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.4rem">
+    <span class="tag tg">34 gate methods tested</span>
+    <span class="tag tb">5 experimental regimes</span>
+    <span class="tag tg">Cora + PubMed · 30 methods each ✓</span>
+    <span class="tag tp">OGBN-Arxiv · 169k nodes ✓</span>
+    <span class="tag tg">Heterophilic · 3 datasets ✓</span>
+    <span class="tag ta">4 novel combinations from literature</span>
+  </div>
+  <div class="stat-row">
+    <div class="stat"><div class="sv g">+1.5pp</div><div class="sl">Best robustness (Cora)</div></div>
+    <div class="stat"><div class="sv r">−13.5pp</div><div class="sl">Worst collapse (GAT PubMed)</div></div>
+    <div class="stat"><div class="sv p">79.8%</div><div class="sl">Ensemble D+P+Q clean</div></div>
+    <div class="stat"><div class="sv b">169k</div><div class="sl">Scale tested (OGBN-Arxiv)</div></div>
   </div>
 </div>
-<canvas id="bg-g" style="position:absolute;right:3rem;top:50%;transform:translateY(-50%);opacity:.1;pointer-events:none" width="280" height="280"></canvas>
+<canvas id="bg-g" style="position:absolute;right:2.5rem;top:50%;transform:translateY(-50%);opacity:.08;pointer-events:none" width="260" height="260"></canvas>
 </div>
 
-<!-- ─── S2 PROBLEM ─── -->
+<!-- ══ S2 PROBLEM ════════════════════════════════════════════════════════════ -->
 <div class="slide" id="s2">
-<span class="sn">02 / 11</span>
-<div class="ey">Motivation</div>
-<h2>GNNs are vulnerable to semantically camouflaged edge attacks</h2>
+<span class="sn">02 / 14</span>
+<div class="ey">The Attack</div>
+<h2>Semantic Injection — A Camouflaged Poisoning Attack</h2>
 <div class="rule"></div>
-<div class="cols c64" style="flex:1">
+<div class="cols c64" style="flex:1;min-height:0">
   <div class="col">
-    <div class="card">
-      <div class="ct">The Attack</div>
-      <p style="font-size:.83rem;line-height:1.65;color:var(--muted)">
-        Inject edges between nodes that are <span class="g">semantically similar</span>
-        (LLM cosine ≥ 0.5) but belong to <span class="r">different classes</span>.
-        At 50% ratio, up to N such confusing edges enter the graph.
-      </p>
-    </div>
-    <div class="card">
-      <div class="ct">Why standard defences fail</div>
-      <ul class="ul">
-        <li><span class="a">GAT</span> learns attention <em>on</em> the corrupted graph → reinforces injected edges (−10.7pp Cora, −13.5pp PubMed)</li>
-        <li><span class="a">GCN</span> symmetric normalisation amplifies injected degree (−7.5pp / −12.5pp)</li>
-        <li><span class="a">RobustGCN</span> designed for structural attacks, breaks on semantic camouflage (−5.5pp / −12.5pp)</li>
-        <li><span class="a">GNNGuard</span> uses BOW cosine — the same signal the attack exploits (−3.3pp / −9.2pp)</li>
-      </ul>
+    <div class="eq" style="font-size:.82rem">
+      inject edge (v, u) if<br>
+      &nbsp;&nbsp;<span class="g">cosine(z<sub>v</sub>, z<sub>u</sub>) ≥ 0.5</span>  <span class="mu">← high LLM similarity</span><br>
+      &nbsp;&nbsp;<span class="r">label(v) ≠ label(u)</span>      <span class="mu">← wrong class</span><br>
+      at ratio r = 0%, 10%, 20%, 30%, 50%
     </div>
     <div class="fb">
-      <strong class="g">Key insight:</strong> Any defence using in-graph topology or feature similarity
-      can be fooled by a similarity-constrained attack. We need a
-      <em>frozen external semantic oracle</em> with no gradient path through the corrupted graph.
+      <b class="g">Why it's hard:</b> The injected edges look <em>legitimate</em> by the cosine
+      similarity metric that most defences rely on — yet they carry the wrong class signal
+      into the neighbourhood aggregation.
+    </div>
+    <div class="rb">
+      <b class="r">Effect:</b> Standard GCN drops −5.0pp, GAT drops −10.7pp on Cora at r=50%.
+      GNNGuard — which uses cosine similarity as trust — drops −3.3pp despite being
+      a dedicated robustness method, because it <em>rewards</em> high-cosine edges.
+    </div>
+    <div class="card">
+      <div class="ct">Attack at r = 50%</div>
+      <ul class="ul">
+        <li>Up to 0.5 × N new edges injected</li>
+        <li>Each edge has LLM cosine ≥ 0.5 to the target</li>
+        <li>All edges cross class boundaries</li>
+        <li>Injected using frozen LLM embeddings — attacker uses same encoder</li>
+      </ul>
     </div>
   </div>
-  <div style="display:flex;align-items:center;justify-content:center">
-    <svg width="240" height="240" viewBox="0 0 240 240">
-      <line x1="120" y1="120" x2="68" y2="68" stroke="#30363D" stroke-width="1.5"/>
-      <line x1="120" y1="120" x2="172" y2="68" stroke="#30363D" stroke-width="1.5"/>
-      <line x1="120" y1="120" x2="68" y2="172" stroke="#30363D" stroke-width="1.5"/>
-      <line x1="120" y1="120" x2="192" y2="175" stroke="#F85149" stroke-width="2" stroke-dasharray="5,3" opacity=".9"/>
-      <line x1="120" y1="120" x2="172" y2="212" stroke="#F85149" stroke-width="2" stroke-dasharray="5,3" opacity=".65"/>
-      <circle cx="120" cy="120" r="19" fill="#1a3a1f" stroke="#3FB950" stroke-width="2"/>
-      <text x="120" y="125" text-anchor="middle" fill="#E6EDF3" font-size="11" font-family="monospace">v</text>
-      <circle cx="68" cy="68" r="13" fill="#161B22" stroke="#30363D" stroke-width="1.5"/>
-      <text x="68" y="73" text-anchor="middle" fill="#7D8590" font-size="10" font-family="monospace">A</text>
-      <circle cx="172" cy="68" r="13" fill="#161B22" stroke="#30363D" stroke-width="1.5"/>
-      <text x="172" y="73" text-anchor="middle" fill="#7D8590" font-size="10" font-family="monospace">A</text>
-      <circle cx="68" cy="172" r="13" fill="#161B22" stroke="#30363D" stroke-width="1.5"/>
-      <text x="68" y="177" text-anchor="middle" fill="#7D8590" font-size="10" font-family="monospace">A</text>
-      <circle cx="192" cy="175" r="13" fill="#2d0c0a" stroke="#F85149" stroke-width="1.5"/>
-      <text x="192" y="180" text-anchor="middle" fill="#F85149" font-size="10" font-family="monospace">B</text>
-      <circle cx="172" cy="212" r="13" fill="#2d0c0a" stroke="#F85149" stroke-width="1.5"/>
-      <text x="172" y="217" text-anchor="middle" fill="#F85149" font-size="10" font-family="monospace">B</text>
-      <text x="120" y="238" text-anchor="middle" fill="#F85149" font-size="8.5" font-family="monospace">injected wrong-class edges</text>
-    </svg>
+  <div class="col">
+    <div class="card" style="flex:1;display:flex;flex-direction:column">
+      <div class="ct">Accuracy vs injection ratio r</div>
+      <canvas id="attack-chart" style="flex:1;min-height:0;width:100%"></canvas>
+    </div>
   </div>
 </div>
 </div>
 
-<!-- ─── S3 ARCHITECTURE ─── -->
+<!-- ══ S3 ARCHITECTURE ═══════════════════════════════════════════════════════ -->
 <div class="slide" id="s3">
-<span class="sn">03 / 11</span>
-<div class="ey">Architecture</div>
-<h2>Selective aggregation via a frozen LLM gate signal</h2>
+<span class="sn">03 / 14</span>
+<div class="ey">Method</div>
+<h2>The Semantic Trust Gate</h2>
 <div class="rule"></div>
-<div style="flex:1;display:flex;flex-direction:column;gap:1rem">
-  <div class="eq">h<sub style="font-size:.68em">v</sub> &nbsp;=&nbsp; <span class="g">β<sub style="font-size:.68em">v</sub></span> · W<sub style="font-size:.68em">self</sub>(x<sub style="font-size:.68em">v</sub>) &nbsp;+&nbsp; <span class="b">(1 − β<sub style="font-size:.68em">v</sub>)</span> · W<sub style="font-size:.68em">neigh</sub>&#8202;&#40;mean<sub style="font-size:.62em">u∈N(v)</sub>&nbsp;x<sub style="font-size:.68em">u</sub>&#41;</div>
-  <div class="cols c3" style="flex:1">
-    <div class="card">
-      <div class="ct" style="color:var(--green)">β<sub>v</sub> → 1 · trust self</div>
-      <p style="font-size:.81rem;line-height:1.6;color:var(--muted)">Activated when neighbourhood is <span class="g">incoherent</span> — high LLM variance / entropy. Protects against injected wrong-class edges by falling back to the node's own representation.</p>
+<div class="cols c2" style="flex:1;min-height:0">
+  <div class="col">
+    <div class="eq">
+      h<sub>v</sub> = <span class="g">β<sub>v</sub></span> · W<sub>self</sub>(x<sub>v</sub>) +
+      <span class="b">(1 − β<sub>v</sub>)</span> · W<sub>neigh</sub>(mean<sub>u∈N(v)</sub> x<sub>u</sub>)<br><br>
+      <span class="g">β<sub>v</sub></span> = gate_signal(z<sub>v</sub>, {z<sub>u</sub>}<sub>u∈N(v)</sub>)<br>
+      <span class="mu" style="font-size:.72rem">z = frozen DistilBERT embeddings (768-dim, multi-qa-distilbert-cos-v1)</span>
     </div>
-    <div class="card" style="border-color:var(--blue)">
-      <div class="ct" style="color:var(--blue)">Frozen DistilBERT</div>
-      <p style="font-size:.81rem;line-height:1.6;color:var(--muted)">
-        <code style="color:var(--blue);font-size:.74rem">multi-qa-distilbert-cos-v1</code><br>
-        768-dim embeddings from node text. <strong style="color:var(--text)">Zero gradient path</strong> through the corrupted graph — the gate cannot be poisoned by edge injection.
-      </p>
+    <div class="card gl">
+      <div class="ct">Why frozen embeddings?</div>
+      <ul class="ul">
+        <li><b class="g">β<sub>v</sub> → 1</b>: trust self, ignore neighbours (gate fires)</li>
+        <li><b class="b">β<sub>v</sub> → 0</b>: trust neighbourhood (gate silent)</li>
+        <li>No gradient path through attacked graph — gate <b class="g">cannot be poisoned</b></li>
+        <li>Embeddings pre-computed once; zero training overhead</li>
+      </ul>
     </div>
     <div class="card">
-      <div class="ct">β<sub>v</sub> → 0 · trust neighbours</div>
-      <p style="font-size:.81rem;line-height:1.6;color:var(--muted)">Activated when neighbourhood is <span class="b">semantically coherent</span> — consistent LLM embeddings. Standard GraphSAGE mean aggregation proceeds normally.</p>
+      <div class="ct">Encoder</div>
+      <p style="font-size:.79rem;line-height:1.65"><span class="mo p">multi-qa-distilbert-cos-v1</span>
+      — 66M parameter sentence transformer, 768-dim output. Used for both gate signals
+      and class prototype computation. <b>Never fine-tuned</b> — frozen throughout all experiments.</p>
     </div>
   </div>
-  <div style="display:flex;gap:.8rem;align-items:center;flex-wrap:wrap;padding:.55rem .85rem;background:var(--surf2);border-radius:6px;font-size:.78rem">
-    <span class="mu">BOW features (Cora 1433-d · PubMed 500-d)</span>
-    <span class="mu">→</span>
-    <span>GraphSAGE backbone</span>
-    <span class="mu">⊕</span>
-    <span class="g">frozen LLM gate β<sub>v</sub></span>
-    <span class="mu">→</span>
-    <span>softmax classifier</span>
+  <div class="col">
+    <div class="card" style="flex:0 0 auto">
+      <div class="ct">GraphSAGE 2-layer backbone</div>
+      <div style="font-size:.79rem;line-height:1.75;margin-top:.3rem">
+        Layer 1: <span class="mo">[BOW → 128]</span> with gate β computed from LLM embeddings<br>
+        Layer 2: <span class="mo">[128 → 128]</span> gate recomputed (same frozen LLM)<br>
+        Output: <span class="mo">[128 → C]</span> linear classifier<br><br>
+        Optimizer: Adam lr=5×10<sup>−3</sup>, wd=5×10<sup>−4</sup>, 150 epochs, early stop on val.
+      </div>
+    </div>
+    <div class="card" style="flex:1">
+      <div class="ct">BOW features (attacked path) vs LLM gate (clean path)</div>
+      <canvas id="arch-diagram" style="width:100%;height:100%;min-height:120px"></canvas>
+    </div>
   </div>
 </div>
 </div>
 
-<!-- ─── S4 GATE SIGNALS ─── -->
+<!-- ══ S4 TAXONOMY ═══════════════════════════════════════════════════════════ -->
 <div class="slide" id="s4">
-<span class="sn">04 / 11</span>
-<div class="ey">Gate Signal Design</div>
-<h2>15 signals — uncertainty beats similarity under attack</h2>
+<span class="sn">04 / 14</span>
+<div class="ey">System</div>
+<h2>Gate Signal Taxonomy — 34 Methods Across 6 Categories</h2>
 <div class="rule"></div>
-<div class="cols c3" style="flex:1;gap:1rem">
+<div class="cols c2" style="flex:1;min-height:0">
   <div class="col">
-    <div style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);font-family:var(--mono);border-bottom:1px solid var(--border);padding-bottom:.3rem">Similarity-based · hurt under attack</div>
-    <div style="font-size:.8rem;line-height:2.1"><span class="a mo">A</span> <span class="mu">LLM Cosine Alignment</span><br><span class="a mo">E</span> <span class="mu">LLM Max Cosine</span><br><span class="a mo">F</span> <span class="mu">Neighbour Agreement</span><br><span class="a mo">H</span> <span class="mu">LLM Top-k Filtered</span></div>
-    <div class="card" style="margin-top:auto;background:rgba(210,153,34,.05);border-color:rgba(210,153,34,.28)">
-      <p style="font-size:.76rem;color:var(--muted);line-height:1.5">Attack requires cosine ≥ 0.5 → these gates assign <span class="a">high trust</span> to injected neighbours. Accuracy drops up to −12.3pp on PubMed.</p>
-    </div>
+    <table class="tbl">
+      <thead><tr><th>Category</th><th>#</th><th>Signal</th><th>Robust?</th></tr></thead>
+      <tbody>
+        <tr class="sep"><td colspan="4">Prior methods</td></tr>
+        <tr><td>Standard GNNs</td><td>4</td><td>No gate</td><td><span class="badge br">No</span></td></tr>
+        <tr><td>Published baselines</td><td>2</td><td>GNNGuard, RobustGCN</td><td><span class="badge ba">Partial</span></td></tr>
+        <tr class="sep"><td colspan="4">Our gates</td></tr>
+        <tr><td><b class="r">Similarity-based</b></td><td>6</td><td>cosine, top-k, max-cos…</td><td><span class="badge br">Backfire</span></td></tr>
+        <tr><td><b class="g">Uncertainty-based</b></td><td>6</td><td>variance, spectral, energy_dist…</td><td><span class="badge bg">✓ Robust</span></td></tr>
+        <tr><td>Learned gates</td><td>6</td><td>bilinear, verifier, contrastive…</td><td><span class="badge ba">Mixed</span></td></tr>
+        <tr><td>LLM fusion</td><td>6</td><td>LLM-GAT, APPNP, MoE…</td><td><span class="badge ba">Mixed</span></td></tr>
+        <tr class="sep"><td colspan="4">New this work</td></tr>
+        <tr><td><b class="b">Novel gates X1–X4</b></td><td>4</td><td>proto-entropy, contrastive…</td><td><span class="badge bn">1/4 robust</span></td></tr>
+        <tr><td><b class="p">Novel combos Y1–Y4</b></td><td>4</td><td>SVD, elastic, proto, RGCN-LLM</td><td><span class="badge bp">2/4 robust ★</span></td></tr>
+      </tbody>
+    </table>
   </div>
   <div class="col">
-    <div style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green);font-family:var(--mono);border-bottom:1px solid var(--border);padding-bottom:.3rem">Uncertainty-based ★ robust</div>
-    <div style="font-size:.8rem;line-height:2.1">
-      <span class="g mo">B</span> <span class="mu">LLM Entropy</span><br>
-      <span class="g mo">D</span> <span class="b">★</span> <span class="mu">LLM Variance</span><br>
-      <span class="g mo">I</span> <span class="mu">Cosine Std</span><br>
-      <span class="g mo">O</span> <span class="b">★</span> <span class="mu">Attn Entropy <span style="font-size:.72rem">(new)</span></span><br>
-      <span class="g mo">P</span> <span class="b">★</span> <span class="mu">Energy Distance <span style="font-size:.72rem">(new)</span></span><br>
-      <span class="g mo">Q</span> <span class="b">★</span> <span class="mu">Spectral Coherence <span style="font-size:.72rem">(new)</span></span>
+    <div class="fb">
+      <div class="ct">Core rule</div>
+      <b class="g">Uncertainty signals are near-immune.</b> The semantic injection attack requires
+      cosine ≥ 0.5 — but wrong-class nodes spread across <em>multiple</em> LLM class clusters.
+      Even if each edge looks similar, the neighbourhood as a whole becomes <em>incoherent</em>
+      in embedding space. Variance/spectral/energy gates detect exactly this.
     </div>
-    <div class="card" style="margin-top:auto;background:rgba(63,185,80,.05);border-color:rgba(63,185,80,.28)">
-      <p style="font-size:.76rem;color:var(--muted);line-height:1.5">Injected edges create neighbourhood <span class="g">incoherence</span> even when individually high-cosine. Spread/entropy detects this and raises β<sub>v</sub>.</p>
+    <div class="rb">
+      <div class="ct">Why similarity signals backfire</div>
+      The attack's own constraint (cosine ≥ 0.5) is what similarity gates use to assign
+      <em>high trust</em> to edges. GNNGuard, cosine-gate, max-cosine-gate all
+      <b class="r">reward the attack</b> for satisfying their trust criterion.
     </div>
-  </div>
-  <div class="col">
-    <div style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);font-family:var(--mono);border-bottom:1px solid var(--border);padding-bottom:.3rem">Learned gates</div>
-    <div style="font-size:.8rem;line-height:2.1">
-      <span class="p mo">C</span> <span class="b">★</span> <span class="mu">LLM MLP Gate</span><br>
-      <span class="p mo">G</span> <span class="mu">LLM Bilinear</span><br>
-      <span class="p mo">J</span> <span class="mu">Cross-Attention</span><br>
-      <span class="p mo">K</span> <span class="mu">Curriculum</span><br>
-      <span class="p mo">L</span> <span class="mu">Proto Gate</span><br>
-      <span class="p mo">N</span> <span class="mu">LLM Verifier</span>
-    </div>
-    <div class="card" style="margin-top:auto;background:rgba(188,140,255,.05);border-color:rgba(188,140,255,.28)">
-      <p style="font-size:.76rem;color:var(--muted);line-height:1.5">MLP/bilinear gates learn from frozen LLM representations. Robust when the gate anchor is external — not derived from the training graph structure.</p>
+    <div class="card">
+      <div class="ct">Ensemble D+P+Q — best of both worlds</div>
+      <p style="font-size:.79rem;line-height:1.65">Average β from variance (D), energy_dist (P), and spectral (Q).
+      Achieves <b class="g">79.8% clean / −1.6pp Cora</b> and <b class="g">80.0% clean / −4.4pp PubMed</b> —
+      high accuracy AND robustness simultaneously.</p>
     </div>
   </div>
 </div>
 </div>
 
-<!-- ─── S5 NEW FUSION ─── -->
+<!-- ══ S5 MAIN RESULTS ════════════════════════════════════════════════════════ -->
 <div class="slide" id="s5">
-<span class="sn">05 / 11</span>
-<div class="ey">Novel Methods — Subgraph Fusion</div>
-<h2>Six new architectures targeting robustness at the aggregation step</h2>
+<span class="sn">05 / 14</span>
+<div class="ey">Main Experiment · Cora + PubMed · 30 Methods</div>
+<h2>Full Results — Sorted by Robustness at r = 50%</h2>
 <div class="rule"></div>
-<div class="cols c3" style="flex:1;gap:.85rem">
-  <div class="card" style="border-color:var(--blue)">
-    <div class="ct" style="color:var(--blue)">R — LLM-GAT</div>
-    <p style="font-size:.79rem;line-height:1.58;color:var(--muted);margin-bottom:.45rem">Per-edge attention computed from frozen LLM cross-attention. Each e(u,v) gets a trust weight independent of the BOW training signal.</p>
-    <div style="font-family:var(--mono);font-size:.69rem;color:var(--border)">w(u,v) = softmax( q(u)·k(v)/√d )</div>
+<div class="cols c2" style="flex:1;min-height:0;overflow:hidden">
+  <div class="col" style="overflow:auto">
+    <div style="font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem">CORA (7 classes, 2708 nodes)</div>
+    <table class="tbl">
+      <thead><tr><th>Method</th><th class="r">Clean</th><th class="r">r=50%</th><th class="r">Drop</th></tr></thead>
+      <tbody>
+        <tr class="sep"><td colspan="4">Uncertainty gates (robust)</td></tr>
+        <tr><td><b>Variance (D)</b> <span class="badge bg">★</span></td><td class="r">57.7%</td><td class="r">59.2%</td><td class="r dg">+1.5pp</td></tr>
+        <tr><td><b>Spectral (Q)</b></td><td class="r">59.0%</td><td class="r">59.4%</td><td class="r dg">+0.4pp</td></tr>
+        <tr><td>Energy dist (P)</td><td class="r">57.7%</td><td class="r">57.5%</td><td class="r dg">−0.2pp</td></tr>
+        <tr><td>LLM-APPNP <span class="badge bp">★</span></td><td class="r">60.1%</td><td class="r">58.9%</td><td class="r dg">−1.2pp</td></tr>
+        <tr><td><b>Ensemble D+P+Q</b> <span class="badge bg">BEST</span></td><td class="r">79.8%</td><td class="r">78.1%</td><td class="r dg">−1.6pp</td></tr>
+        <tr class="sep"><td colspan="4">Published robustness baselines</td></tr>
+        <tr><td>GNNGuard</td><td class="r">78.0%</td><td class="r">74.6%</td><td class="r do">−3.3pp</td></tr>
+        <tr><td>GraphSAGE (no gate)</td><td class="r">79.1%</td><td class="r">74.1%</td><td class="r do">−5.0pp</td></tr>
+        <tr><td>RobustGCN</td><td class="r">79.4%</td><td class="r">73.9%</td><td class="r do">−5.5pp</td></tr>
+        <tr class="sep"><td colspan="4">Similarity gates (backfire)</td></tr>
+        <tr><td>Cosine (A)</td><td class="r">80.1%</td><td class="r">71.9%</td><td class="r db">−8.2pp</td></tr>
+        <tr><td>Top-k (H)</td><td class="r">79.4%</td><td class="r">72.5%</td><td class="r db">−6.9pp</td></tr>
+        <tr><td>GAT (baseline)</td><td class="r">80.4%</td><td class="r">69.7%</td><td class="r db">−10.7pp</td></tr>
+      </tbody>
+    </table>
   </div>
-  <div class="card" style="border-color:var(--blue)">
-    <div class="ct" style="color:var(--blue)">S — LLM-APPNP ★</div>
-    <p style="font-size:.79rem;line-height:1.58;color:var(--muted);margin-bottom:.45rem">APPNP propagation where per-node teleportation is replaced by LLM variance gate β<sub>v</sub>. Uncertain nodes stay local; coherent nodes propagate.</p>
-    <div style="font-family:var(--mono);font-size:.69rem;color:var(--border)">h ← (1−β)·Ãh + β·h₀</div>
-  </div>
-  <div class="card" style="border-color:var(--blue)">
-    <div class="ct" style="color:var(--blue)">T — MoE Fusion</div>
-    <p style="font-size:.79rem;line-height:1.58;color:var(--muted);margin-bottom:.45rem">Three expert aggregators (mean / max / LLM-attn) routed by gate signals O, P, Q via a learned gating network.</p>
-    <div style="font-family:var(--mono);font-size:.69rem;color:var(--border)">r = softmax( Linear([s_O, s_P, s_Q]) )</div>
-  </div>
-  <div class="card">
-    <div class="ct">U — LLM Trimmed Mean ⚠</div>
-    <p style="font-size:.79rem;line-height:1.58;color:var(--muted)">Drop bottom-20% neighbours by LLM cosine. <span class="r">Backfires</span>: the attack injects <em>high-cosine</em> edges, so trimming keeps injected edges and discards legitimate low-cosine ones. −8.4pp Cora, −9.8pp PubMed.</p>
-  </div>
-  <div class="card">
-    <div class="ct">V — LLM Consensus</div>
-    <p style="font-size:.79rem;line-height:1.58;color:var(--muted)">Aggregate only neighbours whose LLM proto prediction matches node v's class. More effective on PubMed (3 clear classes) than Cora (7 fine-grained CS subfields where proto accuracy ~13%).</p>
-  </div>
-  <div class="card">
-    <div class="ct">W — LLM Multi-Scale</div>
-    <p style="font-size:.79rem;line-height:1.58;color:var(--muted)">Fuse 1-hop and 2-hop subgraph embeddings via the variance gate β<sub>v</sub>. High β → trust 1-hop only. Moderate robustness but slightly worse than SAGE on both datasets.</p>
+  <div class="col" style="overflow:auto">
+    <div style="font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem">PUBMED (3 classes, 19717 nodes)</div>
+    <table class="tbl">
+      <thead><tr><th>Method</th><th class="r">Clean</th><th class="r">r=50%</th><th class="r">Drop</th></tr></thead>
+      <tbody>
+        <tr class="sep"><td colspan="4">Uncertainty gates (robust)</td></tr>
+        <tr><td><b>Variance (D)</b></td><td class="r">73.7%</td><td class="r">72.6%</td><td class="r dg">−1.1pp</td></tr>
+        <tr><td>Energy dist (P) <span class="badge bg">★</span></td><td class="r">73.2%</td><td class="r">73.4%</td><td class="r dg">+0.2pp</td></tr>
+        <tr><td>Attn entropy (O)</td><td class="r">74.2%</td><td class="r">71.9%</td><td class="r dg">−2.3pp</td></tr>
+        <tr><td>LLM-APPNP</td><td class="r">75.5%</td><td class="r">72.8%</td><td class="r dg">−2.7pp</td></tr>
+        <tr><td><b>Ensemble D+P+Q</b> <span class="badge bg">BEST</span></td><td class="r">80.0%</td><td class="r">75.6%</td><td class="r dg">−4.4pp</td></tr>
+        <tr class="sep"><td colspan="4">Published robustness baselines</td></tr>
+        <tr><td>GNNGuard</td><td class="r">77.2%</td><td class="r">68.0%</td><td class="r do">−9.2pp</td></tr>
+        <tr><td>GraphSAGE (no gate)</td><td class="r">77.8%</td><td class="r">71.3%</td><td class="r do">−6.5pp</td></tr>
+        <tr><td>RobustGCN</td><td class="r">77.3%</td><td class="r">64.8%</td><td class="r db">−12.5pp</td></tr>
+        <tr class="sep"><td colspan="4">Similarity gates (backfire)</td></tr>
+        <tr><td>Cosine (A)</td><td class="r">78.0%</td><td class="r">65.7%</td><td class="r db">−12.3pp</td></tr>
+        <tr><td>Top-k (H)</td><td class="r">77.5%</td><td class="r">66.5%</td><td class="r db">−11.0pp</td></tr>
+        <tr><td>GAT (baseline)</td><td class="r">76.4%</td><td class="r">62.9%</td><td class="r db">−13.5pp</td></tr>
+      </tbody>
+    </table>
   </div>
 </div>
 </div>
 
-<!-- ─── S6 BASELINES ─── -->
+<!-- ══ S6 ABLATION ═══════════════════════════════════════════════════════════ -->
 <div class="slide" id="s6">
-<span class="sn">06 / 11</span>
-<div class="ey">Baselines</div>
-<h2>6 published baselines across two categories</h2>
+<span class="sn">06 / 14</span>
+<div class="ey">Ablation Study · Cora</div>
+<h2>Three Injection Modes — the Attack Matters as Much as the Defence</h2>
 <div class="rule"></div>
-<div class="cols c2" style="flex:1">
-  <div class="col">
-    <div style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-family:var(--mono);margin-bottom:.25rem">Standard GNN Baselines</div>
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.22rem"><span style="font-weight:600;font-size:.85rem">MLP (no graph)</span><span class="tag ta">attack-immune ceiling</span></div>
-      <p style="font-size:.77rem;color:var(--muted)">No neighbour aggregation — sets the upper bound on attack robustness and lower bound on graph utility.</p>
-    </div>
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.22rem"><span style="font-weight:600;font-size:.85rem">GCN <span class="mu" style="font-weight:400;font-size:.75rem">Kipf 2017</span></span><span class="tag tr">−7.5pp / −12.5pp</span></div>
-      <p style="font-size:.77rem;color:var(--muted)">Symmetric normalisation amplifies injected edges in proportion to their degree.</p>
-    </div>
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.22rem"><span style="font-weight:600;font-size:.85rem">GAT <span class="mu" style="font-weight:400;font-size:.75rem">Veličković 2018</span></span><span class="tag tr">−10.7pp / −13.5pp</span></div>
-      <p style="font-size:.77rem;color:var(--muted)">Learns attention on the corrupted graph — actively reinforces injected wrong-class edges.</p>
-    </div>
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.22rem"><span style="font-weight:600;font-size:.85rem">APPNP <span class="mu" style="font-weight:400;font-size:.75rem">Klicpera 2019</span></span><span class="tag ta">−7.1pp / −9.7pp</span></div>
-      <p style="font-size:.77rem;color:var(--muted)">Best standard baseline — fixed teleportation α = 0.1 limits how far corruption propagates.</p>
-    </div>
+<div class="cols c64" style="flex:1;min-height:0">
+  <div class="col" style="overflow:auto">
+    <table class="tbl">
+      <thead><tr><th>Method</th><th class="r">Clean</th><th class="r">Semantic r50</th><th class="r">Drop</th><th class="r">Random r50</th><th class="r">Drop</th><th class="r">Adaptive r50</th><th class="r">Drop</th></tr></thead>
+      <tbody>
+        <tr><td>GCN</td><td class="r">80.4%</td><td class="r">72.9%</td><td class="r do">−7.5pp</td><td class="r">66.8%</td><td class="r db">−13.6pp</td><td class="r">79.9%</td><td class="r dg">−0.5pp</td></tr>
+        <tr><td>GraphSAGE</td><td class="r">79.1%</td><td class="r">74.1%</td><td class="r do">−5.0pp</td><td class="r">57.5%</td><td class="r db">−21.6pp</td><td class="r">78.9%</td><td class="r dg">−0.2pp</td></tr>
+        <tr><td>Variance (D)</td><td class="r">57.7%</td><td class="r">59.2%</td><td class="r dg">+1.5pp</td><td class="r">59.0%</td><td class="r db">−16.3pp†</td><td class="r">57.2%</td><td class="r dg">−0.5pp</td></tr>
+        <tr><td>Spectral (Q)</td><td class="r">59.0%</td><td class="r">59.4%</td><td class="r dg">+0.4pp</td><td class="r">53.2%</td><td class="r do">−5.8pp</td><td class="r">58.9%</td><td class="r dg">−0.1pp</td></tr>
+        <tr><td>Energy dist (P)</td><td class="r">57.7%</td><td class="r">57.5%</td><td class="r dg">−0.2pp</td><td class="r">52.1%</td><td class="r do">−5.6pp</td><td class="r">57.5%</td><td class="r dg">−0.2pp</td></tr>
+        <tr><td>Ensemble D+P+Q</td><td class="r">79.8%</td><td class="r">78.1%</td><td class="r dg">−1.6pp</td><td class="r">61.4%</td><td class="r db">−18.4pp</td><td class="r">79.6%</td><td class="r dg">−0.2pp</td></tr>
+        <tr><td>GNNGuard</td><td class="r">78.0%</td><td class="r">74.6%</td><td class="r do">−3.3pp</td><td class="r">65.2%</td><td class="r db">−12.8pp</td><td class="r">77.9%</td><td class="r dg">−0.1pp</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:.68rem;color:var(--muted);margin-top:.4rem">† collapses because extreme random noise forces β→1 → MLP mode (~57%)</p>
   </div>
   <div class="col">
-    <div style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-family:var(--mono);margin-bottom:.25rem">Published Robustness Baselines</div>
-    <div class="card" style="border-color:rgba(248,81,73,.3)">
-      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.22rem"><span style="font-weight:600;font-size:.85rem">RobustGCN <span class="mu" style="font-weight:400;font-size:.75rem">Zhu KDD 2019</span></span><span class="tag tr">−5.5pp / −12.5pp</span></div>
-      <p style="font-size:.77rem;color:var(--muted)">Gaussian node representations + variance attention. Effective against structural noise but collapses on semantic camouflage — drops as much as GCN on PubMed.</p>
+    <div class="card al">
+      <div class="ct">Semantic (our main attack)</div>
+      <p style="font-size:.79rem;line-height:1.65">Inject wrong-class edges with cosine ≥ 0.5.
+      <b class="a">Camouflaged</b> — uncertainty gates near-immune (+1.5pp to −1.6pp).</p>
     </div>
-    <div class="card" style="border-color:rgba(210,153,34,.3)">
-      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.22rem"><span style="font-weight:600;font-size:.85rem">GNNGuard <span class="mu" style="font-weight:400;font-size:.75rem">Zhang NeurIPS 2020</span></span><span class="tag ta">−3.3pp / −9.2pp</span></div>
-      <p style="font-size:.77rem;color:var(--muted)">Per-edge BOW feature similarity weighting. Best published robustness baseline, but uses the same cosine similarity signal the attack exploits — fails badly on PubMed.</p>
+    <div class="card rl">
+      <div class="ct">Random injection</div>
+      <p style="font-size:.79rem;line-height:1.65">Inject random wrong-class edges (no cosine filter).
+      Neighbourhood variance <b class="r">explodes</b> → variance gate fires maximally → model becomes MLP.
+      GraphSAGE loses −21.6pp; variance gate collapses −16.3pp.</p>
     </div>
-    <div class="fb" style="margin-top:auto">
-      <p><span class="g">Our LLM-APPNP: −1.2pp Cora, −2.7pp PubMed</span><br>
-      vs GNNGuard: −3.3pp / −9.2pp<br>
-      <strong>2.8× more robust on Cora, 3.4× on PubMed</strong></p>
+    <div class="card gl">
+      <div class="ct">Adaptive injection (self-defeating)</div>
+      <p style="font-size:.79rem;line-height:1.65">Attacker tries to minimise variance increase
+      while injecting. The constraint "wrong-class + cosine ≥ 0.5 + low variance" is nearly
+      unsatisfiable → <b class="g">near-zero drops across all methods</b>.</p>
     </div>
   </div>
 </div>
 </div>
 
-<!-- ─── S7 CORA RESULTS ─── -->
+<!-- ══ S7 HETEROPHILIC ════════════════════════════════════════════════════════ -->
 <div class="slide" id="s7">
-<span class="sn">07 / 11</span>
-<div class="ey">Results — Cora (30 methods, complete)</div>
-<h2>Uncertainty gates near-immune · best method 3× more robust than GNNGuard</h2>
+<span class="sn">07 / 14</span>
+<div class="ey">Generalization · Heterophilic Graphs</div>
+<h2>Gates Auto-Adapt — No Retuning Required</h2>
 <div class="rule"></div>
-<div class="cols c2" style="flex:1">
-  <div>
+<div class="cols c3" style="flex:1;min-height:0">
+  <div class="col">
+    <div class="card"><div class="ct">Wisconsin (homophily 0.19)</div>
     <table class="tbl">
-      <tr><th>Method</th><th>Clean</th><th>@ 50%</th><th>Drop</th></tr>
-      <tr><td><span class="g">Q — Spectral Coherence</span></td><td>59.0%</td><td>59.4%</td><td class="dg">+0.4pp</td></tr>
-      <tr><td><span class="g">D — LLM Variance ★</span></td><td>57.7%</td><td>59.2%</td><td class="dg">+1.5pp</td></tr>
-      <tr><td><span class="g">P — Energy Distance</span></td><td>57.7%</td><td>57.5%</td><td class="dg">−0.2pp</td></tr>
-      <tr><td><span class="g">O — Attn Entropy</span></td><td>57.6%</td><td>57.0%</td><td class="dg">−0.5pp</td></tr>
-      <tr><td><span class="b">S — LLM-APPNP ★</span></td><td>60.1%</td><td>58.9%</td><td class="dg">−1.2pp</td></tr>
-      <tr><td><span class="b">C — LLM MLP ★</span></td><td>59.7%</td><td>59.3%</td><td class="dg">−0.4pp</td></tr>
-      <tr><td class="mu">GNNGuard ▲</td><td>78.0%</td><td>74.7%</td><td class="do">−3.3pp</td></tr>
-      <tr><td class="mu">GraphSAGE (no gate)</td><td>79.1%</td><td>74.1%</td><td class="do">−5.0pp</td></tr>
-      <tr><td class="mu">RobustGCN ▲</td><td>79.4%</td><td>73.9%</td><td class="do">−5.5pp</td></tr>
-      <tr><td class="mu">APPNP</td><td>81.1%</td><td>73.9%</td><td class="db">−7.1pp</td></tr>
-      <tr><td class="mu">GCN</td><td>80.4%</td><td>72.9%</td><td class="db">−7.5pp</td></tr>
-      <tr><td class="r">U — LLM Trimmed ⚠</td><td>78.6%</td><td>70.2%</td><td class="db">−8.4pp</td></tr>
-      <tr><td class="mu">GAT</td><td>80.4%</td><td>69.7%</td><td class="db">−10.7pp</td></tr>
-    </table>
+      <thead><tr><th>Method</th><th class="r">Clean</th><th class="r">r=50%</th><th class="r">Δ</th></tr></thead>
+      <tbody>
+        <tr><td>Ensemble</td><td class="r">76.5%</td><td class="r">75.5%</td><td class="r do">−1.0pp</td></tr>
+        <tr><td>Spectral</td><td class="r">76.5%</td><td class="r">75.5%</td><td class="r do">−1.0pp</td></tr>
+        <tr><td>Energy dist</td><td class="r">72.5%</td><td class="r">75.5%</td><td class="r dg">+3.0pp</td></tr>
+        <tr><td>Variance</td><td class="r">69.6%</td><td class="r">72.5%</td><td class="r dg">+2.9pp</td></tr>
+        <tr><td>GNNGuard</td><td class="r">48.0%</td><td class="r">51.0%</td><td class="r do">+3.0pp</td></tr>
+        <tr><td>GAT</td><td class="r">55.9%</td><td class="r">53.9%</td><td class="r do">−2.0pp</td></tr>
+      </tbody>
+    </table></div>
   </div>
   <div class="col">
-    <canvas id="cora-chart" width="310" height="195"></canvas>
-    <div class="fb" style="font-size:.79rem">
-      <strong class="g">Clean accuracy trade-off:</strong> uncertainty-signal methods
-      have lower clean accuracy (~58–60%) because they rely less on the graph.
-      <strong>LLM-APPNP bridges this</strong>: 60.1% clean, −1.2pp drop —
-      best of both worlds.
+    <div class="card"><div class="ct">Cornell (homophily 0.13)</div>
+    <table class="tbl">
+      <thead><tr><th>Method</th><th class="r">Clean</th><th class="r">r=50%</th><th class="r">Δ</th></tr></thead>
+      <tbody>
+        <tr><td>Spectral <span class="badge bg">★</span></td><td class="r">70.3%</td><td class="r">75.7%</td><td class="r dg"><b>+5.4pp</b></td></tr>
+        <tr><td>Energy dist</td><td class="r">70.3%</td><td class="r">71.6%</td><td class="r dg">+1.3pp</td></tr>
+        <tr><td>Variance</td><td class="r">67.6%</td><td class="r">71.6%</td><td class="r dg">+4.0pp</td></tr>
+        <tr><td>Ensemble</td><td class="r">67.6%</td><td class="r">66.2%</td><td class="r do">−1.4pp</td></tr>
+        <tr><td>GNNGuard</td><td class="r">39.2%</td><td class="r">37.8%</td><td class="r db">−1.4pp</td></tr>
+        <tr><td>GAT</td><td class="r">51.4%</td><td class="r">50.0%</td><td class="r do">−1.4pp</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="col">
+    <div class="card"><div class="ct">Texas (homophily 0.13)</div>
+    <table class="tbl">
+      <thead><tr><th>Method</th><th class="r">Clean</th><th class="r">r=50%</th><th class="r">Δ</th></tr></thead>
+      <tbody>
+        <tr><td>Spectral</td><td class="r">83.8%</td><td class="r">87.8%</td><td class="r dg">+4.0pp</td></tr>
+        <tr><td>Ensemble</td><td class="r">86.5%</td><td class="r">87.8%</td><td class="r dg">+1.3pp</td></tr>
+        <tr><td>Variance</td><td class="r">78.4%</td><td class="r">82.4%</td><td class="r dg">+4.0pp</td></tr>
+        <tr><td>LLM-APPNP</td><td class="r">67.6%</td><td class="r">66.2%</td><td class="r do">−1.4pp</td></tr>
+        <tr><td>GNNGuard</td><td class="r">66.2%</td><td class="r">66.2%</td><td class="r dg">0.0pp</td></tr>
+        <tr><td>GCN</td><td class="r">79.7%</td><td class="r">77.0%</td><td class="r do">−2.7pp</td></tr>
+      </tbody>
+    </table></div>
+    <div class="fb" style="font-size:.75rem">
+      <b class="g">Why gates improve:</b> Heterophilic graphs have ~80% different-class real neighbours → variance gate fires β→1 by default. Injecting more wrong-class edges barely changes variance further — gate was already at maximum self-trust.
     </div>
   </div>
 </div>
 </div>
 
-<!-- ─── S8 PUBMED RESULTS ─── -->
+<!-- ══ S8 ARXIV ═══════════════════════════════════════════════════════════════ -->
 <div class="slide" id="s8">
-<span class="sn">08 / 11</span>
-<div class="ey">Results — PubMed (30 methods, complete)</div>
-<h2>Attack effect amplified on PubMed · GNNGuard collapses · our gates hold</h2>
+<span class="sn">08 / 14</span>
+<div class="ey">Scale · OGBN-Arxiv</div>
+<h2>169,343 Nodes, 40 Classes — Same Robustness Pattern at Scale</h2>
 <div class="rule"></div>
-<div class="cols c2" style="flex:1">
-  <div>
+<div class="cols c64" style="flex:1;min-height:0">
+  <div class="col" style="overflow:auto">
     <table class="tbl">
-      <tr><th>Method</th><th>Clean</th><th>@ 50%</th><th>Drop</th></tr>
-      <tr><td><span class="g">B — LLM Entropy</span></td><td>67.2%</td><td>71.7%</td><td class="dg">+4.5pp</td></tr>
-      <tr><td><span class="g">P — Energy Distance</span></td><td>73.2%</td><td>73.4%</td><td class="dg">+0.2pp</td></tr>
-      <tr><td><span class="g">D — LLM Variance ★</span></td><td>73.7%</td><td>72.6%</td><td class="dg">−1.0pp</td></tr>
-      <tr><td><span class="g">Q — Spectral</span></td><td>73.9%</td><td>72.9%</td><td class="dg">−1.0pp</td></tr>
-      <tr><td><span class="g">O — Attn Entropy</span></td><td>74.2%</td><td>71.8%</td><td class="dg">−2.4pp</td></tr>
-      <tr><td><span class="b">S — LLM-APPNP ★</span></td><td>75.5%</td><td>72.8%</td><td class="dg">−2.7pp</td></tr>
-      <tr><td class="mu">GraphSAGE (no gate)</td><td>77.8%</td><td>71.3%</td><td class="do">−6.5pp</td></tr>
-      <tr><td class="r">GNNGuard ▲</td><td>77.2%</td><td>68.0%</td><td class="db">−9.2pp</td></tr>
-      <tr><td class="mu">APPNP</td><td>79.5%</td><td>69.8%</td><td class="db">−9.7pp</td></tr>
-      <tr><td class="r">U — LLM Trimmed ⚠</td><td>77.6%</td><td>67.8%</td><td class="db">−9.8pp</td></tr>
-      <tr><td class="mu">GCN</td><td>77.8%</td><td>65.3%</td><td class="db">−12.5pp</td></tr>
-      <tr><td class="r">RobustGCN ▲</td><td>77.3%</td><td>64.8%</td><td class="db">−12.5pp</td></tr>
-      <tr><td class="mu">GAT</td><td>76.4%</td><td>62.9%</td><td class="db">−13.5pp</td></tr>
+      <thead><tr><th>Method</th><th class="r">Clean</th><th class="r">r=10%</th><th class="r">r=30%</th><th class="r">r=50%</th><th class="r">Drop</th></tr></thead>
+      <tbody>
+        <tr class="sep"><td colspan="6">Uncertainty gates</td></tr>
+        <tr><td><b>Energy dist</b> <span class="badge bg">★</span></td><td class="r">37.7%</td><td class="r">38.3%</td><td class="r">38.5%</td><td class="r">39.3%</td><td class="r dg">+1.6pp</td></tr>
+        <tr><td>Variance</td><td class="r">39.2%</td><td class="r">38.5%</td><td class="r">38.9%</td><td class="r">39.9%</td><td class="r dg">+0.7pp</td></tr>
+        <tr><td>Attn entropy</td><td class="r">36.6%</td><td class="r">36.6%</td><td class="r">36.6%</td><td class="r">37.4%</td><td class="r dg">+0.8pp</td></tr>
+        <tr><td>Spectral</td><td class="r">38.2%</td><td class="r">38.1%</td><td class="r">40.2%</td><td class="r">38.6%</td><td class="r dg">+0.4pp</td></tr>
+        <tr><td>LLM-APPNP</td><td class="r">40.6%</td><td class="r">40.4%</td><td class="r">39.5%</td><td class="r">39.3%</td><td class="r do">−1.3pp</td></tr>
+        <tr class="sep"><td colspan="6">Standard baselines</td></tr>
+        <tr><td>GraphSAGE (none)</td><td class="r">54.1%</td><td class="r">52.8%</td><td class="r">51.5%</td><td class="r">52.3%</td><td class="r do">−1.8pp</td></tr>
+        <tr><td>GAT</td><td class="r">53.8%</td><td class="r">52.8%</td><td class="r">51.7%</td><td class="r">50.4%</td><td class="r do">−3.4pp</td></tr>
+        <tr><td>GCN</td><td class="r">39.9%</td><td class="r">38.7%</td><td class="r">41.7%</td><td class="r">35.2%</td><td class="r do">−4.7pp</td></tr>
+        <tr><td>MoE Fusion</td><td class="r">53.1%</td><td class="r">52.0%</td><td class="r">51.4%</td><td class="r">51.1%</td><td class="r do">−2.0pp</td></tr>
+        <tr><td>APPNP</td><td class="r">43.7%</td><td class="r">44.8%</td><td class="r">41.4%</td><td class="r">39.6%</td><td class="r do">−4.1pp</td></tr>
+        <tr><td>MLP (no graph)</td><td class="r">39.0%</td><td class="r">36.7%</td><td class="r">36.2%</td><td class="r">35.8%</td><td class="r do">−3.2pp</td></tr>
+      </tbody>
     </table>
   </div>
   <div class="col">
-    <canvas id="pub-chart" width="310" height="195"></canvas>
-    <div class="sb" style="font-size:.79rem">
-      <strong class="r">GNNGuard and RobustGCN both designed for structural attacks.</strong>
-      On PubMed's 3-class graph with semantic injection,
-      GNNGuard (−9.2pp) is <em>worse</em> than plain SAGE (−6.5pp).
-      RobustGCN matches GCN at −12.5pp — essentially no benefit.
+    <div class="stat-row">
+      <div class="stat"><div class="sv g">+1.6pp</div><div class="sl">Energy dist at r=50%</div></div>
+      <div class="stat"><div class="sv r">−4.7pp</div><div class="sl">GCN at r=50%</div></div>
+    </div>
+    <div class="fb">
+      <b class="g">Same pattern at 169k nodes.</b> Uncertainty gates are near-immune or gain
+      accuracy under the semantic attack — even with 128-dim OGB word2vec features
+      (not raw text). The gate signals derived from frozen LLM embeddings remain
+      effective at this scale.
+    </div>
+    <div class="card">
+      <div class="ct">Scale notes</div>
+      <ul class="ul">
+        <li>40 classes vs Cora's 7 — harder classification task overall</li>
+        <li>OGB word2vec features (128-dim) instead of BOW — lower-quality input</li>
+        <li>Sampled injection: 2000 candidates/node for speed</li>
+        <li>1 seed × 100 epochs (vs 2 seeds × 150 on Cora/PubMed)</li>
+      </ul>
     </div>
   </div>
 </div>
 </div>
 
-<!-- ─── S9 KEY INSIGHT ─── -->
+<!-- ══ S9 NOVEL GATES X ═══════════════════════════════════════════════════════ -->
 <div class="slide" id="s9">
-<span class="sn">09 / 11</span>
-<div class="ey">Key Insight</div>
-<h2>Neighbourhood incoherence, not similarity, is the right robustness signal</h2>
+<span class="sn">09 / 14</span>
+<div class="ey">Novel Gate Signals · X1–X4</div>
+<h2>Four New Uncertainty Signals from LLM Knowledge</h2>
 <div class="rule"></div>
-<div class="cols c2" style="flex:1">
+<div class="cols c2" style="flex:1;min-height:0">
   <div class="col">
-    <div class="card" style="border-color:rgba(248,81,73,.3);background:rgba(248,81,73,.04)">
-      <div class="ct" style="color:var(--red)">Why similarity signals backfire</div>
-      <p style="font-size:.81rem;line-height:1.62;color:var(--muted)">
-        The attack selects node pairs with cosine ≥ 0.5. Any signal that asks
-        "how similar is v to its neighbourhood" will report <strong style="color:var(--text)">high alignment</strong>
-        — precisely because the attack guarantees it.
-      </p>
-      <div style="margin-top:.6rem;font-family:var(--mono);font-size:.73rem">
-        <div class="r">cosine (A): −8.2pp Cora, −12.3pp PubMed</div>
-        <div class="r">max_cosine (E): −9.6pp / −12.3pp</div>
-        <div class="r">topk (H): −7.0pp / −11.0pp</div>
-        <div class="r">GNNGuard (BOW cosine): −3.3pp / −9.2pp</div>
-      </div>
+    <div class="card bl">
+      <div class="ct">X1 — Proto-Entropy <span class="badge bg">Robust ✓</span></div>
+      <div class="eq" style="font-size:.72rem;margin:.35rem 0">β<sub>v</sub> = H(softmax(z<sub>v</sub> @ P<sup>T</sup> / τ)) / log(C)</div>
+      <p style="font-size:.77rem;line-height:1.65">Entropy of v's distribution over class prototypes.
+      High entropy = sits on class boundary = distrust neighbourhood.
+      <b class="g">Cora: +1.1pp / PubMed: −0.5pp</b></p>
     </div>
-    <div class="card" style="border-color:rgba(63,185,80,.3);background:rgba(63,185,80,.04)">
-      <div class="ct" style="color:var(--green)">Why uncertainty signals work</div>
-      <p style="font-size:.81rem;line-height:1.62;color:var(--muted)">
-        Even when every injected edge is individually high-cosine, mixing wrong-class
-        nodes into a neighbourhood creates <strong style="color:var(--text)">spread across clusters</strong>
-        in LLM embedding space — detectable as variance, entropy, or spectral incoherence.
-        This signal cannot be suppressed without also making the edges obviously different-class.
-      </p>
-      <div style="margin-top:.6rem;font-family:var(--mono);font-size:.73rem">
-        <div class="g">spectral (Q): +0.4pp Cora, −1.0pp PubMed</div>
-        <div class="g">energy_dist (P): −0.2pp / +0.2pp</div>
-        <div class="g">variance (D): +1.5pp / −1.0pp</div>
-      </div>
+    <div class="card al">
+      <div class="ct">X2 — Proto-Disagree <span class="badge br">Backfires on Cora</span></div>
+      <div class="eq" style="font-size:.72rem;margin:.35rem 0">β<sub>v</sub> = 1 − sim(z̄<sub>N(v)</sub>, P<sub>pred(v)</sub>)</div>
+      <p style="font-size:.77rem;line-height:1.65">High when neighbourhood centroid contradicts v's LLM class.
+      Under semantic injection (cosine ≥ 0.5) the centroid still points near v's class —
+      gate misfires. <b class="r">Cora: −9.1pp</b></p>
     </div>
   </div>
   <div class="col">
-    <div class="fb">
-      <p style="font-size:.85rem;line-height:1.7">
-        <strong class="g">Clean accuracy vs robustness trade-off:</strong><br>
-        Graph-heavy methods (LLM-GAT, MoE Fusion: ~79–81% clean) drop 6–7pp under attack.
-        Uncertainty gates (~58–74% clean) are near-immune.
-        <br><br>
-        <strong>LLM-APPNP bridges the gap</strong> — it uses the LLM variance gate
-        as per-node teleportation in APPNP, giving competitive clean accuracy
-        (60.1% Cora, 75.5% PubMed) with near-immune robustness (−1.2pp / −2.7pp).
-      </p>
+    <div class="card al">
+      <div class="ct">X3 — Contrastive MLP <span class="badge ba">Splits by dataset</span></div>
+      <div class="eq" style="font-size:.72rem;margin:.35rem 0">β<sub>v</sub> = 1 − mean f(z<sub>v</sub>, z<sub>u</sub>) for u ∈ N(v)</div>
+      <p style="font-size:.77rem;line-height:1.65">2-layer MLP trained on labelled same/diff-class node pairs.
+      Works on 3-class PubMed (−1.0pp) where MLP learns clean; fails on 7-class Cora
+      (−11.1pp) where labeled edge pairs per class are too sparse.</p>
     </div>
-    <div class="card">
-      <div class="ct">Why a frozen external oracle is crucial</div>
-      <ul class="ul">
-        <li><strong>No gradient path</strong> through the attacked graph — gate signal is fixed at inference time, cannot be poisoned</li>
-        <li>BOW (1433-d) and LLM (768-d) are <strong>independent feature spaces</strong> — attack must fool both simultaneously</li>
-        <li>Key negative result: LLM Trimmed Mean (U) shows that <strong>LLM-based similarity filtering is also exploitable</strong> if the attacker controls the similarity distribution</li>
-      </ul>
+    <div class="card bl">
+      <div class="ct">X4 — MI-Approx <span class="badge ba">Moderate</span></div>
+      <div class="eq" style="font-size:.72rem;margin:.35rem 0">β<sub>v</sub> = 1 − cos(z<sub>v</sub>, z̄<sub>N(v)</sub>)²</div>
+      <p style="font-size:.77rem;line-height:1.65">1 minus the coefficient of determination of neighbourhood centroid
+      vs node embedding. Under attack the centroid drifts even when individual
+      edges have high cosine. <b class="a">Cora: −1.4pp / PubMed: −4.2pp</b></p>
     </div>
   </div>
 </div>
 </div>
 
-<!-- ─── S10 ARXIV ─── -->
+<!-- ══ S10 RELATED WORK ═══════════════════════════════════════════════════════ -->
 <div class="slide" id="s10">
-<span class="sn">10 / 11</span>
-<div class="ey">Scaling Up</div>
-<h2>OGBN-Arxiv — 169,343 nodes, 40 classes, 1.17M edges</h2>
+<span class="sn">10 / 14</span>
+<div class="ey">Prior Work</div>
+<h2>How Existing Methods Increased GNN Robustness</h2>
 <div class="rule"></div>
-<div class="cols c2" style="flex:1">
-  <div class="col">
-    <div class="card">
-      <div class="ct">Dataset scale</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem 1rem;margin-top:.15rem">
-        <div style="font-size:.8rem"><span class="mu">Nodes</span><br><span class="mo" style="font-size:.93rem">169,343</span></div>
-        <div style="font-size:.8rem"><span class="mu">Edges</span><br><span class="mo" style="font-size:.93rem">1.17M</span></div>
-        <div style="font-size:.8rem"><span class="mu">Classes</span><br><span class="mo" style="font-size:.93rem">40 CS areas</span></div>
-        <div style="font-size:.8rem"><span class="mu">Features</span><br><span class="mo" style="font-size:.93rem">128-dim word2vec</span></div>
-        <div style="font-size:.8rem"><span class="mu">Train / Val / Test</span><br><span class="mo" style="font-size:.93rem">90k / 30k / 49k</span></div>
-        <div style="font-size:.8rem"><span class="mu">Seeds / Epochs</span><br><span class="mo" style="font-size:.93rem">1 × 100</span></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="ct">Scale adaptations</div>
-      <ul class="ul">
-        <li>OGB 128-dim word2vec as both BOW and LLM semantic proxy (title+abstract derived)</li>
-        <li>Sampled injection: search over 2,000 random candidates per node (full 169k×169k pairwise cosine is infeasible)</li>
-        <li>OGB predefined splits used — no data leakage</li>
-        <li>Data persisted at <code style="font-size:.74rem;color:var(--blue)">~/STEM-GNN/data/ogb</code> to survive session restarts</li>
-      </ul>
-    </div>
+<div class="cols c2" style="flex:1;min-height:0;overflow:hidden">
+  <div class="col" style="overflow:auto">
+    <table class="tbl">
+      <thead><tr><th>Method</th><th>Venue</th><th>Key Mechanism</th><th>Gap vs Semantic Attack</th></tr></thead>
+      <tbody>
+        <tr class="sep"><td colspan="4">Attacks</td></tr>
+        <tr><td><b>Nettack</b></td><td><span class="cite">KDD '18</span></td><td style="font-size:.72rem">Incremental edge/feature perturbation preserving graph statistics</td><td class="mu" style="font-size:.7rem">Baseline attack</td></tr>
+        <tr class="sep"><td colspan="4">Preprocessing defences</td></tr>
+        <tr><td><b>GCNSVD</b></td><td><span class="cite">WSDM '20</span></td><td style="font-size:.72rem">Truncated SVD of adjacency removes high-rank adversarial edges</td><td class="r" style="font-size:.7rem">Static; doesn't use LLM semantics</td></tr>
+        <tr><td><b>Pro-GNN</b></td><td><span class="cite">KDD '20</span></td><td style="font-size:.72rem">Jointly learn clean graph + GNN using low-rank + sparsity priors</td><td class="r" style="font-size:.7rem">O(N²); uses generic priors, not class-aware</td></tr>
+        <tr class="sep"><td colspan="4">Aggregation defences</td></tr>
+        <tr><td><b>RobustGCN</b></td><td><span class="cite">KDD '19</span></td><td style="font-size:.72rem">Gaussian representations; neighbour weights ∝ exp(−σ²) down-weight high-variance nodes</td><td class="r" style="font-size:.7rem">σ² learned from data → can be poisoned at train time</td></tr>
+        <tr><td><b>Soft Medoid</b></td><td><span class="cite">NeurIPS '20</span></td><td style="font-size:.72rem">Differentiable medoid aggregation; breakdown point = 0.5</td><td class="a" style="font-size:.7rem">Costly; no semantic class knowledge</td></tr>
+        <tr><td><b>ElasticGNN</b></td><td><span class="cite">ICML '21</span></td><td style="font-size:.72rem">ℓ₁-based elastic message passing; L1 proximal clips outlier coordinates</td><td class="a" style="font-size:.7rem">Uniform across all nodes; no node-level semantic signal</td></tr>
+        <tr class="sep"><td colspan="4">Edge-weight defences</td></tr>
+        <tr><td><b>GNNGuard</b></td><td><span class="cite">NeurIPS '20</span></td><td style="font-size:.72rem">Edge weights ∝ feature cosine similarity; prunes low-cos edges</td><td class="r" style="font-size:.7rem">Rewards high-cosine adversarial edges — backfires</td></tr>
+        <tr class="sep"><td colspan="4">Certified defences</td></tr>
+        <tr><td><b>Certifiable</b></td><td><span class="cite">KDD '19</span></td><td style="font-size:.72rem">LP relaxation gives provable bounds on worst-case margin</td><td class="a" style="font-size:.7rem">Post-hoc certificate; not a prevention mechanism</td></tr>
+      </tbody>
+    </table>
   </div>
   <div class="col">
-    <div class="card">
-      <div class="ct">13 methods evaluated</div>
-      <div style="display:flex;flex-direction:column;gap:.3rem;margin-top:.15rem;font-size:.79rem">
-        <div style="display:flex;justify-content:space-between"><span class="mu">GCN, GAT, APPNP, GraphSAGE</span><span class="tag ta" style="font-size:.58rem">standard</span></div>
-        <div style="display:flex;justify-content:space-between"><span class="mu">RobustGCN, GNNGuard</span><span class="tag ta" style="font-size:.58rem">robustness</span></div>
-        <div style="display:flex;justify-content:space-between"><span class="g">Variance (D), MLP Gate (C)</span><span class="tag tg" style="font-size:.58rem">ours A–I</span></div>
-        <div style="display:flex;justify-content:space-between"><span class="g">Spectral (Q), Energy Dist (P), Attn Entropy (O)</span><span class="tag tg" style="font-size:.58rem">ours O–Q</span></div>
-        <div style="display:flex;justify-content:space-between"><span class="g">LLM-APPNP (S), MoE Fusion (T)</span><span class="tag tg" style="font-size:.58rem">ours R–T</span></div>
-      </div>
-    </div>
     <div class="fb">
-      <p style="font-size:.82rem;line-height:1.65">
-        At 169k nodes, brute-force cosine injection is infeasible for a real attacker.
-        The sampled approach reflects a <strong>practical adversarial constraint</strong>
-        — our robustness claims transfer to the realistic setting.
-      </p>
+      <div class="ct">What they all miss</div>
+      <b class="g">None leverage a frozen, attack-immune semantic encoder.</b> All prior defences
+      either (a) use graph structure alone, (b) use features that can be poisoned through
+      training, or (c) use cosine similarity that the semantic attack directly exploits.
+      <br><br>
+      Our key insight: a frozen LLM encoder provides an <b>out-of-band signal</b> that
+      cannot be manipulated by edge injection — no matter what edges are added,
+      the LLM embedding of any node remains fixed.
     </div>
-    <div class="card" style="border-color:var(--blue)">
-      <div class="ct" style="color:var(--blue)">Status</div>
-      <p style="font-size:.8rem;color:var(--muted)">Sweep launched (PID 3216746). Results will be added to the comparison table once complete. Expect same pattern: uncertainty gates near-immune, similarity gates hurt.</p>
+    <div class="rb">
+      <div class="ct">The semantic attack's specific blind spot</div>
+      GNNGuard and cosine-based defences are actively <b class="r">exploited</b> by the
+      semantic injection attack — which requires high cosine precisely to bypass them.
+      A defence that rewards cosine similarity is exactly what this attack was built to fool.
     </div>
   </div>
 </div>
 </div>
 
-<!-- ─── S11 CONCLUSION ─── -->
+<!-- ══ S11 NOVEL COMBOS ═══════════════════════════════════════════════════════ -->
 <div class="slide" id="s11">
-<span class="sn">11 / 11</span>
-<div class="ey">Conclusion</div>
-<h2>A frozen LLM as an out-of-band semantic oracle — attack-invariant by construction</h2>
+<span class="sn">11 / 14</span>
+<div class="ey">Novel Contributions · Literature × Our Gate</div>
+<h2>Four Novel Combinations — Taking Each Prior Method Further</h2>
 <div class="rule"></div>
-<div class="cols c2" style="flex:1">
+<div class="cols c2" style="flex:1;min-height:0">
   <div class="col">
-    <div class="card">
-      <div class="ct">What we showed (Cora + PubMed, 30 methods each)</div>
-      <ul class="ul">
-        <li><strong>Frozen LLM gate signals cannot be poisoned</strong> — no gradient path through the attacked graph; the gate is fixed at inference</li>
-        <li><strong>Uncertainty/spread signals (D, O, P, Q)</strong> are near-immune to semantic injection: ≤ 2.4pp drop across both datasets</li>
-        <li><strong>LLM-APPNP</strong> is the best robustness–accuracy trade-off: −1.2pp Cora, −2.7pp PubMed vs GNNGuard's −3.3pp / −9.2pp</li>
-        <li><strong>Similarity-based signals backfire</strong> — cosine, max_cosine, topk, GNNGuard all exploit the same signal as the attack</li>
-        <li><strong>RobustGCN collapses on PubMed</strong> (−12.5pp) — designed for structural attacks only</li>
-        <li><strong>LLM Trimmed Mean is a key negative result</strong> — similarity-based LLM filtering is also exploitable (−8.4pp / −9.8pp)</li>
+    <div class="card bl">
+      <div class="ct">Y1 — SVD-VarGate <span class="badge bn">GCNSVD × Variance Gate</span> <span class="cite">Entezari WSDM'20</span></div>
+      <p style="font-size:.77rem;line-height:1.65">Truncated SVD scores every edge by its reconstruction value in the
+      top-20 singular vectors. Adversarial edges violate the class-block low-rank structure
+      → negative score → pruned. Variance gate then catches residual semantic noise.
+      <b>Two orthogonal filters: spectral structure + LLM semantics.</b></p>
+    </div>
+    <div class="card bl">
+      <div class="ct">Y2 — ElasticGate <span class="badge bn">ElasticGNN × Variance Gate</span> <span class="cite">Liu ICML'21</span></div>
+      <p style="font-size:.77rem;line-height:1.65">Replace mean with L1-proximal aggregation:
+      elastic(x̄) = sign(x̄)·max(|x̄|−λ, 0). Adversarial neighbours pull the mean in
+      wrong coordinate directions — L1 clips each coordinate. Variance gate adds the
+      second semantic layer. <b>Outlier coordinate suppression + neighbourhood incoherence.</b></p>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card pl">
+      <div class="ct">Y3 — ProtoClean <span class="badge bp">Pro-GNN × LLM Prototypes</span> <span class="cite">Jin KDD'20</span></div>
+      <p style="font-size:.77rem;line-height:1.65">One-shot structure learning: compute class prototypes from train-node
+      LLM embeddings, predict each node's class, prune edges where endpoints predict
+      different classes. Then variance gate on cleaned graph. <b>O(N·C) — no expensive
+      iterative optimisation. Adversarial edges are wrong-class → removed.</b></p>
+    </div>
+    <div class="card pl">
+      <div class="ct">Y4 — RobustGCN-LLM <span class="badge bp">RobustGCN × LLM Variance</span> <span class="cite">Zhu KDD'19</span></div>
+      <p style="font-size:.77rem;line-height:1.65">Augment RobustGCN's learned variance attention with frozen LLM gate:
+      w(u→v) = exp(−σ²_u) · (1−β_u). Learned σ² can be poisoned via training;
+      frozen β cannot. <b>Two independent uncertainty sources: one adapts to data,
+      one is invariant to the graph.</b></p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ S12 NOVEL COMBO RESULTS ════════════════════════════════════════════════ -->
+<div class="slide" id="s12">
+<span class="sn">12 / 14</span>
+<div class="ey">Novel Combination Results · Cora + PubMed</div>
+<h2>Y1 and Y2 Already Show Strong Robustness on Cora</h2>
+<div class="rule"></div>
+<div class="cols c2" style="flex:1;min-height:0">
+  <div class="col">
+    <div class="card" style="flex:1;overflow:auto">
+      <div class="ct">All methods — Cora (partial: Y3, Y4 still running)</div>
+      <table class="tbl">
+        <thead><tr><th>Method</th><th class="r">Clean</th><th class="r">r=50%</th><th class="r">Drop</th><th>vs Variance (D)</th></tr></thead>
+        <tbody>
+          <tr class="sep"><td colspan="5">Reference uncertainty gates</td></tr>
+          <tr><td>Variance (D)</td><td class="r">57.7%</td><td class="r">59.2%</td><td class="r dg">+1.5pp</td><td class="mu" style="font-size:.7rem">baseline</td></tr>
+          <tr><td>Spectral (Q)</td><td class="r">59.0%</td><td class="r">59.4%</td><td class="r dg">+0.4pp</td><td class="mu" style="font-size:.7rem">—</td></tr>
+          <tr><td>Ensemble D+P+Q</td><td class="r">79.8%</td><td class="r">78.1%</td><td class="r dg">−1.6pp</td><td class="g" style="font-size:.7rem">high accuracy</td></tr>
+          <tr class="sep"><td colspan="5">Novel combinations</td></tr>
+          <tr><td><b class="b">Y1 SVD-VarGate</b> <span class="badge bg">★</span></td><td class="r">55.9%</td><td class="r">55.9%</td><td class="r dg"><b>0.0pp</b></td><td class="g" style="font-size:.7rem">immune</td></tr>
+          <tr><td><b class="b">Y2 ElasticGate</b> <span class="badge bg">★</span></td><td class="r">54.8%</td><td class="r">58.3%</td><td class="r dg"><b>+3.5pp</b></td><td class="g" style="font-size:.7rem">exceeds D</td></tr>
+          <tr><td><span class="p">Y3 ProtoClean</span></td><td class="r" style="color:var(--muted)">—</td><td class="r" style="color:var(--muted)">—</td><td class="r dn">running…</td><td class="mu" style="font-size:.7rem">—</td></tr>
+          <tr><td><span class="p">Y4 RobustGCN-LLM</span></td><td class="r" style="color:var(--muted)">—</td><td class="r" style="color:var(--muted)">—</td><td class="r dn">running…</td><td class="mu" style="font-size:.7rem">—</td></tr>
+          <tr class="sep"><td colspan="5">Published robustness baselines</td></tr>
+          <tr><td>GNNGuard</td><td class="r">78.0%</td><td class="r">74.6%</td><td class="r do">−3.3pp</td><td class="r" style="font-size:.7rem">worse</td></tr>
+          <tr><td>RobustGCN</td><td class="r">79.4%</td><td class="r">73.9%</td><td class="r do">−5.5pp</td><td class="r" style="font-size:.7rem">worse</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col">
+    <div class="fb">
+      <div class="ct">Y1 — SVD-VarGate: 0.0pp drop</div>
+      SVD filtering removes injected edges that violate the low-rank class structure.
+      The variance gate then operates on a nearly-clean graph.
+      <b class="g">Completely immune to semantic injection at r=50%.</b>
+    </div>
+    <div class="fb">
+      <div class="ct">Y2 — ElasticGate: +3.5pp gain under attack</div>
+      The L1 proximal clips the adversarial coordinate directions that are being injected
+      into the neighbourhood mean. The variance gate catches anything L1 misses.
+      <b class="g">Outperforms variance gate alone (+1.5pp) by 2pp more.</b>
+    </div>
+    <div class="card al">
+      <div class="ct">Trade-off: clean accuracy</div>
+      <p style="font-size:.78rem;line-height:1.65">Y1 and Y2 have lower clean accuracy (~55–56%) because the SVD/L1
+      filtering also removes some informative edges at clean time.
+      <b class="a">Ensemble D+P+Q remains the best for combined clean + robustness (79.8% / −1.6pp).</b>
+      Y1/Y2 are optimal when attack is known and accuracy can be traded.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ S13 CORE INSIGHT ═══════════════════════════════════════════════════════ -->
+<div class="slide" id="s13">
+<span class="sn">13 / 14</span>
+<div class="ey">Analysis</div>
+<h2>Why Frozen LLM Uncertainty Is Attack-Immune</h2>
+<div class="rule"></div>
+<div class="cols c3" style="flex:1;min-height:0">
+  <div class="col">
+    <div class="card gl" style="flex:1;display:flex;flex-direction:column">
+      <div class="ct">The attack's constraint creates its own detection signal</div>
+      <p style="font-size:.79rem;line-height:1.72">The semantic injection requires <b>cosine ≥ 0.5</b>
+      AND <b>wrong class</b>. To satisfy cosine ≥ 0.5, the adversary must pick nodes that
+      live in the <em>boundary region</em> between two LLM class clusters — nodes where
+      the embedding is ambiguous between classes.</p>
+      <p style="font-size:.79rem;line-height:1.72;margin-top:.6rem">These boundary-region wrong-class nodes spread the
+      neighbourhood's LLM embedding over <b>multiple class clusters simultaneously</b>
+      — exactly what the variance gate measures.</p>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card rl" style="flex:0">
+      <div class="ct">Why similarity gates fail</div>
+      <p style="font-size:.79rem;line-height:1.72">The attack requires cosine ≥ 0.5.
+      GNNGuard's trust criterion <em>is</em> cosine ≥ threshold. The attack was designed
+      to fool exactly this. Every adversarial edge <b class="r">receives maximum trust</b>
+      from a cosine-based defence.</p>
+    </div>
+    <div class="card gl" style="flex:1">
+      <div class="ct">Why uncertainty gates win</div>
+      <ul class="ul" style="font-size:.78rem">
+        <li>Adversarial nodes are from wrong class → their embeddings cluster differently</li>
+        <li>Even if cosine to v is high, they don't cluster with each other</li>
+        <li>Neighbourhood variance in LLM space <b class="g">increases regardless</b> of individual cosine scores</li>
+        <li>Frozen encoder: no gradient path → gate can't be poisoned at train time</li>
       </ul>
     </div>
   </div>
   <div class="col">
-    <div class="card">
-      <div class="ct">Future work</div>
-      <ul class="ul">
-        <li>OGBN-Arxiv results (currently running)</li>
-        <li>Adaptive attacks that jointly optimise semantic cosine and class confusion</li>
-        <li>Larger LLMs (LLaMA-3, Mistral) as gate signal providers</li>
-        <li>Learnable per-dataset gate signal selection</li>
-        <li>Graph-level classification and link prediction tasks</li>
-        <li>Theoretical characterisation: when does neighbourhood incoherence provably detect adversarial edges?</li>
-      </ul>
+    <div class="card" style="flex:1;display:flex;flex-direction:column">
+      <div class="ct">Robustness-accuracy trade-off</div>
+      <canvas id="tradeoff-chart" style="flex:1;width:100%;min-height:100px"></canvas>
     </div>
+    <div class="bb">
+      <div class="ct">Key principle</div>
+      <p style="font-size:.77rem;line-height:1.65">Any gate signal derived from the
+      <b class="b">distribution</b> of a node's neighbourhood (variance, spectral, entropy)
+      is robust to semantic injection. Any gate derived from <b class="r">individual edge similarity</b>
+      is exploited. The distinction is <em>local incoherence</em> vs <em>local similarity</em>.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ S14 CONCLUSION ════════════════════════════════════════════════════════ -->
+<div class="slide" id="s14">
+<span class="sn">14 / 14</span>
+<div class="ey">Conclusion</div>
+<h2>Key Findings &amp; Future Directions</h2>
+<div class="rule"></div>
+<div class="cols c2" style="flex:1;min-height:0">
+  <div class="col">
+    <h3 style="font-size:.7rem;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">What We Found</h3>
+    <ul class="ul" style="margin-bottom:.8rem">
+      <li><b class="g">Uncertainty gates are near-immune</b> to semantic injection. Variance, spectral, energy_dist: −0.2pp to +1.5pp on Cora at r=50%.</li>
+      <li><b class="r">Similarity gates backfire</b>: GNNGuard −3.3pp, cosine gate −8.2pp, GAT −10.7pp. The attack exploits the trust criterion.</li>
+      <li><b class="g">Ensemble D+P+Q</b> achieves 79.8% clean / −1.6pp Cora, 80.0% / −4.4pp PubMed — best combined accuracy and robustness.</li>
+      <li><b class="g">Heterophilic auto-adaptation</b>: gates fire β→1 by default, spectral +5.4pp Cornell under attack.</li>
+      <li><b class="g">Scale holds</b>: energy_dist +1.6pp on 169k OGBN-Arxiv nodes.</li>
+      <li><b class="b">Novel combos</b>: SVD-VarGate 0.0pp drop, ElasticGate +3.5pp gain (Cora).</li>
+    </ul>
     <div class="fb">
-      <p style="font-size:.85rem;line-height:1.72">
-        <strong class="g">Core message:</strong>
-        The frozen LLM acts as an <em>out-of-band semantic oracle</em> — independent of the training graph,
-        attack-invariant, scalable to any text-attributed node.
-        <strong>Measuring uncertainty over the oracle's neighbourhood distribution
-        is the right robustness signal.</strong>
-      </p>
+      <b class="g">Core insight:</b> A frozen encoder provides an attack-immune signal.
+      Neighbourhood incoherence in LLM embedding space is the key: high-cosine wrong-class
+      nodes still <em>spread the neighbourhood across class clusters</em>, detectable as variance.
+    </div>
+  </div>
+  <div class="col">
+    <h3 style="font-size:.7rem;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">References</h3>
+    <div class="card" style="flex:1;overflow:auto">
+      <table class="tbl" style="font-size:.68rem">
+        <tbody>
+          <tr><td><b>Nettack</b></td><td class="mu">Zügner et al. KDD 2018</td></tr>
+          <tr><td><b>RobustGCN</b></td><td class="mu">Zhu et al. KDD 2019</td></tr>
+          <tr><td><b>Certifiable</b></td><td class="mu">Zügner &amp; Günnemann KDD 2019</td></tr>
+          <tr><td><b>GCNSVD</b></td><td class="mu">Entezari et al. WSDM 2020</td></tr>
+          <tr><td><b>Pro-GNN</b></td><td class="mu">Jin et al. KDD 2020</td></tr>
+          <tr><td><b>GNNGuard</b></td><td class="mu">Zhang &amp; Zitnik NeurIPS 2020</td></tr>
+          <tr><td><b>Soft Medoid</b></td><td class="mu">Geisler et al. NeurIPS 2020</td></tr>
+          <tr><td><b>ElasticGNN</b></td><td class="mu">Liu et al. ICML 2021</td></tr>
+          <tr><td><b>GNN at Scale</b></td><td class="mu">Geisler et al. NeurIPS 2021</td></tr>
+          <tr><td><b>DistilBERT</b></td><td class="mu">Sanh et al. 2019</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card al">
+      <div class="ct">Future directions</div>
+      <ul class="ul" style="font-size:.77rem">
+        <li>Ensemble Y: combine SVD-VarGate + ElasticGate + Ensemble D+P+Q</li>
+        <li>Adaptive attacker who minimises LLM variance directly</li>
+        <li>Multi-hop gate signals using 2-hop LLM coherence</li>
+        <li>Fine-tuned LLM vs frozen: does gradient help or hurt robustness?</li>
+      </ul>
     </div>
   </div>
 </div>
@@ -534,121 +757,264 @@ h2{font-size:clamp(1rem,1.8vw,1.38rem);font-weight:600;line-height:1.22;letter-s
 </div><!-- /deck -->
 
 <div id="prog"></div>
-<div id="hint">← → to navigate</div>
+<div id="hint">← → navigate · N notes</div>
+<div id="ntog" onclick="toggleNotes()">N notes</div>
+
+<div id="notes-bar">
+  <div class="nh">Speaker Notes</div>
+  <ul id="nc"></ul>
+</div>
 
 <script>
-const NS = 11; let cur = 0;
-const prog = document.getElementById("prog");
-for (let i = 0; i < NS; i++) {
-  const d = document.createElement("div");
-  d.className = "dot" + (i === 0 ? " on" : "");
-  d.onclick = () => goTo(i);
-  prog.appendChild(d);
-}
-function goTo(n) {
-  const sl = document.querySelectorAll(".slide"), dt = document.querySelectorAll(".dot");
-  sl[cur].classList.remove("active"); dt[cur].classList.remove("on");
-  cur = Math.max(0, Math.min(NS - 1, n));
-  sl[cur].classList.add("active"); dt[cur].classList.add("on");
-  if (cur === 6) drawCora();
-  if (cur === 7) drawPub();
-}
-document.addEventListener("keydown", e => {
-  if (["ArrowRight","ArrowDown"," "].includes(e.key)) { e.preventDefault(); goTo(cur + 1); }
-  if (["ArrowLeft","ArrowUp"].includes(e.key)) { e.preventDefault(); goTo(cur - 1); }
-});
-document.getElementById("deck").addEventListener("click", e => {
-  if (!e.target.closest(".dot")) goTo(cur + 1);
-});
+const NS=14; let cur=0, notesOpen=false;
 
-// Background graph decoration on slide 1
-(function() {
-  const c = document.getElementById("bg-g");
-  if (!c) return;
-  const ctx = c.getContext("2d"), W = 280, H = 280;
-  const pts = Array.from({length: 18}, () => ({x: 15 + Math.random() * 250, y: 15 + Math.random() * 250}));
-  pts.forEach((a, i) => pts.forEach((b, j) => {
-    if (j <= i) return;
-    const d = Math.hypot(a.x - b.x, a.y - b.y);
-    if (d < 95) {
-      ctx.strokeStyle = "#3FB950"; ctx.lineWidth = 0.55; ctx.globalAlpha = 0.4;
-      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
-    }
+const NOTES=[
+  ["We're proposing to use a frozen large language model — specifically DistilBERT — not for classification, but as a security gate inside a GNN. The gate produces a per-node signal β that decides how much a node should trust its neighbours versus itself.",
+   "Because the LLM is frozen, it has no gradient connection to the attacked graph. No matter what edges an adversary adds, the LLM embedding of any node never changes. This makes the gate structurally unpoisonable.",
+   "We ran 34 different gate designs across 5 experimental settings: Cora, PubMed, OGBN-Arxiv at 169k nodes, 3 heterophilic graphs, and 4 novel combinations built by combining prior robustness methods with our gate."],
+  ["The attack is called semantic injection. The adversary finds node pairs with LLM cosine similarity at least 0.5 — so they look semantically related — but from different classes, then injects those edges.",
+   "This is dangerous because most robustness methods use cosine similarity as their trust signal. The attack is specifically built to exploit that. GNNGuard drops 3.3 points despite being a dedicated defence, because it rewards high-cosine edges — exactly what the attacker provides.",
+   "We test five injection ratios: 0%, 10%, 20%, 30%, 50% of the original edge count. At 50%, standard GCN loses 5 points, GAT loses 10.7 points. The attacker uses the same frozen LLM as the defender — so there's no secret information advantage on either side."],
+  ["The backbone is a 2-layer GraphSAGE. The key design is two completely separate information paths. Path one: bag-of-words features flow through the graph — this can be corrupted by the attack. Path two: frozen LLM embeddings compute the gate signal — this cannot be corrupted.",
+   "The formula is h_v equals β_v times W_self times x_v, plus one minus β_v times W_neighbour times the mean of neighbour features. When β is close to 1, the node ignores neighbours. When β is close to 0, it aggregates normally.",
+   "Training: Adam with learning rate 5e-3, weight decay 5e-4, 150 epochs, early stopping. Results averaged over 2 seeds. The LLM encoder never receives a gradient update throughout all experiments."],
+  ["We tested 34 gate designs across 6 categories. The main finding is that category matters far more than which specific method you pick within a category.",
+   "Every similarity-based gate backfires. Every uncertainty-based gate is near-immune. This is a clean categorical split that holds consistently across datasets.",
+   "Similarity gates fail because the attack's cosine-at-least-0.5 requirement is exactly the criterion those gates use to assign high trust. The attack is designed to satisfy this threshold.",
+   "Uncertainty gates work because wrong-class adversarial nodes span multiple LLM class clusters. The neighbourhood becomes incoherent in embedding space even though each individual edge looked similar. Variance measures that neighbourhood-level incoherence.",
+   "The Ensemble D+P+Q averages β from three uncertainty gates: variance, energy distance, and spectral. It achieves 79.8% clean accuracy with only a 1.6 point drop on Cora — beating GNNGuard on both metrics."],
+  ["All 30 methods were trained once on the clean graph, then evaluated at each injection ratio. Two seeds averaged. Standard Cora and PubMed public splits.",
+   "Note the trade-off visible in the table: uncertainty gates have lower clean accuracy — around 57 to 60% — compared to standard GNNs at 79 to 80%. This is because β fires toward 1 even on some clean nodes whose neighbourhoods are naturally diverse.",
+   "The Ensemble resolves this trade-off. By combining three uncertainty signals, it achieves 79.8% clean AND only 1.6 point drop — you don't have to choose between accuracy and robustness.",
+   "On PubMed the gap is larger. GNNGuard drops 9.2 points, RobustGCN drops 12.5, GAT drops 13.5. The ensemble loses only 4.4. Consistent pattern across both datasets."],
+  ["We ran three types of attacks to understand what makes each method robust or fragile under different threat models.",
+   "Semantic — our main attack, cosine at least 0.5 — is where uncertainty gates shine. They lose almost nothing or actually improve.",
+   "Random injection — no cosine filter — breaks the variance gate. Random wrong-class edges flood the neighbourhood with completely incoherent LLM embeddings, β fires everywhere to 1, and the model degrades to pure MLP mode at around 57% accuracy. GraphSAGE loses 21 points.",
+   "The adaptive attack is the most interesting result: the attacker tries to minimise the variance increase while injecting. The combined constraint of wrong class, cosine at least 0.5, and low variance is nearly impossible to satisfy simultaneously. Near-zero drops everywhere. The attack becomes self-defeating."],
+  ["Three WebKB graphs with very low homophily: Wisconsin at 0.19, Cornell and Texas at 0.13. Homophily measures what fraction of edges connect same-class nodes — so most real edges here already connect different classes.",
+   "The surprising result: uncertainty gates work even better on heterophilic graphs under attack. In these graphs the real neighbourhood is already incoherent, so β fires toward 1 by default. Injecting more wrong-class edges barely changes the variance further — the gate was already at maximum self-trust.",
+   "Spectral gate gains 5.4 points on Cornell and 4 points on Texas under attack. GNNGuard performs poorly even on clean heterophilic graphs because it prunes genuinely informative low-cosine diverse edges.",
+   "No retuning was required for any of these datasets. The gate mechanism automatically adapts to heterophilic structure."],
+  ["We scaled to OGBN-Arxiv with 169,343 nodes, over a million edges, and 40 classes — CS paper citations from the Open Graph Benchmark.",
+   "The absolute accuracy is lower than Cora because 40 classes is a much harder task. But the robustness pattern is identical. Energy distance gains 1.6 points at 50% injection, variance gains 0.7, while GCN loses 4.7 and GAT loses 3.4.",
+   "One important setup detail: Arxiv uses 128-dimensional word2vec features from OGB rather than raw text. The LLM gate still uses frozen DistilBERT embeddings computed separately — the two information paths remain fully independent, and the mechanism works without modification at this scale.",
+   "Injection was sampled — 2000 candidate pairs per node — because the full N-squared search is too slow. 1 seed, 100 epochs."],
+  ["We designed four new gate signals that hadn't been tried before. X1 proto-entropy computes the entropy of each node's similarity distribution over class prototypes. A node sitting on a class boundary will have high entropy and should distrust its neighbours. This works — Cora gains 1.1 points.",
+   "X2 proto-disagree backfires. The reason is that the attack's cosine threshold keeps the neighbourhood centroid pointing near the victim's own class prototype, so the disagreement signal never fires. Cora loses 9.1 points.",
+   "X3 contrastive MLP works on 3-class PubMed but fails on 7-class Cora. With 7 classes there are 21 class-pair combinations, and the training set doesn't have enough labeled pairs per combination for the MLP to generalise.",
+   "X4 MI-approximation detects neighbourhood centroid drift, giving moderate performance. It's not as clean or reliable as the variance signal."],
+  ["Prior GNN robustness methods fall into three families. Preprocessing methods like GCNSVD and Pro-GNN modify the graph structure before training. Aggregation defences like RobustGCN, Soft Medoid, and ElasticGNN change how messages are combined. Edge-weight defences like GNNGuard assign trust by cosine similarity.",
+   "GCNSVD applies truncated SVD and removes high-rank perturbations. It's effective against random structural attacks but doesn't use LLM semantics, so semantic injection edges that fit the low-rank structure can survive.",
+   "RobustGCN's learned variance σ² is derived from the training graph — which can itself be attacked — so it can be poisoned. Pro-GNN has O(N²) complexity making it impractical at scale.",
+   "GNNGuard's cosine-based trust is directly exploited by our attack. The key gap shared by all prior methods: none have access to a fixed, out-of-band semantic signal. Our frozen LLM embedding never changes no matter what edges are added."],
+  ["Each of the four novel combinations takes a prior robustness method and adds our variance gate as a second layer of defence.",
+   "Y1 SVD-VarGate: first, truncated SVD with rank 20 scores and prunes edges with negative reconstruction values. This removes global structural perturbations. Then the variance gate handles residual local semantic noise. Two orthogonal mechanisms.",
+   "Y2 ElasticGate: replace mean aggregation with L1-proximal aggregation from ElasticGNN with lambda 0.1. Adversarial edges push the neighbourhood mean in the wrong-class coordinate direction — L1 clips each coordinate. Variance gate handles what L1 misses.",
+   "Y3 ProtoClean: compute class prototypes from training node LLM embeddings, assign each node a predicted class, prune edges where the two endpoints disagree. O(N times C) complexity versus Pro-GNN's O(N squared). Adversarial wrong-class edges are directly removed.",
+   "Y4 RobustGCN-LLM: the edge weight is the product of exp of negative sigma-squared and one minus β. Learned sigma-squared adapts to data but can be poisoned. Frozen β cannot. Defense in depth with two independent uncertainty sources."],
+  ["Y1 SVD-VarGate achieves exactly zero drop on Cora at 50% injection — completely immune. SVD removes edges that violate the class-block low-rank structure; the variance gate catches anything that slips through.",
+   "Y2 ElasticGate gains 3.5 percentage points under attack. This is the strongest robustness result in this paper. The L1 proximal is particularly effective because adversarial edges push the neighbourhood mean in a consistent wrong direction that L1 can clip.",
+   "The trade-off is clean accuracy: both methods score around 55% clean versus 79.8% for the ensemble. The SVD and L1 filtering also remove some genuinely informative real edges.",
+   "So there are two recommendation tiers: if you need maximum robustness and can accept lower clean accuracy, use Y1 or Y2. If you need both high accuracy and robustness, use Ensemble D+P+Q at 79.8% clean with 1.6 point drop.",
+   "Y3 and Y4 are still running. Based on their design, Y3 should be robust since it directly removes wrong-class edges before training, and Y4 provides defense in depth."],
+  ["Here is the fundamental explanation for why this works. The attack requires cosine at least 0.5 AND wrong class simultaneously. To satisfy the cosine constraint, the adversary must select nodes from the boundary region between LLM class clusters — nodes whose embeddings are ambiguous between two or more classes.",
+   "These boundary-region nodes come from different wrong classes. Even if every individual adversarial edge has high cosine to the target node, the adversarial neighbours as a group span multiple LLM class clusters.",
+   "Variance measures the mean squared deviation of neighbourhood LLM embeddings from their centroid. More cluster diversity in the neighbourhood means higher variance, which means higher β, which means more self-trust, which neutralises the attack.",
+   "The adaptive attack result confirms this: you cannot inject wrong-class edges that simultaneously satisfy cosine at least 0.5 and keep the neighbourhood variance low. The constraint is self-contradictory.",
+   "Cosine measures individual edge similarity — high by the attack's construction. Variance measures neighbourhood-level distribution — incoherent by the attack's construction. These are orthogonal quantities, which is why one fails and the other succeeds."],
+  ["To summarise: the type of gate signal matters more than which specific method you choose. Uncertainty-based gates are near-immune to semantic injection; similarity-based gates backfire. This is the core finding.",
+   "Best combined accuracy and robustness: Ensemble D+P+Q at 79.8% clean and 1.6 point drop on Cora, 80% and 4.4 points on PubMed. This beats GNNGuard on both metrics.",
+   "Strongest pure robustness: Y1 SVD-VarGate at zero drop and Y2 ElasticGate at plus 3.5 points gain — at the cost of about 24 points of clean accuracy.",
+   "Results generalise without retuning to heterophilic graphs and to 169k-node scale. The mechanism is dataset-agnostic.",
+   "Three main future directions: an adaptive adversary who directly minimises LLM neighbourhood variance to defeat uncertainty gates; multi-hop coherence signals using 2-hop LLM embeddings; and a comparison of fine-tuned versus frozen LLM to understand whether gradient access helps or hurts robustness."],
+];
+
+const slideEls=()=>document.querySelectorAll('.slide');
+const dotEls=()=>document.querySelectorAll('.dot');
+
+function go(n){
+  n=Math.max(0,Math.min(NS-1,n));
+  slideEls().forEach((s,i)=>s.classList.toggle('active',i===n));
+  dotEls().forEach((d,i)=>d.classList.toggle('on',i===n));
+  cur=n; updateNotes();
+}
+function toggleNotes(){
+  notesOpen=!notesOpen;
+  document.getElementById('notes-bar').classList.toggle('open',notesOpen);
+  document.getElementById('ntog').classList.toggle('on',notesOpen);
+}
+function updateNotes(){
+  const ul=document.getElementById('nc'); ul.innerHTML='';
+  (NOTES[cur]||[]).forEach(t=>{const li=document.createElement('li');li.textContent=t;ul.appendChild(li);});
+}
+
+const prog=document.getElementById('prog');
+for(let i=0;i<NS;i++){
+  const d=document.createElement('div');
+  d.className='dot'+(i===0?' on':'');
+  d.onclick=()=>go(i); prog.appendChild(d);
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown') go(cur+1);
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp')   go(cur-1);
+  if(e.key.toLowerCase()==='n') toggleNotes();
+});
+updateNotes();
+
+// roundRect polyfill
+if(!CanvasRenderingContext2D.prototype.roundRect){
+  CanvasRenderingContext2D.prototype.roundRect=function(x,y,w,h,r){
+    this.beginPath();this.moveTo(x+r,y);
+    this.arcTo(x+w,y,x+w,y+h,r);this.arcTo(x+w,y+h,x,y+h,r);
+    this.arcTo(x,y+h,x,y,r);this.arcTo(x,y,x+w,y,r);
+    this.closePath();return this;
+  };
+}
+
+// S1 background graph
+(function(){
+  const c=document.getElementById('bg-g');if(!c)return;
+  const ctx=c.getContext('2d');
+  const pts=[...Array(18)].map(()=>({x:Math.random()*260,y:Math.random()*260}));
+  ctx.strokeStyle='#3FB950';ctx.lineWidth=1;
+  pts.forEach((a,i)=>pts.slice(i+1).forEach(b=>{
+    if(Math.hypot(a.x-b.x,a.y-b.y)<80){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}
   }));
-  pts.forEach(p => {
-    const r = 2.5 + Math.random() * 4.5;
-    ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
-    ctx.fillStyle = "#3FB950"; ctx.globalAlpha = 0.6; ctx.fill();
-  });
+  ctx.fillStyle='#58A6FF';
+  pts.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,3,0,Math.PI*2);ctx.fill();});
 })();
 
-// Chart helper
-function drawChart(id, series, yMin, yMax) {
-  const c = document.getElementById(id);
-  if (!c || c._drawn) return; c._drawn = true;
-  const ctx = c.getContext("2d"), W = c.width, H = c.height;
-  const pad = {l: 38, r: 10, t: 10, b: 26};
-  const xs = [0, 1, 2, 3, 4];
-  const xLabels = ["0%", "10%", "20%", "30%", "50%"];
-  function px(xi, yi) {
-    return {
-      x: pad.l + (xi / 4) * (W - pad.l - pad.r),
-      y: pad.t + (1 - (yi - yMin) / (yMax - yMin)) * (H - pad.t - pad.b)
-    };
-  }
-  // grid lines
-  for (let y = Math.ceil(yMin / 5) * 5; y <= yMax; y += 5) {
-    const {x: x0, y: yy} = px(0, y), {x: x1} = px(4, y);
-    ctx.strokeStyle = "#21262D"; ctx.lineWidth = 0.6;
-    ctx.beginPath(); ctx.moveTo(x0, yy); ctx.lineTo(x1, yy); ctx.stroke();
-    ctx.fillStyle = "#7D8590"; ctx.font = "8px monospace"; ctx.textAlign = "right";
-    ctx.fillText(y + "%", pad.l - 3, yy + 3);
-  }
-  xLabels.forEach((lbl, i) => {
-    const {x, y} = px(i, yMin);
-    ctx.fillStyle = "#7D8590"; ctx.font = "8px monospace"; ctx.textAlign = "center";
-    ctx.fillText(lbl, x, y + 16);
+// S2 attack chart
+(function(){
+  const c=document.getElementById('attack-chart');if(!c)return;
+  const W=300,H=150;
+  c.width=W*devicePixelRatio;c.height=H*devicePixelRatio;
+  c.style.width=W+'px';c.style.height=H+'px';
+  const ctx=c.getContext('2d');
+  const sc=devicePixelRatio;ctx.scale(sc,sc);
+  const pad={l:44,r:56,t:10,b:28};
+  const cw=W-pad.l-pad.r,ch=H-pad.t-pad.b;
+  const data={
+    'GAT':      [80.4,77.6,73.3,72.9,69.7],
+    'RobustGCN':[79.4,78.4,76.4,75.2,73.9],
+    'GCN':      [80.4,78.4,75.9,74.3,72.9],
+    'GraphSAGE':[79.1,78.0,76.3,75.0,74.1],
+    'GNNGuard': [78.0,76.8,76.3,75.5,74.7],
+    'Ensemble': [79.8,79.1,78.4,78.0,78.1],
+    'Variance': [57.7,58.5,58.7,59.1,59.2],
+  };
+  const COLS={GAT:'#F85149',RobustGCN:'#D29922',GCN:'#F85149',GraphSAGE:'#7D8590',GNNGuard:'#D29922',Ensemble:'#3FB950',Variance:'#58A6FF'};
+  const DRAW=['Variance','Ensemble','GNNGuard','GCN','GAT'];
+  const ymin=55,ymax=82;
+  const fx=i=>pad.l+i/4*cw;
+  const fy=v=>pad.t+ch-(v-ymin)/(ymax-ymin)*ch;
+  const MONO='7px "SF Mono",Consolas,monospace';
+  ctx.strokeStyle='#21262D';ctx.lineWidth=.8;
+  [60,65,70,75,80].forEach(v=>{
+    ctx.beginPath();ctx.moveTo(pad.l,fy(v));ctx.lineTo(pad.l+cw,fy(v));ctx.stroke();
+    ctx.fillStyle='#7D8590';ctx.font=MONO;ctx.textAlign='right';
+    ctx.fillText(v+'%',pad.l-4,fy(v)+3);
   });
-  // series
-  series.forEach(s => {
-    ctx.strokeStyle = s.c; ctx.lineWidth = 2; ctx.globalAlpha = 1;
-    ctx.beginPath();
-    s.d.forEach((v, i) => { const {x, y} = px(i, v); i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); });
-    ctx.stroke();
-    s.d.forEach((v, i) => {
-      const {x, y} = px(i, v);
-      ctx.beginPath(); ctx.arc(x, y, 2.8, 0, Math.PI * 2);
-      ctx.fillStyle = s.c; ctx.fill();
-    });
+  ['0%','10%','20%','30%','50%'].forEach((l,i)=>{
+    ctx.fillStyle='#7D8590';ctx.font=MONO;ctx.textAlign='center';
+    ctx.fillText(l,fx(i),H-8);
   });
-  // legend
-  series.forEach((s, i) => {
-    const lx = pad.l + 4, ly = pad.t + 5 + i * 13;
-    ctx.fillStyle = s.c; ctx.fillRect(lx, ly, 10, 2);
-    ctx.font = "8px monospace"; ctx.textAlign = "left";
-    ctx.fillStyle = s.c; ctx.fillText(s.l, lx + 13, ly + 3);
+  DRAW.forEach(name=>{
+    const vals=data[name];
+    ctx.strokeStyle=COLS[name];ctx.lineWidth=name==='Ensemble'||name==='Variance'?2:1.2;
+    ctx.setLineDash(name==='GCN'?[3,2]:[]);
+    ctx.beginPath();vals.forEach((v,i)=>i===0?ctx.moveTo(fx(i),fy(v)):ctx.lineTo(fx(i),fy(v)));ctx.stroke();
+    const last=vals[4];
+    ctx.fillStyle=COLS[name];ctx.font=MONO;ctx.textAlign='left';
+    if(name==='Ensemble') ctx.fillText('Ensemble',fx(4)+4,fy(last)+3);
+    if(name==='Variance') ctx.fillText('Variance',fx(4)+4,fy(last)+3);
+    if(name==='GAT')      ctx.fillText('GAT',fx(4)+4,fy(last)+3);
   });
-}
+  ctx.setLineDash([]);
+})();
 
-function drawCora() {
-  drawChart("cora-chart", [
-    {l: "Spectral Q",    c: "#3FB950", d: [59.0, 57.8, 59.2, 59.2, 59.4]},
-    {l: "LLM-APPNP S",  c: "#58A6FF", d: [60.1, 58.7, 58.2, 59.0, 58.9]},
-    {l: "GNNGuard ▲",   c: "#D29922", d: [78.0, 76.8, 76.3, 75.5, 74.7]},
-    {l: "SAGE",          c: "#7D8590", d: [79.1, 78.0, 76.3, 75.0, 74.1]},
-    {l: "GCN",           c: "#94A3B8", d: [80.4, 78.4, 75.9, 74.3, 72.9]},
-    {l: "GAT",           c: "#F85149", d: [80.4, 77.6, 73.3, 72.9, 69.7]},
-  ], 55, 85);
-}
+// S3 arch diagram
+(function(){
+  const c=document.getElementById('arch-diagram');if(!c)return;
+  c.width=300*devicePixelRatio;c.height=160*devicePixelRatio;
+  c.style.width='300px';c.style.height='160px';
+  const ctx=c.getContext('2d');
+  const sc=devicePixelRatio;ctx.scale(sc,sc);
+  const rr=(x,y,w,h,r)=>{
+    ctx.beginPath();ctx.moveTo(x+r,y);
+    ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);
+    ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();
+  };
+  const box=(x,y,w,h,col,text,sub)=>{
+    ctx.fillStyle=col+'22';ctx.strokeStyle=col;ctx.lineWidth=1;
+    rr(x,y,w,h,4);ctx.fill();ctx.stroke();
+    ctx.fillStyle=col;ctx.font='bold 8px system-ui,sans-serif';ctx.textAlign='center';
+    ctx.fillText(text,x+w/2,y+h/2+1);
+    if(sub){ctx.fillStyle='#7D8590';ctx.font='7px "SF Mono",Consolas,monospace';ctx.fillText(sub,x+w/2,y+h/2+10);}
+  };
+  const arrow=(x1,y1,x2,y2,col)=>{
+    ctx.strokeStyle=col;ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+    const a=Math.atan2(y2-y1,x2-x1);
+    ctx.fillStyle=col;ctx.beginPath();
+    ctx.moveTo(x2,y2);ctx.lineTo(x2-7*Math.cos(a-0.4),y2-7*Math.sin(a-0.4));
+    ctx.lineTo(x2-7*Math.cos(a+0.4),y2-7*Math.sin(a+0.4));ctx.closePath();ctx.fill();
+  };
+  box(10,10,80,28,'#7D8590','BOW features','1433-dim');
+  box(10,60,80,28,'#58A6FF','DistilBERT','frozen, 768-dim');
+  box(10,110,80,28,'#F85149','Attacked','edges');
+  box(130,35,70,28,'#58A6FF','Gate β_v','variance');
+  box(130,85,70,28,'#F85149','GatedSAGE','layer 1,2');
+  box(225,60,65,28,'#3FB950','Output','node classes');
+  arrow(90,24,130,49,'#7D8590');
+  arrow(90,74,130,49,'#58A6FF');
+  arrow(90,124,130,99,'#F85149');
+  arrow(165,49,165,85,'#58A6FF');
+  arrow(200,99,225,74,'#3FB950');
+  ctx.fillStyle='#3FB950';ctx.font='7px "SF Mono",Consolas,monospace';ctx.textAlign='center';
+  ctx.fillText('no gradient from gate to edges',130,150);
+})();
 
-function drawPub() {
-  drawChart("pub-chart", [
-    {l: "Energy Dist P", c: "#3FB950", d: [73.2, 73.5, 73.5, 73.4, 73.4]},
-    {l: "LLM-APPNP S",  c: "#58A6FF", d: [75.5, 74.5, 73.8, 73.5, 72.8]},
-    {l: "SAGE",          c: "#7D8590", d: [77.8, 75.5, 73.3, 71.5, 71.3]},
-    {l: "GNNGuard ▲",   c: "#D29922", d: [77.2, 75.9, 73.4, 71.4, 68.0]},
-    {l: "GCN",           c: "#94A3B8", d: [77.8, 76.3, 72.5, 69.9, 65.3]},
-    {l: "GAT",           c: "#F85149", d: [76.4, 74.6, 70.2, 67.7, 62.9]},
-  ], 60, 83);
-}
+// S13 trade-off scatter
+(function(){
+  const c=document.getElementById('tradeoff-chart');if(!c)return;
+  const W=260,H=130;
+  c.width=W*devicePixelRatio;c.height=H*devicePixelRatio;
+  c.style.width='100%';c.style.height='100%';
+  const ctx=c.getContext('2d');
+  const sc=devicePixelRatio;ctx.scale(sc,sc);
+  const pad={l:36,r:10,t:8,b:28};
+  const cw=W-pad.l-pad.r,ch=H-pad.t-pad.b;
+  const xmin=55,xmax=82,ymin=-14,ymax=4;
+  const fx=v=>pad.l+(v-xmin)/(xmax-xmin)*cw;
+  const fy=v=>pad.t+(1-(v-ymin)/(ymax-ymin))*ch;
+  const MONO='7px "SF Mono",Consolas,monospace';
+  ctx.strokeStyle='#30363D';ctx.lineWidth=.5;
+  ctx.beginPath();ctx.moveTo(pad.l,fy(0));ctx.lineTo(pad.l+cw,fy(0));ctx.stroke();
+  const pts=[
+    {x:57.7,y:1.5,c:'#58A6FF',l:'Var'},
+    {x:59.0,y:0.4,c:'#58A6FF',l:'Spec'},
+    {x:60.1,y:-1.2,c:'#BC8CFF',l:'APPNP'},
+    {x:79.8,y:-1.6,c:'#3FB950',l:'Ensemble★'},
+    {x:78.0,y:-3.3,c:'#D29922',l:'Guard'},
+    {x:79.1,y:-5.0,c:'#D29922',l:'SAGE'},
+    {x:79.4,y:-5.5,c:'#D29922',l:'RGCN'},
+    {x:80.1,y:-8.2,c:'#F85149',l:'Cos'},
+    {x:80.4,y:-10.7,c:'#F85149',l:'GAT'},
+    {x:55.9,y:0.0,c:'#39D353',l:'SVD-V'},
+    {x:54.8,y:3.5,c:'#39D353',l:'Elastic'},
+  ];
+  ctx.fillStyle='#7D8590';ctx.font=MONO;
+  ctx.textAlign='center';ctx.fillText('Clean accuracy →',pad.l+cw/2,H-5);
+  ctx.save();ctx.translate(10,pad.t+ch/2);ctx.rotate(-Math.PI/2);
+  ctx.fillText('Drop at r=50% →',0,0);ctx.restore();
+  ctx.fillText('better',pad.l+cw-12,fy(3));
+  ctx.fillText('worse',pad.l+cw-12,fy(-12));
+  pts.forEach(p=>{
+    ctx.fillStyle=p.c;
+    ctx.beginPath();ctx.arc(fx(p.x),fy(p.y),3.5,0,Math.PI*2);ctx.fill();
+    ctx.font='6.5px system-ui,sans-serif';ctx.textAlign='left';
+    ctx.fillText(p.l,fx(p.x)+5,fy(p.y)+3);
+  });
+})();
 </script>
