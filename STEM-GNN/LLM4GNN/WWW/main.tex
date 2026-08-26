@@ -1,0 +1,49 @@
+\documentclass[sigconf,anonymous,review]{acmart}
+
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    Bib\TeX}}
+}
+
+\setcopyright{none}
+\settopmatter{printacmref=false}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+
+\begin{document}
+
+\title{Robust Graph Learning with Fallible LLM Relation Evidence}
+
+\author{Anonymous Author(s)}
+
+\begin{abstract}
+Language models can provide semantic evidence about relations in text-attributed graphs, but
+adversaries can manipulate both graph structure and the node text from which this evidence is
+derived. We study how graph neural networks can use such fallible evidence without amplifying its
+errors.
+\end{abstract}
+
+\keywords{graph neural networks, large language models, graph robustness, adversarial attacks}
+
+\maketitle
+
+\section{Introduction}
+
+\paragraph{Research Question.}
+\textbf{How can GNNs safely leverage fallible LLM semantic evidence to remain robust against
+adversarial graph and text manipulation?}
+
+% The first page must explicitly explain the relevance of this question to the Web.
+
+\section{Method}
+
+\section{Experiments}
+
+\section{Related Work}
+
+\section{Conclusion}
+
+% Uncomment after adding verified references.
+% \bibliographystyle{ACM-Reference-Format}
+% \bibliography{references}
+
+\end{document}
