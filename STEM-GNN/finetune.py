@@ -260,6 +260,7 @@ def run(params):
                 "train/lin_loss": loss['act_loss'],
                 "train/env_loss": loss['env_loss'],
                 "train/jac_loss": loss['jac_loss'],
+                "train/lip_loss": loss['lip_loss'],
                 "train/loss": loss['loss'],
                 "train/train_value": result['train'],
                 "train/val_value": result['val'],

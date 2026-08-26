@@ -32,7 +32,8 @@ def ft_link(model, dataset, loader, optimizer, split, labels, params, scheduler=
 
         act_loss = model.compute_activation_loss(edge_z_train, y_train) * lambda_act
         jac_loss = model.decoder_jacobian_penalty()
-        loss = act_loss + jac_loss + env_loss
+        lip_loss = model.encoder_lipschitz_penalty()
+        loss = act_loss + jac_loss + lip_loss + env_loss
 
         optimizer.zero_grad()
         loss.backward()
@@ -43,12 +44,14 @@ def ft_link(model, dataset, loader, optimizer, split, labels, params, scheduler=
         return {
             "act_loss": act_loss.item(),
             "jac_loss": jac_loss.item(),
+            "lip_loss": lip_loss.item(),
             "env_loss": env_loss.item(),
             "loss": loss.item(),
         }
 
     total_act_loss = 0.0
     total_jac_loss = 0.0
+    total_lip_loss = 0.0
     total_env_loss = 0.0
     total_loss = 0.0
 
@@ -66,8 +69,9 @@ def ft_link(model, dataset, loader, optimizer, split, labels, params, scheduler=
 
         act_loss = model.compute_activation_loss(edge_z, y) * lambda_act
         jac_loss = model.decoder_jacobian_penalty()
+        lip_loss = model.encoder_lipschitz_penalty()
         env_loss = lamda_env * env_reg
-        loss = act_loss + jac_loss + env_loss
+        loss = act_loss + jac_loss + lip_loss + env_loss
 
         optimizer.zero_grad()
         loss.backward()
@@ -77,6 +81,7 @@ def ft_link(model, dataset, loader, optimizer, split, labels, params, scheduler=
 
         total_act_loss += act_loss.item()
         total_jac_loss += jac_loss.item()
+        total_lip_loss += lip_loss.item()
         total_env_loss += env_loss.item()
         total_loss += loss.item()
 
@@ -84,6 +89,7 @@ def ft_link(model, dataset, loader, optimizer, split, labels, params, scheduler=
     return {
         "act_loss": total_act_loss / num_batches,
         "jac_loss": total_jac_loss / num_batches,
+        "lip_loss": total_lip_loss / num_batches,
         "env_loss": total_env_loss / num_batches,
         "loss": total_loss / num_batches,
     }

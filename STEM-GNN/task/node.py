@@ -49,13 +49,14 @@ def ft_node(model, dataset, loader, optimizer, split, labels, params, scheduler=
 
         act_loss = model.compute_activation_loss(z_train, y_train) * lambda_act
         jac_loss = model.decoder_jacobian_penalty()
+        lip_loss = model.encoder_lipschitz_penalty()
         env_loss = lamda_env * model.get_env_reg()
         llm_routing_reg = params.get("llm_routing_reg", 0.0)
         if llm_routing_reg > 0.0 and class_sim is not None:
             llm_loss = llm_routing_reg * model.get_llm_routing_consistency_loss(class_sim)
         else:
             llm_loss = torch.zeros(1, device=z.device)
-        loss = act_loss + jac_loss + env_loss + llm_loss
+        loss = act_loss + jac_loss + lip_loss + env_loss + llm_loss
 
         optimizer.zero_grad()
         loss.backward()
@@ -66,6 +67,7 @@ def ft_node(model, dataset, loader, optimizer, split, labels, params, scheduler=
         return {
             "act_loss": act_loss.item(),
             "jac_loss": jac_loss.item(),
+            "lip_loss": lip_loss.item(),
             "env_loss": env_loss.item(),
             "llm_loss": llm_loss.item(),
             "loss": loss.item(),
@@ -73,6 +75,7 @@ def ft_node(model, dataset, loader, optimizer, split, labels, params, scheduler=
 
     total_act_loss = 0.0
     total_jac_loss = 0.0
+    total_lip_loss = 0.0
     total_env_loss = 0.0
     total_loss = 0.0
 
@@ -90,8 +93,9 @@ def ft_node(model, dataset, loader, optimizer, split, labels, params, scheduler=
 
         act_loss = model.compute_activation_loss(z, y) * lambda_act
         jac_loss = model.decoder_jacobian_penalty()
+        lip_loss = model.encoder_lipschitz_penalty()
         env_loss = lamda_env * env_reg
-        loss = act_loss + jac_loss + env_loss
+        loss = act_loss + jac_loss + lip_loss + env_loss
 
         optimizer.zero_grad()
         loss.backward()
@@ -101,6 +105,7 @@ def ft_node(model, dataset, loader, optimizer, split, labels, params, scheduler=
 
         total_act_loss += act_loss.item()
         total_jac_loss += jac_loss.item()
+        total_lip_loss += lip_loss.item()
         total_env_loss += env_loss.item()
         total_loss += loss.item()
 
@@ -108,6 +113,7 @@ def ft_node(model, dataset, loader, optimizer, split, labels, params, scheduler=
     return {
         "act_loss": total_act_loss / num_batches,
         "jac_loss": total_jac_loss / num_batches,
+        "lip_loss": total_lip_loss / num_batches,
         "env_loss": total_env_loss / num_batches,
         "loss": total_loss / num_batches,
     }

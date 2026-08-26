@@ -156,6 +156,12 @@ def get_args_finetune(default_params=None):
         default=0.0,
         help="Jacobian regularization strength for the linear decoder (Frobenius norm).",
     )
+    parser.add_argument(
+        "--encoder_lip_coeff",
+        type=float,
+        default=0.0,
+        help="Lipschitz regularization strength for the GNN encoder backbone (Frobenius norm on conv weights).",
+    )
 
     if default_params:
         parser.set_defaults(**default_params)

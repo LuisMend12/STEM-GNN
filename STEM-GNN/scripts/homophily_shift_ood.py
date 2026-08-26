@@ -528,6 +528,7 @@ def run(params):
                     "epoch": epoch,
                     "train/lin_loss": loss_dict.get("act_loss", float("nan")),
                     "train/jac_loss": loss_dict.get("jac_loss", float("nan")),
+                    "train/lip_loss": loss_dict.get("lip_loss", float("nan")),
                     "train/env_loss": loss_dict.get("env_loss", float("nan")),
                     "train/loss": loss_dict.get("loss", float("nan")),
                     "train/train_value": 100.0 * train_acc,

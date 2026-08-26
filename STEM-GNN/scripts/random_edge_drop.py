@@ -298,6 +298,7 @@ def build_parser():
     # Model Parameters
     parser.add_argument("--separate_decoder_for_each_head", type=bool, default=True)
     parser.add_argument("--decoder_jac_coeff", type=float, default=0.0)
+    parser.add_argument("--encoder_lip_coeff", type=float, default=0.0)
 
     # Edge-drop Noise Parameters
     parser.add_argument("--edge_drop_prob", type=float, default=0.2, help="Probability of dropping a candidate edge during evaluation.")
@@ -597,6 +598,7 @@ def run(params):
             log_payload = {
                 "train/lin_loss": loss["act_loss"],
                 "train/jac_loss": loss["jac_loss"],
+                "train/lip_loss": loss["lip_loss"],
                 "train/env_loss": loss["env_loss"],
                 "train/loss": loss["loss"],
                 "train/train_value": result["train"],

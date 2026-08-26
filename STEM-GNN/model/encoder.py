@@ -398,6 +398,23 @@ class Encoder(nn.Module):
             self._last_env_reg = None
         return reg
 
+    def lipschitz_penalty(self, coeff: float) -> Tensor:
+        """Frobenius-norm penalty on backbone weight matrices (sage/gat/gcn/gin
+        conv layers, and per-expert MoE weights), bounding each layer's Lipschitz
+        constant the same way the finetune decoder's Jacobian penalty bounds the
+        head's. Without this, the encoder can amplify input perturbations by an
+        arbitrary factor before they ever reach the regularized head, so a
+        Lipschitz-bounded head alone gives no end-to-end robustness guarantee."""
+        device = next(self.parameters()).device
+        if coeff <= 0:
+            return torch.zeros((), device=device)
+        total = torch.zeros((), device=device)
+        for layer in self.layers:
+            for name, param in layer.named_parameters():
+                if param.dim() >= 2 and "weight" in name.lower():
+                    total = total + param.pow(2).sum()
+        return coeff * total
+
 
 class InnerProductDecoder(torch.nn.Module):
     r"""The inner product decoder from the `"Variational Graph Auto-Encoders"

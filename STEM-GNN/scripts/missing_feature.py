@@ -285,6 +285,7 @@ def build_parser():
     # Model Parameters
     parser.add_argument("--separate_decoder_for_each_head", type=bool, default=True)
     parser.add_argument("--decoder_jac_coeff", type=float, default=0.0)
+    parser.add_argument("--encoder_lip_coeff", type=float, default=0.0)
 
     # Missing-feature Parameters
     parser.add_argument(
@@ -603,6 +604,7 @@ def run(params):
             log_payload = {
                 "train/lin_loss": loss["act_loss"],
                 "train/jac_loss": loss["jac_loss"],
+                "train/lip_loss": loss["lip_loss"],
                 "train/env_loss": loss["env_loss"],
                 "train/loss": loss["loss"],
                 "train/train_value": result["train"],
