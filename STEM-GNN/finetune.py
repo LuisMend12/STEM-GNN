@@ -278,6 +278,12 @@ def run(params):
 
     best = logger.get_best()
 
+    print("[Finetune] test: {:.2f} ± {:.2f} | val: {:.2f} ± {:.2f} | train: {:.2f} ± {:.2f}".format(
+        best['test']['mean'], best['test']['std'],
+        best['val']['mean'], best['val']['std'],
+        best['train']['mean'], best['train']['std'],
+    ))
+
     wandb.log({
         "final/train": "{:.2f} ± {:.2f}".format(best['train']['mean'], best['train']['std']),
         "final/val": "{:.2f} ± {:.2f}".format(best['val']['mean'], best['val']['std']),
