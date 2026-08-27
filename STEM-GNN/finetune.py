@@ -79,7 +79,13 @@ def get_eval(params):
         raise ValueError("Invalid Task")
 
 
-def run(params):
+def run(params, on_split_end=None):
+    """on_split_end, if given, is called as
+    on_split_end(idx, task_model, node_or_link_data, dataset, split, labels, params)
+    right after each split finishes training (before the model is discarded
+    for the next split), so callers can run extra post-hoc evaluation (e.g.
+    test-time adaptation, calibration) on the actually-trained model without
+    duplicating the training loop above."""
     if params["setting"] != "standard":
         raise ValueError("Only the standard setting is supported.")
 
@@ -268,6 +274,10 @@ def run(params):
             }
             log_payload.update(moe_log)
             wandb.log(log_payload)
+
+        if on_split_end is not None:
+            on_split_end(idx, task_model, data if task in ["node", "link"] else dataset,
+                         dataset, split, labels, params)
 
         single_best = logger.get_single_best(idx)
         wandb.log({
