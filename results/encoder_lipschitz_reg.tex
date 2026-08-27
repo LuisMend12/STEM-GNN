@@ -83,6 +83,7 @@ dynamics, not final benchmark results.
 \end{itemize}
 
 \section{Results}
+\label{sec:results}
 
 \begin{center}
 \begin{tabular}{lccccc}
@@ -139,6 +140,69 @@ this memo due to the single-CPU compute budget available. The variance
 reduction observed here is suggestive but not a substitute for that
 evaluation.
 
+\section{Baseline Hyperparameter Optimization (Optuna)}
+\label{sec:optuna}
+
+The comparison in Section~\ref{sec:results} uses the un-tuned
+\texttt{config/finetune.yaml} defaults for Cora (learning rate $5\times
+10^{-4}$, dropout $0.15$, batch normalization) for every configuration.
+Before trusting any accuracy difference between the regularization
+settings, it is worth first checking whether the \emph{baseline} model
+(no head or encoder regularization, i.e.\ $\lambda_{\text{dec}} =
+\lambda_{\text{enc}} = 0$) is even reasonably tuned. We used Optuna to
+search the baseline's finetune-stage hyperparameters.
+
+\paragraph{What was tuned.} The pretrained encoder and vector-quantizer
+architectures are fixed by the loaded checkpoint (weight shapes must match
+the saved \texttt{state\_dict}), so only finetune-stage hyperparameters
+that do not change layer shapes are searchable without re-pretraining:
+\begin{itemize}
+  \item \textbf{Learning rate} (\texttt{finetune\_lr}), log-uniform on
+        $[10^{-4}, 10^{-2}]$;
+  \item \textbf{Dropout} (\texttt{dropout}), uniform on $[0, 0.5]$;
+  \item \textbf{Normalization mode} (\texttt{normalize}), categorical over
+        $\{\texttt{none}, \texttt{batch}\}$ (\texttt{layer} was excluded --
+        it is accepted by the CLI but the encoder's forward pass applies
+        \texttt{BatchNorm1d} regardless of which string is passed, so it is
+        not actually a distinct option in the current code).
+\end{itemize}
+Both regularization coefficients were held fixed at $\lambda_{\text{dec}}
+= \lambda_{\text{enc}} = 0$ throughout this search: the goal here is a
+better-tuned \emph{baseline}, not a joint search over baseline and
+regularization strength.
+
+\paragraph{Implementation.} \path{results/hpo/optuna_baseline.py} drives
+the search. It builds the same parameter dictionary that
+\path{finetune.py}'s command-line entry point would build (Cora defaults
+from \texttt{config/finetune.yaml}), then imports and calls
+\texttt{finetune.run(params)} directly (in-process, no subprocess spawn)
+so that each trial reuses the already-imported PyTorch/PyG modules. Optuna
+is configured with its default TPE sampler and, importantly, persists
+every trial to an on-disk SQLite database
+(\path{results/hpo/optuna_baseline.db}). This makes the search resumable:
+if the process is interrupted, re-running the same script loads the
+existing study and only runs the remaining trials rather than starting
+over. \emph{(This safeguard was added after two earlier long-running
+background experiments in this session were silently killed by the
+sandbox environment recycling mid-run, losing all unsaved progress.)}
+
+\paragraph{Search budget.} Running the full 10-split, 1000-epoch protocol
+per trial is not tractable on the single CPU core available here, so the
+search phase uses a reduced budget: a single fixed Cora split
+(\texttt{finetune\_seed=0}), 30 finetune epochs, early-stop patience 15,
+for 12 trials, optimizing validation accuracy on that split. The
+best-found hyperparameters are then re-evaluated once under the same
+protocol as Section~\ref{sec:results} (all 10 splits, 60 epochs,
+early-stop patience 30) to get a number directly comparable to the
+baseline row of that table.
+
+\paragraph{Results.} \textit{Pending --- the search was still running at
+the time of writing. This section will be updated with the best
+hyperparameters found and the resulting all-splits test/val/train
+accuracy (compared against the untuned baseline row,
+\score{75.87}{2.10} test / \score{76.28}{3.34} val /
+\score{98.43}{4.25} train) as soon as it completes.}
+
 \section{Next Steps}
 
 \begin{enumerate}
@@ -149,7 +213,13 @@ evaluation.
   \item Sweep \texttt{encoder\_lip\_coeff} (e.g.\ $10^{-4}$--$10^{-2}$)
         instead of a single untuned value, since the variance-reduction
         effect observed here may strengthen or trade off against accuracy
-        at a different magnitude.
+        at a different magnitude. (A first attempt at this sweep was lost
+        to the same sandbox interruption noted in
+        Section~\ref{sec:optuna} and has not yet been re-run.)
+  \item Once the Section~\ref{sec:optuna} baseline is tuned, repeat the
+        same Optuna search with $\lambda_{\text{enc}}$ included as a
+        search dimension, to compare a tuned regularized model against a
+        tuned baseline rather than an untuned one.
   \item Repeat on a second dataset (e.g.\ PubMed or WikiCS) and, compute
         permitting, restore the project's standard budget (1000 epochs,
         patience 200) to confirm the trend survives full convergence
