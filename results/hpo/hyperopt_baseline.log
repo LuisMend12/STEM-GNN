@@ -1,0 +1,30 @@
+/home/lam23005/STEM-GNN/STEM-GNN/dataset
+[HPO] 0 trials already completed.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 76.11 ± 0.00 | val: 74.00 ± 0.00 | train: 97.86 ± 0.00
+[HPO] trial 1 done: val=74.00 test=76.11 params={'dropout': 0.0952480975892695, 'finetune_lr': 0.00023914805677347075, 'normalize': 'none'}
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 76.11 ± 0.00 | val: 74.00 ± 0.00 | train: 97.86 ± 0.00
+[HPO] trial 2 done: val=74.00 test=76.11 params={'dropout': 0.0952480975892695, 'finetune_lr': 0.00023914805677347075, 'normalize': 'none'}
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 76.11 ± 0.00 | val: 74.00 ± 0.00 | train: 97.86 ± 0.00
+[HPO] trial 3 done: val=74.00 test=76.11 params={'dropout': 0.0952480975892695, 'finetune_lr': 0.00023914805677347075, 'normalize': 'none'}
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 76.11 ± 0.00 | val: 74.00 ± 0.00 | train: 97.86 ± 0.00
+[HPO] trial 4 done: val=74.00 test=76.11 params={'dropout': 0.0952480975892695, 'finetune_lr': 0.00023914805677347075, 'normalize': 'none'}
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 76.11 ± 0.00 | val: 74.00 ± 0.00 | train: 97.86 ± 0.00
+[HPO] trial 5 done: val=74.00 test=76.11 params={'dropout': 0.0952480975892695, 'finetune_lr': 0.00023914805677347075, 'normalize': 'none'}
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
