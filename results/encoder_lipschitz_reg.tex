@@ -140,7 +140,7 @@ this memo due to the single-CPU compute budget available. The variance
 reduction observed here is suggestive but not a substitute for that
 evaluation.
 
-\section{Baseline Hyperparameter Optimization (Optuna)}
+\section{Baseline Hyperparameter Optimization (Optuna and Hyperopt)}
 \label{sec:optuna}
 
 The comparison in Section~\ref{sec:results} uses the un-tuned
@@ -171,39 +171,63 @@ Both regularization coefficients were held fixed at $\lambda_{\text{dec}}
 better-tuned \emph{baseline}, not a joint search over baseline and
 regularization strength.
 
-\paragraph{Implementation.} \path{results/hpo/optuna_baseline.py} drives
-the search. It builds the same parameter dictionary that
-\path{finetune.py}'s command-line entry point would build (Cora defaults
-from \texttt{config/finetune.yaml}), then imports and calls
+\paragraph{Implementation.} The search was run twice, once with each
+library, over the identical search space and budget described below, so
+the two are directly comparable. \path{results/hpo/optuna_baseline.py}
+and \path{results/hpo/hyperopt_baseline.py} each build the same parameter
+dictionary that \path{finetune.py}'s command-line entry point would build
+(Cora defaults from \texttt{config/finetune.yaml}), then import and call
 \texttt{finetune.run(params)} directly (in-process, no subprocess spawn)
 so that each trial reuses the already-imported PyTorch/PyG modules. Optuna
-is configured with its default TPE sampler and, importantly, persists
-every trial to an on-disk SQLite database
-(\path{results/hpo/optuna_baseline.db}). This makes the search resumable:
-if the process is interrupted, re-running the same script loads the
-existing study and only runs the remaining trials rather than starting
-over. \emph{(This safeguard was added after two earlier long-running
-background experiments in this session were silently killed by the
-sandbox environment recycling mid-run, losing all unsaved progress.)}
+uses its default TPE sampler and persists every trial to an on-disk SQLite
+database (\path{results/hpo/optuna_baseline.db}); Hyperopt uses
+\texttt{tpe.suggest} and persists its \texttt{Trials} object to a pickle
+file (\path{results/hpo/hyperopt_baseline_trials.pkl}) after every trial.
+Both are resumable: if the process is interrupted, re-running the same
+script loads the existing state and only runs the remaining trials rather
+than starting over. \emph{(This safeguard was added after two earlier
+long-running background experiments in this session were silently killed
+by the sandbox environment recycling mid-run, losing all unsaved
+progress.)}
+
+\paragraph{A caught bug, noted for transparency.} The first Hyperopt run
+re-created a fresh, identically-seeded random generator on every
+incremental \texttt{fmin} call instead of reusing one generator across
+calls. This made every ``next'' suggestion during the startup (random)
+phase identical to the first one, so all 12 trials silently evaluated the
+exact same hyperparameters instead of exploring the space -- a real bug
+in this memo's driver script, not a property of Hyperopt. It was caught
+by inspecting the per-trial log before trusting any result (the repeated
+parameters and repeated accuracy were the tell), fixed by persisting the
+random generator's state alongside the trial history, and re-verified with
+a 4-trial smoke test showing genuine variation before the full run below
+was produced.
 
 \paragraph{Search budget.} Running the full 10-split, 1000-epoch protocol
 per trial is not tractable on the single CPU core available here, so the
 search phase uses a reduced budget: a single fixed Cora split
 (\texttt{finetune\_seed=0}), 30 finetune epochs, early-stop patience 15,
 for 12 trials, optimizing validation accuracy on that split. The
-best-found hyperparameters are then re-evaluated once under the same
-protocol as Section~\ref{sec:results} (all 10 splits, 60 epochs,
-early-stop patience 30) to get a number directly comparable to the
-baseline row of that table.
+best-found hyperparameters from each library are then re-evaluated once
+under the same protocol as Section~\ref{sec:results} (all 10 splits, 60
+epochs, early-stop patience 30) to get a number directly comparable to
+the baseline row of that table.
 
-\paragraph{Results.} The 12-trial search (TPE sampler) found its best
-single-split validation accuracy ($73.4\%$) at
-\texttt{finetune\_lr}$\,\approx 3.47\times 10^{-4}$,
-\texttt{dropout}$\,\approx 0.014$, \texttt{normalize}$\,=\,$\texttt{none}
--- close to the default learning rate ($5\times 10^{-4}$), a much lower
-dropout than the default ($0.15$), and batch normalization turned off
-(the default has it on). Re-evaluating that configuration under the full
-10-split protocol (60 epochs, patience 30) gives:
+\paragraph{Results.} Optuna's 12-trial search found its best single-split
+validation accuracy ($73.4\%$) at \texttt{finetune\_lr}$\,\approx
+3.47\times 10^{-4}$, \texttt{dropout}$\,\approx 0.014$,
+\texttt{normalize}$\,=\,$\texttt{none}. Hyperopt's 12-trial search (same
+space and budget, after the bug fix above) found its best single-split
+validation accuracy ($75.0\%$) at \texttt{finetune\_lr}$\,\approx
+3.56\times 10^{-4}$, \texttt{dropout}$\,\approx 0.094$,
+\texttt{normalize}$\,=\,$\texttt{none}. The two libraries agree closely on
+learning rate (both land within 3\% of $3.5\times10^{-4}$, versus the
+default $5\times10^{-4}$) and on turning batch normalization off, and
+disagree more on dropout ($0.014$ vs.\ $0.094$, both well below the
+default $0.15$) -- consistent directional signal on two of three
+dimensions, with the third under-constrained at this trial budget.
+Re-evaluating each configuration under the full 10-split protocol (60
+epochs, patience 30) gives:
 
 \begin{center}
 \begin{tabular}{lccc}
@@ -212,22 +236,24 @@ Configuration & Train & Val & Test \\
 \midrule
 Untuned defaults (Section~\ref{sec:results} baseline) & \score{98.43}{4.25} & \score{76.28}{3.34} & \score{75.87}{2.10} \\
 Optuna-tuned baseline                                  & \score{98.50}{4.27} & \score{76.36}{2.85} & \score{75.91}{1.78} \\
+Hyperopt-tuned baseline                                & \score{98.50}{4.27} & \score{76.18}{3.10} & \score{75.94}{2.03} \\
 \bottomrule
 \end{tabular}
 \end{center}
 
-\emph{Tuning did not meaningfully improve on the untuned baseline.} Every
-column differs from the untuned row by less than $0.1$ points on the mean,
-well inside one standard deviation. The one visible effect is a modestly
-tighter val/test spread across splits (val std $3.34\to2.85$, test std
-$2.10\to1.78$), consistent with the lower dropout and no batch
-normalization producing slightly more consistent convergence -- but this
-is a small effect on top of an already-tight baseline, not a result that
-would change any conclusion in Section~\ref{sec:results}. Practically,
-this says the \texttt{config/finetune.yaml} Cora defaults were already a
-reasonable operating point for this checkpoint and epoch budget, and the
-head-vs.-encoder regularization comparison above is not an artifact of a
-poorly-tuned baseline.
+\emph{Neither library meaningfully improves on the untuned baseline, and
+both land on essentially the same operating point.} All three rows agree
+to within $0.2$ points on every column mean -- far inside one standard
+deviation -- despite Optuna and Hyperopt proposing visibly different
+dropout values ($0.014$ vs.\ $0.094$) to get there. Optuna's run shows the
+tightest val/test spread of the three (val std $2.85$, test std $1.78$);
+Hyperopt's sits between Optuna's and the untuned default (val std $3.10$,
+test std $2.03$). Practically, this says the \texttt{config/finetune.yaml}
+Cora defaults were already a reasonable operating point for this
+checkpoint and epoch budget -- two independent search algorithms
+converged to the same conclusion -- and the head-vs.-encoder
+regularization comparison in Section~\ref{sec:results} is not an artifact
+of a poorly-tuned baseline.
 
 \section{Next Steps}
 
