@@ -336,6 +336,34 @@ class Encoder(nn.Module):
         z = self.encode(x, edge_index, edge_attr, aux_router_feat=aux_router_feat)
         return z
 
+    def encode_with_bn_adaptation(self, x, edge_index, edge_attr=None, aux_router_feat=None):
+        """Compute this forward pass with BatchNorm1d layers normalizing
+        against the current batch's own statistics rather than the running
+        statistics accumulated during training (prediction-time batch
+        normalization, a standard test-time adaptation baseline for
+        covariate/feature shift -- Nado et al. 2020, Schneider et al. 2020).
+
+        No weights are updated and running statistics are restored
+        afterward, so this is a pure per-call adaptation: intended to be
+        invoked from within eval() + torch.no_grad() at inference time on
+        possibly-shifted data, not during training.
+        """
+        bn_modules = [m for m in self.modules() if isinstance(m, nn.BatchNorm1d)]
+        saved = [
+            (m.training, m.running_mean.clone(), m.running_var.clone(), m.num_batches_tracked.clone())
+            for m in bn_modules
+        ]
+        for m in bn_modules:
+            m.train()
+        try:
+            return self.encode(x, edge_index, edge_attr, aux_router_feat=aux_router_feat)
+        finally:
+            for m, (mode, running_mean, running_var, num_batches_tracked) in zip(bn_modules, saved):
+                m.training = mode
+                m.running_mean.copy_(running_mean)
+                m.running_var.copy_(running_var)
+                m.num_batches_tracked.copy_(num_batches_tracked)
+
     def encode(self, x, edge_index, edge_attr=None, aux_router_feat=None):
         z = x
         x_orig = x  # preserve original LLM features for structure-invariant routing

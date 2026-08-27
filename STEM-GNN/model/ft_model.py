@@ -62,6 +62,9 @@ class TaskModel(nn.Module):
     def encode(self, x, edge_index, edge_attr=None, aux_router_feat=None):
         return self.encoder(x, edge_index, edge_attr, aux_router_feat=aux_router_feat)
 
+    def encode_bn_adapted(self, x, edge_index, edge_attr=None, aux_router_feat=None):
+        return self.encoder.encode_with_bn_adaptation(x, edge_index, edge_attr, aux_router_feat=aux_router_feat)
+
     def encode_graph(self, x, edge_index, edge_attr=None, batch=None, pool="mean"):
         z = self.encoder(x, edge_index, edge_attr)
         if pool == "mean":

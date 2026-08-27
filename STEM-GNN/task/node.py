@@ -2,21 +2,25 @@ import torch
 
 from utils.eval import evaluate, task2metric
 from utils.others import get_device_from_model
+from utils.calibration import apply_temperature, expected_calibration_error
 
 
-def _run_full_batch(model, dataset, labels, split, params, aux_router_feat=None):
+def _run_full_batch(model, dataset, labels, split, params, aux_router_feat=None, bn_adapt=False):
     device = get_device_from_model(model)
     x = dataset.node_text_feat.to(device)
     edge_index = dataset.edge_index.to(device)
     edge_attr = dataset.edge_text_feat[dataset.xe].to(device)
     y = labels.to(device)
 
-    z = model.encode(x, edge_index, edge_attr, aux_router_feat=aux_router_feat)
+    if bn_adapt:
+        z = model.encode_bn_adapted(x, edge_index, edge_attr, aux_router_feat=aux_router_feat)
+    else:
+        z = model.encode(x, edge_index, edge_attr, aux_router_feat=aux_router_feat)
     return z, y
 
 
-def _accumulate_minibatch_predictions(model, loader, device):
-    preds, gts = [], []
+def _accumulate_minibatch_logits(model, loader, device, bn_adapt=False):
+    logits_list, gts = [], []
     for batch in loader:
         batch = batch.to(device)
         bs = batch.batch_size
@@ -26,12 +30,15 @@ def _accumulate_minibatch_predictions(model, loader, device):
         edge_attr = batch.edge_text_feat[batch.xe]
         y = batch.y[:bs]
 
-        z = model.encode(x, edge_index, edge_attr)[:bs]
-        pred = model.get_lin_logits(z).mean(1).softmax(dim=-1)
+        if bn_adapt:
+            z = model.encode_bn_adapted(x, edge_index, edge_attr)[:bs]
+        else:
+            z = model.encode(x, edge_index, edge_attr)[:bs]
+        logits = model.get_lin_logits(z).mean(1)
 
-        preds.append(pred.detach())
+        logits_list.append(logits.detach())
         gts.append(y)
-    return torch.cat(preds, dim=0), torch.cat(gts, dim=0)
+    return torch.cat(logits_list, dim=0), torch.cat(gts, dim=0)
 
 
 def ft_node(model, dataset, loader, optimizer, split, labels, params, scheduler=None, aux_router_feat=None, class_sim=None, **kwargs):
@@ -119,17 +126,49 @@ def ft_node(model, dataset, loader, optimizer, split, labels, params, scheduler=
     }
 
 
-def eval_node(model, dataset, loader, split, labels, params, aux_router_feat=None, **kwargs):
+def get_logits_labels(model, dataset, loader, split, labels, params, aux_router_feat=None, bn_adapt=False):
+    """Raw (pre-softmax) logits and labels for the whole graph/loader, for use
+    by calibration.fit_temperature or other post-hoc analysis outside the
+    standard train/val/test accuracy report below."""
+    model.eval()
+    device = get_device_from_model(model)
+    with torch.no_grad():
+        if loader is None:
+            z, y = _run_full_batch(model, dataset, labels, split, params,
+                                    aux_router_feat=aux_router_feat, bn_adapt=bn_adapt)
+            logits = model.get_lin_logits(z).mean(1)
+        else:
+            logits, y = _accumulate_minibatch_logits(model, loader, device, bn_adapt=bn_adapt)
+    return logits, y
+
+
+def eval_node(model, dataset, loader, split, labels, params, aux_router_feat=None,
+              bn_adapt=False, temperature=None, return_ece=False, **kwargs):
+    """
+    bn_adapt: use the current (possibly shifted) batch's own BatchNorm
+        statistics instead of the stored running statistics (test-time
+        adaptation for covariate/feature shift; see
+        Encoder.encode_with_bn_adaptation).
+    temperature: if given, divide logits by this scalar before softmax
+        (post-hoc calibration; fit on clean validation logits via
+        utils.calibration.fit_temperature, then reused unchanged here).
+    return_ece: if True, also report expected calibration error on val/test.
+    """
     assert params["setting"] == "standard", "Only standard setting is supported"
     model.eval()
     device = get_device_from_model(model)
 
     with torch.no_grad():
         if loader is None:
-            z, y = _run_full_batch(model, dataset, labels, split, params, aux_router_feat=aux_router_feat)
-            pred = model.get_lin_logits(z).mean(1).softmax(dim=-1)
+            z, y = _run_full_batch(model, dataset, labels, split, params,
+                                    aux_router_feat=aux_router_feat, bn_adapt=bn_adapt)
+            logits = model.get_lin_logits(z).mean(1)
         else:
-            pred, y = _accumulate_minibatch_predictions(model, loader, device)
+            logits, y = _accumulate_minibatch_logits(model, loader, device, bn_adapt=bn_adapt)
+
+        if temperature is not None:
+            logits = apply_temperature(logits, temperature)
+        pred = logits.softmax(dim=-1)
 
         train_mask = split["train"].to(pred.device)
         val_mask = split["valid"].to(pred.device)
@@ -139,9 +178,14 @@ def eval_node(model, dataset, loader, split, labels, params, aux_router_feat=Non
         val_value = evaluate(pred, y, val_mask, params)
         test_value = evaluate(pred, y, test_mask, params)
 
-    return {
-        "train": train_value,
-        "val": val_value,
-        "test": test_value,
-        "metric": task2metric[params["task"]],
-    }
+        result = {
+            "train": train_value,
+            "val": val_value,
+            "test": test_value,
+            "metric": task2metric[params["task"]],
+        }
+        if return_ece:
+            result["val_ece"] = expected_calibration_error(pred[val_mask], y[val_mask])
+            result["test_ece"] = expected_calibration_error(pred[test_mask], y[test_mask])
+
+    return result
