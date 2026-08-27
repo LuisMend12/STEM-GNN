@@ -70,3 +70,36 @@ Loaded pretrained encoder and VQ.
 Freeze VQ parameters during finetuning
 [Finetune] MoE enabled: False | MoE layers: [False, False]
 [Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 75.91 ± 1.78 | val: 76.36 ± 2.85 | train: 98.50 ± 4.27
+
+=== FINAL CONFIRMATION (all 10 splits, best hyperparameters) ===
+{
+  "best_params": {
+    "finetune_lr": 0.00034713055574169075,
+    "dropout": 0.013861346623984222,
+    "normalize": "none"
+  },
+  "final": {
+    "train": {
+      "mean": 98.50000023841858,
+      "std": 4.267221782017768
+    },
+    "val": {
+      "mean": 76.36000037193298,
+      "std": 2.8450656866530815
+    },
+    "test": {
+      "mean": 75.91392636299133,
+      "std": 1.7821566409064018
+    }
+  }
+}
+OPTUNA_ALL_DONE

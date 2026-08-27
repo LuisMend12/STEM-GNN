@@ -196,12 +196,38 @@ protocol as Section~\ref{sec:results} (all 10 splits, 60 epochs,
 early-stop patience 30) to get a number directly comparable to the
 baseline row of that table.
 
-\paragraph{Results.} \textit{Pending --- the search was still running at
-the time of writing. This section will be updated with the best
-hyperparameters found and the resulting all-splits test/val/train
-accuracy (compared against the untuned baseline row,
-\score{75.87}{2.10} test / \score{76.28}{3.34} val /
-\score{98.43}{4.25} train) as soon as it completes.}
+\paragraph{Results.} The 12-trial search (TPE sampler) found its best
+single-split validation accuracy ($73.4\%$) at
+\texttt{finetune\_lr}$\,\approx 3.47\times 10^{-4}$,
+\texttt{dropout}$\,\approx 0.014$, \texttt{normalize}$\,=\,$\texttt{none}
+-- close to the default learning rate ($5\times 10^{-4}$), a much lower
+dropout than the default ($0.15$), and batch normalization turned off
+(the default has it on). Re-evaluating that configuration under the full
+10-split protocol (60 epochs, patience 30) gives:
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+Configuration & Train & Val & Test \\
+\midrule
+Untuned defaults (Section~\ref{sec:results} baseline) & \score{98.43}{4.25} & \score{76.28}{3.34} & \score{75.87}{2.10} \\
+Optuna-tuned baseline                                  & \score{98.50}{4.27} & \score{76.36}{2.85} & \score{75.91}{1.78} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\emph{Tuning did not meaningfully improve on the untuned baseline.} Every
+column differs from the untuned row by less than $0.1$ points on the mean,
+well inside one standard deviation. The one visible effect is a modestly
+tighter val/test spread across splits (val std $3.34\to2.85$, test std
+$2.10\to1.78$), consistent with the lower dropout and no batch
+normalization producing slightly more consistent convergence -- but this
+is a small effect on top of an already-tight baseline, not a result that
+would change any conclusion in Section~\ref{sec:results}. Practically,
+this says the \texttt{config/finetune.yaml} Cora defaults were already a
+reasonable operating point for this checkpoint and epoch budget, and the
+head-vs.-encoder regularization comparison above is not an artifact of a
+poorly-tuned baseline.
 
 \section{Next Steps}
 
