@@ -1,0 +1,159 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{hyperref}
+\newcommand{\score}[2]{#1{\scriptsize$\pm$#2}}
+
+\title{Encoder-Level Lipschitz Regularization in STEM-GNN: Preliminary Results}
+\author{Internal Research Memo \\ Working draft for discussion}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+STEM-GNN's finetune stage previously regularized only the linear
+classification head's Lipschitz constant (via a Frobenius-norm penalty on
+its weight matrix, \texttt{decoder\_jac\_coeff}), while the GNN encoder
+beneath it remains unfrozen and unconstrained during finetuning. This memo
+reports a preliminary comparison of that head-only penalty against a new
+matching penalty applied to the encoder backbone's own weight matrices
+(\texttt{encoder\_lip\_coeff}), added directly to \texttt{model/encoder.py}.
+Results are from a reduced-budget run on Cora and should be read as a first
+look, not a final claim.
+\end{abstract}
+
+\section{Motivation}
+
+The finetune objective already included a Jacobian-style penalty on the
+decoder,
+\[
+  \mathcal{L}_{\text{head}} = \lambda_{\text{dec}} \lVert W_{\text{dec}} \rVert_F^2,
+\]
+intended to bound the sensitivity of the final linear map to its input.
+However, during finetuning the encoder itself is not frozen (only the
+vector-quantizer is, by default) and carries no such constraint. An
+encoder that is free to amplify its input by an arbitrary factor can pass a
+perturbation through to the head no matter how tightly the head's own
+weight norm is controlled, so a head-only penalty bounds only the last link
+in the chain. We added an analogous penalty over the encoder's backbone
+weight matrices,
+\[
+  \mathcal{L}_{\text{enc}} = \lambda_{\text{enc}} \sum_{\ell}
+  \lVert W_\ell \rVert_F^2,
+\]
+summed over every weight matrix in the backbone's message-passing layers
+(SAGE/GAT/GCN/GIN, including per-expert weights when MoE layers are used),
+excluding biases and GAT's attention vectors. Both penalties are gated by
+independent coefficients and default to $0$ (opt-in, no behavior change
+unless requested).
+
+\section{Experimental Setup}
+
+\paragraph{Honesty note on scope.} This is a reduced-budget, single-dataset
+sanity check, not the project's standard evaluation protocol. It was run on
+a single CPU core (no GPU available in this environment), which made the
+project's default finetune budget (1000 epochs, early-stop patience 200,
+10 splits per dataset, per config) impractical to run interactively.
+Numbers below should be treated as preliminary evidence about training
+dynamics, not final benchmark results.
+
+\begin{itemize}
+  \item \textbf{Dataset:} Cora, node classification, all 10 splits shipped
+        with the dataset (\texttt{finetune.py} always iterates over every
+        provided split; there is no independent random seed here).
+  \item \textbf{Backbone:} non-MoE GraphSAGE encoder (2 layers,
+        hidden dim 768), loaded from the \texttt{default} pretrain
+        checkpoint at epoch 50 (\texttt{ckpts/pretrain\_model/default}).
+  \item \textbf{Budget:} 60 finetune epochs, early-stop patience 30 --
+        far short of the config-file default (1000 epochs / patience
+        200). Learning rate and all other hyperparameters use the
+        \texttt{config/finetune.yaml} Cora defaults.
+  \item \textbf{Coefficients:} a single untuned value, $10^{-3}$, for
+        \texttt{decoder\_jac\_coeff} and/or \texttt{encoder\_lip\_coeff}
+        in each configuration below. No sweep over coefficient magnitude
+        was performed.
+  \item \textbf{Metric:} node-classification accuracy (\%), mean $\pm$
+        standard deviation across the 10 splits, reported at each split's
+        best validation epoch (the project's existing early-stopping
+        selection rule).
+\end{itemize}
+
+\section{Results}
+
+\begin{center}
+\begin{tabular}{lccccc}
+\toprule
+Configuration & $\lambda_{\text{dec}}$ & $\lambda_{\text{enc}}$ & Train & Val & Test \\
+\midrule
+Baseline (no regularization)     & 0     & 0     & \score{98.43}{4.25} & \score{76.28}{3.34} & \score{75.87}{2.10} \\
+Head-only (prior behavior)       & $10^{-3}$ & 0     & \score{98.43}{4.25} & \score{76.04}{3.35} & \score{75.71}{2.30} \\
+Encoder-only (new)               & 0     & $10^{-3}$ & \score{99.64}{0.86} & \score{75.98}{2.82} & \score{75.78}{1.94} \\
+Head + Encoder (new, combined)   & $10^{-3}$ & $10^{-3}$ & \score{99.93}{0.21} & \score{75.96}{2.84} & \score{76.03}{0.88} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Reading the Results}
+
+\paragraph{Clean-accuracy means are flat.} All four configurations land
+within roughly one standard deviation of each other on test accuracy
+(75.7\%--76.0\%). At this coefficient and epoch budget, neither penalty
+moves mean clean accuracy on Cora in either direction. This is expected:
+Lipschitz regularization is a robustness/sensitivity control, not
+principally an accuracy lever, and clean i.i.d.\ accuracy is not the metric
+that should reveal its effect.
+
+\paragraph{The head-only penalty changes nothing measurable.} The
+head-only row is nearly identical to the baseline on every column,
+including the across-split standard deviation (train std $4.25 \to 4.25$,
+test std $2.10 \to 2.30$). This matches the original concern that motivated
+this change: constraining only the decoder's weight norm has little
+effect when the unconstrained encoder is free to reshape the input
+beforehand.
+
+\paragraph{The encoder-side penalty visibly changes training dynamics.}
+Both configurations with $\lambda_{\text{enc}} > 0$ show a sharp drop in
+across-split variance on train accuracy (std $4.25 \to 0.86 \to 0.21$) and
+a smaller but consistent drop in test-accuracy variance (std
+$2.10\text{--}2.30 \to 1.94 \to 0.88$) as the encoder penalty is added and
+then combined with the head penalty. In other words, encoder-level
+regularization made the 10 finetuning runs converge more consistently with
+each other, even though it did not change their average outcome at this
+coefficient. That is a real, measured difference in training behavior
+attributable specifically to constraining the encoder, since the head-only
+run does not reproduce it.
+
+\paragraph{This does not yet test the actual robustness claim.} The
+motivation for encoder-level Lipschitz control is bounded sensitivity to
+input perturbations (missing features, dropped or shifted edges,
+degree/homophily shift) -- not clean-split variance. STEM-GNN already ships
+scripts for exactly this (\path{scripts/missing_feature.py},
+\path{scripts/random_edge_drop.py},
+\path{scripts/degree_shift_ood.py},
+\path{scripts/homophily_shift_ood.py}), and none of them were run for
+this memo due to the single-CPU compute budget available. The variance
+reduction observed here is suggestive but not a substitute for that
+evaluation.
+
+\section{Next Steps}
+
+\begin{enumerate}
+  \item Run the existing OOD/perturbation scripts (missing-feature,
+        random edge-drop, degree/homophily shift) comparing baseline vs.\
+        encoder-only vs.\ combined regularization, which is the setting
+        that should actually distinguish the two penalties.
+  \item Sweep \texttt{encoder\_lip\_coeff} (e.g.\ $10^{-4}$--$10^{-2}$)
+        instead of a single untuned value, since the variance-reduction
+        effect observed here may strengthen or trade off against accuracy
+        at a different magnitude.
+  \item Repeat on a second dataset (e.g.\ PubMed or WikiCS) and, compute
+        permitting, restore the project's standard budget (1000 epochs,
+        patience 200) to confirm the trend survives full convergence
+        rather than being an artifact of early stopping at 60 epochs.
+\end{enumerate}
+
+\end{document}
