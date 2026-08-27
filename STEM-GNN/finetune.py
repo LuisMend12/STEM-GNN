@@ -299,6 +299,8 @@ def run(params):
 
     wandb.finish()
 
+    return best
+
 
 if __name__ == "__main__":
     params = get_args_finetune()

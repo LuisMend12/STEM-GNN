@@ -1,0 +1,16 @@
+/home/lam23005/STEM-GNN/STEM-GNN/dataset
+[I 2026-08-27 08:55:59,508] A new study created in RDB with name: stemgnn_cora_baseline
+[HPO] 0 trials already completed, running 12 more (target 12).
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 74.32 ± 0.00 | val: 72.20 ± 0.00 | train: 95.71 ± 0.00
+[I 2026-08-27 08:56:57,974] Trial 0 finished with value: 72.2000002861023 and parameters: {'finetune_lr': 0.0012520653814999472, 'dropout': 0.35759468318620974, 'normalize': 'none'}. Best is trial 0 with value: 72.2000002861023.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 73.74 ± 0.00 | val: 73.00 ± 0.00 | train: 97.86 ± 0.00
+[I 2026-08-27 08:57:58,151] Trial 1 finished with value: 73.00000190734863 and parameters: {'finetune_lr': 0.0007035737028722148, 'dropout': 0.32294705653332806, 'normalize': 'batch'}. Best is trial 1 with value: 73.00000190734863.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
