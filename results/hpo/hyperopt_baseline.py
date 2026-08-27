@@ -100,20 +100,28 @@ def objective(hp_choice):
     }
 
 
-def load_trials():
+def load_state():
     if osp.exists(TRIALS_PATH):
         with open(TRIALS_PATH, "rb") as f:
-            return pickle.load(f)
-    return Trials()
+            trials, rstate = pickle.load(f)
+        return trials, rstate
+    return Trials(), np.random.default_rng(0)
 
 
-def save_trials(trials):
+def save_state(trials, rstate):
     with open(TRIALS_PATH, "wb") as f:
-        pickle.dump(trials, f)
+        pickle.dump((trials, rstate), f)
 
 
 def run_search():
-    trials = load_trials()
+    # Both the Trials history and the RNG state are persisted together, so
+    # resuming after a kill (mid-run or between process restarts) continues
+    # the same random sequence instead of restarting it. An earlier version
+    # of this script created a fresh Generator(seed=0) on every incremental
+    # fmin call, which made every suggestion identical to the first one (all
+    # 12 "trials" sampled the same point) -- this was caught and fixed before
+    # any result was reported.
+    trials, rstate = load_state()
     print(f"[HPO] {len(trials.trials)} trials already completed.", flush=True)
     # Advance one trial at a time and persist after each, so a mid-run kill
     # loses at most the trial in flight (mirrors the Optuna script's per-trial
@@ -128,10 +136,10 @@ def run_search():
             algo=tpe.suggest,
             max_evals=target,
             trials=trials,
-            rstate=np.random.default_rng(0),
+            rstate=rstate,
             show_progressbar=False,
         )
-        save_trials(trials)
+        save_state(trials, rstate)
         last = trials.trials[-1]["result"]
         print(f"[HPO] trial {target} done: val={last['val_mean']:.2f} "
               f"test={last['test_mean']:.2f} params={last['params']}", flush=True)

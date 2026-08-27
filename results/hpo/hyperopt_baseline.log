@@ -8,23 +8,18 @@ Freeze VQ parameters during finetuning
 Loaded pretrained encoder and VQ.
 Freeze VQ parameters during finetuning
 [Finetune] MoE enabled: False | MoE layers: [False, False]
-[Finetune] test: 76.11 ± 0.00 | val: 74.00 ± 0.00 | train: 97.86 ± 0.00
-[HPO] trial 2 done: val=74.00 test=76.11 params={'dropout': 0.0952480975892695, 'finetune_lr': 0.00023914805677347075, 'normalize': 'none'}
+[Finetune] test: 76.64 ± 0.00 | val: 75.00 ± 0.00 | train: 97.86 ± 0.00
+[HPO] trial 2 done: val=75.00 test=76.64 params={'dropout': 0.09388743787647363, 'finetune_lr': 0.00035603188759230215, 'normalize': 'none'}
 Loaded pretrained encoder and VQ.
 Freeze VQ parameters during finetuning
 [Finetune] MoE enabled: False | MoE layers: [False, False]
-[Finetune] test: 76.11 ± 0.00 | val: 74.00 ± 0.00 | train: 97.86 ± 0.00
-[HPO] trial 3 done: val=74.00 test=76.11 params={'dropout': 0.0952480975892695, 'finetune_lr': 0.00023914805677347075, 'normalize': 'none'}
+[Finetune] test: 72.82 ± 0.00 | val: 71.00 ± 0.00 | train: 100.00 ± 0.00
+[HPO] trial 3 done: val=71.00 test=72.82 params={'dropout': 0.20506387381704605, 'finetune_lr': 0.0025445105833433153, 'normalize': 'batch'}
 Loaded pretrained encoder and VQ.
 Freeze VQ parameters during finetuning
 [Finetune] MoE enabled: False | MoE layers: [False, False]
-[Finetune] test: 76.11 ± 0.00 | val: 74.00 ± 0.00 | train: 97.86 ± 0.00
-[HPO] trial 4 done: val=74.00 test=76.11 params={'dropout': 0.0952480975892695, 'finetune_lr': 0.00023914805677347075, 'normalize': 'none'}
-Loaded pretrained encoder and VQ.
-Freeze VQ parameters during finetuning
-[Finetune] MoE enabled: False | MoE layers: [False, False]
-[Finetune] test: 76.11 ± 0.00 | val: 74.00 ± 0.00 | train: 97.86 ± 0.00
-[HPO] trial 5 done: val=74.00 test=76.11 params={'dropout': 0.0952480975892695, 'finetune_lr': 0.00023914805677347075, 'normalize': 'none'}
+[Finetune] test: 73.60 ± 0.00 | val: 71.00 ± 0.00 | train: 90.71 ± 0.00
+[HPO] trial 4 done: val=71.00 test=73.60 params={'dropout': 0.4482089840399741, 'finetune_lr': 0.00042638498519876613, 'normalize': 'none'}
 Loaded pretrained encoder and VQ.
 Freeze VQ parameters during finetuning
 [Finetune] MoE enabled: False | MoE layers: [False, False]
