@@ -20,3 +20,54 @@ Freeze VQ parameters during finetuning
 [Finetune] MoE enabled: False | MoE layers: [False, False]
 [TTA] split 8: {"split": 8, "temperature": 0.8878759741783142, "clean_test": 67.9400384426117, "clean_test_ece": 0.13148504495620728, "shifted_none_test": 55.07736802101135, "shifted_none_test_ece": 0.1317363828420639, "shifted_bn_test": 63.87814283370972, "shifted_bn_test_ece": 0.12624485790729523, "shifted_temp_test": 55.07736802101135, "shifted_temp_test_ece": 0.11590724438428879, "shifted_bn_temp_test": 63.87814283370972, "shifted_bn_temp_test_ece": 0.09325855225324631}
 [Finetune] MoE enabled: False | MoE layers: [False, False]
+[TTA] split 9: {"split": 9, "temperature": 0.7436403632164001, "clean_test": 71.61508798599243, "clean_test_ece": 0.11726520955562592, "shifted_none_test": 67.9400384426117, "shifted_none_test_ece": 0.13411268591880798, "shifted_bn_test": 68.81044507026672, "shifted_bn_test_ece": 0.12385640293359756, "shifted_temp_test": 67.9400384426117, "shifted_temp_test_ece": 0.062388889491558075, "shifted_bn_temp_test": 68.81044507026672, "shifted_bn_temp_test_ece": 0.07382382452487946}
+[Finetune] test: 70.34 ± 3.60 | val: 69.64 ± 4.12 | train: 100.00 ± 0.00
+
+=== TTA SUMMARY (mean +/- std over splits) ===
+{
+  "clean_test": {
+    "mean": 69.85493183135986,
+    "std": 3.7400217352556173
+  },
+  "clean_test_ece": {
+    "mean": 0.1381003327667713,
+    "std": 0.029154846281757612
+  },
+  "shifted_none_test": {
+    "mean": 62.39845275878906,
+    "std": 4.747318761856164
+  },
+  "shifted_none_test_ece": {
+    "mean": 0.12505586221814155,
+    "std": 0.030606441335366354
+  },
+  "shifted_bn_test": {
+    "mean": 66.48452639579773,
+    "std": 3.8860489290345877
+  },
+  "shifted_bn_test_ece": {
+    "mean": 0.13223884105682374,
+    "std": 0.03083934378402624
+  },
+  "shifted_temp_test": {
+    "mean": 62.39845275878906,
+    "std": 4.747318761856164
+  },
+  "shifted_temp_test_ece": {
+    "mean": 0.08976012617349624,
+    "std": 0.027986368265110664
+  },
+  "shifted_bn_temp_test": {
+    "mean": 66.48452639579773,
+    "std": 3.8860489290345877
+  },
+  "shifted_bn_temp_test_ece": {
+    "mean": 0.09562390297651291,
+    "std": 0.015401073263863698
+  },
+  "temperature": {
+    "mean": 0.8612119317054748,
+    "std": 0.10344243860281757
+  }
+}
+TTA_ALL_DONE

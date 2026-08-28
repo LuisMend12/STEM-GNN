@@ -255,6 +255,98 @@ converged to the same conclusion -- and the head-vs.-encoder
 regularization comparison in Section~\ref{sec:results} is not an artifact
 of a poorly-tuned baseline.
 
+\section{Test-Time Adaptation and Calibration Under Feature Shift}
+\label{sec:tta}
+
+\paragraph{Motivation.} A codebase exploration surfaced this as a natural
+complementary mechanism to the Lipschitz penalties above, not a
+replacement for them: the penalties in Section~\ref{sec:results} act at
+\emph{training} time, bounding how much the encoder and head are allowed
+to amplify their input; they say nothing about what happens at
+\emph{inference} time on a graph that has already shifted. Two standard,
+well-established techniques address exactly that gap without touching
+training at all: adapting BatchNorm statistics to the test batch, and
+post-hoc temperature scaling.
+
+\paragraph{Implementation.} \texttt{Encoder.encode\_with\_bn\_adaptation}
+(\path{model/encoder.py}) runs the forward pass with every
+\texttt{BatchNorm1d} layer normalizing against the current batch's own
+statistics rather than the stored running statistics from training
+(``prediction-time batch normalization,'' Nado et al.\ 2020; Schneider et
+al.\ 2020) -- no weights change, and the running statistics are snapshotted
+and restored afterward, so this is a pure, reversible per-call adaptation.
+\path{utils/calibration.py} adds \texttt{fit\_temperature} (post-hoc
+temperature scaling, Guo et al.\ 2017: fit a scalar $T$ on held-out
+in-distribution logits, then divide test-time logits by $T$ before
+softmax), \texttt{apply\_temperature}, and
+\texttt{expected\_calibration\_error} (binned ECE). \texttt{task/node.py}'s
+\texttt{eval\_node} gained \texttt{bn\_adapt}, \texttt{temperature}, and
+\texttt{return\_ece} keyword arguments (all default off, fully backward
+compatible), and \path{finetune.py}'s \texttt{run()} gained an
+\texttt{on\_split\_end} callback so an experiment can access the
+actually-trained model for extra post-hoc evaluation without duplicating
+the training loop.
+
+\paragraph{Experimental setup.} Same reduced budget as the rest of this
+memo: the \texttt{default} (non-MoE) checkpoint, 60 finetune epochs,
+early-stop patience 30, all 10 Cora splits, $\lambda_{\text{dec}} =
+\lambda_{\text{enc}} = 0$ (untuned-baseline architecture, since this
+section is about inference-time behavior, not the training-time
+penalties). \textbf{One deliberate deviation:} \texttt{normalize} is
+forced to \texttt{batch} for this experiment only, overriding Cora's
+\texttt{config/finetune.yaml} default of \texttt{none}. Under
+\texttt{normalize=none}, \texttt{Encoder.encode} never calls its
+\texttt{BatchNorm1d} layers at all, which would make BN adaptation a
+no-op by construction -- turning batch normalization on is required to
+give it something to adapt. After training, each split's model is
+evaluated on: the clean graph; the same graph with a $50\%$ missing-feature
+shift applied to validation+test nodes only (\texttt{scripts/}
+\texttt{missing\_feature.py}'s \texttt{\_apply\_missing\_features},
+\texttt{missing\_prob=0.5}, \texttt{perturb=}\texttt{"valtest"}); and that
+shifted graph again under BN adaptation, temperature scaling (fit once on
+the \emph{clean} validation logits), and both combined.
+
+\paragraph{Results.} Mean $\pm$ std over the 10 splits, test split only:
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+Condition & Test Accuracy & Test ECE \\
+\midrule
+Clean (no shift)                     & \score{69.85}{3.74} & \score{0.138}{0.029} \\
+Shifted, no adaptation               & \score{62.40}{4.75} & \score{0.125}{0.031} \\
+Shifted, BN-adapted                  & \score{66.48}{3.89} & \score{0.132}{0.031} \\
+Shifted, temperature-scaled          & \score{62.40}{4.75} & \score{0.090}{0.028} \\
+Shifted, BN-adapted + temperature    & \score{66.48}{3.89} & \score{0.096}{0.015} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The fitted temperature averaged $T \approx 0.86 \pm 0.10$ across splits.
+
+\paragraph{Reading the results.} The $50\%$ feature shift costs $7.5$
+points of test accuracy ($69.85\%\to62.40\%$). \textbf{BN adaptation
+recovers about $55\%$ of that drop} ($62.40\%\to66.48\%$, $+4.09$ points)
+purely by renormalizing against the shifted batch's own statistics --
+no gradient steps, no labels, no change to any weight. \textbf{Temperature
+scaling recovers none of the accuracy} ($62.40\%\to62.40\%$, exactly
+unchanged, as expected: dividing logits by a scalar is a monotonic
+transform and cannot change which class has the highest score) but
+\textbf{meaningfully improves calibration} ($0.125\to0.090$ ECE, a $28\%$
+relative reduction) even though $T$ was fit only on clean, unshifted
+validation data -- the miscalibration direction generalizes across this
+shift even though accuracy does not. Combining both gives BN's accuracy
+recovery alongside a comparable calibration improvement over the
+BN-only condition ($0.132\to0.096$ ECE) and, notably, the tightest spread
+of any shifted condition (ECE std $0.015$ vs.\ $0.028$--$0.031$
+elsewhere) -- the two adaptations do not appear to interfere with each
+other. Two honest caveats: BN adaptation's own ECE is statistically flat
+relative to no adaptation ($0.125\to0.132$, within noise) despite the
+large accuracy gain, so accuracy recovery and calibration are separate
+axes here, not one mechanism producing both; and all of this is
+demonstrated only under one shift type (feature dropout), one dataset, and
+the same reduced training budget used throughout this memo.
+
 \section{Next Steps}
 
 \begin{enumerate}
