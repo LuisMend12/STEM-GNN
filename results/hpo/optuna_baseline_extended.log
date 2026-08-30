@@ -1,0 +1,226 @@
+/home/lam23005/STEM-GNN/STEM-GNN/dataset
+[I 2026-08-27 20:13:58,354] Using an existing study with name 'stemgnn_cora_baseline' instead of creating a new one.
+[HPO] 12 trials already completed, running 36 more (target 48).
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 76.16 ± 0.00 | val: 73.80 ± 0.00 | train: 97.86 ± 0.00
+[I 2026-08-27 20:14:42,084] Trial 12 finished with value: 73.7999975681305 and parameters: {'finetune_lr': 0.0004481678391516792, 'dropout': 0.013970995031882628, 'normalize': 'none'}. Best is trial 12 with value: 73.7999975681305.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 75.97 ± 0.00 | val: 73.40 ± 0.00 | train: 98.57 ± 0.00
+[I 2026-08-27 20:15:27,293] Trial 13 finished with value: 73.4000027179718 and parameters: {'finetune_lr': 0.00032925033995582625, 'dropout': 0.013861346623984222, 'normalize': 'none'}. Best is trial 12 with value: 73.7999975681305.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 75.82 ± 0.00 | val: 74.80 ± 0.00 | train: 97.14 ± 0.00
+[I 2026-08-27 20:16:08,818] Trial 14 finished with value: 74.80000257492065 and parameters: {'finetune_lr': 0.0003461751661573071, 'dropout': 0.09890341294780672, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 75.48 ± 0.00 | val: 73.40 ± 0.00 | train: 97.14 ± 0.00
+[I 2026-08-27 20:16:54,816] Trial 15 finished with value: 73.4000027179718 and parameters: {'finetune_lr': 0.0030629397557491783, 'dropout': 0.1064370042607555, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 76.60 ± 0.00 | val: 74.60 ± 0.00 | train: 97.86 ± 0.00
+[I 2026-08-27 20:17:37,558] Trial 16 finished with value: 74.59999918937683 and parameters: {'finetune_lr': 0.0004991346213096433, 'dropout': 0.09419752441468318, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 75.29 ± 0.00 | val: 74.00 ± 0.00 | train: 97.86 ± 0.00
+[I 2026-08-27 20:18:18,627] Trial 17 finished with value: 74.00000095367432 and parameters: {'finetune_lr': 0.00014907816520592484, 'dropout': 0.1057806797394499, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 75.24 ± 0.00 | val: 73.60 ± 0.00 | train: 97.14 ± 0.00
+[I 2026-08-27 20:19:01,633] Trial 18 finished with value: 73.60000014305115 and parameters: {'finetune_lr': 0.00023247132370725346, 'dropout': 0.10404868586506574, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 74.76 ± 0.00 | val: 72.00 ± 0.00 | train: 95.71 ± 0.00
+[I 2026-08-27 20:19:44,306] Trial 19 finished with value: 72.00000286102295 and parameters: {'finetune_lr': 0.002756434642263818, 'dropout': 0.18902090598673488, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 76.55 ± 0.00 | val: 74.00 ± 0.00 | train: 97.14 ± 0.00
+[I 2026-08-27 20:20:27,542] Trial 20 finished with value: 74.00000095367432 and parameters: {'finetune_lr': 0.0005608746881480474, 'dropout': 0.14705437471415203, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 76.64 ± 0.00 | val: 74.20 ± 0.00 | train: 97.86 ± 0.00
+[I 2026-08-27 20:21:10,734] Trial 21 finished with value: 74.19999837875366 and parameters: {'finetune_lr': 0.00010737003969138472, 'dropout': 0.08488732449507123, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 74.61 ± 0.00 | val: 74.20 ± 0.00 | train: 91.43 ± 0.00
+[I 2026-08-27 20:21:52,550] Trial 22 finished with value: 74.19999837875366 and parameters: {'finetune_lr': 0.00010844293740159568, 'dropout': 0.05569308378487861, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 75.97 ± 0.00 | val: 74.20 ± 0.00 | train: 96.43 ± 0.00
+[I 2026-08-27 20:22:33,990] Trial 23 finished with value: 74.19999837875366 and parameters: {'finetune_lr': 0.0002495656235480303, 'dropout': 0.06381657443704192, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 76.26 ± 0.00 | val: 73.80 ± 0.00 | train: 97.14 ± 0.00
+[I 2026-08-27 20:23:14,612] Trial 24 finished with value: 73.7999975681305 and parameters: {'finetune_lr': 0.00017267779237342752, 'dropout': 0.1467311085267895, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 74.66 ± 0.00 | val: 72.20 ± 0.00 | train: 95.71 ± 0.00
+[I 2026-08-27 20:23:56,700] Trial 25 finished with value: 72.2000002861023 and parameters: {'finetune_lr': 0.0005278815998892534, 'dropout': 0.24705587545435703, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 76.21 ± 0.00 | val: 74.80 ± 0.00 | train: 97.14 ± 0.00
+[I 2026-08-27 20:24:38,326] Trial 26 finished with value: 74.80000257492065 and parameters: {'finetune_lr': 0.00022854425056103076, 'dropout': 0.07273287570830626, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 75.05 ± 0.00 | val: 73.00 ± 0.00 | train: 95.00 ± 0.00
+[I 2026-08-27 20:25:18,655] Trial 27 finished with value: 73.00000190734863 and parameters: {'finetune_lr': 0.00028667591739369233, 'dropout': 0.15430371302702106, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 76.21 ± 0.00 | val: 73.80 ± 0.00 | train: 97.14 ± 0.00
+[I 2026-08-27 20:25:59,144] Trial 28 finished with value: 73.7999975681305 and parameters: {'finetune_lr': 0.0004685714706970704, 'dropout': 0.06232049474007643, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 75.00 ± 0.00 | val: 74.40 ± 0.00 | train: 96.43 ± 0.00
+[I 2026-08-27 20:26:39,931] Trial 29 finished with value: 74.40000176429749 and parameters: {'finetune_lr': 0.00022458952160211054, 'dropout': 0.13889572582481816, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 73.79 ± 0.00 | val: 72.40 ± 0.00 | train: 92.86 ± 0.00
+[I 2026-08-27 20:27:21,531] Trial 30 finished with value: 72.39999771118164 and parameters: {'finetune_lr': 0.0008192239530052979, 'dropout': 0.2258549011698323, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 76.60 ± 0.00 | val: 74.20 ± 0.00 | train: 97.14 ± 0.00
+[I 2026-08-27 20:28:03,174] Trial 31 finished with value: 74.19999837875366 and parameters: {'finetune_lr': 0.0002107546083357028, 'dropout': 0.14336312112732766, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 75.53 ± 0.00 | val: 74.00 ± 0.00 | train: 97.86 ± 0.00
+[I 2026-08-27 20:28:46,239] Trial 32 finished with value: 74.00000095367432 and parameters: {'finetune_lr': 0.00040611225349003775, 'dropout': 0.12288458167632568, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 75.24 ± 0.00 | val: 72.20 ± 0.00 | train: 95.00 ± 0.00
+[I 2026-08-27 20:29:30,015] Trial 33 finished with value: 72.2000002861023 and parameters: {'finetune_lr': 0.0006275248054402981, 'dropout': 0.17607948141619145, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 74.13 ± 0.00 | val: 73.80 ± 0.00 | train: 92.14 ± 0.00
+[I 2026-08-27 20:30:12,604] Trial 34 finished with value: 73.7999975681305 and parameters: {'finetune_lr': 0.00017957788189884295, 'dropout': 0.053716922417324973, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 76.35 ± 0.00 | val: 73.60 ± 0.00 | train: 97.14 ± 0.00
+[I 2026-08-27 20:30:55,994] Trial 35 finished with value: 73.60000014305115 and parameters: {'finetune_lr': 0.0002574831313847718, 'dropout': 0.12769864035749193, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 72.44 ± 0.00 | val: 71.40 ± 0.00 | train: 98.57 ± 0.00
+[I 2026-08-27 20:31:38,444] Trial 36 finished with value: 71.39999866485596 and parameters: {'finetune_lr': 0.00015303857027783812, 'dropout': 0.08118603251980643, 'normalize': 'batch'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 75.58 ± 0.00 | val: 72.80 ± 0.00 | train: 97.14 ± 0.00
+[I 2026-08-27 20:32:20,060] Trial 37 finished with value: 72.79999852180481 and parameters: {'finetune_lr': 0.0010488067807146938, 'dropout': 0.1642251035440303, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 66.05 ± 0.00 | val: 61.00 ± 0.00 | train: 97.86 ± 0.00
+[I 2026-08-27 20:33:01,422] Trial 38 finished with value: 61.000001430511475 and parameters: {'finetune_lr': 0.0007107645607497963, 'dropout': 0.23828038054744582, 'normalize': 'batch'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 74.76 ± 0.00 | val: 72.20 ± 0.00 | train: 97.86 ± 0.00
+[I 2026-08-27 20:33:45,010] Trial 39 finished with value: 72.2000002861023 and parameters: {'finetune_lr': 0.00013696166458084422, 'dropout': 0.0368637879837268, 'normalize': 'none'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 74.90 ± 0.00 | val: 72.20 ± 0.00 | train: 99.29 ± 0.00
+[I 2026-08-27 20:34:28,839] Trial 40 finished with value: 72.2000002861023 and parameters: {'finetune_lr': 0.00042437235801802523, 'dropout': 0.09169599868830816, 'normalize': 'batch'}. Best is trial 14 with value: 74.80000257492065.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 76.35 ± 0.00 | val: 75.00 ± 0.00 | train: 97.14 ± 0.00
+[I 2026-08-27 20:35:11,931] Trial 41 finished with value: 75.0 and parameters: {'finetune_lr': 0.00012926956874371868, 'dropout': 0.08784133406858209, 'normalize': 'none'}. Best is trial 41 with value: 75.0.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 76.31 ± 0.00 | val: 74.20 ± 0.00 | train: 97.14 ± 0.00
+[I 2026-08-27 20:35:56,261] Trial 42 finished with value: 74.19999837875366 and parameters: {'finetune_lr': 0.00020448907732199397, 'dropout': 0.11781646745139565, 'normalize': 'none'}. Best is trial 41 with value: 75.0.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 76.45 ± 0.00 | val: 74.40 ± 0.00 | train: 97.14 ± 0.00
+[I 2026-08-27 20:36:38,690] Trial 43 finished with value: 74.40000176429749 and parameters: {'finetune_lr': 0.00013567003153381146, 'dropout': 0.07738917136997259, 'normalize': 'none'}. Best is trial 41 with value: 75.0.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 74.08 ± 0.00 | val: 72.60 ± 0.00 | train: 97.14 ± 0.00
+[I 2026-08-27 20:37:22,348] Trial 44 finished with value: 72.60000109672546 and parameters: {'finetune_lr': 0.00028858970536303324, 'dropout': 0.03973493520604841, 'normalize': 'none'}. Best is trial 41 with value: 75.0.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 76.35 ± 0.00 | val: 72.80 ± 0.00 | train: 97.14 ± 0.00
+[I 2026-08-27 20:38:06,035] Trial 45 finished with value: 72.79999852180481 and parameters: {'finetune_lr': 0.00035742357413962375, 'dropout': 0.20596423246356285, 'normalize': 'none'}. Best is trial 41 with value: 75.0.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 67.89 ± 0.00 | val: 62.40 ± 0.00 | train: 96.43 ± 0.00
+[I 2026-08-27 20:38:51,079] Trial 46 finished with value: 62.40000128746033 and parameters: {'finetune_lr': 0.00019614228082864618, 'dropout': 0.4724376164400147, 'normalize': 'batch'}. Best is trial 41 with value: 75.0.
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 74.76 ± 0.00 | val: 73.40 ± 0.00 | train: 95.00 ± 0.00
+[I 2026-08-27 20:40:44,025] Trial 47 finished with value: 73.4000027179718 and parameters: {'finetune_lr': 0.0002978874217211729, 'dropout': 0.3953812628292437, 'normalize': 'none'}. Best is trial 41 with value: 75.0.
+
+=== OPTUNA SEARCH DONE ===
+Best val (single split): 75.0
+Best params: {'finetune_lr': 0.00012926956874371868, 'dropout': 0.08784133406858209, 'normalize': 'none'}
+Best trial extra: {'test_mean': 76.35396718978882, 'test_std': 0.0, 'train_mean': 97.14285731315613}
+Loaded pretrained encoder and VQ.
+Freeze VQ parameters during finetuning
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+Early Stopping at Epoch: 59
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] MoE enabled: False | MoE layers: [False, False]
+[Finetune] test: 75.87 ± 2.04 | val: 76.02 ± 3.23 | train: 98.50 ± 4.27
+
+=== FINAL CONFIRMATION (all 10 splits, best hyperparameters) ===
+{
+  "best_params": {
+    "finetune_lr": 0.00012926956874371868,
+    "dropout": 0.08784133406858209,
+    "normalize": "none"
+  },
+  "final": {
+    "train": {
+      "mean": 98.50000023841858,
+      "std": 4.267221782017768
+    },
+    "val": {
+      "mean": 76.02000057697296,
+      "std": 3.225461285359421
+    },
+    "test": {
+      "mean": 75.8655709028244,
+      "std": 2.037436058510352
+    }
+  }
+}
+OPTUNA_ALL_DONE

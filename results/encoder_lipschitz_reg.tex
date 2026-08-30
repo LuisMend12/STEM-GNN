@@ -255,6 +255,68 @@ converged to the same conclusion -- and the head-vs.-encoder
 regularization comparison in Section~\ref{sec:results} is not an artifact
 of a poorly-tuned baseline.
 
+\subsection{Which hyperparameter actually matters? (48-trial follow-up)}
+\label{sec:importance}
+
+The 12-trial searches above disagreed on \emph{which} hyperparameter
+matters most: applying Optuna's importance evaluators to its own 12-trial
+study ranked \texttt{dropout} far ahead of the other two
+(fANOVA $0.703$, MeanDecreaseImpurity $0.663$), while the same
+random-forest-based analysis applied to Hyperopt's independent 12-trial
+study ranked \texttt{normalize} highest instead ($0.646$) with
+\texttt{dropout} a distant second ($0.211$). With only 12 points spread
+over 3 dimensions, \texttt{dropout} and \texttt{normalize} were not
+well-decorrelated in either sample, so a single search's importance
+ranking was not trustworthy.
+
+To resolve this, the same Optuna study was extended from 12 to 48 trials
+(resuming the identical SQLite-backed study, same search space and
+per-trial budget as Section~\ref{sec:optuna}). At 48 trials, both
+importance evaluators now agree:
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+Parameter & fANOVA & MeanDecreaseImpurity \\
+\midrule
+\texttt{dropout}      & $0.595$ & $0.552$ \\
+\texttt{normalize}    & $0.367$ & $0.304$ \\
+\texttt{finetune\_lr} & $0.038$ & $0.144$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Dropout is the most important of the three}, with
+\texttt{normalize} a clear second and \texttt{finetune\_lr} consistently
+least important -- this resolves the 12-trial disagreement in Optuna's
+original favor, not Hyperopt's. The \texttt{normalize} effect is real and
+sizable on its own: across the 48 trials, \texttt{normalize=none} averages
+$73.4\%$ single-split validation accuracy versus $66.8\%$ for
+\texttt{normalize=batch} ($37$ vs.\ $11$ trials), a $6.6$-point gap. One
+caveat carries over even at $n{=}48$: \texttt{dropout} and
+\texttt{normalize} still show a moderate correlation ($0.58$) across the
+sampled trials, because Optuna's TPE sampler concentrates later trials
+near previously-promising regions rather than sampling independently --
+this is not a factorial design, just a much less noisy one than $n{=}12$.
+
+\paragraph{But the extra tuning still doesn't beat the untuned baseline.}
+Re-evaluating the new best configuration
+(\texttt{finetune\_lr}$\,\approx 1.29\times10^{-4}$,
+\texttt{dropout}$\,\approx 0.088$, \texttt{normalize}$\,=\,$\texttt{none})
+under the full 10-split protocol gives train \score{98.50}{4.27}, val
+\score{76.02}{3.23}, test \score{75.87}{2.04} -- statistically
+indistinguishable from the untuned defaults (test \score{75.87}{2.10}) and
+no better than the earlier 12-trial-tuned result (test \score{75.91}{1.78}).
+This is the interesting part: \texttt{dropout} clearly dominates
+\emph{variance in the single-split, 30-epoch search objective} used to
+rank configurations, but that dominance does not carry over to a
+measurable difference in final all-splits, 60-epoch test accuracy. Put
+plainly, correctly identifying the most important hyperparameter for the
+reduced-budget search protocol did not translate into a better model
+under the protocol this memo actually reports results on -- a caution
+against reading too much into HPO importance analysis performed under a
+cheaper proxy budget than the final evaluation.
+
 \section{Test-Time Adaptation and Calibration Under Feature Shift}
 \label{sec:tta}
 
