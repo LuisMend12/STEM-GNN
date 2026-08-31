@@ -1,0 +1,25 @@
+=== CONFIG: baseline_no_reg (decoder_jac_coeff=0.0, encoder_lip_coeff=0.0) ===
+Summary over 10 run(s) on cora:
+  ID: 83.76% ± 1.65%
+  OOD-low: 78.99% ± 1.05%
+  OOD-high: 82.19% ± 1.29%
+
+=== CONFIG: head_only_lip_reg (decoder_jac_coeff=1e-3, encoder_lip_coeff=0.0) ===
+Summary over 10 run(s) on cora:
+  ID: 83.63% ± 1.94%
+  OOD-low: 78.77% ± 0.93%
+  OOD-high: 82.00% ± 1.27%
+
+=== CONFIG: encoder_only_lip_reg (decoder_jac_coeff=0.0, encoder_lip_coeff=1e-3) ===
+Summary over 10 run(s) on cora:
+  ID: 80.86% ± 1.02%
+  OOD-low: 76.08% ± 1.17%
+  OOD-high: 79.75% ± 1.03%
+
+=== CONFIG: head_plus_encoder_lip_reg (decoder_jac_coeff=1e-3, encoder_lip_coeff=1e-3) ===
+Summary over 10 run(s) on cora:
+  ID: 81.06% ± 0.75%
+  OOD-low: 76.03% ± 1.63%
+  OOD-high: 79.66% ± 1.06%
+
+DEGREE_OOD_ALL_DONE

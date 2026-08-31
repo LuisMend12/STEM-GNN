@@ -135,10 +135,87 @@ degree/homophily shift) -- not clean-split variance. STEM-GNN already ships
 scripts for exactly this (\path{scripts/missing_feature.py},
 \path{scripts/random_edge_drop.py},
 \path{scripts/degree_shift_ood.py},
-\path{scripts/homophily_shift_ood.py}), and none of them were run for
-this memo due to the single-CPU compute budget available. The variance
-reduction observed here is suggestive but not a substitute for that
-evaluation.
+\path{scripts/homophily_shift_ood.py}). \texttt{degree\_shift\_ood.py} has
+since been run and is reported immediately below; the others were not run
+for this memo due to the single-CPU compute budget available. The variance
+reduction observed above is suggestive but is not, by itself, a
+substitute for that evaluation.
+
+\section{Testing the Propagation-Aware Hypothesis: Degree-Shift Robustness}
+\label{sec:degree-ood}
+
+\paragraph{Motivation.} For \texttt{MySAGEConv}'s mean aggregation on a
+connected undirected graph, the aggregation operator is similar to a
+symmetric normalized adjacency matrix, so its spectral norm is $\le 1$:
+propagation never amplifies a perturbation, at best it damps one. That
+damping shrinks toward $1$ (vanishes) exactly under degree shift --
+low-degree and near-isolated nodes have little neighborhood to average
+over, so the aggregation step does little to attenuate whatever the
+encoder's weight matrices do to the input. This gives a concrete,
+structural reason to expect \texttt{encoder\_lip\_coeff} to matter
+specifically here, in a way it should not for clean i.i.d.\ accuracy
+(Section~\ref{sec:results}) or the feature-only shift tested in
+Section~\ref{sec:tta}. This section tests that hypothesis directly rather
+than leaving it as a plausible-sounding argument.
+
+\paragraph{Experimental setup.} \texttt{scripts/degree\_shift\_ood.py}
+buckets Cora's nodes by degree into ID (15th--85th percentile), OOD-low,
+and OOD-high, trains only on ID nodes, and reports accuracy on all three
+buckets using the best-validation-epoch weights (this script snapshots
+and restores those weights explicitly, unlike \texttt{finetune.py}'s
+\texttt{EarlyStopping}, which only tracks the best metrics, not the
+weights themselves). Same reduced budget as the rest of this memo: the
+\texttt{default} non-MoE checkpoint at epoch 50, 60 finetune epochs,
+early-stop patience 30, and the same four
+$(\lambda_{\text{dec}}, \lambda_{\text{enc}})$ configurations as
+Section~\ref{sec:results}. \texttt{repeat=10} was set explicitly (the
+script's number of seeded runs). One practical note: this script imports
+\texttt{dataset}/\texttt{model}/\texttt{utils}/\texttt{task} as top-level
+packages but, unlike some sibling scripts, does not add the package root
+to \texttt{sys.path} itself, so it needs
+\texttt{PYTHONPATH=.../STEM-GNN/STEM-GNN} set manually to run at all.
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+Configuration & ID & OOD-low & OOD-high \\
+\midrule
+Baseline (no regularization)   & \score{83.76}{1.65} & \score{78.99}{1.05} & \score{82.19}{1.29} \\
+Head-only                      & \score{83.63}{1.94} & \score{78.77}{0.93} & \score{82.00}{1.27} \\
+Encoder-only                   & \score{80.86}{1.02} & \score{76.08}{1.17} & \score{79.75}{1.03} \\
+Head + Encoder (combined)      & \score{81.06}{0.75} & \score{76.03}{1.63} & \score{79.66}{1.06} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{The hypothesis is not supported.} Head-only regularization
+again changes nothing measurable, consistent with every earlier section.
+Encoder-only regularization at $\lambda_{\text{enc}}=10^{-3}$, the same
+coefficient used everywhere else in this memo, drops \emph{all three}
+buckets by roughly the same amount (ID $-2.90$, OOD-low $-2.91$, OOD-high
+$-2.44$ points) rather than selectively protecting the degree-shifted
+buckets. Checking the ID-minus-OOD gap directly, which is the quantity
+the propagation-damping argument actually predicts should shrink: the
+baseline's ID$-$OOD-low gap is $4.77$ points; the encoder-only gap is
+$4.78$ points -- unchanged. The ID$-$OOD-high gap moves from $1.57$ to
+$1.11$ points, but that is well within the $\sim\!1$--$1.3$-point standard
+deviations on these numbers, not a signal. Combining with the head-only
+penalty does not rescue this: the combined row tracks the encoder-only row
+closely on every column. \textbf{This is a uniform capacity penalty, not
+an OOD-selective robustness benefit.}
+
+A plausible reason this differs from the earlier sections' results: this
+script trains on only the ID bucket, roughly $946$ nodes out of Cora's
+$2708$ (versus the $\sim\!1350$-node train split used in
+Section~\ref{sec:results}'s standard splits), so the same
+$\lambda_{\text{enc}}=10^{-3}$ constrains a model fit to less data and
+may simply be too strong a coefficient for this specific training-set
+size, rather than the propagation-damping argument being wrong in
+principle. The natural next step is a coefficient sweep (e.g.\
+$10^{-4}$, $10^{-5}$) on this exact degree-bucketed setup, to check
+whether a weaker constraint reveals the hypothesized OOD-selective effect
+once it is no longer swamped by generic under-fitting -- that sweep has
+not been run yet.
 
 \section{Baseline Hyperparameter Optimization (Optuna and Hyperopt)}
 \label{sec:optuna}
