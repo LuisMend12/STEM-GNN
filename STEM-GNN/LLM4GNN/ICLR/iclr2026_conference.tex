@@ -362,6 +362,16 @@ missing comparisons, and investigate more realistic robustness settings where
 the combination of graph-internal structural evidence and external relation
 semantics is genuinely necessary.
 
+\paragraph{Related, separate investigation.}
+A parallel, self-contained investigation on the STEM-GNN pretrain/finetune
+codebase (a different backbone and evaluation protocol from the RUNG/LLM
+setting here) explores a related but distinct question: bounding the
+Lipschitz constant of the GNN \emph{encoder} itself, rather than combining
+structural and semantic trust signals at the propagation layer. See
+\texttt{STEM-GNN/results/encoder\_lipschitz\_reg.tex} for that memo; its
+results are not merged into this paper's tables since the two use
+different backbones, tasks, and baselines.
+
 \section{Adaptive Robustness Experiments}
 
 All values are mean $\pm$ standard deviation of node-classification accuracy
