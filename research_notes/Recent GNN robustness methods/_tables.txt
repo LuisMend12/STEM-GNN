@@ -1,0 +1,1651 @@
+
+===== 2311.14934 page 8 =====
+Hyperparameters. The model hyperparameters including learning rate, weight decay, and dropout
+rate are tuned as in (Mujkanovic et al., 2022). Other hyperparameters follow the settings in the original
+papers. RUNG uses an MLP connected to 10 graph aggregation layers following the decoupled GNN
+architecture of APPNP. ˆλ =
+1
+1+λ is tuned in {0.7, 0.8, 0.9}, and γ tuned in {0.5, 1, 2, 3, 5}. We chose
+the hyperparameter setting that yields the best robustness without a notable impact (smaller than 1%)
+on the clean accuracy following (Bojchevski & Günnemann, 2019).
+Attack setting. We use the PGD attack (Xu et al., 2019) to execute the adaptive evasion and poisoning
+topology attack since it delivers the strongest attack in most settings (Mujkanovic et al., 2022). The
+adaptive attack setting is provided in Appendix F. The adversarial attacks aim to misclassify specific
+target nodes (local attack) or the entire set of test nodes (global attack). To avoid a false sense
+of robustness, our adaptive attacks directly target the victim model instead of the surrogate model.
+Additionally, we include the transfer attacks with a 2-layer GCN as the surrogate model. We also
+include graph injection attack following the setting in TDGIA (Zou et al., 2021).
+4.2
+Adversarial Robustness
+Table 1: Adaptive local attack on Cora ML. The best and second are marked.
+Model
+0% (Clean)
+20%
+50%
+100%
+150%
+200%
+MLP
+72.6 ± 6.4
+72.6 ± 6.4
+72.6 ± 6.4
+72.6 ± 6.4
+72.6 ± 6.4
+72.6 ± 6.4
+GCN
+82.7 ± 4.9
+40.7 ± 10.2
+12.0 ± 6.2
+2.7 ± 2.5
+0.0 ± 0.0
+0.0 ± 0.0
+APPNP
+84.7 ± 6.8
+50.0 ± 13.0
+27.3 ± 6.5
+14.0 ± 5.3
+3.3 ± 3.0
+0.7 ± 1.3
+GAT
+80.7 ± 10.0
+30.7 ± 16.1
+16.0 ± 12.2
+11.3 ± 4.5
+1.3 ± 1.6
+2.0 ± 1.6
+GNNGuard
+82.7 ± 6.7
+44.0 ± 11.6
+30.7 ± 11.6
+14.0 ± 6.8
+5.3 ± 3.4
+2.0 ± 2.7
+RGCN
+84.6 ± 4.0
+46.0 ± 9.3
+18.0 ± 8.1
+6.0 ± 3.9
+0.0 ± 0.0
+0.0 ± 0.0
+GRAND
+84.0 ± 6.8
+47.3 ± 9.0
+18.7 ± 9.1
+7.3 ± 4.9
+1.3 ± 1.6
+0.0 ± 0.0
+ProGNN
+84.7 ± 6.2
+47.3 ± 10.4
+21.3 ± 7.8
+4.0 ± 2.5
+0.0 ± 0.0
+0.0 ± 0.0
+Jaccard-GCN
+81.3 ± 5.0
+46.0 ± 6.8
+17.3 ± 4.9
+4.7 ± 3.4
+0.7 ± 1.3
+0.7 ± 1.3
+GARNET
+82.4 ± 6.8
+70.9 ± 7.5
+61.9 ± 7.9
+42.7 ± 9.3
+11.6 ± 3.4
+9.6 ± 3.5
+HANG
+83.1 ± 7.4
+71.2 ± 7.8
+60.1 ± 6.3
+39.5 ± 3.4
+9.4 ± 2.3
+5.6 ± 2.3
+NoisyGNN
+82.5 ± 5.6
+57.4 ± 5.7
+47.8 ± 6.2
+36.1 ± 4.5
+5.8 ± 3.4
+4.1 ± 1.2
+EvenNet
+83.4 ± 8.1
+64.8 ± 6.9
+56.1 ± 5.6
+29.5 ± 5.3
+3.1 ± 1.1
+1.1 ± 1.3
+GraphCON
+81.3 ± 7.1
+67.3 ± 7.3
+54.7 ± 7.1
+41.3 ± 6.2
+4.1 ± 2.1
+2.3 ± 1.2
+SoftMedian
+80.0 ± 10.2
+72.7 ± 13.7
+62.7 ± 12.7
+46.7 ± 11.0
+8.0 ± 4.5
+8.7 ± 3.4
+TWIRLS
+83.3 ± 7.3
+71.3 ± 8.6
+60.7 ± 11.0
+36.0 ± 8.8
+20.7 ± 10.4
+12.0 ± 6.9
+TWIRLS-T
+82.0 ± 4.5
+70.7 ± 4.4
+62.7 ± 7.4
+54.7 ± 6.2
+44.0 ± 11.2
+40.7 ± 11.8
+RUNG-ℓ1 (Ours)
+84.0 ± 6.8
+72.7 ± 7.1
+62.7 ± 11.2
+53.3 ± 8.2
+22.0 ± 9.3
+14.0 ± 7.4
+RUNG (Ours)
+84.0 ± 5.3
+75.3 ± 6.9
+72.7 ± 8.5
+70.7 ± 10.6
+69.3 ± 9.8
+69.3 ± 9.0
+Here we evaluate the the performance of RUNG against the baselines under different settings. The
+results of local and global adaptive attacks on Cora ML are presented in Table 1 and Table 2, while
+those on Citeseer are presented in Table 3 and Table 4 in Appendix E due to space limits. We
+summarize the following analysis from Cora ML, noting that the same observations apply to Citeseer.
+• Under adaptive attacks, many existing defenses are not significantly more robust than undefended
+models. The ℓ1-based models such as TWIRLS, SoftMedian, and RUNG-ℓ1 demonstrate consider-
+able and closely aligned robustness under both local and global attacks, which supports our unified
+ℓ1-based robust view analysis in Section 2.2.
+• RUNG exhibits significant improvements over all baselines across various budgets under both global
+and local attacks. Local attacks are stronger than global attacks since local attacks concentrate on
+targeted nodes. The robustness improvement of RUNG appears to be more remarkable in local
+attacks.
+• When there is no attack, RUNG largely preserves an excellent clean performance. RUNG also
+achieves state-of-the-art performance under small attack budgets.
+8
+
+===== 2311.14934 page 9 =====
+Table 2: Adaptive global attack on Cora ML. The best and second are marked.
+Model
+0% (Clean)
+5%
+10%
+20%
+30%
+40%
+MLP
+65.0 ± 1.0
+65.0 ± 1.0
+65.0 ± 1.0
+65.0 ± 1.0
+65.0 ± 1.0
+65.0 ± 1.0
+GCN
+85.0 ± 0.4
+75.3 ± 0.5
+69.6 ± 0.5
+60.9 ± 0.7
+54.2 ± 0.6
+48.4 ± 0.5
+APPNP
+86.3 ± 0.4
+75.8 ± 0.5
+69.7 ± 0.7
+60.3 ± 0.9
+53.8 ± 1.2
+49.0 ± 1.6
+GAT
+83.5 ± 0.5
+75.8 ± 0.8
+71.2 ± 1.2
+65.0 ± 0.9
+60.5 ± 0.9
+56.7 ± 0.9
+GNNGuard
+83.1 ± 0.7
+74.6 ± 0.7
+70.2 ± 1.0
+63.1 ± 1.1
+57.5 ± 1.6
+51.0 ± 1.2
+RGCN
+85.7 ± 0.4
+75.0 ± 0.8
+69.1 ± 0.4
+59.8 ± 0.7
+52.8 ± 0.7
+46.1 ± 0.7
+GRAND
+86.1 ± 0.7
+76.2 ± 0.8
+70.7 ± 0.7
+61.6 ± 0.7
+56.7 ± 0.8
+51.9 ± 0.9
+ProGNN
+85.6 ± 0.5
+76.5 ± 0.7
+71.0 ± 0.5
+63.0 ± 0.7
+56.8 ± 0.7
+51.3 ± 0.6
+Jaccard-GCN
+83.7 ± 0.7
+73.9 ± 0.5
+68.3 ± 0.7
+60.0 ± 1.1
+54.0 ± 1.7
+49.1 ± 2.4
+GARNET
+84.0 ± 0.5
+76.5 ± 0.4
+72.1 ± 0.1
+66.4 ± 0.7
+62.1 ± 1.3
+58.7 ± 1.5
+HANG
+84.5 ± 0.2
+75.7 ± 0.6
+74.2 ± 0.3
+69.5 ± 0.4
+64.7 ± 0.9
+58.4 ± 0.1
+NoisyGNN
+83.9 ± 0.5
+76.7 ± 0.1
+72.1 ± 0.3
+64.7 ± 0.7
+58.0 ± 0.2
+53.3 ± 0.6
+EvenNet
+84.8 ± 0.9
+75.8 ± 0.9
+70.7 ± 0.6
+63.9 ± 0.5
+58.7 ± 0.7
+54.7 ± 0.8
+GraphCON
+83.7 ± 0.6
+75.8 ± 0.3
+70.9 ± 0.8
+65.9 ± 0.7
+62.2 ± 0.9
+56.6 ± 0.3
+SoftMedian
+85.0 ± 0.7
+78.6 ± 0.3
+75.5 ± 0.9
+69.5 ± 0.5
+62.8 ± 0.8
+58.1 ± 0.7
+TWIRLS
+84.2 ± 0.6
+77.3 ± 0.8
+72.9 ± 0.3
+66.9 ± 0.2
+62.4 ± 0.6
+58.7 ± 1.1
+TWIRLS-T
+82.8 ± 0.5
+76.8 ± 0.6
+73.2 ± 0.4
+67.7 ± 0.4
+63.8 ± 0.2
+60.8 ± 0.3
+RUNG-ℓ1 (Ours)
+85.8 ± 0.5
+78.4 ± 0.4
+74.3 ± 0.3
+68.1 ± 0.6
+63.5 ± 0.7
+59.8 ± 0.8
+RUNG (Ours)
+84.6 ± 0.5
+78.9 ± 0.4
+75.7 ± 0.2
+71.8 ± 0.4
+67.8 ± 1.3
+65.1 ± 1.2
+Figure 5: Convergence of our
+QN-IRLS compared to IRLS.
+Figure 6: Bias induced by
+different attack budgets.
+Figure 7: Distribution of feature
+difference on attacked edges.
+4.3
+Ablation study
+Convergence. To verify the advantage of our QN-IRLS method in Eq (7) over the first-order IRLS in
+Eq (6), we show the objective H on each layer in Figure 5. It can be observed that our stepsize-free
+QN-IRLS demonstrates the best convergence as discussed in Section 3.
+Estimation bias. The bias effect in ℓ1-based GNNs and the unbiasedness of our RUNG can be
+empirically verified. We quantify the bias with P
+i∈V ∥fi −f ⋆
+i ∥2
+2, where f ⋆
+i and fi denote the
+aggregated feature on the clean graph and attacked graph, respectively. As shown in Figure 6, when
+the budget scales up, ℓ1 GNNs exhibit a notable bias, whereas RUNG has nearly zero bias. We
+provide comprehensive discussion of unbiasedness of RUNG in Appendix D.
+Defense Mechanism To further investigate how our defense takes effect, we analyze the edges
+added under adaptive attacks. The distribution of the node feature differences
+fi/√di −fj/
+p
+dj
+
+2
+of attacked edges is shown in Figure 7 for different graph signal estimators. It can be observed
+that our RUNG forces the attacker to focus on the edges with a small feature difference, indicating
+that our RUNG can improve robustness by down-weighting or pruning some malicious edges that
+connect distinct nodes. Therefore, the attacks become less influential, which explains why RUNG
+demonstrates outstanding robustness.
+Transfer Attacks. In addition to the adaptive attack, we also conduct a set of transfer attacks that
+take every baseline GNN as the surrogate model to comprehensively test the robustness of RUNG,
+following the unit test attack protocol proposed in (Mujkanovic et al., 2022). We summarize the
+results on Cora ML and Citeseer in Figure 9 and Figure 10 in Appendix E due to space limits. All
+9
+
+===== 2605.23239 page 7 =====
+Self-supervised Adversarial Purification for Graph Neural Networks
+Table 1. Adaptive attack: Test accuracy (%) on Cora for models with different methods: Vanilla (standard training), Self-training
+(pseudo-labeling), Adversarial training (PRBCD or LRBCD with training ϵ = 0.2), and GPR-GAEGNN paired with either vanilla or
+self-trained classifiers. Robust GNNs (EvenNet, SoftMedianGDC) are compared alongside GCN variants. Results are evaluated under
+clean conditions and adversarial attacks (LRBCD and PRBCD) with varying budget ϵ. Bold values indicate the best performance within
+each category, while curly underlined values highlight the second-best performance.
+Adv.
+Pseu.
+(Adv.eval) −
+→
+LRBCD
+PRBCD
+LRBCD
+PRBCD
+LRBCD
+PRBCD
+Model
+Pur.
+Lab.
+(Adv.tr) ↓
+Clean
+ϵ = 0.1
+ϵ = 0.1
+ϵ = 0.25
+ϵ = 0.25
+ϵ = 0.5
+ϵ = 0.5
+EvenNet
+✗
+✗
+✗
+81.4±2.0
+65.2±2.3
+65.7±1.4
+54.9±1.1
+51.7±3.3
+45.7±0.5
+35.6±0.9
+SoftMedianGDC
+✗
+✗
+✗
+77.4±1.8
+69.1±1.9
+67.3±1.9
+64.1±1.4
+60.0±1.4
+59.1±1.2
+48.2±1.1
+GCN
+Vanilla
+✗
+✗
+✗
+79.4±0.7
+64.2±2.3
+60.1±1.0
+51.2±0.6
+46.9±1.5
+40.5±2.2
+29.3±2.3
+Self-trained
+✗
+✓
+✗
+82.5±0.9
+70.7±1.6
+65.0±0.9
+60.7±1.7
+52.7±1.2
+48.4±1.1
+37.2±2.1
+Adv.-trained
+✗
+✓
+LRBCD
+80.5±1.8
+70.4±3.2
+63.8±1.5
+62.8±2.7
+51.1±1.4
+52.6±2.8
+33.4±1.6
+Adv.-trained
+✗
+✓
+PRBCD
+80.3±1.7
+69.5±1.5
+64.0±1.7
+61.6±2.0
+51.7±2.4
+51.7±1.8
+34.6±1.9
+GPR-GAEGCN Vanilla
+✓
+✗
+✗
+79.4±0.3
+::::::
+75.9±2.0
+::::::
+75.6±2.1
+::::::
+74.1±1.4
+69.7±2.9
+::::::
+72.5±1.7
+61.3±3.6
+GPR-GAEGCN Self
+✓
+✓
+✗
+::::::
+81.6±0.7
+78.5±1.6
+77.3±0.9
+76.6±1.8
+::::::
+69.0±1.2
+75.0±1.6
+::::::
+60.8±1.4
+GAT
+Vanilla
+✗
+✗
+✗
+76.4±1.3
+50.2±2.4
+50.5±4.0
+29.5±3.1
+36.2±4.2
+19.8±2.4
+21.4±1.5
+Self-trained
+✗
+✓
+✗
+79.4±2.3
+53.5±6.1
+53.0±4.6
+34.9±6.1
+36.5±5.8
+24.1±6.7
+24.8±5.0
+Adv.-trained
+✗
+✓
+LRBCD
+80.7±0.8
+67.4±0.7
+62.0±0.8
+59.4±2.4
+48.4±0.5
+50.5±2.7
+32.2±1.3
+Adv.-trained
+✗
+✓
+PRBCD
+78.8±1.7
+65.2±4.2
+62.1±3.5
+50.6±3.8
+51.2±4.6
+38.1±6.9
+39.0±7.3
+GPR-GAEGAT Vanilla
+✓
+✗
+✗
+76.0±1.6
+::::::
+71.3±2.1
+::::::
+71.8±2.4
+::::::
+69.0±1.6
+::::::
+65.1±1.1
+::::::
+67.1±1.3
+::::::
+59.9±3.0
+GPR-GAEGAT Self
+✓
+✓
+✗
+::::::
+79.4±2.2
+74.9±2.8
+74.0±3.6
+72.8±3.9
+69.3±5.4
+71.7±4.5
+60.5±5.3
+GPRGNN
+Vanilla
+✗
+✗
+✗
+::::::
+81.4±1.2
+65.6±0.7
+63.0±1.4
+55.6±0.9
+49.4±1.9
+44.2±2.7
+33.1±3.2
+Self-trained
+✗
+✓
+✗
+81.1±1.8
+68.5±1.3
+65.5±2.2
+60.2±2.3
+51.8±1.3
+51.9±2.0
+36.8±1.9
+Adv.-trained
+✗
+✓
+LRBCD
+80.0±1.0
+71.2±3.0
+65.4±1.1
+64.8±2.6
+54.0±1.2
+57.7±4.4
+38.2±2.7
+Adv.-trained
+✗
+✓
+PRBCD
+79.5±2.0
+73.2±2.8
+68.0±2.4
+68.5±3.1
+61.1±4.4
+62.8±5.6
+48.5±5.3
+GPR-GAEGPRGNN Vanilla
+✓
+✗
+✗
+81.6±1.1
+77.4±1.4
+77.0±0.8
+76.4±0.9
+70.6±2.3
+75.6±1.9
+64.2±1.0
+GPR-GAEGPRGNN Self
+✓
+✓
+✗
+80.7±1.6
+::::::
+77.2±1.0
+::::::
+75.9±1.2
+::::::
+75.5±1.1
+::::::
+70.2±1.6
+::::::
+74.7±1.3
+::::::
+61.6±1.0
+APPNP
+Vanilla
+✗
+✗
+✗
+82.1±1.2
+66.2±1.3
+64.5±0.8
+56.4±1.3
+50.9±1.2
+46.0±2.5
+32.6±2.6
+Self-trained
+✗
+✓
+✗
+82.3±1.8
+70.6±1.0
+68.2±1.1
+62.1±2.8
+54.7±1.0
+51.1±3.2
+37.7±2.0
+Adv.-trained
+✗
+✓
+LRBCD
+::::::
+82.4±1.5
+71.5±1.3
+66.8±0.6
+63.4±2.8
+54.0±1.4
+54.4±1.8
+35.6±2.3
+Adv.-trained
+✗
+✓
+PRBCD
+81.2±1.5
+71.2±1.4
+67.6±0.6
+64.1±1.3
+55.3±1.3
+54.1±0.7
+37.8±3.2
+GPR-GAEAPPNP Vanilla
+✓
+✗
+✗
+81.6±1.4
+::::::
+77.6±1.8
+::::::
+77.1±1.5
+::::::
+77.3±1.7
+72.4±1.9
+::::::
+76.4±1.8
+::::::
+64.3±2.7
+GPR-GAEAPPNP Self
+✓
+✓
+✗
+82.5±1.7
+79.6±2.3
+77.3±2.9
+77.9±2.2
+::::::
+71.4±2.3
+76.5±2.7
+65.2±2.0
+GPR-GAE. We set K = 7, symmetry loss factor δ = 0.2,
+and the training sample budget to (p, q, η) = (1.5, 0.2, 3),
+with q = 0.5 tuned for OGB-arXiv. We provide abla-
+tion studies of GPR-GAE in Appendix F. Additionally,
+GPR-GAEGNN denotes a GNN classifier performing infer-
+ence on the purified graph produced by GPR-GAE.
+Attacks. PRBCD (Geisler et al. 2021) is a gradient-based
+topology attack that perturbs graph structures by optimizing
+an attack objective over randomized edge blocks, adhering
+to a defined perturbation budget. Its local constraint variant,
+LRBCD (Gosch et al. 2023), applies restrictions to perturba-
+tions within a node’s local neighborhood, simulating more
+realistic attack scenarios. The ϵ for attacks parametrizes the
+global budget ∆=
+ϵ · P
+v∈Vt dv/2
+ relative to the degree
+dv for the set of targeted nodes Vt.
+Adversarial Training. For adversarial training, we follow
+the pseudo-labeling framework proposed by Gosch et al.
+(2023). For datasets with unlabeled training nodes, a sep-
+arate classifier is pre-trained on labeled nodes to assign
+previously unlabeled nodes with pseudo-labels, expanding
+the labeled training set. The final model is then trained on
+the expanded labeled training set, using either PRBCD or
+LRBCD to create adversarial training samples. Additionally
+the non-adversarial counterpart, self-training, uses pseudo-
+labeling without adversarial training, and the expansion of
+the training set typically increases the robustness of both
+adversarial and self-training through generalization.
+6.1. Experimental Results
+Adaptive attack. We evaluate robustness under adaptive at-
+tacks, where the attacker has full knowledge of the model’s
+architecture and parameters, crafting model-specific worst-
+case perturbations. Our adversarial purification method,
+GPR-GAE, is tested in two configurations—attached to
+either vanilla or self-trained classifiers—and compared
+against vanilla, self-training, adversarial training, and robust
+GNNs (EvenNet, SoftMedianGDC). For the baseline classi-
+fier, we employ four GNN models: GCN, GAT (Veliˇckovi´c
+et al. 2018), GPRGNN, and APPNP (Gasteiger et al. 2019).
+Note that GPRGNN demonstrated state-of-the-art robust-
+ness under adversarial training in the prior work, flexibly
+learning robust propagation pathways in adversarial settings.
+Table 1 highlights that, on the Cora dataset, GPR-GAE
+achieves significantly higher robustness compared to all
+7
+
+===== 2605.23239 page 8 =====
+Self-supervised Adversarial Purification for Graph Neural Networks
+(a) Citeseer
+(b) Cora ML
+(c) Pubmed
+(d) Chameleon
+Figure 3. Adaptive Attack: Comparison of test accuracy (%) for Vanilla, Adversarial Training (PRBCD with ϵ = 0.2), and
+GPR-GAEGNN Vanilla under PRBCD attacks with perturbation budgets ϵ = 0.1, 0.25, 0.5 on various datasets and GNN classifiers.
+other GNN model variants, including robust GNNs, under
+adaptive attacks. For example, while adversarially trained
+GPRGNN (PRBCD)—the most robust method aside from
+GPR-GAE—achieves 48.5% test accuracy against PRBCD
+attacks with ϵ = 0.5, GPR-GAEGPRGNN Vanilla improves this
+by 15.7 percentage points through its multi-step refinements,
+demonstrating its robustness under severe perturbations.
+Against LRBCD attacks, which restrict local edge modi-
+fications proportionally to node degrees, GPR-GAE main-
+tains strong performance, with its largest accuracy drop
+relative to clean data being only 8.9 percentage points for
+GPR-GAEGAT Vanilla. This underscores GPR-GAE’s signifi-
+cance in defending against more realistic attack scenarios.
+In terms of clean accuracy, adversarially trained (PRBCD)
+GPRGNN sacrifices 1.6 percentage points compared to its
+non-adversarial counterpart, self-trained GPRGNN. In con-
+trast, GPR-GAE shows minimal trade-offs, with the largest
+drop being 0.9 points when paired with self-trained GCN.
+These results demonstrate that GPR-GAE successfully miti-
+gates the trade-off by decoupling accuracy and robustness
+into separate modules with different specialties, achieving
+strong robustness against adaptive attacks while preserv-
+ing clean accuracy. Notably, for GPR-GAE, overall per-
+formance against attacks tends to correlate with the initial
+clean accuracy of the base classifier, rather than the type of
+GNN or whether it was self-trained or not.
+In Figure 3, we further compare the robustness of
+GPR-GAEGNN Vanilla against Vanilla and Adversarial Train-
+ing (PRBCD) across various datasets, including three ho-
+mophilic datasets (Citeseer, Cora ML, Pubmed) and a het-
+erophilic dataset (Chameleon). The results show that GPR-
+Table 2. Non-adaptive attack: Average test accuracy (%) in ad-
+versarial purification methods and robust GNNs under clean con-
+ditions and transfer attacks (PRBCD) from vanilla GCN. “OOM”
+indicates “Out-Of-Memory.”
+Citeseer (small)
+Pubmed (medium)
+OGB-arXiv (large)
+Model
+Clean / 0.25 / 0.5
+Clean / 0.25 / 0.5
+Clean / 0.25 / 0.5
+GCN (Vanilla)
+71.5 / 40.0 / 25.3
+75.1 / 37.1 / 24.1
+70.8 / 43.1 / 33.1
+EvenNet
+72.9 / 57.0 / 48.0
+::
+75.0 / 64.5 / 57.3
+66.2 / ::
+46.7 / ::
+39.0
+SoftMedianGDC
+::
+71.7 / 52.1 / 37.5
+73.9 / 53.5 / 40.2
+70.5 / 44.4 / 35.7
+Jaccard-GCN
+69.8 / 50.4 / 40.6
+74.3 / 46.4 / 36.0
+67.6 / 43.9 / 35.0
+SVD-GCN
+66.7 / 59.8 / 46.7
+70.7 / 68.0 / 61.4
+OOM
+GOOD-AT
+68.1 / ::
+60.8 / ::
+56.6
+73.0 / ::
+70.5 / ::
+68.9
+OOM
+GPR-GAEGCN Vanilla
+71.2 / 68.7 / 66.4
+75.1 / 73.5 / 72.0
+::
+69.1 / 49.2 / 42.3
+GAE consistently achieves superior defense performance
+across all four GNN models and datasets, demonstrating
+both its effectiveness and broad applicability.
+Non-adaptive attack. Unlike GPR-GAE, prior adversar-
+ial purification methods such as SVD-GCN, Jaccard-GCN,
+and GOOD-AT rely on discrete, non-differentiable purifica-
+tion, preventing direct gradient-based adaptive attacks and
+each requiring different attack strategies. For general eval-
+uation of adversarial purification methods, we conduct ex-
+periments under non-adaptive settings, transferring attacks
+from adaptively attacked vanilla GCNs using PRBCD. In
+Table 2, we compare GPR-GAEGCN Vanilla with prior adver-
+sarial purification methods and robust GNNs across datasets
+of varying scales: Citeseer (N = 2, 110, |E| = 3, 668),
+Pubmed (N = 19, 717, |E| = 44, 324), and OGB-arXiv
+(N = 169, 343, |E| = 1, 157, 799).
+8
+
+===== 2606.01560 page 9 =====
+JOURNAL OF LATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021
+9
+TABLE II
+ACCURACY OF NODE CLASSIFICATION METHODS UNDER MIN-MAX ATTACKS ON ASSORTATIVE AND DISASSORTATIVE GRAPHS.
+Dataset
+Ptb Rate
+GCN
+GAT
+GCN-Jaccard
+RGCN
+GCN-SVD
+SimPGCN
+ERGCN
+ADGCN
+GraphReshape
+GJDNet
+Cora
+0.00
+0.8325
+0.8407
+0.8370
+0.8422
+0.8271
+0.8287
+0.8452
+0.8096
+0.8410
+0.8564
+0.05
+0.8252
+0.8347
+0.8298
+0.8351
+0.8177
+0.8155
+0.8357
+0.7987
+0.8332
+0.8547
+0.10
+0.7995
+0.8102
+0.8035
+0.8106
+0.7946
+0.7981
+0.8119
+0.7859
+0.8067
+0.8329
+0.15
+0.7803
+0.7886
+0.7851
+0.7893
+0.7738
+0.7828
+0.7902
+0.7730
+0.7871
+0.8128
+0.20
+0.7616
+0.7695
+0.7651
+0.7697
+0.7584
+0.7670
+0.7769
+0.7564
+0.7674
+0.7947
+0.25
+0.7388
+0.7440
+0.7422
+0.7450
+0.7410
+0.7520
+0.7473
+0.7432
+0.7442
+0.7770
+Citeseer
+0.00
+0.7228
+0.7294
+0.7267
+0.7270
+0.7392
+0.7397
+0.7402
+0.7286
+0.7239
+0.7651
+0.05
+0.7202
+0.7250
+0.7238
+0.7221
+0.7380
+0.7360
+0.7374
+0.7243
+0.7206
+0.7633
+0.10
+0.7124
+0.7206
+0.7164
+0.7181
+0.7288
+0.7286
+0.7295
+0.7207
+0.7158
+0.7467
+0.15
+0.6957
+0.7028
+0.6967
+0.6986
+0.7106
+0.7148
+0.7125
+0.7066
+0.6973
+0.7377
+0.20
+0.6888
+0.6977
+0.6907
+0.6916
+0.7021
+0.7136
+0.7017
+0.7037
+0.6924
+0.7254
+0.25
+0.6771
+0.6826
+0.6815
+0.6817
+0.6883
+0.7001
+0.6876
+0.6936
+0.6787
+0.7007
+Pubmed
+0.00
+0.8588
+0.8475
+0.8608
+0.8601
+0.8567
+0.8751
+0.8502
+0.8349
+0.8594
+0.8824
+0.05
+0.8002
+0.7952
+0.8019
+0.8002
+0.7994
+0.8381
+0.7966
+0.8127
+0.7999
+0.8478
+0.10
+0.7493
+0.7436
+0.7510
+0.7506
+0.7508
+0.8119
+0.7519
+0.7933
+0.7489
+0.7969
+0.15
+0.7007
+0.6920
+0.7027
+0.7016
+0.7043
+0.7946
+0.7094
+0.7774
+0.7017
+0.7799
+0.20
+0.6617
+0.6489
+0.6638
+0.6632
+0.6660
+0.7768
+0.6708
+0.7648
+0.6626
+0.7135
+0.25
+0.6249
+0.6101
+0.6270
+0.6268
+0.6287
+0.7714
+0.6351
+0.7519
+0.6275
+0.6800
+Amazon
+Photo
+0.00
+0.8672
+0.9383
+0.8938
+0.9287
+0.9072
+0.8717
+0.8599
+0.5514
+0.9308
+0.9638
+0.05
+0.7894
+0.8369
+0.8428
+0.8518
+0.8241
+0.7958
+0.7952
+0.4661
+0.8296
+0.8587
+0.10
+0.7582
+0.7819
+0.8037
+0.8067
+0.7996
+0.7633
+0.7587
+0.4054
+0.7773
+0.8203
+0.15
+0.7081
+0.7458
+0.7708
+0.7789
+0.7534
+0.7441
+0.7153
+0.3849
+0.7406
+0.7944
+0.20
+0.6899
+0.7124
+0.7372
+0.7491
+0.7258
+0.7079
+0.7019
+0.3425
+0.7049
+0.7687
+0.25
+0.6453
+0.6780
+0.7025
+0.7136
+0.7038
+0.6925
+0.6659
+0.3173
+0.6661
+0.7485
+(a) Accuracy under Min-Max attack on assortative graphs
+Dataset
+Ptb Rate
+GCN
+GAT
+GCN-Jaccard
+RGCN
+GCN-SVD
+SimPGCN
+ERGCN
+ADGCN
+GraphReshape
+GJDNet
+Cornell
+0.00
+0.3415
+0.4340
+0.4347
+0.3884
+0.3544
+0.4687
+0.4279
+0.5347
+0.4095
+0.5504
+0.05
+0.3395
+0.4313
+0.3850
+0.3633
+0.3435
+0.4537
+0.4190
+0.5211
+0.3884
+0.5379
+0.10
+0.3367
+0.4272
+0.3721
+0.3524
+0.3415
+0.4449
+0.4034
+0.5082
+0.3850
+0.5175
+0.15
+0.3224
+0.4116
+0.3687
+0.3490
+0.3252
+0.4401
+0.3891
+0.4926
+0.3755
+0.5036
+0.20
+0.3129
+0.4020
+0.3605
+0.3224
+0.3170
+0.4381
+0.3660
+0.4748
+0.3728
+0.4820
+0.25
+0.3007
+0.3837
+0.3490
+0.3116
+0.3109
+0.4204
+0.3476
+0.4565
+0.3694
+0.4646
+Texas
+0.00
+0.4644
+0.5562
+0.5500
+0.5521
+0.4938
+0.5829
+0.5397
+0.5589
+0.5144
+0.6667
+0.05
+0.4568
+0.5514
+0.5212
+0.5247
+0.4678
+0.5733
+0.5342
+0.5575
+0.5096
+0.6491
+0.10
+0.4493
+0.5473
+0.4986
+0.5253
+0.4541
+0.5589
+0.5260
+0.5500
+0.4856
+0.6328
+0.15
+0.4322
+0.5438
+0.4801
+0.5116
+0.4445
+0.5466
+0.5151
+0.5438
+0.4842
+0.6222
+0.20
+0.4199
+0.5377
+0.4637
+0.5062
+0.4295
+0.5418
+0.5014
+0.5342
+0.4747
+0.6142
+0.25
+0.4158
+0.5356
+0.4486
+0.4801
+0.4171
+0.5377
+0.4952
+0.5315
+0.4719
+0.6050
+Wisconsin
+0.00
+0.4045
+0.4886
+0.4746
+0.4463
+0.4507
+0.6090
+0.4731
+0.6114
+0.4453
+0.6138
+0.05
+0.3960
+0.4711
+0.4667
+0.4408
+0.4423
+0.5900
+0.4537
+0.5910
+0.4378
+0.5926
+0.10
+0.3871
+0.4706
+0.4602
+0.4348
+0.4403
+0.5811
+0.4512
+0.5861
+0.4239
+0.5876
+0.15
+0.3811
+0.4552
+0.4443
+0.4333
+0.4378
+0.5781
+0.4428
+0.5801
+0.4214
+0.5828
+0.20
+0.3751
+0.4473
+0.4368
+0.4274
+0.4259
+0.5657
+0.4313
+0.5766
+0.4169
+0.5793
+0.25
+0.3652
+0.4065
+0.4109
+0.4134
+0.4199
+0.5617
+0.4269
+0.5612
+0.4060
+0.5724
+Actor
+0.00
+0.2614
+0.2804
+0.2823
+0.2676
+0.2762
+0.2787
+0.2625
+0.3104
+0.2671
+0.3337
+0.05
+0.2578
+0.2745
+0.2660
+0.2622
+0.2639
+0.2739
+0.2605
+0.3076
+0.2604
+0.3127
+0.10
+0.2564
+0.2681
+0.2635
+0.2605
+0.2602
+0.2704
+0.2599
+0.2977
+0.2582
+0.3030
+0.15
+0.2547
+0.2657
+0.2617
+0.2588
+0.2598
+0.2660
+0.2592
+0.2916
+0.2579
+0.2952
+0.20
+0.2516
+0.2638
+0.2604
+0.2527
+0.2553
+0.2630
+0.2589
+0.2853
+0.2549
+0.2891
+0.25
+0.2496
+0.2611
+0.2595
+0.2545
+0.2535
+0.2609
+0.2566
+0.2839
+0.2523
+0.2860
+(b) Accuracy under Min-Max attack on disassortative graphs
+Fig. 5. Precision, Recall, and F1 score of node classification methods on Cora under Nettack. The horizontal axis represents the number of perturbations
+applied to each target node (0–5), while the vertical axis denotes the corresponding evaluation metric value (Precision, Recall, or F1 score).
+
+===== 2606.03462 page 15 =====
+Table 2: Main robustness comparison under the common protocol. Results are test accuracy (%) averaged over five seeds, shown as mean ± standard
+deviation. Best, second-best, and third-best results in each row are shown in green, blue, and orange, respectively.
+Dataset
+Graph
+GCN
+G-GCN
+TAGR-GCN
+RS-GCN
+GAT
+G-GAT
+TAGR-GAT
+RS-GAT
+GS
+G-GS
+TAGR-GS
+RS-GS
+JNSGSL
+Cora
+Raw Graph 79.9 ± 0.7
+79.9 ± 1.3
+80.5 ± 0.7
+79.3 ± 0.6
+79.5 ± 1.4 76.8 ± 1.8
+76.8 ± 1.8
+67.8 ± 2.2 76.5 ± 0.8 76.6 ± 0.7
+76.6 ± 0.6
+72.9 ± 2.0
+80.5 ± 0.7
+Add 50%
+72.6 ± 1.7
+75.3 ± 1.4
+75.1 ± 1.1
+76.5 ± 1.2 70.7 ± 3.2 75.6 ± 1.9
+75.6 ± 1.9
+67.7 ± 2.3 71.2 ± 1.3 72.0 ± 1.5
+72.5 ± 1.4
+68.8 ± 1.8
+74.1 ± 1.6
+Add 90%
+67.9 ± 1.1
+72.3 ± 1.0
+72.3 ± 1.2
+74.8 ± 1.5 66.6 ± 3.5 73.6 ± 1.8
+73.6 ± 1.8
+67.6 ± 2.0 67.8 ± 1.5 68.4 ± 1.1
+69.2 ± 1.2
+66.3 ± 1.4
+70.1 ± 2.1
+Del 25%
+78.0 ± 0.7
+79.4 ± 0.9
+79.6 ± 1.0
+77.7 ± 0.5
+76.2 ± 1.7 74.5 ± 1.3
+74.5 ± 1.3
+67.1 ± 2.2 74.4 ± 1.6 75.1 ± 1.0
+74.9 ± 0.9
+69.8 ± 2.5
+78.7 ± 1.5
+Del 50%
+72.7 ± 1.6
+74.9 ± 1.4
+75.2 ± 1.5
+74.4 ± 1.5
+70.1 ± 2.5 71.5 ± 1.0
+71.5 ± 1.0
+66.5 ± 1.6 69.6 ± 1.7 71.2 ± 0.9
+71.1 ± 1.1
+66.3 ± 2.0
+74.4 ± 2.1
+Cora-ML Raw Graph 82.7 ± 2.1
+83.5 ± 2.0
+83.6 ± 2.0
+80.5 ± 2.3
+79.9 ± 2.6 77.8 ± 2.3
+77.8 ± 2.3
+71.8 ± 2.6 80.0 ± 1.7 79.7 ± 1.1
+79.3 ± 1.3
+73.5 ± 1.8
+82.8 ± 1.8
+Add 50%
+74.0 ± 2.2
+75.5 ± 2.5
+76.1 ± 1.7
+78.1 ± 1.3 69.9 ± 2.7 73.5 ± 1.9
+73.5 ± 1.9
+72.3 ± 2.6 75.8 ± 1.5 76.7 ± 1.3
+77.3 ± 1.9
+72.1 ± 2.1
+76.6 ± 1.4
+Add 90%
+69.7 ± 3.2
+72.0 ± 3.0
+72.3 ± 2.8
+77.4 ± 1.4 66.8 ± 3.5 73.1 ± 2.5
+73.1 ± 2.5
+71.8 ± 2.1 73.2 ± 1.3 74.2 ± 1.4
+75.3 ± 1.4
+71.9 ± 2.1
+73.6 ± 1.9
+Del 25%
+80.3 ± 1.4
+80.6 ± 2.0
+81.3 ± 2.5
+78.1 ± 1.9
+76.8 ± 2.4 75.8 ± 2.4
+75.8 ± 2.4
+71.5 ± 2.6 77.3 ± 2.1 78.0 ± 1.2
+77.6 ± 1.2
+72.6 ± 1.9
+81.1 ± 1.7
+Del 50%
+76.1 ± 1.9
+78.1 ± 1.9
+78.4 ± 1.6
+75.2 ± 1.3
+73.1 ± 3.0 73.2 ± 2.3
+73.2 ± 2.3
+70.5 ± 2.2 75.1 ± 2.4 76.2 ± 1.9
+76.5 ± 0.9
+71.6 ± 1.8 78.5 ± 1.9
+Citeseer
+Raw Graph 65.9 ± 1.8 68.0 ± 1.4
+68.0 ± 1.2
+67.8 ± 1.0
+65.8 ± 2.4 67.4 ± 2.0
+67.4 ± 2.0
+64.5 ± 2.2 65.1 ± 2.1 65.3 ± 1.4
+65.3 ± 1.5
+63.3 ± 0.5
+66.9 ± 2.2
+Add 50%
+60.7 ± 1.8
+63.3 ± 1.7
+63.8 ± 1.7
+66.8 ± 1.8 57.8 ± 1.3 65.1 ± 2.7
+65.1 ± 2.7
+65.0 ± 1.9 60.7 ± 2.0 61.6 ± 1.4
+61.7 ± 1.6
+63.9 ± 1.0
+61.0 ± 1.8
+Add 90%
+56.5 ± 0.9
+60.5 ± 1.1
+61.3 ± 1.0
+66.4 ± 1.1 54.0 ± 1.0 64.7 ± 2.2
+64.7 ± 2.2
+63.6 ± 3.2 58.7 ± 0.7 59.4 ± 0.8
+59.6 ± 0.9
+63.2 ± 0.8
+57.3 ± 1.6
+Del 25%
+65.3 ± 2.4 67.3 ± 2.2
+67.2 ± 2.1
+66.8 ± 1.2
+62.8 ± 2.6 66.5 ± 2.2
+66.5 ± 2.2
+65.0 ± 1.8 62.5 ± 1.8 64.8 ± 2.1
+64.1 ± 2.3
+63.1 ± 0.6
+67.1 ± 2.6
+Del 50%
+61.9 ± 1.4
+66.4 ± 1.4
+66.4 ± 1.4
+64.8 ± 1.3
+61.2 ± 1.5 65.4 ± 2.0
+65.4 ± 2.0
+64.4 ± 1.8 60.6 ± 1.5 61.5 ± 1.1
+61.9 ± 0.7
+63.5 ± 0.9
+64.9 ± 1.4
+Pubmed
+Raw Graph 76.5 ± 0.6
+76.5 ± 1.3
+76.5 ± 1.2
+67.2 ± 2.0
+71.7 ± 4.0 72.2 ± 2.8
+72.2 ± 2.8
+67.6 ± 2.4 72.9 ± 1.8 73.8 ± 1.6
+73.6 ± 1.2
+70.1 ± 2.3 76.7 ± 1.6
+Add 50%
+70.0 ± 1.8
+72.8 ± 1.9
+72.9 ± 1.9
+67.1 ± 1.4
+65.9 ± 3.7 68.4 ± 3.6
+68.4 ± 3.6
+66.7 ± 2.6 70.0 ± 2.3 71.5 ± 1.1
+71.3 ± 1.2
+69.9 ± 2.4
+69.7 ± 1.8
+Add 90%
+68.1 ± 1.5
+70.0 ± 1.7
+70.2 ± 1.4
+67.4 ± 1.5
+63.1 ± 2.4 68.3 ± 3.8
+68.3 ± 3.8
+67.1 ± 2.7 68.8 ± 0.9 70.0 ± 1.2 70.2 ± 1.3 69.6 ± 2.3
+67.5 ± 2.1
+Del 25%
+74.4 ± 0.9
+75.0 ± 1.1
+75.2 ± 1.0
+66.3 ± 1.6
+71.0 ± 2.9 70.2 ± 2.7
+70.2 ± 2.7
+66.8 ± 2.3 72.4 ± 1.2 73.2 ± 1.6
+73.0 ± 1.5
+69.5 ± 2.3 75.9 ± 2.5
+Del 50%
+73.1 ± 0.6
+73.2 ± 1.4
+73.5 ± 0.8
+65.5 ± 2.4
+69.3 ± 1.6 69.1 ± 3.6
+69.1 ± 3.6
+66.3 ± 2.2 70.9 ± 1.0 72.0 ± 1.2
+72.0 ± 1.3
+69.6 ± 2.5
+73.0 ± 1.9
+15

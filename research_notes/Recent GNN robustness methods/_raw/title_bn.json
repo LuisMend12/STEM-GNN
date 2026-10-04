@@ -1,0 +1,23 @@
+[
+  {
+    "title": "BNM-CDGNN: Batch Normalization Multilayer Perceptron Crystal Distance Graph Neural Network for Excellent-Performance Crystal Property Prediction",
+    "year": 2023,
+    "cited": 21,
+    "doi": "https://doi.org/10.1021/acs.jcim.3c01148",
+    "type": "article",
+    "venue": "Journal of Chemical Information and Modeling",
+    "oa_url": null,
+    "authors": [
+      "Kong Meng",
+      "Chenyu Huang",
+      "Yaxin Wang",
+      "Yunjiang Zhang",
+      "Shuyuan Li",
+      "Zhaolin Fang",
+      "Huimin Wang",
+      "Shihao Wei",
+      "Shaorui Sun"
+    ],
+    "abstract": "Recently, in the field of crystal property prediction, the graph neural network (GNN) model has made rapid progress. The GNN model can effectively capture high-dimensional crystal features from the crystal structure, thereby achieving optimal performance in property prediction. However, the existing GNN model faces limitations in handling the hidden layer after the pooling layer, which restricts the training performance of the model. In the present research, we propose a novel GNN model called the batch normalization multilayer perceptron crystal distance graph neural network (BNM-CDGNN). BNM-CDGNN encodes the crystal's geometry structure only based on the distance vector between atoms. The graph convolutional layer utilizes the radial basis function as the attention mask, ensuring the crystal's rotation invariance and adding the geometric information on the crystal. Subsequently, the average pooling layer is connected after the convolutional layer to enhance the model's ability to learn precise information. BNM-CDGNN connects multiple hidden layers after the average pooling layers, and these layers are processed by the batch normalization layer. Finally, the fully connected layer maps the results to the target property. BNM-CDGNN significantly enhances the accuracy of crystal property prediction compared with previous baseline models such as SchNet, MPNN, CGCNN, MEGNet, and GATGNN."
+  }
+]

@@ -1,0 +1,257 @@
+[
+  {
+    "title": "Localization of dummy data injection attacks in power systems considering incomplete topological information: A spatio-temporal graph wavelet convolutional neural network approach",
+    "year": 2024,
+    "cited": 52,
+    "doi": "https://doi.org/10.1016/j.apenergy.2024.122736",
+    "type": "article",
+    "venue": "Applied Energy",
+    "oa_url": "https://arxiv.org/pdf/2401.15321",
+    "authors": [
+      "Zhaoyang Qu",
+      "Yunchang Dong",
+      "Yang Li",
+      "Siqi Song",
+      "Tao Jiang",
+      "Min Li",
+      "Qiming Wang",
+      "Lei Wang",
+      "Xiaoyong Bo",
+      "Jiye Zang",
+      "Qi Xu"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "SDR-GNN: Spectral Domain Reconstruction Graph Neural Network for incomplete multimodal learning in conversational emotion recognition",
+    "year": 2024,
+    "cited": 50,
+    "doi": "https://doi.org/10.1016/j.knosys.2024.112825",
+    "type": "article",
+    "venue": "Knowledge-Based Systems",
+    "oa_url": null,
+    "authors": [
+      "Fangze Fu",
+      "Wei Ai",
+      "Fan Yang",
+      "Yuntao Shou",
+      "Tao Meng",
+      "Keqin Li"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "T2-GNN: Graph Neural Networks for Graphs with Incomplete Features and Structure via Teacher-Student Distillation",
+    "year": 2023,
+    "cited": 49,
+    "doi": "https://doi.org/10.1609/aaai.v37i4.25553",
+    "type": "conference-paper",
+    "venue": "Proceedings of the AAAI Conference on Artificial Intelligence",
+    "oa_url": "https://ojs.aaai.org/index.php/AAAI/article/download/25553/25325",
+    "authors": [
+      "Cuiying Huo",
+      "Di Jin",
+      "Yawen Li",
+      "Dongxiao He",
+      "Yu-Bin Yang",
+      "Lingfei Wu"
+    ],
+    "abstract": "Graph Neural Networks (GNNs) have been a prevailing technique for tackling various analysis tasks on graph data. A key premise for the remarkable performance of GNNs relies on complete and trustworthy initial graph descriptions (i.e., node features and graph structure), which is often not satisfied since real-world graphs are often incomplete due to various unavoidable factors. In particular, GNNs face greater challenges when both node features and graph structure are incomplete at the same time. The existing methods either focus on feature completion or structure completion. They usually rely on the matching relationship between features and structure, or employ joint learning of node representation and feature (or structure) completion in the hope of achieving mutual benefit. However, recent studies confirm that the mutual interference between features and structure leads to the degradation of GNN performance. When both features and structure are incomplete, the mismatch between features and structure caused by the missing randomness exacerbates the interference between the two, which may trigger incorrect completions that negatively affect node representation. To this end, in this paper we propose a general GNN framework based on teacher-student distillation to improve the performance of GNNs on incomplete graphs, namely T2-GNN. To avoid the interference between features and structure, we separately design feature-level and structure-level teacher models to provide targeted guidance for student model (base GNNs, such as GCN) through distillation. Then we design two personalized methods to obtain well-trained feature and structure teachers. To ensure that the knowledge of the teacher model is comprehensively and effectively distilled to the student model, we further propose a dual distillation mode to enable the student to acquire as much expert knowledge as possible. Extensive experiments on eight benchmark datasets demonstrate the effectiveness and robustness of the new framework on graphs with incomplete features and structure."
+  },
+  {
+    "title": "Incomplete multi-view classification via graph neural network on heterogeneous graph",
+    "year": 2025,
+    "cited": 14,
+    "doi": "https://doi.org/10.1016/j.inffus.2025.103137",
+    "type": "article",
+    "venue": "Information Fusion",
+    "oa_url": null,
+    "authors": [
+      "Guoqing Chao",
+      "Jingnan Qi",
+      "Jingxuan Li",
+      "Bumshik Lee",
+      "Dianhui Chu"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "Incomplete temperature-induced strains reconstruction for high-speed railway bridges using physics-informed spatiotemporal graph neural network",
+    "year": 2025,
+    "cited": 12,
+    "doi": "https://doi.org/10.1016/j.engstruct.2025.120733",
+    "type": "article",
+    "venue": "Engineering Structures",
+    "oa_url": null,
+    "authors": [
+      "Ye Mo",
+      "Yapeng Guo",
+      "Shunlong Li"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "A Traffic Flow Forecasting Model Using Graph Convolutional Recurrent Neural Networks with Incomplete Data",
+    "year": 2023,
+    "cited": 6,
+    "doi": "https://doi.org/10.1109/itsc57777.2023.10422643",
+    "type": "conference-paper",
+    "venue": null,
+    "oa_url": null,
+    "authors": [
+      "Zhanbo Sun",
+      "Jin Dai",
+      "Yu Zhao",
+      "Chao Zhang",
+      "Ang Ji"
+    ],
+    "abstract": "Traffic flow prediction is a fundamental problem for urban traffic control and management. In practice, incomplete data is a common challenge due to sparse sensor deployment, data loss, and hardware failure. In this paper, a graph convolution recurrent neural network is proposed for traffic flow prediction, with considerations of incomplete data. The missing data is complemented with node imputation using the Gaussians Mixture Model (GMM) and integrated into the initial layer of the graph convolution network. Then, we utilize the node parameter learning module to capture the features of individual nodes, and the node-embedding matrix is applied to balance the computational efficiency and model performance. In addition, we employ recurrent neural networks and Sequence to Sequence models to tackle the challenge of temporal dependence and multi-step prediction. The proposed approach is evaluated based on two real-world datasets, and the results show that the prediction accuracy can be improved by at least 12.5% and 18.6% compared to the imputation and inductive-based models."
+  },
+  {
+    "title": "Localization of Dummy Data Injection Attacks in Power Systems Considering Incomplete Topological Information: A Spatio-Temporal Graph Wavelet Convolutional Neural Network Approach",
+    "year": 2023,
+    "cited": 6,
+    "doi": "https://doi.org/10.2139/ssrn.4546724",
+    "type": "preprint",
+    "venue": "SSRN Electronic Journal",
+    "oa_url": "https://doi.org/10.2139/ssrn.4546724",
+    "authors": [
+      "Zhaoyang Qu",
+      "Yunchang Dong",
+      "Yang Li",
+      "Siqi Song",
+      "Tao Jiang",
+      "Min Li",
+      "Qiming Wang",
+      "Lei Wang",
+      "Xiaoyong Bo"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "Heterogeneity-Aware Federated Graph Neural Networks for Incomplete Multi-View Clustering",
+    "year": 2025,
+    "cited": 4,
+    "doi": "https://doi.org/10.1109/tetci.2025.3579270",
+    "type": "article",
+    "venue": "IEEE Transactions on Emerging Topics in Computational Intelligence",
+    "oa_url": null,
+    "authors": [
+      "Xueming Yan",
+      "Ziqi Wang",
+      "Yaochu Jin"
+    ],
+    "abstract": "Federated multi-view clustering aims to collaboratively learn a global clustering model from decentralized and privacy-sensitive data distributed across multiple clients. However, existing approaches face two major challenges: the absence of supervision signals and the heterogeneity across multi-view features, which hinder the extraction of consistent and complementary clustering information. Moreover, the inherent incompleteness of multi-view data in federated scenarios further complicates the learning process. To tackle these issues, we propose a Heterogeneity-aware Federated Graph Neural Networks (HafGNN) for the incomplete multi-view clustering. HafGNN employs heterogeneous graph neural network-based autoencoders for the different clients to capture both view-specific and structural representations while preserving data locality. A server-side aggregation mechanism aligns heterogeneous features from overlapping instances to construct a global latent representation. Additionally, global pseudo-labels are generated to guide view completion and enhance clustering consistency across clients. Extensive experiments on multiple public multi-view datasets demonstrate that HafGNN consistently outperforms state-of-the-art approaches in clustering performance, especially under conditions of view incompleteness and client heterogeneity."
+  },
+  {
+    "title": "Federated Incomplete Multi-view Clustering with Heterogeneous Graph Neural Networks",
+    "year": 2025,
+    "cited": 4,
+    "doi": "https://doi.org/10.1007/978-3-031-82240-7_5",
+    "type": "conference-paper",
+    "venue": "Lecture notes in computer science",
+    "oa_url": null,
+    "authors": [
+      "Xueming Yan",
+      "Ziqi Wang",
+      "Yaochu Jin"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "Tracking-removed neural network with graph information for classification of incomplete data",
+    "year": 2025,
+    "cited": 3,
+    "doi": "https://doi.org/10.1007/s10489-024-06031-7",
+    "type": "article",
+    "venue": "Applied Intelligence",
+    "oa_url": null,
+    "authors": [
+      "Xiaochen Lai",
+      "Zheng Zhang",
+      "Hui Chen",
+      "Liyong Zhang",
+      "Zhuohan Li",
+      "Wei Lu"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "SDR-GNN: Spectral Domain Reconstruction Graph Neural Network for Incomplete Multimodal Learning in Conversational Emotion Recognition",
+    "year": 2024,
+    "cited": 2,
+    "doi": "https://doi.org/10.48550/arxiv.2411.19822",
+    "type": "preprint",
+    "venue": "arXiv (Cornell University)",
+    "oa_url": "https://arxiv.org/pdf/2411.19822",
+    "authors": [
+      "Fu, Fangze",
+      "Ai, Wei",
+      "Fan Yang",
+      "Yuntao Shou",
+      "Tao Meng",
+      "Keqin Li"
+    ],
+    "abstract": "Multimodal Emotion Recognition in Conversations (MERC) aims to classify utterance emotions using textual, auditory, and visual modal features. Most existing MERC methods assume each utterance has complete modalities, overlooking the common issue of incomplete modalities in real-world scenarios. Recently, graph neural networks (GNNs) have achieved notable results in Incomplete Multimodal Emotion Recognition in Conversations (IMERC). However, traditional GNNs focus on binary relationships between nodes, limiting their ability to capture more complex, higher-order information. Moreover, repeated message passing can cause over-smoothing, reducing their capacity to preserve essential high-frequency details. To address these issues, we propose a Spectral Domain Reconstruction Graph Neural Network (SDR-GNN) for incomplete multimodal learning in conversational emotion recognition. SDR-GNN constructs an utterance semantic interaction graph using a sliding window based on both speaker and context relationships to model emotional dependencies. To capture higher-order and high-frequency information, SDR-GNN utilizes weighted relationship aggregation, ensuring consistent semantic feature extraction across utterances. Additionally, it performs multi-frequency aggregation in the spectral domain, enabling efficient recovery of incomplete modalities by extracting both high- and low-frequency information. Finally, multi-head attention is applied to fuse and optimize features for emotion recognition. Extensive experiments on various real-world datasets demonstrate that our approach is effective in incomplete multimodal learning and outperforms current state-of-the-art methods."
+  },
+  {
+    "title": "Electricity Demand Forecasting in Distribution Circuits with Incomplete Data and Differentiated Demand Profiles Using Spatiotemporal Graph Neural Networks",
+    "year": 2025,
+    "cited": 1,
+    "doi": "https://doi.org/10.1109/ccac64704.2025.11259266",
+    "type": "conference-paper",
+    "venue": null,
+    "oa_url": null,
+    "authors": [
+      "Edgar Sebastian Fajardo-Barco",
+      "Wilson Olmedo Achicanoy-Martinez"
+    ],
+    "abstract": "Electricity demand forecasting using machine learning models that rely only on temporal information can be limited, as they fail to capture the interactions and dynamics between circuits in an urban distribution electrical grid. This article proposes a methodology to integrate spatial information into demand forecasting using graph neural networks (GNNs), leveraging data from a Geographic Information System (GIS). As a case study, real data from three substations is used to build graphs based on the geographic layout of their circuits, selecting a target node and its neighbors within a fixed distance. Edges are weighted based on topological relationships. The Message Passing Neural Network (MPNN) combined with Long Short-Term Memory (LSTM), MPNNLSTM model, is employed for forecasting electricity demand over 1, 3, 6, 12, and 24-hour horizons, taking advantage of its ability to capture spatiotemporal patterns in structured networks. Defining graphs with a fixed distance ensures topological consistency and improves the modeling of relevant local patterns. Results show that incorporating spatial information improves prediction accuracy by 12.22% compared to the baseline model, especially in circuits with fluctuating demand or incomplete historical data."
+  },
+  {
+    "title": "MDS-GNN: A Mutual Dual-Stream Graph Neural Network on Graphs with Incomplete Features and Structure",
+    "year": 2024,
+    "cited": 1,
+    "doi": "https://doi.org/10.48550/arxiv.2408.04845",
+    "type": "preprint",
+    "venue": "arXiv (Cornell University)",
+    "oa_url": "https://arxiv.org/pdf/2408.04845",
+    "authors": [
+      "Peng Yuan",
+      "Peng Tang"
+    ],
+    "abstract": "Graph Neural Networks (GNNs) have emerged as powerful tools for analyzing and learning representations from graph-structured data. A crucial prerequisite for the outstanding performance of GNNs is the availability of complete graph information, i.e., node features and graph structure, which is frequently unmet in real-world scenarios since graphs are often incomplete due to various uncontrollable factors. Existing approaches only focus on dealing with either incomplete features or incomplete structure, which leads to performance loss inevitably. To address this issue, this study proposes a mutual dual-stream graph neural network (MDS-GNN), which implements a mutual benefit learning between features and structure. Its main ideas are as follows: a) reconstructing the missing node features based on the initial incomplete graph structure; b) generating an augmented global graph based on the reconstructed node features, and propagating the incomplete node features on this global graph; and c) utilizing contrastive learning to make the dual-stream process mutually benefit from each other. Extensive experiments on six real-world datasets demonstrate the effectiveness of our proposed MDS-GNN on incomplete graphs."
+  },
+  {
+    "title": "Cross-modal Prompt Disentangled Graph Neural Networks for incomplete conversational emotion recognition",
+    "year": 2026,
+    "cited": 0,
+    "doi": "https://doi.org/10.1016/j.knosys.2026.116547",
+    "type": "article",
+    "venue": "Knowledge-Based Systems",
+    "oa_url": null,
+    "authors": [
+      "Shi Qiao",
+      "Xiaowei Zhang",
+      "Qinglin Zhao",
+      "Bimei Wang",
+      "Jisheng Dang",
+      "Bin Hu",
+      "Hong Peng"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "Relational Learning with Graph Neural Networks: Interpretability and handling incomplete data",
+    "year": 2026,
+    "cited": 0,
+    "doi": null,
+    "type": "dissertation",
+    "venue": "Institutional Research Information System (Universit\u00e0 degli Studi di Trento)",
+    "oa_url": "https://hdl.handle.net/11572/484010",
+    "authors": [
+      "Francesco Ferrini"
+    ],
+    "abstract": "Graph-structured data provide a natural representation for many real-world domains, including relational databases, knowledge graphs, and complex information systems. Learning from such data requires models that can effectively exploit relational structure while remaining robust, interpretable, and reliable under realistic data imperfections. Although Graph Neural Networks (GNNs) have emerged as a powerful paradigm for graph-based learning, their application to complex relational settings raises fundamental challenges related to scalability, interpretability, and robustness to incomplete information. This thesis addresses these challenges through two complementary lines of research. The first part focuses on learning from heterogeneous graphs. It introduces a principled framework for learning informative meta-paths directly from data, enabling GNNs to reason explicitly over semantically meaningful relational patterns. Building on this idea, the thesis further proposes a self-explainable heterogeneous GNN that extends meta-path reasoning by incorporating learnable statistics over relational paths, yielding faithful explanations that quantify both which relational structures are relevant and how they influence predictions. The second part of the thesis studies learning under missing node features, a pervasive characteristic of real-world relational data that has received limited principled treatment in the graph learning literature. Rather than directly addressing this problem in fully multi-relational settings, the thesis deliberately considers the simpler yet non-trivial case of homogeneous graphs as a foundational step. This controlled setting allows for a systematic analysis of how missing features interact with message passing, existing GNN architectures, and common evaluation practices. The thesis revisits standard benchmarks and missingness assumptions, showing that they often fail to reflect realistic scenarios, and introduces improved evaluation protocols based on structured and feature-dependent missingness mechanisms. In addition, it proposes a simple yet effective modeling strategy that explicitly exposes missing information within the message passing "
+  }
+]

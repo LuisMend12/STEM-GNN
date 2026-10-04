@@ -1,0 +1,42 @@
+[
+  {
+    "title": "A Survey on Graph Neural Networks for Crystal Property Prediction: Architectures, Expressivity, Uncertainty Quantification, Out-of-Distribution Generalization",
+    "year": 2026,
+    "cited": 0,
+    "doi": "https://doi.org/10.21275/sr26513224012",
+    "type": "article",
+    "venue": "International Journal of Science and Research (IJSR)",
+    "oa_url": "https://www.ijsr.net/archive/v15i5/SR26513224012.pdf",
+    "authors": [
+      "Vinod Kulkarni",
+      "Matharishwa S",
+      "Bichitra Behera",
+      "Bharath S",
+      "Khushi Kalpesh Joshi"
+    ],
+    "abstract": "Graph Neural Networks (GNNs) have become the dominant machine learning paradigm for predicting physical and chemical properties of crystalline materials, offering prediction speeds several orders of magnitude faster than Density Functional Theory (DFT) while maintaining competitive accuracy. However, three fundamental limitations remain unresolved in existing systems: (1) the single-radius graph construction creates a provable representational ceiling bounded by the 1-Weisfeiler-Leman (1-WL) graph isomorphism test; (2) standard random-split evaluation systematically overestimates performance by 3-5? compared to structure-aware out-of-distribution (OOD) evaluation; and (3) no existing system provides statistically guaranteed prediction intervals. This survey presents a comprehensive review of GNN architectures for crystal property prediction, covering single-scale distance-based GNNs (CGCNN, SchNet, MEGNet), angle-aware line graph networks (ALIGNN, DimeNet), multi-scale and multi-view approaches (PMCGNN, PSCG-Net), and equivariant architectures. We provide the first formal expressivity separation proof for multi-radius crystal GNNs: Theorem 1 establishes that multi-scale GNNs are strictly more expressive than any single-radius GNN on periodic crystal graphs, supported by 10 empirically confirmed Weisfeiler-Leman collision pairs across TiO2, SnO2, and Fe2O3. We further survey uncertainty quantification methods- Monte Carlo Dropout, Deep Evidential Regression, deep ensembles, and conformal prediction- and propose the first application of split-conformal prediction to crystal property prediction, achieving 89.1% empirical coverage at a 90% target with ECE of 0.074 and Spearman ? of +0.382 (p < 10-53) under SOAP-LOCO structural OOD evaluation. Development-scale results demonstrate MAE of 0.033 eV/atom and R2 of 0.996, exceeding all paper-target metrics at 20,000 structures before full-scale training."
+  },
+  {
+    "title": "Conceptual Relationship Between Classical Machine Learning and Graph Neural Networks in Out-of-Distribution Detection: A Comprehensive Survey",
+    "year": 2026,
+    "cited": 0,
+    "doi": "https://doi.org/10.1109/access.2026.3717452",
+    "type": "article",
+    "venue": "IEEE Access",
+    "oa_url": "https://doi.org/10.1109/access.2026.3717452",
+    "authors": [
+      "Mao Nguyen",
+      "Thien Pham",
+      "Long Nguyen",
+      "Dang Le",
+      "Trung M. Pham",
+      "Pham Hh",
+      "Quang Duc Nguyen",
+      "Xinh Le",
+      "Anh Huynh",
+      "T D Le",
+      "Tho Quan"
+    ],
+    "abstract": "Out-of-Distribution (OOD) detection, an important branch of Anomaly Detection (AD), aims to recognize inputs that fall outside the training distribution. Existing OOD methods based on statistical modeling, distance measures, one-class classification, reconstruction, or energy-based scoring provide strong foundations, but they can be difficult to apply directly to high-dimensional, unstructured, or relational data. Recent advances in graph-based deep learning, particularly Graph Neural Networks (GNNs), create new opportunities by modeling local and global dependencies among interdependent samples. This survey provides a comprehensive overview of OOD detection methods, organizing them into traditional and deep learning families before examining graph-aware GNN-based approaches. Beyond taxonomy, we synthesize the conceptual relationships between these paradigms through three working hypotheses: graph-aware transfer, structure-sensitive scoring, and hybrid objective design. This hypothesis-guided synthesis characterizes how established statistical, geometric, reconstruction-based, and energy-based principles can be transferred, reformulated, and combined within modern GNN frameworks. To make this perspective concrete, we include Graph Energy-based OOD Detection (GEO), a reference case study that combines energy-based scoring with one-class regularization in a GNN architecture and reports competitive but setting-dependent performance across representative benchmarks. Taken together, the survey clarifies the current landscape of OOD detection and highlights how integrating classical statistical reasoning with graph-based learning can inform future graph OOD research. To support reproducibility, the implementation of GEO is publicly available at https://github.com/longstnguyen/GEO ."
+  }
+]

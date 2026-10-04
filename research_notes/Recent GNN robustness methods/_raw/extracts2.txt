@@ -1,0 +1,67 @@
+
+
+==== GTRANS ====
+ctive Domain Adaptation. AdaGraph leverages metadata information to build a graph where each node represents a domain, while the strength of an edge models the similarity among two domains according to their metadata. Then in order to exploit the graph for the purpose of DA and AdaGraph has a novel domain-alignment layers. This framework yields the new state of the art on standard PDA benchmarks.
+GTRANS [ 8 ] which optimizes a contrastive surrogate loss to transform graph structure and node features, and provide theoretical analysis with deeper discussion to understand this framework. Experimental results on distribution shift, abnormal features and adversarial attack have demonstrated the effectiveness of GTRANS.
+GAPGC (Graph Adversarial Pseudo Group Contrast) [ 7 ] is a test-time training method designed for GNNs with a contrastive loss variant as the self-supervised objective during testing. The framework of GAPGC is shown in Fig. 9 . Recently, the effectiveness of test-time training has been validated to improve the performance on OOD test data, where some self-supervised auxilia
+
+==== HETERO REST ====
+Theoretical Heterophily Exploration. 
+Despite the notable achievements of heterophilic GNNs across diverse tasks and datasets, their efficacy lacks a solid theoretical foundation to substantiate their impact on enhancing graph representation learning. Presently, many methods are predominantly designed based on intuition and evaluated through empirical experiments. Notably, a recent breakthrough by Ma et al. [ 119 ] has unveiled that, under specific conditions, GCN can exhibit remarkable performance on heterophilic graphs. This discovery has been supported by comprehensive theoretical validation, outlining the distinctive characteristics and conditions under which heterophilic graphs can excel with GCN. The elucidation of these theoretical findings poses a significant challenge to the current rationale underlying the design of heterophilic GNNs. Consequently, there arises a critical need for intensified theoretical exploration in the future. This exploration should delve into aspects such as the impact of heterophily on altering the trends of generalization bounds. Bridging this explanatory gap is crucial for comprehending the extent to which heterophily influences the performance constraints of homophilic GNNs.
+Diverse Heterophily Learning Tasks. 
+The research on heterophilic GNNs has primarily demonstrated success in node-level tasks, covering both semi-supervised [ 36 , 51 , 63 ] and unsupervised scenarios [ 120 , 31 , 112 ] . A recent study by Zhou et al. [ 121 ] introduces a novel heterophilic framework named DisenLink, specifically designed for addressing link-level tasks on heterophilic graphs. In heterophilic graphs, DisenLink reveals that link formation is influenced by numerous latent factors, causing linked nodes to share similarity in certain factors while being dissimilar in others. This results in an overall low similarity between linked nodes. Many existing link prediction approaches operate under the homophily assumption, using similarity-based heuristics or representation learning methods to predict links. Therefore, accurately predicting links with heterophilic attributes, determined by specific potential similar factors, poses a significant challenge. DisenLink identifies the challenges of link-level tasks on heterophilic graphs, but there are still significant open questions in this domain. These include the development of reasonable heterophilic benchmark datasets and the refinement of GNN architectures for link-level tasks. Additionally, similar open questions exist for graph-level tasks, indicating that further exploration is needed in these areas.
+Broader Scope of Practical Applications. 
+In the real world, heterophilic relationships are pervasive and exist widely in various graph-structured data [ 122 , 123 , 124 , 125 , 126 ] . However, current research on heterophilic GNNs predominantly focuses on specific strong heterophilic graphs, such as social networks [ 122 ] and web page networks [ 123 ] . Other fields, such as biomedicine [ 124 ] and chemistry [ 125 , 126 ] , which also naturally exhibit the heterophilic property, deserve more explorations.
+For instance, in protein-protein interaction networks, proteins with interactions often belong to different gene ontologies. Moreover, in the field of drug discovery, DCMGCN  [ 127 ] verifies the heterophily property of the drug-drug networks and proposed a combination of intermediate representations, and high-similarity
+neighborhoods, to boost GCN learning on the heterophily
+and sparse drug-drug networks.
+Besides, in the field of fraud detection, fraudsters tend to be more connected to regular users represented by fraud networks. And some existing research, e.g. , DRAG  [ 128 ] and GAGA  [ 103 ] , solved the problem by conducting the binary heterophilic graph classification task.
+This highlights the untapped potential of heterophilic GNNs in a broader range of application areas. There is an expectation to extend the use of heterophilic GNNs to various fields, including financial networks, network security, community detection, biomedicine, and chemistry.
+IX Conclusion 
+In this paper, we conducted a comprehensive overview of graph neural networks for heterophilic graphs. To achieve this, we proposed a novel and systematic taxonomy of existing heterophilic GNNs, categorizing them into non-local neighbor extension methods, GNN architecture refinement methods, and hybrid methods. Our contribution includes a thorough introduction and analysis of the c
+
+==== TRUST REST ====
+six trending directions with the potential to fill the research gap and boost the industrialisation of trustworthy GNNs by considering the concept as a whole.
+Shift to Trustworthy GNNs. 
+Building trustworthy GNNs requires researchers to embrace the trustworthiness - related concepts and characteristics introduced in this survey and shift their focuses from performance-oriented GNNs to trustworthy GNNs.
+With regard to achieving this shift, introducing trustworthiness into the design philosophy of GNNs is a challenging yet promising direction. 
+An example of incorporating explainability is a method called GIB [ 166 ] , which can simultaneously recognise an information bottleneck subgraph (as an explanation) for the input graph and cooperate with other GNN backbones in graph classification.
+As an example of incorporating fairness, RawlsGCN [ 310 ] alleviates the degree-related unfairness by introducing the Rawlsian difference principle  [ 380 ] (i.e., maximising the welfare of the worst-off groups [ 310 ] ) to GCN.
+Moreover, some open problems need to be solved if trustworthy GNN systems are to be realised; for example, that of how to balance the trade-off between certain aspects (e.g., robustness and environmental well-being) in specified applications (e.g., autonomous vehicles [ 75 ] ).
+Thus, shifting to trustworthy GNNs and solving these problems are fundamental for building trustworthy GNN systems.
+Other Aspects of Trustworthy GNNs. The content of trustworthy GNNs goes beyond the six aspects discussed in this survey.
+For example, generalisation ability is considered to be a necessary aspect of trustworthy systems [ 11 ] . Current research into the extrapolation of GNNs [ 81 ] aims to reveal the relationship between tasks and aggregation functions, which will promote further study of the generalisation of GNNs and guide the design of trustworthy GNNs.
+Therefore, studying the proper handling and management of the trustworthiness-related principles outlined 
+in Table  I (e.g., safety and controllability, respect for autonomy) is another vital research direction in building human-centred and trustworthy GNN systems.
+The open framework proposed in this survey (Fig. 1 ) 
+will hopefully be able to incorporate aspects of trustworthiness that emerge in the future, thereby expanding the domain of trustworthy GNNs and enhancing the practical implementation of trustworthy GNN systems. 
+Diversified Relations . This survey touches on only a small fraction of the intricate cross- aspect relations. It will therefore be crucial to investigate other cross- aspect relations like explainability and privacy in future work .
+Moreover, these cross-aspect relations are not only intricate , but also exist at multiple levels.
+For example, counterfactual fairness is conceptually similar to robustness, as both of them expect GNNs to make unchanged predictions when some attributes of the same sample are changed.
+This clearly suggests that methods for improving GNN robustness can also be used to improve the fairness of GNNs to a certain extent (e.g., by introducing adversarial training on GNNs with respect to sensitive attributes [ 67 ] ).
+Unlike traditional studies, a recent study [ 364 ] extends the focus of fairness from GNN performance to GNN privacy.
+After a theoretical analysis of the uneven vulnerability of edges, a group-based attack is proposed to reveal the practical privacy risks of edges against link stealing attacks [ 364 ] . 
+Hence, exploring the diversified relations at different levels (e.g., concepts, methods, and advancements) is also essential to comprehensively understanding and practically building trustworthy GNNs. 
+Model-agnostic Methods. Many methods for trustworthy GNNs require custom-designed network architectures, which makes them unable to improve the trustworthiness of the target GNNs without modifying their architectures. This weakness severely limits the practicability of these trust-enhancing methods for GNNs. By contrast, m odel-agnostic methods can increase the trustworthiness of GNNs simply by being plugged in to any phase of the system pipeline (i.e., pre-processing, in-processing, and post-processing). Another advantage of these methods is that they can be combined to serve as building blocks for trustworthy GNNs.
+Thus, the design of model-agnostic methods is a promising direction for trustworthy GNNs.
+Technology Ecosystem for Trustworthy GNNs. 
+As an emerging field,
+research into trustworthy GNNs is inseparable from the surrounding technological ecosystem, including the 
+tools, datasets, metrics, pipelines, etc.
+Current tools (e.g., AI 360 tools from IBM [ 381 ] ) are mainly used to improve the credibility of general machine learning models. However, it may not be easy to apply these tools directly to GNNs owing to the unique characteristics of graphs. For example, updating the embedding of nodes in GNNs usually relies on the edges between nodes. The presence of these edges causes the relationship between nodes to break the independent and identically distributed assumption in general machine learning models, which constitutes a challenge for studying the individual fairness of GNNs.
+Moreover, various datasets  [ 331 , 382 ] , metrics  [ 383 ] , standardised evaluation pipelines  [ 318 , 36 ] , and software platform s   [ 384 , 385 ] that are suitable for miscellaneous applications will also be required if efforts to develop trustworthy GNNs are to be successfully evaluated. 
+Therefore, d
+
+==== BN ====
+ F θ ​ ( H l − 1 , A ) : H 1 = X \displaystyle H^{l}\leftarrow\texttt{F}_{\theta}(H^{l-1},A):H^{1}=X 
+(2) 
+Where Eq. ( 1 ) can be considered as a linear Graph Convolution as proposed by [ 21 ] and Eq. ( 2 ) is a common graph convolution propagation.
+Batch normalization has been proven to be an effective component in deep neural architectures in many fields such as computer vision and natural language process. Inspired by the success of batch normalization [ 22 ] and subspace theorem [ 14 ] , normalization techniques have been proposed to alleviate the oversmoothing in graph neural networks.
+Definition 2 ( Normalization operator: NT ​ ( ⋅ ) \t
+
+==== OOD SUB ====
+Data Augmentation
+This category of methods aims to manipulate the input graph data, i.e., graph augmentation. By systematically generating more training samples to increase the quantity and diversity of the training set, graph augmentation techniques are effective in improving the OOD generalization performance.
+GAug (Graph Augmentation) [ 56 ] is a method for feature-wise graph augmentation. It utilizes a differentiable edge predictor to generate augmented graphs by encoding class-homophilic structure, which promotes intra-class edges and reduces inter-class edges to enhance prediction accuracy and generalization ability. GAug modifies the input graph using an edge prediction module and learns to generate new possible edges.
+NCLA (Neighbor Contrastive Learning on Learnable Graph Augmentation) [ 57 ] is an end-to-end automatic graph contrastive learning method, applying neighbor contrastive learning on learnable graph augmentation. NCLA automatically generates multiple graph augmented views with adaptive topology by the multi-head graph attention mechanism, where each attention head corresponds to each augmented view. The attention-based learnable graph augmentation avoids improper modification of the original topology and can be compatible with various graph datasets without prior domain knowledge.
+GRAND (Graph Random Neural Network) [ 58 ] is a framework for enhancing generalization in GNNs by combining feature-wise graph augmentation methods. First, it randomly drops node features and propagates perturbed features. Then in accordance with the graph homophily assumption [

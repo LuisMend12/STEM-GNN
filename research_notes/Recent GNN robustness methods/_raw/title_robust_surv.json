@@ -1,0 +1,38 @@
+[
+  {
+    "title": "A Comprehensive Survey on Trustworthy Graph Neural Networks: Privacy, Robustness, Fairness, and Explainability",
+    "year": 2024,
+    "cited": 152,
+    "doi": "https://doi.org/10.1007/s11633-024-1510-8",
+    "type": "article",
+    "venue": "Machine Intelligence Research",
+    "oa_url": "https://link.springer.com/content/pdf/10.1007/s11633-024-1510-8.pdf",
+    "authors": [
+      "Enyan Dai",
+      "Tianxiang Zhao",
+      "Huaisheng Zhu",
+      "Junjie Xu",
+      "Zhimeng Guo",
+      "Hui Liu",
+      "Jiliang Tang",
+      "Suhang Wang"
+    ],
+    "abstract": "Abstract Graph neural networks (GNNs) have made rapid developments in the recent years. Due to their great ability in modeling graph-structured data, GNNs are vastly used in various applications, including high-stakes scenarios such as financial analysis, traffic predictions, and drug discovery. Despite their great potential in benefiting humans in the real world, recent study shows that GNNs can leak private information, are vulnerable to adversarial attacks, can inherit and magnify societal bias from training data and lack interpretability, which have risk of causing unintentional harm to the users and society. For example, existing works demonstrate that attackers can fool the GNNs to give the outcome they desire with unnoticeable perturbation on training graph. GNNs trained on social networks may embed the discrimination in their decision process, strengthening the undesirable societal bias. Consequently, trust-worthy GNNs in various aspects are emerging to prevent the harm from GNN models and increase the users\u2019 trust in GNNs. In this paper, we give a comprehensive survey of GNNs in the computational aspects of privacy, robustness, fairness, and explainability. For each aspect, we give the taxonomy of the related methods and formulate the general frameworks for the multiple categories of trustworthy GNNs. We also discuss the future research directions of each aspect and connections between these aspects to help achieve trustworthiness."
+  },
+  {
+    "title": "A Brief Survey of Distribution Robust Graph Neural Networks",
+    "year": 2024,
+    "cited": 1,
+    "doi": "https://doi.org/10.1016/j.procs.2024.08.140",
+    "type": "conference-paper",
+    "venue": "Procedia Computer Science",
+    "oa_url": "https://doi.org/10.1016/j.procs.2024.08.140",
+    "authors": [
+      "Lei Zheng",
+      "Pei Quan",
+      "Yong Shi",
+      "Lingfeng Niu"
+    ],
+    "abstract": ""
+  }
+]

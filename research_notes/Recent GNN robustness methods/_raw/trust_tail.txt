@@ -1,0 +1,44 @@
+Technology Ecosystem for Trustworthy GNNs. 
+As an emerging field,
+ research into trustworthy GNNs is inseparable from the surrounding technological ecosystem, including the 
+tools, datasets, metrics, pipelines, etc.
+Current tools (e.g., AI 360 tools from IBM [ 381 ] ) are mainly used to improve the credibility of general machine learning models. However, it may not be easy to apply these tools directly to GNNs owing to the unique characteristics of graphs. For example, updating the embedding of nodes in GNNs usually relies on the edges between nodes. The presence of these edges causes the relationship between nodes to break the independent and identically distributed assumption in general machine learning models, which constitutes a challenge for studying the individual fairness of GNNs.
+Moreover, various datasets  [ 331 , 382 ] , metrics  [ 383 ] , standardised evaluation pipelines  [ 318 , 36 ] , and software platform s   [ 384 , 385 ] that are suitable for miscellaneous applications will also be required if efforts to develop trustworthy GNNs are to be successfully evaluated. 
+Therefore, developing a technological ecosystem that supports trustworthiness is an essential step in researching and industrialising trustworthy GNNs.
+
+ 
+ 
+ Opportunities in the Era of New Technologies. 
+As technology evolves endlessly, transformer-based approaches [ 386 ] have emerged in the AI community and advanced current graph learning methods.
+However, trustworthiness issues still exist in systems driven by graph transformers [ 387 ] .
+In addition to the well-known concerns about quadratic running time with respect to number of nodes [ 388 ] , users may not trust graph transformers due to the absence of explainability in these models [ 389 ] .
+Existing studies demonstrate that transformer-based methods are still vulnerable to adversarial attacks [ 390 , 391 ] .
+The above issues suggest opportunities for devising trustworthy graph learning methods in the new technology era.
+Note that, due to the fact that both graph data and learning methods contribute to graph learning systems, the untrustworthiness (e.g., unfairness) of these systems can also be attributed to the training data itself (e.g., biased graph structure)  [ 35 , 43 ] , which highlights opportunities in graph data management (e.g., data-centric graph learning [ 392 , 393 ] ).
+ 
+
+ 
+ 
+ 
+ Acknowledgments
+
+
+ 
+ This research was supported in part by the Australian Research Council (ARC) under grants FT210100097 and DP240101547. Xingliang Yuan and Shirui Pan are also supported by CSIRO – National Science Foundation (US) AI Research Collaboration Program.
+
+ 
+ 
+ 
+ Appendix A Datasets for Trustworthy GNNs
+
+
+ 
+ Although some aspects of trustworthy GNNs (e.g., robustness) have been continually explored in recent years, the study of other aspects remains in the initial stages. 
+ Current studies on robustness, privacy, accountability and environmental well-being can be implemented by evaluations on common graph datasets (e.g., TUDataset [ 382 ] , OGB [ 394 ] ) ; however , when studying the explainability and fairness of GNNs, general graph datasets are not suitable because they do not contain ground-truth explanations and sensitive attributes, respectively.
+In this section, we briefly review datasets for evaluating the explainability and fairness of GNNs.
+
+ 
+ 
+ Explainability. 
+
+The biggest challenge associated with evaluating explanation methods for GNNs is the lack of ground truth datasets. Due to the com

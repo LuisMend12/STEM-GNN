@@ -1,0 +1,36 @@
+H2: I Introduction
+H2: II Problem Definition
+H2: III Categorization And Frameworks
+H3: III-A Taxonomy of Graph Domain Adaptation Learning
+H3: III-B Taxonomy of Graph Out-of-distribution Learning
+H3: III-C Taxonomy of Graph Continual Learning
+H2: IV Graph Domain Adaptation Learning
+H3: IV-A Semi-supervised Domain Adaptation
+H3: IV-B Unsupervised Domain Adaptation
+H3: IV-C Test-time Graph Transformation (Adaptation)
+H2: V Graph Out-of-distribution Learning
+H3: V-A Graph Out-of-distribution Generalization
+H4: V-A 1 Data Augmentation
+H4: V-A 2 Model Develoment
+H4: V-A 3 Learning Strategy
+H3: V-B Graph Out-of-distribution Detection
+H3: V-C Open-world Graph Learning
+H4: V-C 1 Graph Structure
+H4: V-C 2 Knowledge Graph
+H2: VI Graph Continual Learning
+H3: VI-A Architectural Approach
+H3: VI-B Regularization Approach
+H3: VI-C Rehearsal Approach
+H3: VI-D Hybrid Approach
+H2: VII Applications
+H3: VII-A AI-aided Drug Discovery.
+H3: VII-B Personalized Intelligent Recommendation Systems.
+H3: VII-C Open-world Knowledge Exploration and Learning.
+H3: VII-D Intelligent Transportation System Forecasting.
+H2: VIII Future Directions
+H3: VIII-A Graph Data-centric Learning under Distribution Shifts.
+H3: VIII-B Cross-modality Distribution Shift Exploration on Graph Learning.
+H3: VIII-C Comprehensive Graph Learning Task-driven Evaluation Protocols.
+H3: VIII-D Trustworthy Graph Learning Under Distribution Shifts.
+H2: IX Conclusion
+H2: References

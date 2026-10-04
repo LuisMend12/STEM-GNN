@@ -1,0 +1,223 @@
+[
+  {
+    "title": "Beyond Homophily and Homogeneity Assumption: Relation-Based Frequency Adaptive Graph Neural Networks",
+    "year": 2023,
+    "cited": 40,
+    "doi": "https://doi.org/10.1109/tnnls.2022.3230417",
+    "type": "article",
+    "venue": "IEEE Transactions on Neural Networks and Learning Systems",
+    "oa_url": null,
+    "authors": [
+      "Lirong Wu",
+      "Haitao Lin",
+      "Bozhen Hu",
+      "Cheng Tan",
+      "Zhangyang Gao",
+      "Zicheng Liu",
+      "Stan Ziqing Li"
+    ],
+    "abstract": "Graph neural networks (GNNs) have been playing important roles in various graph-related tasks. However, most existing GNNs are based on the assumption of homophily, so they cannot be directly generalized to heterophily settings where connected nodes may have different features and class labels. Moreover, real-world graphs often arise from highly entangled latent factors, but the existing GNNs tend to ignore this and simply denote the heterogeneous relations between nodes as binary-valued homogeneous edges. In this article, we propose a novel relation-based frequency adaptive GNN (RFA-GNN) to handle both heterophily and heterogeneity in a unified framework. RFA-GNN first decomposes an input graph into multiple relation graphs, each representing a latent relation. More importantly, we provide detailed theoretical analysis from the perspective of spectral signal processing. Based on this, we propose a relation-based frequency adaptive mechanism that adaptively picks up signals of different frequencies in each corresponding relation space in the message-passing process. Extensive experiments on synthetic and real-world datasets show qualitatively and quantitatively that RFA-GNN yields truly encouraging results for both the heterophily and heterogeneity settings. Codes are publicly available at: https://github.com/LirongWu/RFA-GNN."
+  },
+  {
+    "title": "Beyond Homophily: Robust Graph Anomaly Detection via Neural Sparsification",
+    "year": 2023,
+    "cited": 23,
+    "doi": "https://doi.org/10.24963/ijcai.2023/234",
+    "type": "conference-paper",
+    "venue": null,
+    "oa_url": "https://www.ijcai.org/proceedings/2023/0234.pdf",
+    "authors": [
+      "Zheng Gong",
+      "Guifeng Wang",
+      "Ying Qiu Sun",
+      "Qi Liu",
+      "Yuting Ning",
+      "Hui Yun Xiong",
+      "Jingyu Peng"
+    ],
+    "abstract": "Recently, graph-based anomaly detection (GAD) has attracted rising attention due to its effectiveness in identifying anomalies in relational and structured data. Unfortunately, the performance of most existing GAD methods suffers from the inherent structural noises of graphs induced by hidden anomalies connected with considerable benign nodes. In this work, we propose SparseGAD, a novel GAD framework that sparsifies the structures of target graphs to effectively reduce noises and collaboratively learns node representations. It then robustly detects anomalies by uncovering the underlying dependency among node pairs in terms of homophily and heterophily, two essential connection properties of GAD. Extensive experiments on real-world datasets of GAD demonstrate that the proposed framework achieves significantly better detection quality compared with the state-of-the-art methods, even when the graph is heavily attacked. Code will be available at https://github.com/KellyGong/SparseGAD.git."
+  },
+  {
+    "title": "ES-GNN: Generalizing Graph Neural Networks Beyond Homophily With Edge Splitting",
+    "year": 2024,
+    "cited": 22,
+    "doi": "https://doi.org/10.1109/tpami.2024.3459932",
+    "type": "article",
+    "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+    "oa_url": "https://arxiv.org/pdf/2205.13700",
+    "authors": [
+      "Jingwei Guo",
+      "Kaizhu Huang",
+      "Rui Zhang",
+      "Xinping Yi"
+    ],
+    "abstract": "While Graph Neural Networks (GNNs) have achieved enormous success in multiple graph analytical tasks, modern variants mostly rely on the strong inductive bias of homophily. However, real-world networks typically exhibit both homophilic and heterophilic linking patterns, wherein adjacent nodes may share dissimilar attributes and distinct labels. Therefore, GNNs smoothing node proximity holistically may aggregate both task-relevant and irrelevant (even harmful) information, limiting their ability to generalize to heterophilic graphs and potentially causing non-robustness. In this work, we propose a novel Edge Splitting GNN (ES-GNN) framework to adaptively distinguish between graph edges either relevant or irrelevant to learning tasks. This essentially transfers the original graph into two subgraphs with the same node set but complementary edge sets dynamically. Given that, information propagation separately on these subgraphs and edge splitting are alternatively conducted, thus disentangling the task-relevant and irrelevant features. Theoretically, we show that our ES-GNN can be regarded as a solution to a disentangled graph denoising problem, which further illustrates our motivations and interprets the improved generalization beyond homophily. Extensive experiments over 11 benchmark and 1 synthetic datasets not only demonstrate the effective performance of ES-GNN but also highlight its robustness to adversarial graphs and mitigation of the over-smoothing problem."
+  },
+  {
+    "title": "When Do Graph Neural Networks Help with Node Classification? Investigating the Impact of Homophily Principle on Node Distinguishability",
+    "year": 2023,
+    "cited": 12,
+    "doi": "https://doi.org/10.48550/arxiv.2304.14274",
+    "type": "preprint",
+    "venue": "arXiv (Cornell University)",
+    "oa_url": "https://arxiv.org/pdf/2304.14274",
+    "authors": [
+      "Sitao Luan",
+      "Chenqing Hua",
+      "Minkai Xu",
+      "Qincheng Lu",
+      "Jiaqi Zhu",
+      "Xiao-Wen Chang",
+      "Jie Fu",
+      "Jure Leskovec",
+      "Doina Precup"
+    ],
+    "abstract": "Homophily principle, i.e., nodes with the same labels are more likely to be connected, has been believed to be the main reason for the performance superiority of Graph Neural Networks (GNNs) over Neural Networks on node classification tasks. Recent research suggests that, even in the absence of homophily, the advantage of GNNs still exists as long as nodes from the same class share similar neighborhood patterns. However, this argument only considers intra-class Node Distinguishability (ND) but neglects inter-class ND, which provides incomplete understanding of homophily on GNNs. In this paper, we first demonstrate such deficiency with examples and argue that an ideal situation for ND is to have smaller intra-class ND than inter-class ND. To formulate this idea and study ND deeply, we propose Contextual Stochastic Block Model for Homophily (CSBM-H) and define two metrics, Probabilistic Bayes Error (PBE) and negative generalized Jeffreys divergence, to quantify ND. With the metrics, we visualize and analyze how graph filters, node degree distributions and class variances influence ND, and investigate the combined effect of intra- and inter-class ND. Besides, we discovered the mid-homophily pitfall, which occurs widely in graph datasets. Furthermore, we verified that, in real-work tasks, the superiority of GNNs is indeed closely related to both intra- and inter-class ND regardless of homophily levels. Grounded in this observation, we propose a new hypothesis-testing based performance metric beyond homophily, which is non-linear, feature-based and can provide statistical threshold value for GNNs' the superiority. Experiments indicate that it is significantly more effective than the existing homophily metrics on revealing the advantage and disadvantage of graph-aware modes on both synthetic and benchmark real-world datasets."
+  },
+  {
+    "title": "Unifying Homophily and Heterophily for Spectral Graph Neural Networks via Triple Filter Ensembles",
+    "year": 2024,
+    "cited": 9,
+    "doi": "https://doi.org/10.52202/079017-2966",
+    "type": "conference-paper",
+    "venue": null,
+    "oa_url": null,
+    "authors": [
+      "Rui Duan",
+      "Mingjian Guang",
+      "Junli Wang",
+      "Chungang Yan",
+      "Hongda Qi",
+      "Wenkang Su",
+      "Chungang Yan",
+      "Haoran Yang"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "Imbalanced node classification with Graph Neural Networks: A unified approach leveraging homophily and label information",
+    "year": 2023,
+    "cited": 9,
+    "doi": "https://doi.org/10.1016/j.asoc.2023.110985",
+    "type": "article",
+    "venue": "Applied Soft Computing",
+    "oa_url": "https://doi.org/10.1016/j.asoc.2023.110985",
+    "authors": [
+      "Dingyang Lv",
+      "Zhengjia Xu",
+      "Jinghui Zhang",
+      "Yuchen Wang",
+      "Fang Dong"
+    ],
+    "abstract": "The homophily assumption in graph theory posits that nodes with similar characteristics have a higher tendency to form connections. This principle has rendered Graph Neural Networks (GNNs) as vital tools for graph representation learning . However, many real-world graphs may exhibit a phenomenon often termed as neighbor class imbalance , which is characterized by frequent connections between dissimilar nodes, a scenario reflecting low homophily. Classical GNNs tend to overlook this issue, leading to a significant decline in performance. Prior research has attempted to address this challenge by employing high-order neighborhoods and filtering out dissimilar neighbors, yet they have paid little attention to homophily degree estimation and label utilization. In this work, we initially explore the performance of classical GNNs on a synthetic graph with varying homophily degrees, designated as SynG-N. Following this, we introduce a novel method, HLA-GNN, which integrates homophily degree estimation and label utilization to enhance classical GNNs. The degrees of homophily between node pairs are estimated using a limited set of ground-truth labels, which can be integrated into classic GNNs to guide the message aggregation process. Drawing on the label propagation algorithm , we combine the partially observed class labels to enhance the original feature space . Here, the observed class labels are randomly masked as a feature augmentation and training signal. Our experimental results on eight datasets with varying degrees of homophily underscore the effectiveness of our method. HLA-GNN achieves a 12.69% \u223c 34.19% improvement on low-homophily graphs, while maintaining competitive results in homophilous settings."
+  },
+  {
+    "title": "Both Homophily and Heterophily Matter: Bi-Path Aware Graph Neural Network for Ethereum Account Classification",
+    "year": 2023,
+    "cited": 8,
+    "doi": "https://doi.org/10.1109/jetcas.2023.3295501",
+    "type": "article",
+    "venue": "IEEE Journal on Emerging and Selected Topics in Circuits and Systems",
+    "oa_url": null,
+    "authors": [
+      "Han Yang",
+      "Junyuan Fang",
+      "Jiajing Wu",
+      "Zibin Zheng"
+    ],
+    "abstract": "In recent years, the cryptocurrency market has been booming with an ever-increasing market capitalization. However, due to the anonymity of blockchain technology, this market has become a hotbed of financial crimes. As the largest blockchain platform supporting smart contracts, financial crimes including scams and hacking frequently happen on Ethereum and have caused serious losses. Therefore, it is necessary to classify Ethereum accounts in order to better identify those involved in illegal transactions and analyze the behavior patterns of different classes of accounts. In this paper, we construct an Ethereum transaction network based on transaction records and find that this network is with heterophily. However, most of the current work on account classification ignores the role of this heterophily information. We first figure out that the heterophily information of the neighborhood may also be beneficial for the final predictions. Based on this, we propose a new graph neural network (GNN) model, named BPA-GNN, which incorporates both homophilic and heterophilic information into the neighborhood aggregations. Specifically, BPA-GNN consists of three main modules including bi-path neighbor sampling, separated neighborhood aggregation, and attention-based node representation learning. Comprehensive experiments on a real Ethereum transaction dataset demonstrate the state-of-the-art performance of BPA-GNN, showing that the model can effectively extract and utilize neighborhood information to improve the distinguishability of node representations. As an effective solution for Ethereum account de-anonymization, BPA-GNN can help identify illegal activities and promote the healthy development of the Ethereum ecosystem."
+  },
+  {
+    "title": "LG-GNN: Local-Global Adaptive Graph Neural Network for Modeling Both Homophily and Heterophily",
+    "year": 2024,
+    "cited": 7,
+    "doi": "https://doi.org/10.24963/ijcai.2024/278",
+    "type": "conference-paper",
+    "venue": null,
+    "oa_url": "https://www.ijcai.org/proceedings/2024/0278.pdf",
+    "authors": [
+      "Zhizhi Yu",
+      "Bin Feng",
+      "Dongxiao He",
+      "Zizhen Wang",
+      "Yuxiao Huang",
+      "Zhiyong Feng"
+    ],
+    "abstract": "Most Graph Neural Networks (GNNs) are based on the homophily assumption, where nodes with the same labels or similar features tend to be connected to each other. However, real-world graphs often do not adhere to this homophily assumption. Currently, most researches aggregate multi-hop neighbor information to discover more potentially relevant nodes. However, in the aggregation process of GNNs, the difference in modeling global and local information is not considered, inevitably leading to information loss. Motivated by this limitation, we propose LG-GNN, a local-global adaptive graph neural network for modeling both homophily and heterophily. Specifically, we model the long-range structural similarity and local feature similarity between nodes from global and local perspectives, in order to capture distant dependencies in highly heterophilic networks while reducing the mixing of locally dissimilar feature nodes, thereby increasing the effectiveness of information aggregation in highly heterophilic graphs. Extensive experiments on a wide range of real-world datasets demonstrate that our proposed approach performs well in both heterophilic and homophilic graphs."
+  },
+  {
+    "title": "What Is Missing For Graph Homophily? Disentangling Graph Homophily For Graph Neural Networks",
+    "year": 2024,
+    "cited": 6,
+    "doi": "https://doi.org/10.52202/079017-2185",
+    "type": "conference-paper",
+    "venue": null,
+    "oa_url": null,
+    "authors": [
+      "Yilun Zheng",
+      "Sitao Luan",
+      "Lihui Chen"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "When Do Graph Neural Networks Help with Node Classification? Investigating the Homophily Principle on Node Distinguishability",
+    "year": 2023,
+    "cited": 6,
+    "doi": "https://doi.org/10.52202/075280-1251",
+    "type": "conference-paper",
+    "venue": null,
+    "oa_url": null,
+    "authors": [
+      "Sitao Luan",
+      "Chenqing Hua",
+      "Minkai Xu",
+      "Qincheng Lu",
+      "Jiaqi Zhu",
+      "Xiao-Wen Chang",
+      "Jie Fu",
+      "Jure Leskovec",
+      "Doina Precup"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "Fusing beyond homophily and low-frequency information in graph neural networks",
+    "year": 2025,
+    "cited": 5,
+    "doi": "https://doi.org/10.1016/j.neucom.2025.131332",
+    "type": "article",
+    "venue": "Neurocomputing",
+    "oa_url": null,
+    "authors": [
+      "Yangcai Xie",
+      "Jiecheng Li",
+      "Wenzhen Zhang",
+      "Wenzhen Zhang",
+      "Jian Wei",
+      "Guangquan Lu",
+      "Shichao Zhang"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "VR-GNN: variational relation vector graph neural network for modeling homophily and heterophily",
+    "year": 2024,
+    "cited": 3,
+    "doi": "https://doi.org/10.1007/s11280-024-01261-8",
+    "type": "article",
+    "venue": "World Wide Web",
+    "oa_url": "https://hdl.handle.net/10072/432072",
+    "authors": [
+      "Fengzhao Shi",
+      "Yanan Cao",
+      "Ren Li",
+      "Xixun Lin",
+      "Yanmin Shang",
+      "Chuan De Zhou",
+      "Jia Xin Wu",
+      "Shirui Pan"
+    ],
+    "abstract": ""
+  }
+]

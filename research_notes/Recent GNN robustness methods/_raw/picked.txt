@@ -1,0 +1,154 @@
+============================================================
+FR-GNN: Mitigating the Impact of Distribution Shift on Graph Neural Networks via Test-Time Feature Reconstruction
+2024 c=4 IEEE Internet of Things Journal
+Rui Ding; Jielong Yang; Feng Quan Ji; Xionghu Zhong; Linbo Xie
+https://doi.org/10.1109/jiot.2024.3385292
+None
+Due to inappropriate sample selection and limited training data, a distribution shift often exists between the training and test sets. This shift can adversely affect the test performance of graph neural networks (GNNs). Existing approaches mitigate this issue by either enhancing the robustness of GNNs to distribution shift or reducing the shift itself. However, both approaches necessitate retraining the model, which becomes unfeasible when the model structure and parameters are inaccessible. To address this challenge, we propose FR-GNN, a general framework for GNNs to conduct feature reconstruction. FR-GNN constructs a mapping relationship between the output and input of a well-trained GNN to obtain class representative embeddings and then uses these embeddings to reconstruct the features of labeled nodes. These reconstructed features are then incorporated into the message passing mechanism of GNNs to influence the predictions of unlabeled nodes at test time. Notably, the reconstructed node features can be directly utilized for testing the well-trained model, effectively reducing the distribution shift and leading to improved test performance. This remarkable achievement is attained without any modifications to the model structure or parameters. We provide theoretical guarantees for the effectiveness of our framework. Furthermore, we conduct comprehensive experiments on various public data sets. The experimental results demonstrate the superior performance of FR-GNN in comparison to multiple categories of baseline methods.
+============================================================
+FRGNN: Mitigating the Impact of Distribution Shift on Graph Neural Networks via Test-Time Feature Reconstruction
+2023 c=0 arXiv (Cornell University)
+Rui Ding; Jielong Yang; Feng Ji; Xionghu Zhong; Linbo Xie
+https://doi.org/10.48550/arxiv.2308.09259
+https://arxiv.org/pdf/2308.09259
+Due to inappropriate sample selection and limited training data, a distribution shift often exists between the training and test sets. This shift can adversely affect the test performance of Graph Neural Networks (GNNs). Existing approaches mitigate this issue by either enhancing the robustness of GNNs to distribution shift or reducing the shift itself. However, both approaches necessitate retraining the model, which becomes unfeasible when the model structure and parameters are inaccessible. To address this challenge, we propose FR-GNN, a general framework for GNNs to conduct feature reconstruction. FRGNN constructs a mapping relationship between the output and input of a well-trained GNN to obtain class representative embeddings and then uses these embeddings to reconstruct the features of labeled nodes. These reconstructed features are then incorporated into the message passing mechanism of GNNs to influence the predictions of unlabeled nodes at test time. Notably, the reconstructed node features can be directly utilized for testing the well-trained model, effectively reducing the distribution shift and leading to improved test performance. This remarkable achievement is attained without any modifications to the model structure or parameters. We provide theoretical guarantees for the effectiveness of our framework. Furthermore, we conduct comprehensive experiments on various public datasets. The experimental results demonstrate the superior performance of FRGNN in comparison to multiple categories of baseline methods.
+============================================================
+GraphPatcher: Mitigating Degree Bias for Graph Neural Networks via Test-time Augmentation
+2023 c=4 arXiv (Cornell University)
+Mingxuan Ju; Tong Zhao; Wenhao Yu; Neil Shah; Yanfang Ye
+https://doi.org/10.48550/arxiv.2310.00800
+https://arxiv.org/pdf/2310.00800
+Recent studies have shown that graph neural networks (GNNs) exhibit strong biases towards the node degree: they usually perform satisfactorily on high-degree nodes with rich neighbor information but struggle with low-degree nodes. Existing works tackle this problem by deriving either designated GNN architectures or training strategies specifically for low-degree nodes. Though effective, these approaches unintentionally create an artificial out-of-distribution scenario, where models mainly or even only observe low-degree nodes during the training, leading to a downgraded performance for high-degree nodes that GNNs originally perform well at. In light of this, we propose a test-time augmentation framework, namely GraphPatcher, to enhance test-time generalization of any GNNs on low-degree nodes. Specifically, GraphPatcher iteratively generates virtual nodes to patch artificially created low-degree nodes via corruptions, aiming at progressively reconstructing target GNN's predictions over a sequence of increasingly corrupted nodes. Through this scheme, GraphPatcher not only learns how to enhance low-degree nodes (when the neighborhoods are heavily corrupted) but also preserves the original superior performance of GNNs on high-degree nodes (when lightly corrupted). Additionally, GraphPatcher is model-agnostic and can also mitigate the degree bias for either self-supervised or supervised GNNs. Comprehensive experiments are conducted over seven benchmark datasets and GraphPatcher consistently enhances common GNNs' overall performance by up to 3.6% and low-degree performance by up to 6.5%, significantly outperforming state-of-the-art baselines. The source code is publicly available at https://github.com/jumxglhf/GraphPatcher.
+============================================================
+Theoretical and Empirical Insights into the Origins of Degree Bias in Graph Neural Networks
+2024 c=1 arXiv (Cornell University)
+Arjun Subramonian; Jian Li Kang; Yizhou Sun
+https://doi.org/10.48550/arxiv.2404.03139
+https://arxiv.org/pdf/2404.03139
+Graph Neural Networks (GNNs) often perform better for high-degree nodes than low-degree nodes on node classification tasks. This degree bias can reinforce social marginalization by, e.g., privileging celebrities and other high-degree actors in social networks during social and content recommendation. While researchers have proposed numerous hypotheses for why GNN degree bias occurs, we find via a survey of 38 degree bias papers that these hypotheses are often not rigorously validated, and can even be contradictory. Thus, we provide an analysis of the origins of degree bias in message-passing GNNs with different graph filters. We prove that high-degree test nodes tend to have a lower probability of misclassification regardless of how GNNs are trained. Moreover, we show that degree bias arises from a variety of factors that are associated with a node's degree (e.g., homophily of neighbors, diversity of neighbors). Furthermore, we show that during training, some GNNs may adjust their loss on low-degree nodes more slowly than on high-degree nodes; however, with sufficiently many epochs of training, message-passing GNNs can achieve their maximum possible training accuracy, which is not significantly limited by their expressive power. Throughout our analysis, we connect our findings to previously-proposed hypotheses for the origins of degree bias, supporting and unifying some while drawing doubt to others. We validate our theoretical findings on 8 common real-world networks, and based on our theoretical and empirical insights, describe a roadmap to alleviate degree bias.
+============================================================
+ES-GNN: Generalizing Graph Neural Networks Beyond Homophily With Edge Splitting
+2024 c=22 IEEE Transactions on Pattern Analysis and Machine Intelligence
+Jingwei Guo; Kaizhu Huang; Rui Zhang; Xinping Yi
+https://doi.org/10.1109/tpami.2024.3459932
+https://arxiv.org/pdf/2205.13700
+While Graph Neural Networks (GNNs) have achieved enormous success in multiple graph analytical tasks, modern variants mostly rely on the strong inductive bias of homophily. However, real-world networks typically exhibit both homophilic and heterophilic linking patterns, wherein adjacent nodes may share dissimilar attributes and distinct labels. Therefore, GNNs smoothing node proximity holistically may aggregate both task-relevant and irrelevant (even harmful) information, limiting their ability to generalize to heterophilic graphs and potentially causing non-robustness. In this work, we propose a novel Edge Splitting GNN (ES-GNN) framework to adaptively distinguish between graph edges either relevant or irrelevant to learning tasks. This essentially transfers the original graph into two subgraphs with the same node set but complementary edge sets dynamically. Given that, information propagation separately on these subgraphs and edge splitting are alternatively conducted, thus disentangling the task-relevant and irrelevant features. Theoretically, we show that our ES-GNN can be regarded as a solution to a disentangled graph denoising problem, which further illustrates our motivations and interprets the improved generalization beyond homophily. Extensive experiments over 11 benchmark and 1 synthetic datasets not only demonstrate the effective performance of ES-GNN but also highlight its robustness to adversarial graphs and mitigation of the over-smoothing problem.
+============================================================
+PC-Conv: Unifying Homophily and Heterophily with Two-Fold Filtering
+2024 c=46 Proceedings of the AAAI Conference on Artificial Intelligence
+Bingheng Li; Erlin Pan; Zhao Kang
+https://doi.org/10.1609/aaai.v38i12.29246
+https://ojs.aaai.org/index.php/AAAI/article/download/29246/30353
+Recently, many carefully designed graph representation learning methods have achieved impressive performance on either strong heterophilic or homophilic graphs, but not both. Therefore, they are incapable of generalizing well across real-world graphs with different levels of homophily. This is attributed to their neglect of homophily in heterophilic graphs, and vice versa. In this paper, we propose a two-fold filtering mechanism to mine homophily in heterophilic graphs, and vice versa. In particular, we extend the graph heat equation to perform heterophilic aggregation of global information from a long distance. The resultant filter can be exactly approximated by the Possion-Charlier (PC) polynomials. To further exploit information at multiple orders, we introduce a powerful graph convolution PC-Conv and its instantiation PCNet for the node classification task. Compared to the state-of-the-art GNNs, PCNet shows competitive performance on well-known homophilic and heterophilic graphs. Our implementation is available at https://github.com/uestclbh/PC-Conv.
+============================================================
+Generalizing Graph Neural Networks on Out-of-Distribution Graphs
+2023 c=93 IEEE Transactions on Pattern Analysis and Machine Intelligence
+Shaohua Fan; Xiao Wang; Chuan Shi; Peng Cui; Bai Wang
+https://doi.org/10.1109/tpami.2023.3321097
+None
+Graph Neural Networks (GNNs) are proposed without considering the agnostic distribution shifts between training graphs and testing graphs, inducing the degeneration of the generalization ability of GNNs in Out-Of-Distribution (OOD) settings. The fundamental reason for such degeneration is that most GNNs are developed based on the I.I.D hypothesis. In such a setting, GNNs tend to exploit subtle statistical correlations existing in the training set for predictions, even though it is a spurious correlation. This learning mechanism inherits from the common characteristics of machine learning approaches. However, such spurious correlations may change in the wild testing environments, leading to the failure of GNNs. Therefore, eliminating the impact of spurious correlations is crucial for stable GNN models. To this end, in this paper, we argue that the spurious correlation exists among subgraph-level units and analyze the degeneration of GNN in causal view. Based on the causal view analysis, we propose a general causal representation framework for stable GNN, called StableGNN. The main idea of this framework is to extract high-level representations from raw graph data first and resort to the distinguishing ability of causal inference to help the model get rid of spurious correlations. Particularly, to extract meaningful high-level representations, we exploit a differentiable graph pooling layer to extract subgraph-based representations by an end-to-end manner. Furthermore, inspired by the confounder balancing techniques from causal inference, based on the learned high-level representations, we propose a causal variable distinguishing regularizer to correct the biased training distribution by learning a set of sample weights. Hence, GNNs would concentrate more on the true connection between discriminative substructures and labels. Extensive experiments are conducted on both synthetic datasets with various distribution shift degrees and eight real-world OOD graph datasets. The results well verify that the proposed model StableGNN not only outperforms the state-of-the-arts but also provides a flexible framework to enhance existing GNNs. In addition, the interpretability experiments validate that StableGNN could leverage causal structures for predictions.
+============================================================
+A Brief Survey of Distribution Robust Graph Neural Networks
+2024 c=1 Procedia Computer Science
+Lei Zheng; Pei Quan; Yong Shi; Lingfeng Niu
+https://doi.org/10.1016/j.procs.2024.08.140
+https://doi.org/10.1016/j.procs.2024.08.140
+[none]
+============================================================
+Energy-based Out-of-Distribution Detection for Graph Neural Networks
+2023 c=8 arXiv (Cornell University)
+Qitian Wu; Yi-Ting Chen; Chenxiao Yang; Junchi Yan
+https://doi.org/10.48550/arxiv.2302.02914
+https://arxiv.org/pdf/2302.02914
+Learning on graphs, where instance nodes are inter-connected, has become one of the central problems for deep learning, as relational structures are pervasive and induce data inter-dependence which hinders trivial adaptation of existing approaches that assume inputs to be i.i.d.~sampled. However, current models mostly focus on improving testing performance of in-distribution data and largely ignore the potential risk w.r.t. out-of-distribution (OOD) testing samples that may cause negative outcome if the prediction is overconfident on them. In this paper, we investigate the under-explored problem, OOD detection on graph-structured data, and identify a provably effective OOD discriminator based on an energy function directly extracted from graph neural networks trained with standard classification loss. This paves a way for a simple, powerful and efficient OOD detection model for GNN-based learning on graphs, which we call GNNSafe. It also has nice theoretical properties that guarantee an overall distinguishable margin between the detection scores for in-distribution and OOD samples, which, more critically, can be further strengthened by a learning-free energy belief propagation scheme. For comprehensive evaluation, we introduce new benchmark settings that evaluate the model for detecting OOD data from both synthetic and real distribution shifts (cross-domain graph shifts and temporal graph shifts). The results show that GNNSafe achieves up to $17.0\%$ AUROC improvement over state-of-the-arts and it could serve as simple yet strong baselines in such an under-developed area.
+============================================================
+SSGNN: Simple siamese graph neural networks for out-of-distribution generalization
+2025 c=2 Knowledge-Based Systems
+Seyedeh Hamideh Erfani; Mohammad Javad Fadaeieslam; Reza Mortazavi; Mohammad Rahmanimanesh
+https://doi.org/10.1016/j.knosys.2025.114290
+None
+[none]
+============================================================
+When does distribution shift break graph neural networks calibration?
+2026 c=0 arXiv (Cornell University)
+Abderaouf Bahi
+https://doi.org/10.48550/arxiv.2607.10804
+https://arxiv.org/pdf/2607.10804
+Graph neural networks (GNNs) are increasingly deployed in real-world applications where distribution shift is un-avoidable. However, how such shifts affect model calibration, defined as the agreement between predictive confidence and actual accuracy, remains poorly understood, and existing graph calibration methods typically rely on labeled validation data from the deployment distribution. In this work, I present the first closed-form theoretical characterization of GNN calibration under distribution shift. I show that calibration is governed by a single scalar quantity that explicitly depends on structural changes between the source and target graphs, as well as feature quality. This characterization precisely identifies when a model becomes over-confident, under-confident, or remains calibrated, and directly yields the optimal temperature scaling strategy. I further extend the analysis to graph convolutional networks with symmetric normalization, multi-class classification, and covariate shift, and derive a theoretical upper bound on the expected calibration error. My analysis also reveals that, under homogeneous distribution shift, a single global temperature is theoretically optimal, providing a principled explanation for why more complex node-wise recalibration methods offer no additional benefit. Building on these theoretical insights, I propose STAC, a source-free, label-free calibration method. Experiments on synthetic benchmarks demonstrate substantial calibration improvements, while evaluations on five real-world graph datasets show that reliable calibration without target labels remains challenging despite the strong predictive power of the theory.
+============================================================
+MaxEnt Loss: Calibrating Graph Neural Networks under Out-of-Distribution Shift (Student Abstract)
+2024 c=1 Proceedings of the AAAI Conference on Artificial Intelligence
+Dexter Neo
+https://doi.org/10.1609/aaai.v38i21.30487
+https://ojs.aaai.org/index.php/AAAI/article/download/30487/32609
+We present a new, simple and effective loss function for calibrating graph neural networks (GNNs). Miscalibration is the problem whereby a model's probabilities does not reflect it's correctness, making it difficult and possibly dangerous for real-world deployment. We compare our method against other baselines on a novel ID and OOD graph form of the Celeb-A faces dataset. Our findings show that our method improves calibration for GNNs, which are not immune to miscalibration in-distribution (ID) and out-of-distribution (OOD). Our code is available for review at https://github.com/dexterdley/CS6208/tree/main/Project.
+============================================================
+COIN-GNN: Inductive Spatial-Temporal Prediction for Continuous Distribution Shifts via Graph Neural Networks
+2025 c=2 IEEE Transactions on Knowledge and Data Engineering
+Jialun Zheng; Divya Saxena; Jiannong Cao
+https://doi.org/10.1109/tkde.2025.3606629
+None
+Distribution shifts from external events and new entities can significantly compromise spatial-temporal prediction accuracy, potentially leading to severe outcomes like traffic accidents. Existing methods often fail under these conditions due to two main limitations: they focus on invariant patterns, missing the diversity required to capture the evolving dynamics of distribution shifts; they rely on often inaccessible future knowledge, such as spatial information of new entities, limiting their generalizability. To address these limitations, we formally define the problem of inductive spatial-temporal prediction under continuous distribution shifts and introduce the Contrastive Learning Based Inductive Graph Neural Network (COIN-GNN) as a solution. We develop a novel metric, Relation Importance (RI), to effectively select stable entities and distinct spatial relationships, forming an informative subgraph. Additionally, we construct an informative temporal memory buffer to store and review influential timestamps identified using influence functions. COIN-GNN then generates pseudo-observations for unstable and uninformative entities during these influential timestamps, simulating potential distribution shifts. By applying contrastive learning, the network learns stable and informative representations that can effectively counter distribution shifts without relying on future knowledge. Our extensive experiments on several real-world datasets—from traffic to weather—demonstrate COIN-GNN’s superior performance across different domains without requiring future knowledge.
+============================================================
+Distribution Matching for Graph Quantification Under Structural Covariate Shift
+2025 c=1 Lecture notes in computer science
+Clemens Damke; Eyke Hüllermeier
+https://doi.org/10.1007/978-3-032-05981-9_24
+https://arxiv.org/pdf/2601.00864
+[none]
+============================================================
+Evaluating Robustness and Uncertainty of Graph Models Under Structural Distributional Shifts
+2023 c=1 arXiv (Cornell University)
+Gleb Bazhenov; Denis Kuznedelev; Andrey Malinin; Artem Babenko; Liudmila Prokhorenkova
+https://doi.org/10.48550/arxiv.2302.13875
+https://arxiv.org/pdf/2302.13875
+In reliable decision-making systems based on machine learning, models have to be robust to distributional shifts or provide the uncertainty of their predictions. In node-level problems of graph learning, distributional shifts can be especially complex since the samples are interdependent. To evaluate the performance of graph models, it is important to test them on diverse and meaningful distributional shifts. However, most graph benchmarks considering distributional shifts for node-level problems focus mainly on node features, while structural properties are also essential for graph problems. In this work, we propose a general approach for inducing diverse distributional shifts based on graph structure. We use this approach to create data splits according to several structural node properties: popularity, locality, and density. In our experiments, we thoroughly evaluate the proposed distributional shifts and show that they can be quite challenging for existing graph models. We also reveal that simple models often outperform more sophisticated methods on the considered structural shifts. Finally, our experiments provide evidence that there is a trade-off between the quality of learned representations for the base classification task under structural distributional shift and the ability to separate the nodes from different distributions using these representations.
+============================================================
+What Is Missing For Graph Homophily? Disentangling Graph Homophily For Graph Neural Networks
+2024 c=6 None
+Yilun Zheng; Sitao Luan; Lihui Chen
+https://doi.org/10.52202/079017-2185
+None
+[none]
+============================================================
+Unifying Homophily and Heterophily for Spectral Graph Neural Networks via Triple Filter Ensembles
+2024 c=9 None
+Rui Duan; Mingjian Guang; Junli Wang; Chungang Yan; Hongda Qi; Wenkang Su; Chungang Yan; Haoran Yang
+https://doi.org/10.52202/079017-2966
+None
+[none]
+============================================================
+Robust graph structure learning under heterophily
+2025 c=19 Neural Networks
+Xuanting Xie; Wenyu Chen; Zhao Kang
+https://doi.org/10.1016/j.neunet.2025.107206
+None
+[none]
+============================================================
+DCGNN: Adaptive deep graph convolution for heterophily graphs
+2024 c=10 Information Sciences
+Yang Wu; Yu Wang; Liang Qing Hu; Juncheng Hu
+https://doi.org/10.1016/j.ins.2024.120427
+None
+[none]
+============================================================
+Grace: Graph Self-Distillation and Completion to Mitigate Degree-Related Biases
+2023 c=8 None
+Hui Xu; Liyao Xiang; Femke Huang; Yuting Weng; Ruijie Xu; Xinbing Wang; Chenghu Zhou
+https://doi.org/10.1145/3580305.3599368
+https://dl.acm.org/doi/pdf/10.1145/3580305.3599368
+Due to the universality of graph data, node classification shows its great importance in a wide range of real-world applications. Despite the successes of Graph Neural Networks (GNNs), GNN based methods rely heavily on rich connections and perform poorly on low-degree nodes. Since many real-world graphs follow a long-tailed distribution in node degrees, they suffer from a substantial performance bottleneck as a significant fraction of nodes is of low degree. In this paper, we point out that under-represented self-representations and low neighborhood homophily ratio of low-degree nodes are two main culprits. Based on that, we propose a novel method Grace which improves the node representation by self-distillation, and increases neighborhood homophily ratio of low-degree nodes by graph completion. To avoid error propagation of graph completion, label propagation is further leveraged. Experimental evidence has shown that our method well supports real-world graphs, and is superior in balancing degree-related bias and overall performance on node classification tasks.
+============================================================
+Mitigating Degree Bias in Graph Representation Learning With Learnable Structural Augmentation and Structural Self-Attention
+2025 c=5 IEEE Transactions on Network Science and Engineering
+Van Thuy Hoang; Hyeon-Ju Jeon; O‐Joun Lee
+https://doi.org/10.1109/tnse.2025.3563697
+None
+[none]
+============================================================
+ADEdgeDrop: Adversarial Edge Dropping for Robust Graph Neural Networks
+2025 c=16 IEEE Transactions on Knowledge and Data Engineering
+Zhaoliang Chen; Zhihao Wu; Ylli Sadikaj; Claudia Plant; Hong‐Ning Dai; Shiping Wang; Yiu-Ming Cheung; Wenzhong Guo
+https://doi.org/10.1109/tkde.2025.3586369
+None
+Although Graph Neural Networks (GNNs) have exhibited the powerful ability to gather graph-structured information from neighborhood nodes via various message-passing mechanisms, the performance of GNNs is limited by poor generalization and fragile robustness caused by noisy and redundant graph data. As a prominent solution, Graph Augmentation Learning (GAL) has recently received increasing attention in the literature. Among the existing GAL approaches, edge-dropping methods that randomly remove edges from a graph during training are effective techniques to improve the robustness of GNNs. However, randomly dropping edges often results in bypassing critical edges. Consequently, the effectiveness of message passing is weakened. In this paper, we propose a novel adversarial edge-dropping method (ADEdgeDrop) that leverages an adversarial edge predictor guiding the removal of edges, which can be flexibly incorporated into diverse GNN backbones. Employing an adversarial training framework, the edge predictor utilizes the line graph transformed from the original graph to estimate the edges to be dropped, which improves the interpretability of the edge-dropping method. The proposed ADEdgeDrop is optimized alternately by stochastic gradient descent and projected gradient descent. Comprehensive experiments on eight graph benchmark datasets demonstrate that the proposed ADEdgeDrop outperforms state-of-the-art baselines across various GNN backbones, demonstrating improved generalization and robustness.

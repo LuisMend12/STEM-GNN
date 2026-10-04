@@ -1,0 +1,422 @@
+[
+  {
+    "title": "Interpreting Black-Box Models: A Review on Explainable Artificial Intelligence",
+    "year": 2023,
+    "cited": 2066,
+    "doi": "https://doi.org/10.1007/s12559-023-10179-8",
+    "type": "article",
+    "venue": "Cognitive Computation",
+    "venue_type": "journal",
+    "oa_url": "https://link.springer.com/content/pdf/10.1007/s12559-023-10179-8.pdf",
+    "authors": [
+      "Vikas Hassija",
+      "Vinay Chamola",
+      "Atmesh Mahapatra",
+      "Abhinandan Singal",
+      "Divyansh Goel",
+      "Kaizhu Huang",
+      "Simone Scardapane",
+      "Indro Spinelli",
+      "Mufti Mahmud",
+      "Amir Hussain"
+    ],
+    "abstract": "Abstract Recent years have seen a tremendous growth in Artificial Intelligence (AI)-based methodological development in a broad range of domains. In this rapidly evolving field, large number of methods are being reported using machine learning (ML) and Deep Learning (DL) models. Majority of these models are inherently complex and lacks explanations of the decision making process causing these models to be termed as 'Black-Box'. One of the major bottlenecks to adopt such models in mission-critical application domains, such as banking, e-commerce, healthcare, and public services and safety, is the difficulty in interpreting them. Due to the rapid proleferation of these AI models, explaining their learning and decision making process are getting harder which require transparency and easy predictability. Aiming to collate the current state-of-the-art in interpreting the black-box models, this study provides a comprehensive analysis of the explainable AI (XAI) models. To reduce false negative and false positive outcomes of these back-box models, finding flaws in them is still difficult and inefficient. In this paper, the development of XAI is reviewed meticulously through careful selection and analysis of the current state-of-the-art of XAI research. It also provides a comprehensive and in-depth evaluation of the XAI frameworks and their efficacy to serve as a starting point of XAI for applied and theoretical researchers. Towards the end, it highlights emerging and critical issues pertaining to XAI research to showcase major, model-specific trends for better explanation, enhance"
+  },
+  {
+    "title": "A Survey of Large Language Models",
+    "year": 2026,
+    "cited": 1567,
+    "doi": "https://doi.org/10.1007/s11704-026-60308-3",
+    "type": "article",
+    "venue": "Frontiers of Computer Science",
+    "venue_type": "journal",
+    "oa_url": "https://link.springer.com/content/pdf/10.1007/s11704-026-60308-3.pdf",
+    "authors": [
+      "Wayne Xin Zhao",
+      "Kun Zhou",
+      "Junyi Li",
+      "Tianyi Tang",
+      "Zican Dong",
+      "Yupeng Hou",
+      "Beichen Zhang",
+      "Yingqian Min",
+      "Junjie Zhang",
+      "Peiyu Liu",
+      "Xiaolei Wang",
+      "Yifan Du"
+    ],
+    "abstract": "Abstract The rapid evolution of large language models (LLMs) has driven a transformative shift in artificial intelligence (AI), reshaping both research paradigms and practical applications. Distinguished from their predecessors by unprecedented scale and advanced capabilities, LLMs necessitate new frameworks for understanding their development, behavior, and societal impact. This survey systematically reviews recent advancements in LLM techniques across four key dimensions: (1) pre-training methodologies, which establish core model capabilities through large-scale self-supervised training, architectural innovations, and data curation strategies; (2) post-training techniques, including supervised fine-tuning and reinforcement learning, which adapt foundational models to downstream tasks and enhance their alignment and safety; (3) utilization strategies, such as in-context learning, prompt engineering, and agentic reasoning, that optimize real-world deployment and enable effective interaction with external environments; and (4) evaluation methods, encompassing benchmarks for key ability dimensions such as core language capabilities, reasoning, and safety, which support comprehensive and reliable assessment of model performance. Additionally, we identify critical research issues, including those concerning theoretical foundations, efficient scaling, alignment, and agentic capability, and highlight the open challenges they present. By synthesizing state-of-the-art insights and emerging trends, this survey aims to provide a systematic and comprehensive framework for understandin"
+  },
+  {
+    "title": "Diffusion Models: A Comprehensive Survey of Methods and Applications",
+    "year": 2023,
+    "cited": 1563,
+    "doi": "https://doi.org/10.1145/3626235",
+    "type": "article",
+    "venue": "ACM Computing Surveys",
+    "venue_type": "journal",
+    "oa_url": "https://dl.acm.org/doi/pdf/10.1145/3626235",
+    "authors": [
+      "Ling Qiang Yang",
+      "Zhilong Zhang",
+      "Yang Song",
+      "Shenda Hong",
+      "Runsheng Xu",
+      "Yue Zhao",
+      "Wentao Zhang",
+      "Bin Cui",
+      "Ming\u2013Hsuan Yang"
+    ],
+    "abstract": "Diffusion models have emerged as a powerful new family of deep generative models with record-breaking performance in many applications, including image synthesis, video generation, and molecule design. In this survey, we provide an overview of the rapidly expanding body of work on diffusion models, categorizing the research into three key areas: efficient sampling, improved likelihood estimation, and handling data with special structures. We also discuss the potential for combining diffusion models with other generative models for enhanced results. We further review the wide-ranging applications of diffusion models in fields spanning from computer vision, natural language processing, temporal data modeling, to interdisciplinary applications in other scientific disciplines. This survey aims to provide a contextualized, in-depth look at the state of diffusion models, identifying the key areas of focus and pointing to potential areas for further exploration. Github: https://github.com/YangLing0818/Diffusion-Models-Papers-Survey-Taxonomy"
+  },
+  {
+    "title": "A survey of uncertainty in deep neural networks",
+    "year": 2023,
+    "cited": 1404,
+    "doi": "https://doi.org/10.1007/s10462-023-10562-9",
+    "type": "article",
+    "venue": "Artificial Intelligence Review",
+    "venue_type": "journal",
+    "oa_url": "https://link.springer.com/content/pdf/10.1007/s10462-023-10562-9.pdf",
+    "authors": [
+      "Jakob Gawlikowski",
+      "Cedrique Rovile Njieutcheu Tassi",
+      "Mohsin Ali",
+      "Jong\u2010Seok Lee",
+      "Matthias Humt",
+      "Jianxiang Feng",
+      "Anna Kruspe",
+      "Rudolph Triebel",
+      "Peter Jung",
+      "Ribana Roscher",
+      "Muhammad Shahzad",
+      "Wen Chuan Yang"
+    ],
+    "abstract": "Abstract Over the last decade, neural networks have reached almost every field of science and become a crucial part of various real world applications. Due to the increasing spread, confidence in neural network predictions has become more and more important. However, basic neural networks do not deliver certainty estimates or suffer from over- or under-confidence, i.e. are badly calibrated. To overcome this, many researchers have been working on understanding and quantifying uncertainty in a neural network\u2019s prediction. As a result, different types and sources of uncertainty have been identified and various approaches to measure and quantify uncertainty in neural networks have been proposed. This work gives a comprehensive overview of uncertainty estimation in neural networks, reviews recent advances in the field, highlights current challenges, and identifies potential research opportunities. It is intended to give anyone interested in uncertainty estimation in neural networks a broad overview and introduction, without presupposing prior knowledge in this field. For that, a comprehensive introduction to the most crucial sources of uncertainty is given and their separation into reducible model uncertainty and irreducible data uncertainty is presented. The modeling of these uncertainties based on deterministic neural networks, Bayesian neural networks (BNNs), ensemble of neural networks, and test-time data augmentation approaches is introduced and different branches of these fields as well as the latest developments are discussed. For a practical application, we discuss diffe"
+  },
+  {
+    "title": "Recent Advances in Natural Language Processing via Large Pre-trained Language Models: A Survey",
+    "year": 2023,
+    "cited": 1302,
+    "doi": "https://doi.org/10.1145/3605943",
+    "type": "article",
+    "venue": "ACM Computing Surveys",
+    "venue_type": "journal",
+    "oa_url": "https://dl.acm.org/doi/pdf/10.1145/3605943",
+    "authors": [
+      "Bonan Min",
+      "Hayley Ross",
+      "Elior Sulem",
+      "Amir Pouran Ben Veyseh",
+      "Thien Huu Nguyen",
+      "Oscar Sainz",
+      "Eneko Agirre",
+      "Ilana Heintz",
+      "Dan Roth"
+    ],
+    "abstract": "Large, pre-trained language models (PLMs) such as BERT and GPT have drastically changed the Natural Language Processing (NLP) field. For numerous NLP tasks, approaches leveraging PLMs have achieved state-of-the-art performance. The key idea is to learn a generic, latent representation of language from a generic task once, then share it across disparate NLP tasks. Language modeling serves as the generic task, one with abundant self-supervised text available for extensive training. This article presents the key fundamental concepts of PLM architectures and a comprehensive view of the shift to PLM-driven NLP techniques. It surveys work applying the pre-training then fine-tuning, prompting, and text generation approaches. In addition, it discusses PLM limitations and suggested directions for future research."
+  },
+  {
+    "title": "Best practices for single-cell analysis across modalities",
+    "year": 2023,
+    "cited": 1152,
+    "doi": "https://doi.org/10.1038/s41576-023-00586-w",
+    "type": "review",
+    "venue": "Nature Reviews Genetics",
+    "venue_type": "journal",
+    "oa_url": "https://www.nature.com/articles/s41576-023-00586-w.pdf",
+    "authors": [
+      "Lukas Heumos",
+      "Anna Christina Schaar",
+      "Christopher Lance",
+      "Anastasia Litinetskaya",
+      "Felix Drost",
+      "Luke Zappia",
+      "Malte D. Luecken",
+      "Daniel C. Strobl",
+      "Juan Henao",
+      "Fabiola Curion",
+      "Hananeh Aliee",
+      "Meshal Ansari"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "Deep learning modelling techniques: current progress, applications, advantages, and challenges",
+    "year": 2023,
+    "cited": 1068,
+    "doi": "https://doi.org/10.1007/s10462-023-10466-8",
+    "type": "article",
+    "venue": "Artificial Intelligence Review",
+    "venue_type": "journal",
+    "oa_url": "https://link.springer.com/content/pdf/10.1007/s10462-023-10466-8.pdf",
+    "authors": [
+      "Shams Forruque Ahmed",
+      "Md. Sakib Bin Alam",
+      "Maruf Hassan",
+      "Mahtabin Rodela Rozbu",
+      "Taoseef Ishtiak",
+      "Nazifa Rafa",
+      "M. Mofijur",
+      "A. B. M. Shawkat Ali",
+      "Amir H. Gandomi"
+    ],
+    "abstract": "Abstract Deep learning (DL) is revolutionizing evidence-based decision-making techniques that can be applied across various sectors. Specifically, it possesses the ability to utilize two or more levels of non-linear feature transformation of the given data via representation learning in order to overcome limitations posed by large datasets. As a multidisciplinary field that is still in its nascent phase, articles that survey DL architectures encompassing the full scope of the field are rather limited. Thus, this paper comprehensively reviews the state-of-art DL modelling techniques and provides insights into their advantages and challenges. It was found that many of the models exhibit a highly domain-specific efficiency and could be trained by two or more methods. However, training DL models can be very time-consuming, expensive, and requires huge samples for better accuracy. Since DL is also susceptible to deception and misclassification and tends to get stuck on local minima, improved optimization of parameters is required to create more robust models. Regardless, DL has already been leading to groundbreaking results in the healthcare, education, security, commercial, industrial, as well as government sectors. Some models, like the convolutional neural network (CNN), generative adversarial networks (GAN), recurrent neural network (RNN), recursive neural networks, and autoencoders, are frequently used, while the potential of other models remains widely unexplored. Pertinently, hybrid conventional DL architectures have the capacity to overcome the challenges experienced by "
+  },
+  {
+    "title": "Multimodal Learning With Transformers: A Survey",
+    "year": 2023,
+    "cited": 988,
+    "doi": "https://doi.org/10.1109/tpami.2023.3275156",
+    "type": "article",
+    "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+    "venue_type": "journal",
+    "oa_url": "https://ieeexplore.ieee.org/ielx7/34/4359286/10123038.pdf",
+    "authors": [
+      "Peng Xu",
+      "Xiatian Zhu",
+      "David Andrew Clifton"
+    ],
+    "abstract": "Transformer is a promising neural network learner, and has achieved great success in various machine learning tasks. Thanks to the recent prevalence of multimodal applications and Big Data, Transformer-based multimodal learning has become a hot topic in AI research. This paper presents a comprehensive survey of Transformer techniques oriented at multimodal data. The main contents of this survey include: (1) a background of multimodal learning, Transformer ecosystem, and the multimodal Big Data era, (2) a systematic review of Vanilla Transformer, Vision Transformer, and multimodal Transformers, from a geometrically topological perspective, (3) a review of multimodal Transformer applications, via two important paradigms, i.e., for multimodal pretraining and for specific multimodal tasks, (4) a summary of the common challenges and designs shared by the multimodal Transformer models and applications, and (5) a discussion of open problems and potential research directions for the community."
+  },
+  {
+    "title": "Accurate predictions on small data with a tabular foundation model",
+    "year": 2025,
+    "cited": 967,
+    "doi": "https://doi.org/10.1038/s41586-024-08328-6",
+    "type": "article",
+    "venue": "Nature",
+    "venue_type": "journal",
+    "oa_url": "https://www.nature.com/articles/s41586-024-08328-6.pdf",
+    "authors": [
+      "Noah Hollmann",
+      "Samuel M\u00fcller",
+      "Lennart Purucker",
+      "Arjun Krishnakumar",
+      "Max K\u00f6rfer",
+      "Shi Bin Hoo",
+      "Robin Tibor Schirrmeister",
+      "Frank Hutter"
+    ],
+    "abstract": "Abstract Tabular data, spreadsheets organized in rows and columns, are ubiquitous across scientific fields, from biomedicine to particle physics to economics and climate science 1,2 . The fundamental prediction task of filling in missing values of a label column based on the rest of the columns is essential for various applications as diverse as biomedical risk models, drug discovery and materials science. Although deep learning has revolutionized learning from raw data and led to numerous high-profile success stories 3\u20135 , gradient-boosted decision trees 6\u20139 have dominated tabular data for the past 20 years. Here we present the Tabular Prior-data Fitted Network (TabPFN), a tabular foundation model that outperforms all previous methods on datasets with up to 10,000 samples by a wide margin, using substantially less training time. In 2.8 s, TabPFN outperforms an ensemble of the strongest baselines tuned for 4 h in a classification setting. As a generative transformer-based foundation model, this model also allows fine-tuning, data generation, density estimation and learning reusable embeddings. TabPFN is a learning algorithm that is itself learned across millions of synthetic datasets, demonstrating the power of this approach for algorithm development. By improving modelling abilities across diverse fields, TabPFN has the potential to accelerate scientific discovery and enhance important decision-making in various domains."
+  },
+  {
+    "title": "Adaptive Learning Using Artificial Intelligence in e-Learning: A Literature Review",
+    "year": 2023,
+    "cited": 947,
+    "doi": "https://doi.org/10.3390/educsci13121216",
+    "type": "article",
+    "venue": "Education Sciences",
+    "venue_type": "journal",
+    "oa_url": "https://www.mdpi.com/2227-7102/13/12/1216/pdf?version=1701879185",
+    "authors": [
+      "Ilie Gligorea",
+      "Marius Cioca",
+      "Romana Oancea",
+      "Andra-Teodora Gorski",
+      "Hortensia Gorski",
+      "Paul Tudorache"
+    ],
+    "abstract": "The rapid evolution of e-learning platforms, propelled by advancements in artificial intelligence (AI) and machine learning (ML), presents a transformative potential in education. This dynamic landscape necessitates an exploration of AI/ML integration in adaptive learning systems to enhance educational outcomes. This study aims to map the current utilization of AI/ML in e-learning for adaptive learning, elucidating the benefits and challenges of such integration and assessing its impact on student engagement, retention, and performance. A comprehensive literature review was conducted, focusing on articles published from 2010 onwards, to document the integration of AI/ML in e-learning. The review analyzed 63 articles, employing a systematic approach to evaluate the deployment of adaptive learning algorithms and their educational implications. Findings reveal that AI/ML algorithms are instrumental in personalizing learning experiences. These technologies have been shown to optimize learning paths, enhance engagement, and improve academic performance, with some studies reporting increased test scores. The integration of AI/ML in e-learning platforms significantly contributes to the personalization and effectiveness of the educational process. Despite challenges like data privacy and the complexity of AI/ML systems, the results underscore the potential of adaptive learning to revolutionize education by catering to individual learner needs."
+  },
+  {
+    "title": "20 years of the default mode network: A review and synthesis",
+    "year": 2023,
+    "cited": 943,
+    "doi": "https://doi.org/10.1016/j.neuron.2023.04.023",
+    "type": "article",
+    "venue": "Neuron",
+    "venue_type": "journal",
+    "oa_url": "http://www.cell.com/article/S0896627323003082/pdf",
+    "authors": [
+      "Vinod Menon"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "Hyperparameter optimization: Foundations, algorithms, best practices, and open challenges",
+    "year": 2023,
+    "cited": 930,
+    "doi": "https://doi.org/10.1002/widm.1484",
+    "type": "article",
+    "venue": "Wiley Interdisciplinary Reviews Data Mining and Knowledge Discovery",
+    "venue_type": "journal",
+    "oa_url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/widm.1484",
+    "authors": [
+      "Bernd Bischl",
+      "Martin Binder",
+      "Michel Lang",
+      "Tobias Pielok",
+      "Jakob Richter",
+      "Stefan Coors",
+      "Janek Thomas",
+      "Theresa Ullmann",
+      "Marc Becker",
+      "Anne\u2010Laure Boulesteix",
+      "Difan Deng",
+      "Marius Lindauer"
+    ],
+    "abstract": "Abstract Most machine learning algorithms are configured by a set of hyperparameters whose values must be carefully chosen and which often considerably impact performance. To avoid a time\u2010consuming and irreproducible manual process of trial\u2010and\u2010error to find well\u2010performing hyperparameter configurations, various automatic hyperparameter optimization (HPO) methods\u2014for example, based on resampling error estimation for supervised machine learning\u2014can be employed. After introducing HPO from a general perspective, this paper reviews important HPO methods, from simple techniques such as grid or random search to more advanced methods like evolution strategies, Bayesian optimization, Hyperband, and racing. This work gives practical recommendations regarding important choices to be made when conducting HPO, including the HPO algorithms themselves, performance evaluation, how to combine HPO with machine learning pipelines, runtime improvements, and parallelization. This article is categorized under: Algorithmic Development > Statistics Technologies > Machine Learning Technologies > Prediction"
+  },
+  {
+    "title": "A survey on deep learning tools dealing with data scarcity: definitions, challenges, solutions, tips, and applications",
+    "year": 2023,
+    "cited": 904,
+    "doi": "https://doi.org/10.1186/s40537-023-00727-2",
+    "type": "article",
+    "venue": "Journal Of Big Data",
+    "venue_type": "journal",
+    "oa_url": "https://journalofbigdata.springeropen.com/counter/pdf/10.1186/s40537-023-00727-2",
+    "authors": [
+      "Laith Alzubaidi",
+      "Jinshuai Bai",
+      "Aiman Al-Sabaawi",
+      "Jos\u00e9 Santamar\u00eda",
+      "Ahmed Shihab Albahri",
+      "Bashar Sami Nayyef Al-dabbagh",
+      "Mohammed Abdulraheem Fadhel",
+      "Mohamed Manoufali",
+      "Jinglan Zhang",
+      "Ali Hussein Al-Timemy",
+      "Ye Duan",
+      "Amjed A. Abdullah"
+    ],
+    "abstract": "Abstract Data scarcity is a major challenge when training deep learning (DL) models. DL demands a large amount of data to achieve exceptional performance. Unfortunately, many applications have small or inadequate data to train DL frameworks. Usually, manual labeling is needed to provide labeled data, which typically involves human annotators with a vast background of knowledge. This annotation process is costly, time-consuming, and error-prone. Usually, every DL framework is fed by a significant amount of labeled data to automatically learn representations. Ultimately, a larger amount of data would generate a better DL model and its performance is also application dependent. This issue is the main barrier for many applications dismissing the use of DL. Having sufficient data is the first step toward any successful and trustworthy DL application. This paper presents a holistic survey on state-of-the-art techniques to deal with training DL models to overcome three challenges including small, imbalanced datasets, and lack of generalization. This survey starts by listing the learning techniques. Next, the types of DL architectures are introduced. After that, state-of-the-art solutions to address the issue of lack of training data are listed, such as Transfer Learning (TL), Self-Supervised Learning (SSL), Generative Adversarial Networks (GANs), Model Architecture (MA), Physics-Informed Neural Network (PINN), and Deep Synthetic Minority Oversampling Technique (DeepSMOTE). Then, these solutions were followed by some related tips about data acquisition needed prior to training purp"
+  },
+  {
+    "title": "Random Forest Algorithm Overview",
+    "year": 2024,
+    "cited": 770,
+    "doi": "https://doi.org/10.58496/bjml/2024/007",
+    "type": "article",
+    "venue": "Babylonian Journal of Machine Learning",
+    "venue_type": "journal",
+    "oa_url": "https://journals.mesopotamian.press/index.php/BJML/article/download/417/289",
+    "authors": [
+      "Hasan Ahmed Salman",
+      "Ali Kalakech",
+      "Amani Steiti"
+    ],
+    "abstract": "A random forest is a machine learning model utilized in classification and forecasting. To train machine learning algorithms and artificial intelligence models, it is crucial to have a substantial amount of high-quality data for effective data collecting. System performance data is essential for refining algorithms, enhancing the efficiency of software and hardware, evaluating user be-havior, enabling pattern identification, decision-making, predictive modeling, and problem-solving, ultimately resulting in improved effectiveness and accuracy. The integration of diverse data collecting and processing methods enhances precision and innovation in problem-solving. Utilizing diverse methodologies in interdisciplinary research streamlines the research process, fosters innovation, and enables the application of data analysis findings to pattern recognition, decision-making, predictive modeling, and problem-solving. This approach also encourages in-novation in interdisciplinary research. This technique utilizes the concept of decision trees, con-structing a collection of decision trees and aggregating their outcomes to generate the ultimate prediction. Every decision tree inside a random forest is constructed using random subsets of data, and each individual tree is trained on a portion of the whole dataset. Subsequently, the outcomes of all decision trees are amalgamated to derive the ultimate forecast. One of the bene-fits of random forests is their capacity to handle unbalanced data and variables with missing values. Additionally, it mitigates the issue of arbitrary variable sel"
+  },
+  {
+    "title": "Retrieval-Augmented Generation for Large Language Models: A Survey",
+    "year": 2023,
+    "cited": 749,
+    "doi": "https://doi.org/10.48550/arxiv.2312.10997",
+    "type": "preprint",
+    "venue": "arXiv (Cornell University)",
+    "venue_type": "repository",
+    "oa_url": "https://arxiv.org/pdf/2312.10997",
+    "authors": [
+      "Yunfan Gao",
+      "Yun Xiong",
+      "Xinyu Gao",
+      "Kangxiang Jia",
+      "Jinliu Pan",
+      "Yuxi Bi",
+      "Yi Qi Dai",
+      "Jiawei Sun",
+      "Wang, Meng",
+      "Wang, Haofen"
+    ],
+    "abstract": "Large Language Models (LLMs) showcase impressive capabilities but encounter challenges like hallucination, outdated knowledge, and non-transparent, untraceable reasoning processes. Retrieval-Augmented Generation (RAG) has emerged as a promising solution by incorporating knowledge from external databases. This enhances the accuracy and credibility of the generation, particularly for knowledge-intensive tasks, and allows for continuous knowledge updates and integration of domain-specific information. RAG synergistically merges LLMs' intrinsic knowledge with the vast, dynamic repositories of external databases. This comprehensive review paper offers a detailed examination of the progression of RAG paradigms, encompassing the Naive RAG, the Advanced RAG, and the Modular RAG. It meticulously scrutinizes the tripartite foundation of RAG frameworks, which includes the retrieval, the generation and the augmentation techniques. The paper highlights the state-of-the-art technologies embedded in each of these critical components, providing a profound understanding of the advancements in RAG systems. Furthermore, this paper introduces up-to-date evaluation framework and benchmark. At the end, this article delineates the challenges currently faced and points out prospective avenues for research and development."
+  },
+  {
+    "title": "A Survey of Graph Neural Networks for Recommender Systems: Challenges, Methods, and Directions",
+    "year": 2023,
+    "cited": 744,
+    "doi": "https://doi.org/10.1145/3568022",
+    "type": "article",
+    "venue": "ACM Transactions on Recommender Systems",
+    "venue_type": "journal",
+    "oa_url": "https://dl.acm.org/doi/pdf/10.1145/3568022",
+    "authors": [
+      "Chen Gao",
+      "Yu Zheng",
+      "Nian Li",
+      "Yinfeng Li",
+      "Yingrong Qin",
+      "Jinghua Piao",
+      "Yuhan Quan",
+      "Jianxin Chang",
+      "Depeng Jin",
+      "Xiangnan He",
+      "Yong Li"
+    ],
+    "abstract": "Recommender system is one of the most important information services on today\u2019s Internet. Recently, graph neural networks have become the new state-of-the-art approach to recommender systems. In this survey, we conduct a comprehensive review of the literature on graph neural network-based recommender systems. We first introduce the background and the history of the development of both recommender systems and graph neural networks. For recommender systems, in general, there are four aspects for categorizing existing works: stage, scenario, objective, and application. For graph neural networks, the existing methods consist of two categories: spectral models and spatial ones. We then discuss the motivation of applying graph neural networks into recommender systems, mainly consisting of the high-order connectivity, the structural property of data and the enhanced supervision signal. We then systematically analyze the challenges in graph construction, embedding propagation/aggregation, model optimization, and computation efficiency. Afterward and primarily, we provide a comprehensive overview of a multitude of existing works of graph neural network-based recommender systems, following the taxonomy above. Finally, we raise discussions on the open problems and promising future directions in this area. We summarize the representative papers along with their code repositories in https://github.com/tsinghua-fib-lab/GNN-Recommender-Systems ."
+  },
+  {
+    "title": "A Comprehensive Survey of Few-shot Learning: Evolution, Applications, Challenges, and Opportunities",
+    "year": 2023,
+    "cited": 704,
+    "doi": "https://doi.org/10.1145/3582688",
+    "type": "article",
+    "venue": "ACM Computing Surveys",
+    "venue_type": "journal",
+    "oa_url": "https://dl.acm.org/doi/pdf/10.1145/3582688",
+    "authors": [
+      "Yisheng Song",
+      "Ting Wang",
+      "Puyu Cai",
+      "Subrota Kumar Mondal",
+      "Jyoti Prakash Sahoo"
+    ],
+    "abstract": "Few-shot learning (FSL) has emerged as an effective learning method and shows great potential. Despite the recent creative works in tackling FSL tasks, learning valid information rapidly from just a few or even zero samples remains a serious challenge. In this context, we extensively investigated 200+ FSL papers published in top journals and conferences in the past three years, aiming to present a timely and comprehensive overview of the most recent advances in FSL with a fresh perspective and to provide an impartial comparison of the strengths and weaknesses of existing work. To avoid conceptual confusion, we first elaborate and contrast a set of relevant concepts including few-shot learning, transfer learning, and meta-learning. Then, we inventively extract prior knowledge related to few-shot learning in the form of a pyramid, which summarizes and classifies previous work in detail from the perspective of challenges. Furthermore, to enrich this survey, we present in-depth analysis and insightful discussions of recent advances in each subsection. What is more, taking computer vision as an example, we highlight the important application of FSL, covering various research hotspots. Finally, we conclude the survey with unique insights into technology trends and potential future research opportunities to guide FSL follow-up research."
+  },
+  {
+    "title": "Knowledge Graphs: Opportunities and Challenges",
+    "year": 2023,
+    "cited": 690,
+    "doi": "https://doi.org/10.1007/s10462-023-10465-9",
+    "type": "book-chapter",
+    "venue": "Artificial Intelligence Review",
+    "venue_type": "journal",
+    "oa_url": "https://link.springer.com/content/pdf/10.1007/s10462-023-10465-9.pdf",
+    "authors": [
+      "Ciyuan Peng",
+      "Feng Xia",
+      "Mehdi Naseriparsa",
+      "Francesco Osborne"
+    ],
+    "abstract": "With the explosive growth of artificial intelligence (AI) and big data, it has become vitally important to organize and represent the enormous volume of knowledge appropriately. As graph data, knowledge graphs accumulate and convey knowledge of the real world. It has been well-recognized that knowledge graphs effectively represent complex information; hence, they rapidly gain the attention of academia and industry in recent years. Thus to develop a deeper understanding of knowledge graphs, this paper presents a systematic overview of this field. Specifically, we focus on the opportunities and challenges of knowledge graphs. We first review the opportunities of knowledge graphs in terms of two aspects: (1) AI systems built upon knowledge graphs; (2) potential application fields of knowledge graphs. Then, we thoroughly discuss severe technical challenges in this field, such as knowledge graph embeddings, knowledge acquisition, knowledge graph completion, knowledge fusion, and knowledge reasoning. We expect that this survey will shed new light on future research and the development of knowledge graphs."
+  },
+  {
+    "title": "Chemprop: A Machine Learning Package for Chemical Property Prediction",
+    "year": 2023,
+    "cited": 650,
+    "doi": "https://doi.org/10.1021/acs.jcim.3c01250",
+    "type": "article",
+    "venue": "Journal of Chemical Information and Modeling",
+    "venue_type": "journal",
+    "oa_url": "https://pubs.acs.org/doi/pdf/10.1021/acs.jcim.3c01250",
+    "authors": [
+      "Esther Heid",
+      "Kevin P. Greenman",
+      "Yunsie Chung",
+      "Shih\u2010Cheng Li",
+      "David Graff",
+      "Florence H. Vermeire",
+      "Haoyang Wu",
+      "William H. Green",
+      "Charles J. McGill"
+    ],
+    "abstract": "Deep learning has become a powerful and frequently employed tool for the prediction of molecular properties, thus creating a need for open-source and versatile software solutions that can be operated by nonexperts. Among the current approaches, directed message-passing neural networks (D-MPNNs) have proven to perform well on a variety of property prediction tasks. The software package Chemprop implements the D-MPNN architecture and offers simple, easy, and fast access to machine-learned molecular properties. Compared to its initial version, we present a multitude of new Chemprop functionalities such as the support of multimolecule properties, reactions, atom/bond-level properties, and spectra. Further, we incorporate various uncertainty quantification and calibration methods along with related metrics as well as pretraining and transfer learning workflows, improved hyperparameter optimization, and other customization options concerning loss functions or atom/bond features. We benchmark D-MPNN models trained using Chemprop with the new reaction, atom-level, and spectra functionality on a variety of property prediction data sets, including MoleculeNet and SAMPL, and observe state-of-the-art performance on the prediction of water-octanol partition coefficients, reaction barrier heights, atomic partial charges, and absorption spectra. Chemprop enables out-of-the-box training of D-MPNN models for a variety of problem settings in fast, user-friendly, and open-source software."
+  },
+  {
+    "title": "The Power of Generative AI: A Review of Requirements, Models, Input\u2013Output Formats, Evaluation Metrics, and Challenges",
+    "year": 2023,
+    "cited": 634,
+    "doi": "https://doi.org/10.3390/fi15080260",
+    "type": "article",
+    "venue": "Future Internet",
+    "venue_type": "journal",
+    "oa_url": "https://www.mdpi.com/1999-5903/15/8/260/pdf?version=1690812126",
+    "authors": [
+      "Ajay Bandi",
+      "Pydi Venkata Satya Ramesh Adapa",
+      "Yudu Eswar Vinay Pratap Kumar Kuchi"
+    ],
+    "abstract": "Generative artificial intelligence (AI) has emerged as a powerful technology with numerous applications in various domains. There is a need to identify the requirements and evaluation metrics for generative AI models designed for specific tasks. The purpose of the research aims to investigate the fundamental aspects of generative AI systems, including their requirements, models, input\u2013output formats, and evaluation metrics. The study addresses key research questions and presents comprehensive insights to guide researchers, developers, and practitioners in the field. Firstly, the requirements necessary for implementing generative AI systems are examined and categorized into three distinct categories: hardware, software, and user experience. Furthermore, the study explores the different types of generative AI models described in the literature by presenting a taxonomy based on architectural characteristics, such as variational autoencoders (VAEs), generative adversarial networks (GANs), diffusion models, transformers, language models, normalizing flow models, and hybrid models. A comprehensive classification of input and output formats used in generative AI systems is also provided. Moreover, the research proposes a classification system based on output types and discusses commonly used evaluation metrics in generative AI. The findings contribute to advancements in the field, enabling researchers, developers, and practitioners to effectively implement and evaluate generative AI models for various applications. The significance of the research lies in understanding that genera"
+  }
+]

@@ -1,0 +1,70 @@
+[
+  {
+    "title": "DEGNN: Dual Experts Graph Neural Network Handling both Edge and Node Feature Noise",
+    "year": 2024,
+    "cited": 4,
+    "doi": "https://doi.org/10.1007/978-981-97-2253-2_30",
+    "type": "conference-paper",
+    "venue": "Lecture notes in computer science",
+    "oa_url": null,
+    "authors": [
+      "Tai Hasegawa",
+      "Sukwon Yun",
+      "Xin Liu",
+      "Yin Jun Phua",
+      "Tsuyoshi Murata"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "Underwater Acoustic Radiated Noise Target Recognition Method Based on Multi-Domain Feature Fusion and Graph Neural Network",
+    "year": 2025,
+    "cited": 0,
+    "doi": "https://doi.org/10.1109/icicsp66564.2025.11338507",
+    "type": "conference-paper",
+    "venue": null,
+    "oa_url": null,
+    "authors": [
+      "Peijing Lin",
+      "Yanghong Zhao",
+      "Mingsong Chen",
+      "Guohao Xie",
+      "Li Huang"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "Noise-Robust Fault Diagnosis Method for Rotating Machinery Based on Hybrid-Domain Graph Neural Network and SGWT Feature Enhancement",
+    "year": 2025,
+    "cited": 0,
+    "doi": "https://doi.org/10.2139/ssrn.5421600",
+    "type": "preprint",
+    "venue": "SSRN Electronic Journal",
+    "oa_url": "https://doi.org/10.2139/ssrn.5421600",
+    "authors": [
+      "Xin Dong",
+      "Liang Dong",
+      "Zhenggao Liao",
+      "Shiyou Liu",
+      "Zhiyong Luo"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "DEGNN: Dual Experts Graph Neural Network Handling Both Edge and Node Feature Noise",
+    "year": 2024,
+    "cited": 0,
+    "doi": "https://doi.org/10.48550/arxiv.2404.09207",
+    "type": "preprint",
+    "venue": "arXiv (Cornell University)",
+    "oa_url": "https://arxiv.org/pdf/2404.09207",
+    "authors": [
+      "Tai Hasegawa",
+      "Sukwon Yun",
+      "Xin Liu",
+      "Yin Jun Phua",
+      "Murata, Tsuyoshi"
+    ],
+    "abstract": "Graph Neural Networks (GNNs) have achieved notable success in various applications over graph data. However, recent research has revealed that real-world graphs often contain noise, and GNNs are susceptible to noise in the graph. To address this issue, several Graph Structure Learning (GSL) models have been introduced. While GSL models are tailored to enhance robustness against edge noise through edge reconstruction, a significant limitation surfaces: their high reliance on node features. This inherent dependence amplifies their susceptibility to noise within node features. Recognizing this vulnerability, we present DEGNN, a novel GNN model designed to adeptly mitigate noise in both edges and node features. The core idea of DEGNN is to design two separate experts: an edge expert and a node feature expert. These experts utilize self-supervised learning techniques to produce modified edges and node features. Leveraging these modified representations, DEGNN subsequently addresses downstream tasks, ensuring robustness against noise present in both edges and node features of real-world graphs. Notably, the modification process can be trained end-to-end, empowering DEGNN to adjust dynamically and achieves optimal edge and node representations for specific tasks. Comprehensive experiments demonstrate DEGNN's efficacy in managing noise, both in original real-world graphs and in graphs with synthetic noise."
+  }
+]

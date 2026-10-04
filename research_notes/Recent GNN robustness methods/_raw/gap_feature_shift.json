@@ -1,0 +1,62 @@
+[
+  {
+    "title": "FR-GNN: Mitigating the Impact of Distribution Shift on Graph Neural Networks via Test-Time Feature Reconstruction",
+    "year": 2024,
+    "cited": 4,
+    "doi": "https://doi.org/10.1109/jiot.2024.3385292",
+    "type": "article",
+    "venue": "IEEE Internet of Things Journal",
+    "oa_url": null,
+    "authors": [
+      "Rui Ding",
+      "Jielong Yang",
+      "Feng Quan Ji",
+      "Xionghu Zhong",
+      "Linbo Xie"
+    ],
+    "abstract": "Due to inappropriate sample selection and limited training data, a distribution shift often exists between the training and test sets. This shift can adversely affect the test performance of graph neural networks (GNNs). Existing approaches mitigate this issue by either enhancing the robustness of GNNs to distribution shift or reducing the shift itself. However, both approaches necessitate retraining the model, which becomes unfeasible when the model structure and parameters are inaccessible. To address this challenge, we propose FR-GNN, a general framework for GNNs to conduct feature reconstruction. FR-GNN constructs a mapping relationship between the output and input of a well-trained GNN to obtain class representative embeddings and then uses these embeddings to reconstruct the features of labeled nodes. These reconstructed features are then incorporated into the message passing mechanism of GNNs to influence the predictions of unlabeled nodes at test time. Notably, the reconstructed node features can be directly utilized for testing the well-trained model, effectively reducing the distribution shift and leading to improved test performance. This remarkable achievement is attained without any modifications to the model structure or parameters. We provide theoretical guarantees for the effectiveness of our framework. Furthermore, we conduct comprehensive experiments on various public data sets. The experimental results demonstrate the superior performance of FR-GNN in comparison to multiple categories of baseline methods."
+  },
+  {
+    "title": "Adversarial Robustness of Graph Neural Networks Under Feature Distribution Shift",
+    "year": 2026,
+    "cited": 0,
+    "doi": "https://doi.org/10.5281/zenodo.19026617",
+    "type": "preprint",
+    "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+    "oa_url": "https://doi.org/10.5281/zenodo.19026617",
+    "authors": [
+      "Sasha Petrova"
+    ],
+    "abstract": "Graph Neural Networks (GNNs) have demonstrated remarkable performance across various node- and graph-level prediction tasks. However, their sensitivity to adversarial attacks and shifts in the input data distribution remains a significant concern, particularly in real-world deployment scenarios. This paper investigates the adversarial robustness of GNNs under feature distribution shift. We analyze the impact of subtle, targeted perturbations to node features on the prediction accuracy of GNNs trained on a source distribution and evaluated on a shifted target distribution. Our empirical results demonstrate a significant degradation in performance, highlighting the vulnerability of GNNs to such shifts. We further explore potential mitigation strategies, including adversarial training and distributionally robust optimization, to enhance the robustness of GNNs in the presence of feature distribution shift."
+  },
+  {
+    "title": "Adversarial Robustness of Graph Neural Networks Under Feature Distribution Shift",
+    "year": 2026,
+    "cited": 0,
+    "doi": "https://doi.org/10.5281/zenodo.19026616",
+    "type": "preprint",
+    "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+    "oa_url": "https://doi.org/10.5281/zenodo.19026616",
+    "authors": [
+      "Sasha Petrova"
+    ],
+    "abstract": "Graph Neural Networks (GNNs) have demonstrated remarkable performance across various node- and graph-level prediction tasks. However, their sensitivity to adversarial attacks and shifts in the input data distribution remains a significant concern, particularly in real-world deployment scenarios. This paper investigates the adversarial robustness of GNNs under feature distribution shift. We analyze the impact of subtle, targeted perturbations to node features on the prediction accuracy of GNNs trained on a source distribution and evaluated on a shifted target distribution. Our empirical results demonstrate a significant degradation in performance, highlighting the vulnerability of GNNs to such shifts. We further explore potential mitigation strategies, including adversarial training and distributionally robust optimization, to enhance the robustness of GNNs in the presence of feature distribution shift."
+  },
+  {
+    "title": "FRGNN: Mitigating the Impact of Distribution Shift on Graph Neural Networks via Test-Time Feature Reconstruction",
+    "year": 2023,
+    "cited": 0,
+    "doi": "https://doi.org/10.48550/arxiv.2308.09259",
+    "type": "preprint",
+    "venue": "arXiv (Cornell University)",
+    "oa_url": "https://arxiv.org/pdf/2308.09259",
+    "authors": [
+      "Rui Ding",
+      "Jielong Yang",
+      "Feng Ji",
+      "Xionghu Zhong",
+      "Linbo Xie"
+    ],
+    "abstract": "Due to inappropriate sample selection and limited training data, a distribution shift often exists between the training and test sets. This shift can adversely affect the test performance of Graph Neural Networks (GNNs). Existing approaches mitigate this issue by either enhancing the robustness of GNNs to distribution shift or reducing the shift itself. However, both approaches necessitate retraining the model, which becomes unfeasible when the model structure and parameters are inaccessible. To address this challenge, we propose FR-GNN, a general framework for GNNs to conduct feature reconstruction. FRGNN constructs a mapping relationship between the output and input of a well-trained GNN to obtain class representative embeddings and then uses these embeddings to reconstruct the features of labeled nodes. These reconstructed features are then incorporated into the message passing mechanism of GNNs to influence the predictions of unlabeled nodes at test time. Notably, the reconstructed node features can be directly utilized for testing the well-trained model, effectively reducing the distribution shift and leading to improved test performance. This remarkable achievement is attained without any modifications to the model structure or parameters. We provide theoretical guarantees for the effectiveness of our framework. Furthermore, we conduct comprehensive experiments on various public datasets. The experimental results demonstrate the superior performance of FRGNN in comparison to multiple categories of baseline methods."
+  }
+]

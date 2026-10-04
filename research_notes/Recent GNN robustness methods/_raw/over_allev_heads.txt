@@ -1,0 +1,23 @@
+H2: 1 Introduction
+H2: 2 Problem Notation
+H3: 2.1 Oversmoothing Definition
+H3: 2.2 Oversmoothing Measures
+H3: 2.3 Model Expressive Power
+H2: 3 ATNPA: A Unified View of Oversmoothing Alleviation
+H3: 3.1 GNN Message Propagation
+H4: 3.1.1 Traditional Approaches: Residual vs. Dense Connections
+H4: 3.1.2 Complex Approaches: Dynamics and Recurrence Relation
+H3: 3.2 Themes to Tackle Oversmoothing
+H4: 3.2.1 Energy Regularization
+H4: 3.2.2 Dynamics System Modeling
+H4: 3.2.3 Propagation and Transformation Decoupling
+H3: 3.3 ATNPA: Unified View and Categorization
+H4: 3.3.1 Categorization
+H3: 3.4 Residual-based Methods
+H3: 3.5 Dense-based Methods
+H3: 3.6 Random-mask based Methods
+H3: 3.7 Energy-based Methods
+H3: 3.8 Diffusion-based Methods
+H3: 3.9 Transformer-based Methods
+H2: 4 Conclusion
+H2: References

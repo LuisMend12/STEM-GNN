@@ -1,0 +1,265 @@
+[
+  {
+    "title": "A Comprehensive Survey on Trustworthy Graph Neural Networks: Privacy, Robustness, Fairness, and Explainability",
+    "year": 2024,
+    "cited": 152,
+    "doi": "https://doi.org/10.1007/s11633-024-1510-8",
+    "type": "article",
+    "venue": "Machine Intelligence Research",
+    "oa_url": "https://link.springer.com/content/pdf/10.1007/s11633-024-1510-8.pdf",
+    "authors": [
+      "Enyan Dai",
+      "Tianxiang Zhao",
+      "Huaisheng Zhu",
+      "Junjie Xu",
+      "Zhimeng Guo",
+      "Hui Liu",
+      "Jiliang Tang",
+      "Suhang Wang"
+    ],
+    "abstract": "Abstract Graph neural networks (GNNs) have made rapid developments in the recent years. Due to their great ability in modeling graph-structured data, GNNs are vastly used in various applications, including high-stakes scenarios such as financial analysis, traffic predictions, and drug discovery. Despite their great potential in benefiting humans in the real world, recent study shows that GNNs can leak private information, are vulnerable to adversarial attacks, can inherit and magnify societal bias from training data and lack interpretability, which have risk of causing unintentional harm to the users and society. For example, existing works demonstrate that attackers can fool the GNNs to give the outcome they desire with unnoticeable perturbation on training graph. GNNs trained on social networks may embed the discrimination in their decision process, strengthening the undesirable societal bias. Consequently, trust-worthy GNNs in various aspects are emerging to prevent the harm from GNN models and increase the users\u2019 trust in GNNs. In this paper, we give a comprehensive survey of GNNs in the computational aspects of privacy, robustness, fairness, and explainability. For each aspect, we give the taxonomy of the related methods and formulate the general frameworks for the multiple categories of trustworthy GNNs. We also discuss the future research directions of each aspect and connections between these aspects to help achieve trustworthiness."
+  },
+  {
+    "title": "Trustworthy Graph Neural Networks: Aspects, Methods, and Trends",
+    "year": 2024,
+    "cited": 145,
+    "doi": "https://doi.org/10.1109/jproc.2024.3369017",
+    "type": "article",
+    "venue": "Proceedings of the IEEE",
+    "oa_url": "https://arxiv.org/pdf/2205.07424",
+    "authors": [
+      "He Zhang",
+      "Bang Ye Wu",
+      "Xingliang Yuan",
+      "Shirui Pan",
+      "Hanghang Tong",
+      "Jian Pei"
+    ],
+    "abstract": "Graph neural networks (GNNs) have emerged as a series of competent graph learning methods for diverse real-world scenarios, ranging from daily applications such as recommendation systems and question answering to cutting-edge technologies such as drug discovery in life sciences and n-body simulation in astrophysics. However, task performance is not the only requirement for GNNs. Performance-oriented GNNs have exhibited potential adverse effects, such as vulnerability to adversarial attacks, unexplainable discrimination against disadvantaged groups, or excessive resource consumption in edge computing environments. To avoid these unintentional harms, it is necessary to build competent GNNs characterized by trustworthiness. To this end, we propose a comprehensive roadmap to build trustworthy GNNs from the view of the various computing technologies involved. In this survey, we introduce basic concepts and comprehensively summarize existing efforts for trustworthy GNNs from six aspects, including robustness, explainability, privacy, fairness, accountability, and environmental well-being. In addition, we highlight the intricate cross-aspect relations between the above six aspects of trustworthy GNNs. Finally, we present a thorough overview of trending directions for facilitating the research and industrialization of trustworthy GNNs."
+  },
+  {
+    "title": "Bayesian Hierarchical Graph Neural Networks With Uncertainty Feedback for Trustworthy Fault Diagnosis of Industrial Processes",
+    "year": 2023,
+    "cited": 41,
+    "doi": "https://doi.org/10.1109/tnnls.2023.3319468",
+    "type": "article",
+    "venue": "IEEE Transactions on Neural Networks and Learning Systems",
+    "oa_url": null,
+    "authors": [
+      "Dongyue Chen",
+      "Zongxia Xie",
+      "Ruonan Liu",
+      "W.W.H. Yu",
+      "Qinghua Hu",
+      "Xianling Li",
+      "Steven X. Ding"
+    ],
+    "abstract": "Deep learning (DL) methods have been widely applied to intelligent fault diagnosis of industrial processes and achieved state-of-the-art performance. However, fault diagnosis with point estimate may provide untrustworthy decisions. Recently, Bayesian inference shows to be a promising approach to trustworthy fault diagnosis by quantifying the uncertainty of the decisions with a DL model. The uncertainty information is not involved in the training process, which does not help the learning of highly uncertain samples and has little effect on improving the fault diagnosis performance. To address this challenge, we propose a Bayesian hierarchical graph neural network (BHGNN) with an uncertainty feedback mechanism, which formulates a trustworthy fault diagnosis on the Bayesian DL (BDL) framework. Specifically, BHGNN captures the epistemic uncertainty and aleatoric uncertainty via a variational dropout approach and utilizes the uncertainty information of each sample to adjust the strength of the temporal consistency (TC) constraint for robust feature learning. Meanwhile, the BHGNN method models the process data as a hierarchical graph (HG) by leveraging the interaction-aware module and physical topology knowledge of the industrial process, which integrates data with domain knowledge to learn fault representation. Moreover, the experiments on a three-phase flow facility (TFF) and secure water treatment (SWaT) show superior and competitive performance in fault diagnosis and verify the trustworthiness of the proposed method."
+  },
+  {
+    "title": "KGTrust: Evaluating Trustworthiness of SIoT via Knowledge Enhanced Graph Neural Networks",
+    "year": 2023,
+    "cited": 26,
+    "doi": "https://doi.org/10.1145/3543507.3583549",
+    "type": "conference-paper",
+    "venue": null,
+    "oa_url": "https://dl.acm.org/doi/pdf/10.1145/3543507.3583549",
+    "authors": [
+      "Zhizhi Yu",
+      "Di Jin",
+      "Cuiying Huo",
+      "Zhiqiang Wang",
+      "Xiulong Liu",
+      "Heng Qi",
+      "Jia Xin Wu",
+      "Lingfei Wu"
+    ],
+    "abstract": "Social Internet of Things (SIoT), a promising and emerging paradigm that injects the notion of social networking into smart objects (i.e., things), paving the way for the next generation of Internet of Things. However, due to the risks and uncertainty, a crucial and urgent problem to be settled is establishing reliable relationships within SIoT, that is, trust evaluation. Graph neural networks for trust evaluation typically adopt a straightforward way such as one-hot or node2vec to comprehend node characteristics, which ignores the valuable semantic knowledge attached to nodes. Moreover, the underlying structure of SIoT is usually complex, including both the heterogeneous graph structure and pairwise trust relationships, which renders hard to preserve the properties of SIoT trust during information propagation. To address these aforementioned problems, we propose a novel knowledge-enhanced graph neural network (KGTrust) for better trust evaluation in SIoT. Specifically, we first extract useful knowledge from users\u2019 comment behaviors and external structured triples related to object descriptions, in order to gain a deeper insight into the semantics of users and objects. Furthermore, we introduce a discriminative convolutional layer that utilizes heterogeneous graph structure, node semantics, and augmented trust relationships to learn node embeddings from the perspective of a user as a trustor or a trustee, effectively capturing multi-aspect properties of SIoT trust during information propagation. Finally, a trust prediction layer is developed to estimate the trust relationships between pairwise nodes. Extensive experiments on three public datasets illustrate the superior performance of KGTrust over state-of-the-art methods."
+  },
+  {
+    "title": "MOHGCN: A trustworthy multi-omics data integration framework based on specificity-aware heterogeneous graph convolutional neural networks for disease diagnosis",
+    "year": 2024,
+    "cited": 14,
+    "doi": "https://doi.org/10.1016/j.eswa.2024.125772",
+    "type": "article",
+    "venue": "Expert Systems with Applications",
+    "oa_url": null,
+    "authors": [
+      "Wenhao Wu",
+      "Shudong Wang",
+      "Yuanyuan Zhang",
+      "Kuijie Zhang",
+      "Wenjing Yin",
+      "Shanchen Pang"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "Trust-GRS: A Trustworthy Training Framework for Graph Neural Network Based Recommender Systems Against Shilling Attacks",
+    "year": 2025,
+    "cited": 6,
+    "doi": "https://doi.org/10.1609/aaai.v39i12.33352",
+    "type": "conference-paper",
+    "venue": "Proceedings of the AAAI Conference on Artificial Intelligence",
+    "oa_url": "https://ojs.aaai.org/index.php/AAAI/article/download/33352/35507",
+    "authors": [
+      "Lingyu Mu",
+      "Zhengxiao Liu",
+      "Zhitong Zhu",
+      "Lin Zheng"
+    ],
+    "abstract": "Graph neural network (GNN) based recommender systems have been widely used in diverse service platforms as they can more effectively capture users' interests. Nevertheless, recent investigations have revealed that the neighborhood aggregation and contrastive learning mechanisms render GNN-based recommender systems more vulnerable to fake profile injection attacks, i.e., shilling attacks. Despite numerous defenses against shilling attacks having emerged, these approaches still face certain challenges, such as the demand for prior knowledge and the difficulty in defending against multiple attacks. Therefore, this paper proposes a two-stage trustworthy GNN-based recommender systems training framework (Trust-GRS), which models the probability of data being fake in a zero-knowledge scenario and establishes a trustworthy neighborhood aggregation and contrastive learning. Through extensive experiments on multiple benchmark datasets against 12 state-of-the-art shilling attacks, we demonstrate that Trust-GRS substantially mitigates the influence of fake data in all attacks, up to 100%, while preserving the original recommendation performance. Benefiting from the absence of the requirement for prior knowledge, Trust-GRS holds significant application value for real-world recommendation platforms."
+  },
+  {
+    "title": "Physics-informed explainable graph neural network for trustworthy rolling bearing fault diagnosis",
+    "year": 2026,
+    "cited": 4,
+    "doi": "https://doi.org/10.1088/1361-6501/ae5de6",
+    "type": "article",
+    "venue": "Measurement Science and Technology",
+    "oa_url": null,
+    "authors": [
+      "Shouyin Pan",
+      "Jing Yang",
+      "Ming Lyu",
+      "Jie Zhang"
+    ],
+    "abstract": "Abstract Robust and trustworthy fault diagnosis of rolling element bearings is paramount for preventing catastrophic failures and ensuring operational safety in complex industrial environments. While data-driven methods, particularly graph neural networks (GNNs), have shown promise, they often neglect the intrinsic physical mechanisms governing developed faults, specifically the deterministic fault-induced harmonics. Furthermore, the \u2018black-box\u2019 nature of these models compromises their trustworthiness in safety-critical applications. To address these challenges, this paper proposes a novel dual-path GNN (DP-GNN). We introduce a physics-data dual-driven graph construction strategy that explicitly embeds the harmonic signatures of developed faults as trustworthy physical priors alongside data-driven correlations. The architecture comprises a local path, employing a graph attention network to extract mechanism-consistent features along prior edges, and a global path, utilizing a graph convolutional network with self-attention to capture global topological dependencies. A cross-attention mechanism then adaptively fuses these complementary features. Extensive experiments on the Case Western Reserve University and Southeast University datasets demonstrate that DP-GNN achieves superior diagnostic accuracy and exhibits exceptional robustness against noise compared to state-of-the-art baselines. Moreover, post-hoc analysis using GNNExplainer confirms that the model\u2019s decisions rely heavily on physical harmonic relationships, significantly enhancing its transparency and credibility for industrial deployment."
+  },
+  {
+    "title": "Enhancing Trustworthiness of Graph Neural Networks with Rank-Based Conformal Training",
+    "year": 2025,
+    "cited": 4,
+    "doi": "https://doi.org/10.1609/aaai.v39i20.35425",
+    "type": "conference-paper",
+    "venue": "Proceedings of the AAAI Conference on Artificial Intelligence",
+    "oa_url": "https://ojs.aaai.org/index.php/AAAI/article/download/35425/37580",
+    "authors": [
+      "Ting Wang",
+      "Zhixin Zhou",
+      "Rui Luo"
+    ],
+    "abstract": "Graph Neural Networks (GNNs) has been widely used in a variety of fields because of their great potential in representing graph-structured data. However, lacking of rigorous uncertainty estimations limits their application in high-stakes. Conformal Prediction (CP) can produce statistically guaranteed uncertainty estimates by using the classifier's probability estimates to obtain prediction sets, which contains the true class with a user-specified probability. In this paper, we propose a Rank-based CP during training framework to GNNs (RCP-GNN) for reliable uncertainty estimates to enhance the trustworthiness of GNNs in the node classification scenario. By exploiting rank information of the classifier's outcome, prediction sets with desired coverage rate can be efficiently constructed. The strategy of CP during training with differentiable rank-based conformity loss function is further explored to adapt prediction sets according to network topology information. In this way, the composition of prediction sets can be guided by the goal of jointly reducing inefficiency and probability estimation errors. Extensive experiments on several real-world datasets show that our model achieves any pre-defined target marginal coverage while significantly reducing the inefficiency compared with state-of-the-art methods."
+  },
+  {
+    "title": "Towards Trustworthy Graph Neural Networks and Their Applications in Recommender Systems",
+    "year": 2024,
+    "cited": 2,
+    "doi": "https://doi.org/10.1109/bigdata62323.2024.10825262",
+    "type": "conference-paper",
+    "venue": null,
+    "oa_url": null,
+    "authors": [
+      "Longfeng Wu"
+    ],
+    "abstract": "Graph Neural Networks have demonstrated remarkable success in modeling graph-structured data and are increasingly applied in various domains, including recommendation, drug discovery, and financial analysis. However, concerns regarding their trustworthiness, due to issues like data noise sensitivity, interpretability, and fairness, hinder widespread adoption. This research aims to enhance GNNs trustworthiness from three critical perspectives: reliability, explainability, and fairness. We introduce novel methods, including incorporating logical reasoning and model calibration techniques to ensure robust and reliable predictions, employing neural architecture to search for effective explanations, and analyzing the uncertainty quantification in fair GNNs with various strategies. This work establishes foundational insights and strategies for developing trustworthy GNNs, paving the way for equitable and transparent predictions in high-stakes applications."
+  },
+  {
+    "title": "KGTrust: Evaluating Trustworthiness of SIoT via Knowledge Enhanced Graph Neural Networks",
+    "year": 2023,
+    "cited": 2,
+    "doi": "https://doi.org/10.48550/arxiv.2302.11396",
+    "type": "preprint",
+    "venue": "arXiv (Cornell University)",
+    "oa_url": "https://arxiv.org/pdf/2302.11396",
+    "authors": [
+      "Zhizhi Yu",
+      "Di Jin",
+      "Cuiying Huo",
+      "Zhiqiang Wang",
+      "Xiulong Liu",
+      "Qi, Heng",
+      "Jia Wu",
+      "Lingfei Wu"
+    ],
+    "abstract": "Social Internet of Things (SIoT), a promising and emerging paradigm that injects the notion of social networking into smart objects (i.e., things), paving the way for the next generation of Internet of Things. However, due to the risks and uncertainty, a crucial and urgent problem to be settled is establishing reliable relationships within SIoT, that is, trust evaluation. Graph neural networks for trust evaluation typically adopt a straightforward way such as one-hot or node2vec to comprehend node characteristics, which ignores the valuable semantic knowledge attached to nodes. Moreover, the underlying structure of SIoT is usually complex, including both the heterogeneous graph structure and pairwise trust relationships, which renders hard to preserve the properties of SIoT trust during information propagation. To address these aforementioned problems, we propose a novel knowledge-enhanced graph neural network (KGTrust) for better trust evaluation in SIoT. Specifically, we first extract useful knowledge from users' comment behaviors and external structured triples related to object descriptions, in order to gain a deeper insight into the semantics of users and objects. Furthermore, we introduce a discriminative convolutional layer that utilizes heterogeneous graph structure, node semantics, and augmented trust relationships to learn node embeddings from the perspective of a user as a trustor or a trustee, effectively capturing multi-aspect properties of SIoT trust during information propagation. Finally, a trust prediction layer is developed to estimate the trust relationships between pairwise nodes. Extensive experiments on three public datasets illustrate the superior performance of KGTrust over state-of-the-art methods."
+  },
+  {
+    "title": "Explicit Water Balance Constraints for Trustworthy Graph Neural Network Flood Forecasting",
+    "year": 2026,
+    "cited": 1,
+    "doi": "https://doi.org/10.3390/app16104963",
+    "type": "article",
+    "venue": "Applied Sciences",
+    "oa_url": "https://doi.org/10.3390/app16104963",
+    "authors": [
+      "Yuqi Chen",
+      "Ruixi Huang",
+      "Yue Tang",
+      "Hao Wang",
+      "Tong Zhou",
+      "Junlin Fan",
+      "Yin Long",
+      "Tehseen Zia"
+    ],
+    "abstract": "Although Graph Neural Networks (GNNs) are widely regarded as an ideal tool for capturing spatial dependencies in river basins, their effectiveness in hydrological forecasting is severely challenged by a topology paradox: under a purely data-driven paradigm, GNNs fail to spontaneously learn physical laws, generating predictions that lack physical interpretability and frequently violate mass conservation. To address this fundamental problem, this paper proposes a physics-informed graph learning framework integrated with an explicit, differentiable water balance constraint (WB-GNN). By reconstructing the continuity equation into a differentiable loss function, we directly embed physical conservation as a strong inductive bias into the neural network\u2019s training objective. We comprehensively evaluated the model on two large-sample datasets (LamaH-CE and CAMELS) against state-of-the-art baselines, including EA-LSTM and unconstrained Pure-GNN. Quantitative results demonstrate that the proposed physical constraint successfully awakens the potential of river network topology. On the LamaH-CE dataset, WB-GNN achieved a Nash-Sutcliffe Efficiency (NSE) of 0.86 and a Root Mean Square Error (RMSE) of 9.2 m3/s, outperforming both the domain-specific EA-LSTM (NSE: 0.83) and the unconstrained Pure-GNN (NSE: 0.74). Crucially, the introduction of the differentiable constraint reduced the Physical Inconsistency Ratio (PIR) by an order of magnitude-from 39.8% in the unconstrained model to just 4.3%. Similar robust improvements were validated across the highly heterogeneous CAMELS dataset. These quantifiable results confirm that the proposed method not only achieves superior forecasting accuracy but also fundamentally guarantees physical trustworthiness, making it highly robust for critical decision-making in extreme flood events."
+  },
+  {
+    "title": "Causegnn: Towards Trustworthy Graph Neural Networks Via Calibration-Aware Self-Knowledge Distillation",
+    "year": 2025,
+    "cited": 1,
+    "doi": "https://doi.org/10.2139/ssrn.5223095",
+    "type": "preprint",
+    "venue": "SSRN Electronic Journal",
+    "oa_url": "https://doi.org/10.2139/ssrn.5223095",
+    "authors": [
+      "Min Wang",
+      "Hao Yang",
+      "Qing Cheng",
+      "Jingcai Huang"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "BioGraphEX: Multi-Level Explainability in Graph Neural Networks for Trustworthy Biomedical AI",
+    "year": 2026,
+    "cited": 0,
+    "doi": "https://doi.org/10.3390/ai7080283",
+    "type": "article",
+    "venue": "AI",
+    "oa_url": "https://doi.org/10.3390/ai7080283",
+    "authors": [
+      "Muhammad Talha Sajid",
+      "Ahmad Kamran Malik",
+      "Nafees Qamar",
+      "Hasnain Abdullah",
+      "Aleem Ahmed"
+    ],
+    "abstract": "In biomedical research and clinical practices, Graph Neural Networks (GNNs) are playing an increasingly important role and have been applied to the problems of disease pathway detection, gene\u2013disease relation prediction, etc. They show great potential for biomedical predictions; however, there are interpretability issues when used on complex datasets like gene expression data. Current explainability methods such as GNNExplainer are designed to explain individual instances, not the whole network. The absence of transparency hinders trust and limits the clinical/biomedical implementation of GNNs. Additionally, more interpretable models like GNN-SubNet and XGDAG do not fulfill the expectation of a clear picture for the entire network. This research addresses the limitation of the network-wide explainability of GNNs by introducing a GNN-based BioGraphEX model that incorporates interpretable methods at two levels, instance-level and network-wide level, such as gradient-based methods and SHAP (Shapley Additive Explanations). Using the GSE25097 biomedical dataset, the model achieves an accuracy of 85% and an F1 Score of 0.82, surpassing baseline methods in both predictive performance and interpretability. These results address the limitations of existing models like GNN-SubNet and XGDAG by providing both instance-level and network-wide insights. Metrics like Explanation Fidelity (83%) further validated the robustness of the explanations."
+  },
+  {
+    "title": "Calibrating graph neural networks for trustworthy graph-level predictions with confidence backward-readout",
+    "year": 2026,
+    "cited": 0,
+    "doi": "https://doi.org/10.1016/j.eswa.2026.133703",
+    "type": "article",
+    "venue": "Expert Systems with Applications",
+    "oa_url": null,
+    "authors": [
+      "Junchao Qiu",
+      "Guojia Wan",
+      "Jiawei Jiang",
+      "Zengmao Wang",
+      "Bo Du"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "Beyond Correlation: Mechanism\u2013Data Conflict Arbitration in Graph Neural Networks for Trustworthy Multi-Platform Aero-Engine Health Monitoring",
+    "year": 2026,
+    "cited": 0,
+    "doi": "https://doi.org/10.2139/ssrn.7371094",
+    "type": "preprint",
+    "venue": "SSRN Electronic Journal",
+    "oa_url": "https://papers.ssrn.com/sol3/Delivery.cfm/a2381c6e-c947-4fdd-8222-a08293c71cf8-MECA.pdf?abstractid=7371094&mirid=1",
+    "authors": [
+      "Hao Wang",
+      "Youchao Sun",
+      "Hao Liu",
+      "Junfa Li",
+      "Huiying Duan",
+      "Xiaoyu Wang"
+    ],
+    "abstract": ""
+  }
+]

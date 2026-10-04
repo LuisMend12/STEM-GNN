@@ -1,0 +1,218 @@
+[
+  {
+    "title": "A Comprehensive Survey on Trustworthy Graph Neural Networks: Privacy, Robustness, Fairness, and Explainability",
+    "year": 2024,
+    "cited": 152,
+    "doi": "https://doi.org/10.1007/s11633-024-1510-8",
+    "type": "article",
+    "venue": "Machine Intelligence Research",
+    "oa_url": "https://link.springer.com/content/pdf/10.1007/s11633-024-1510-8.pdf",
+    "authors": [
+      "Enyan Dai",
+      "Tianxiang Zhao",
+      "Huaisheng Zhu",
+      "Junjie Xu",
+      "Zhimeng Guo",
+      "Hui Liu",
+      "Jiliang Tang",
+      "Suhang Wang"
+    ],
+    "abstract": "Abstract Graph neural networks (GNNs) have made rapid developments in the recent years. Due to their great ability in modeling graph-structured data, GNNs are vastly used in various applications, including high-stakes scenarios such as financial analysis, traffic predictions, and drug discovery. Despite their great potential in benefiting humans in the real world, recent study shows that GNNs can leak private information, are vulnerable to adversarial attacks, can inherit and magnify societal bias from training data and lack interpretability, which have risk of causing unintentional harm to the users and society. For example, existing works demonstrate that attackers can fool the GNNs to give the outcome they desire with unnoticeable perturbation on training graph. GNNs trained on social networks may embed the discrimination in their decision process, strengthening the undesirable societal bias. Consequently, trust-worthy GNNs in various aspects are emerging to prevent the harm from GNN models and increase the users\u2019 trust in GNNs. In this paper, we give a comprehensive survey of GNNs in the computational aspects of privacy, robustness, fairness, and explainability. For each aspect, we give the taxonomy of the related methods and formulate the general frameworks for the multiple categories of trustworthy GNNs. We also discuss the future research directions of each aspect and connections between these aspects to help achieve trustworthiness."
+  },
+  {
+    "title": "Noise-robust multi-view graph neural network for fault diagnosis of rotating machinery",
+    "year": 2024,
+    "cited": 67,
+    "doi": "https://doi.org/10.1016/j.ymssp.2024.112025",
+    "type": "article",
+    "venue": "Mechanical Systems and Signal Processing",
+    "oa_url": null,
+    "authors": [
+      "Chenyang Li",
+      "Lingfei Mo",
+      "Chee Keong Kwoh",
+      "Xiaoli Li",
+      "Zhenghua Chen",
+      "Min Wu",
+      "Ruqiang Yan"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "Robust Knowledge Adaptation for Dynamic Graph Neural Networks",
+    "year": 2024,
+    "cited": 33,
+    "doi": "https://doi.org/10.1109/tkde.2024.3388453",
+    "type": "article",
+    "venue": "IEEE Transactions on Knowledge and Data Engineering",
+    "oa_url": null,
+    "authors": [
+      "Hanjie Li",
+      "Changsheng Li",
+      "Kaituo Feng",
+      "Ye Yuan",
+      "Guoren Wang",
+      "Hongyuan Zha"
+    ],
+    "abstract": "Graph structured data often possess dynamic characters in nature, such as the addition of links and nodes, in many real-world applications. Recent years have witnessed the increasing attentions paid to dynamic graph neural networks for modelling graph data. However, almost all existing approaches operate under the assumption that, upon the establishment of a new link, the embeddings of the neighboring nodes should undergo updates to learn temporal dynamics. Nevertheless, these approaches face the following limitation: If the node introduced by a new connection contains noisy information, propagating its knowledge to other nodes becomes unreliable and may even lead to the collapse of the model. In this paper, we proposeAda-DyGNN: a robust knowledgeAdaptation framework via reinforcement learning forDynamicGraphNeuralNetworks. In contrast to previous approaches, which update the embeddings of the neighbor nodes immediately after adding a new link, Ada-DyGNN adaptively determines which nodes should be updated. Considering that the decision to update the embedding of one neighbor node can significantly impact other neighbor nodes, we conceptualize the node update selection as a sequence decision problem and employ reinforcement learning to address it effectively. By this means, we can adaptively propagate knowledge to other nodes for learning robust node embedding representations. To the best of our knowledge, our approach constitutes the first attempt to explore robust knowledge adaptation via reinforcement learning specifically tailored for dynamic graph neural networks. Extensive experiments on three benchmark datasets demonstrate that Ada-DyGNN achieves the state-of-the-art performance. In addition, we conduct experiments by introducing different degrees of noise into the dataset, quantitatively and qualitatively illustrating the robustness of Ada-DyGNN. The source code of this work is available athttps://github.com/BitLhj/Ada-DyGNN/"
+  },
+  {
+    "title": "Comparative Analysis of Graph Neural Networks and Transformers for Robust Fake News Detection: A Verification and Reimplementation Study",
+    "year": 2024,
+    "cited": 26,
+    "doi": "https://doi.org/10.3390/electronics13234784",
+    "type": "article",
+    "venue": "Electronics",
+    "oa_url": "https://www.mdpi.com/2079-9292/13/23/4784/pdf?version=1733301708",
+    "authors": [
+      "Soveatin Kuntur",
+      "Maciej Krzywda",
+      "Anna Wr\u00f3blewska",
+      "Marcin Paprzycki",
+      "Maria Ganzha"
+    ],
+    "abstract": "This study compares Transformer-based models and Graph Neural Networks (GNNs) for fake news detection across three datasets: FakeNewsNet, ISOT, and WELFake. Transformer models (BERT, RoBERTa, GPT-2) demonstrated superior performance, achieving mean accuracies above 85% on FakeNewsNet and exceeding 98% on ISOT and WELFake. Specifically, RoBERTa achieved 86.16% accuracy on FakeNewsNet and 99.99% on ISOT, while GPT-2 reached 99.72% on WELFake. In contrast, GNNs (GCN, GraphSAGE, GIN, GAT) exhibited lower performance. GCN achieved 71% accuracy on FakeNewsNet but dropped to 53.30% on ISOT and 50.28% on WELFake, with F1 scores reflecting similar trends. Other GNNs, like GraphSAGE, showed even lower results, particularly on ISOT and WELFake, where performance hovered around 50%. Our findings indicate that while Transformers provide exceptional accuracy and reliability, GNNs offer potential efficiency benefits for resource-constrained scenarios despite their lower predictive performance. This study informs model selection for fake news detection tasks and encourages the exploration of hybrid approaches to balance accuracy and computational efficiency."
+  },
+  {
+    "title": "Robust social recommendation based on contrastive learning and dual-stage graph neural network",
+    "year": 2024,
+    "cited": 24,
+    "doi": "https://doi.org/10.1016/j.neucom.2024.127597",
+    "type": "article",
+    "venue": "Neurocomputing",
+    "oa_url": "https://doi.org/10.1016/j.neucom.2024.127597",
+    "authors": [
+      "Gangfeng Ma",
+      "Xu-Hua Yang",
+      "Haixia Long",
+      "Yanbo Zhou",
+      "Xinli Xu"
+    ],
+    "abstract": "GNN-based social recommendation aims to use social network information to improve recommendation performance of traditional user\u2013item interaction network (U\u2013I network). However, in graph neural network information aggregation, both social networks and U\u2013I networks inevitably have noise, which affects accuracy of recommendation results. To reduce the noise impact of network data, we propose Robust Social Recommendation based on Contrastive Learning and Dual-Stage Graph Neural Network (CLDS). First, considering instability of social networks, we propose the social preference network. It is robust and retains only social friend relationships with common preferences. Based on it and U\u2013I network, we construct a social recommendation pre-training model. Next, we propose self-contrastive learning method. The method initializes multiple social network node representations through Gaussian distribution , pre-training and random disturbance, respectively. Then, it uses contrastive learning on the generated multiple node representations to enhance the robustness of node representation. Finally, CLDS avoids directly capturing potentially user\u2013user and item\u2013item information in U\u2013I networks which is incomplete and untrusted. And instead, it only extracts user\u2013item information to reduce the noise generated by GNN-based U\u2013I network information aggregation. We conduct experiments under the open-source real network dataset. The experimental results show that CLDS outperforms state-of-art methods in social recommendation. The code is available at: https://github.com/Andrewsama/CLDS-master ."
+  },
+  {
+    "title": "RAGN: Detecting unknown malicious network traffic using a robust adaptive graph neural network",
+    "year": 2025,
+    "cited": 20,
+    "doi": "https://doi.org/10.1016/j.comnet.2025.111184",
+    "type": "article",
+    "venue": "Computer Networks",
+    "oa_url": null,
+    "authors": [
+      "Ernest Akpaku",
+      "Jinfu Chen",
+      "Mukhtar Ahmed",
+      "Francis Kwadzo Agbenyegah",
+      "William Leslie Brown\u2010Acquaye"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "Can Large Language Models Improve the Adversarial Robustness of Graph Neural Networks?",
+    "year": 2025,
+    "cited": 18,
+    "doi": "https://doi.org/10.1145/3690624.3709256",
+    "type": "conference-paper",
+    "venue": null,
+    "oa_url": "https://doi.org/10.1145/3690624.3709256",
+    "authors": [
+      "Zhongjian Zhang",
+      "Xiao Wang",
+      "Huichi Zhou",
+      "Yue Yu",
+      "Mengmei Zhang",
+      "Cheng Hong Yang",
+      "Chuan Shi"
+    ],
+    "abstract": "Graph neural networks (GNNs) are vulnerable to adversarial attacks, especially for topology perturbations, and many methods that improve the robustness of GNNs have received considerable attention. Recently, we have witnessed the significant success of large language models (LLMs), leading many to explore the great potential of LLMs on GNNs. However, they mainly focus on improving the performance of GNNs by utilizing LLMs to enhance the node features. Therefore, we ask: Will the robustness of GNNs also be enhanced with the powerful understanding and inference capabilities of LLMs? By presenting the empirical results, we find that despite that LLMs can improve the robustness of GNNs, there is still an average decrease of 23.1% in accuracy, implying that the GNNs remain extremely vulnerable against topology attacks. Therefore, another question is how to extend the capabilities of LLMs on graph adversarial robustness. In this paper, we propose an LLM-based robust graph structure inference framework, LLM4RGNN, which distills the inference capabilities of GPT-4 into a local LLM for identifying malicious edges and an LM-based edge predictor for finding missing important edges, so as to recover a robust graph structure. Extensive experiments demonstrate that LLM4RGNN consistently improves the robustness across various GNNs. Even in some cases where the perturbation ratio increases to 40%, the accuracy of GNNs is still better than that on the clean graph. The source code can be found in https://github.com/zhongjian-zhang/LLM4RGNN."
+  },
+  {
+    "title": "A graph neural network-based model with out-of-distribution robustness for enhancing antiretroviral therapy outcome prediction for HIV-1",
+    "year": 2025,
+    "cited": 18,
+    "doi": "https://doi.org/10.1016/j.compmedimag.2024.102484",
+    "type": "article",
+    "venue": "Computerized Medical Imaging and Graphics",
+    "oa_url": "https://doi.org/10.1016/j.compmedimag.2024.102484",
+    "authors": [
+      "Giulia Di Teodoro",
+      "Federico Siciliano",
+      "Valerio Guarrasi",
+      "Anne\u2010Mieke Vandamme",
+      "Valeria Ghisetti",
+      "Anders B. S\u00f6nnerborg",
+      "Maurizio Zazzi",
+      "Fabrizio Silvestri",
+      "Laura Palagi"
+    ],
+    "abstract": "Predicting the outcome of antiretroviral therapies (ART) for HIV-1 is a pressing clinical challenge, especially when the ART includes drugs with limited effectiveness data. This scarcity of data can arise either due to the introduction of a new drug to the market or due to limited use in clinical settings, resulting in clinical dataset with highly unbalanced therapy representation. To tackle this issue, we introduce a novel joint fusion model, which combines features from a Fully Connected (FC) Neural Network and a Graph Neural Network (GNN) in a multi-modality fashion. Our model uses both tabular data about genetic sequences and a knowledge base derived from Stanford drug-resistance mutation tables, which serve as benchmark references for deducing in-vivo treatment efficacy based on the viral genetic sequence. By leveraging this knowledge base structured as a graph, the GNN component enables our model to adapt to imbalanced data distributions and account for Out-of-Distribution (OoD) drugs. We evaluated these models' robustness against OoD drugs in the test set. Our comprehensive analysis demonstrates that the proposed model consistently outperforms the FC model. These results underscore the advantage of integrating Stanford scores in the model, thereby enhancing its generalizability and robustness, but also extending its utility in contributing in more informed clinical decisions with limited data availability. The source code is available at https://github.com/federicosiciliano/graph-ood-hiv."
+  },
+  {
+    "title": "Network Controllability Robustness Learning via Spatial Graph Neural Networks",
+    "year": 2024,
+    "cited": 18,
+    "doi": "https://doi.org/10.1109/tnse.2024.3391793",
+    "type": "article",
+    "venue": "IEEE Transactions on Network Science and Engineering",
+    "oa_url": null,
+    "authors": [
+      "Yu Zhang",
+      "Jie Ding",
+      "Xiang Li"
+    ],
+    "abstract": "Controllability of complex networks refers to the ability of a networked system to steer from any initial state to any desired state in a finite time under feasible control inputs. Its robustness reflects the ability of a network to maintain controllability under various attacks, which records a series of controllability values under continuous attacks and can be directly determined by attack simulations. However, such simulation experiments are very time-consuming. It is necessary to design a model to replace simulation experiments to learn network controllability robustness with high precision and high speed, which is the objective ofNetwork Controllability Robustness Learning. In this paper, given the superiority of spatial graph neural networks in generating network embedding, a novel controllability robustness learning approach via spatial graph neural networks (CRL-SGNN) is proposed by taking into account both generalization and high precision. In this scheme, controllability robustness related complex network representations that contain network topology information and degree-based node attribute information are first generated through the introduced graph convolutional layer and then sent to the prediction module consisting of multiple branches. A large number of experiments show that: 1) CRL-SGNN can overcome the issue of different distributions between training and test sets with satisfactory performance, implying strong generalization ability of CRL-SGNN; 2) Compared to the cutting-edge methods, CRL-SGNN can obtain superior results in less time; 3) A highlight which cannot be ignored is that the embedding generation module of CRL-SGNN can serve as a transferable feature learning module to deal with complex networks of any size with low prediction error and high efficiency."
+  },
+  {
+    "title": "Robust Graph Neural Networks for Stability Analysis in Dynamic Networks",
+    "year": 2024,
+    "cited": 17,
+    "doi": "https://doi.org/10.1109/cbase64041.2024.10824358",
+    "type": "conference-paper",
+    "venue": null,
+    "oa_url": null,
+    "authors": [
+      "Xin Zhang",
+      "Zhen Ying Xu",
+      "Yue Liu",
+      "Mengfang Sun",
+      "Tong Zhou",
+      "Wenying Sun"
+    ],
+    "abstract": "In the current context of accelerated globalization and digitalization, the complexity and uncertainty of financial markets are increasing, and the identification and prevention of economic risks have become a key link in maintaining the stability of the financial system. Traditional risk identification methods often have limitations because they are difficult to cope with the multi-level and dynamically changing complex relationships in financial networks. With the rapid development of financial technology, graph neural network (GNN) technology, as an emerging deep learning method, has gradually shown great potential in the field of financial risk management. GNN can map transaction behaviors, financial institutions, individuals and their interactive relationships in financial networks into graph structures, and effectively capture potential patterns and abnormal signals in financial data through embedded representation learning. Using this technology, financial institutions can extract valuable information from complex transaction networks, identify hidden dangers or abnormal behaviors that may cause systemic risks in a timely manner, optimize decision-making processes, and improve the accuracy of risk warnings. This paper explores the economic risk identification algorithm based on the GNN algorithm, aiming to provide financial institutions and regulators with more intelligent technical tools to help maintain the security and stability of the financial market. Improving the efficiency of economic risk identification through innovative technical means is expected to further enhance the risk resistance of the financial system and lay the foundation for building a robust global financial system."
+  },
+  {
+    "title": "ADEdgeDrop: Adversarial Edge Dropping for Robust Graph Neural Networks",
+    "year": 2025,
+    "cited": 16,
+    "doi": "https://doi.org/10.1109/tkde.2025.3586369",
+    "type": "article",
+    "venue": "IEEE Transactions on Knowledge and Data Engineering",
+    "oa_url": null,
+    "authors": [
+      "Zhaoliang Chen",
+      "Zhihao Wu",
+      "Ylli Sadikaj",
+      "Claudia Plant",
+      "Hong\u2010Ning Dai",
+      "Shiping Wang",
+      "Yiu-Ming Cheung",
+      "Wenzhong Guo"
+    ],
+    "abstract": "Although Graph Neural Networks (GNNs) have exhibited the powerful ability to gather graph-structured information from neighborhood nodes via various message-passing mechanisms, the performance of GNNs is limited by poor generalization and fragile robustness caused by noisy and redundant graph data. As a prominent solution, Graph Augmentation Learning (GAL) has recently received increasing attention in the literature. Among the existing GAL approaches, edge-dropping methods that randomly remove edges from a graph during training are effective techniques to improve the robustness of GNNs. However, randomly dropping edges often results in bypassing critical edges. Consequently, the effectiveness of message passing is weakened. In this paper, we propose a novel adversarial edge-dropping method (ADEdgeDrop) that leverages an adversarial edge predictor guiding the removal of edges, which can be flexibly incorporated into diverse GNN backbones. Employing an adversarial training framework, the edge predictor utilizes the line graph transformed from the original graph to estimate the edges to be dropped, which improves the interpretability of the edge-dropping method. The proposed ADEdgeDrop is optimized alternately by stochastic gradient descent and projected gradient descent. Comprehensive experiments on eight graph benchmark datasets demonstrate that the proposed ADEdgeDrop outperforms state-of-the-art baselines across various GNN backbones, demonstrating improved generalization and robustness."
+  },
+  {
+    "title": "Robust and efficient dual-graph neural networks for structural damage detection and localization",
+    "year": 2025,
+    "cited": 14,
+    "doi": "https://doi.org/10.1016/j.engstruct.2025.121265",
+    "type": "article",
+    "venue": "Engineering Structures",
+    "oa_url": "https://doi.org/10.1016/j.engstruct.2025.121265",
+    "authors": [
+      "Rashinda Wijethunga",
+      "Jagath K. Samarabandu",
+      "Ayan Sadhu"
+    ],
+    "abstract": "Effective and timely detection of structural damage is crucial for maintaining the integrity, safety, and longevity of civil infrastructure systems. Traditional structural health monitoring techniques, especially vibration-based methods, often encounter limitations such as sensitivity to measurement noise and reliance on manual feature extraction. Moreover, advanced deep learning methods and single-graph models often struggle to accurately localize and assess damages of varying scales and positions within complex, high-dimensional structures. To address these limitations, this study introduces a novel dual-graph convolutional network approach integrating both spatial (sensor topology) and feature-based adjacency matrices. A one-dimensional convolutional neural network preprocessing module is also incorporated to enhance computational efficiency through effective feature extraction and data compression. Comprehensive evaluations were conducted on two established civil engineering benchmark datasets, the Leibniz University Test Structure for Monitoring (LUMO) and Qatar University Grandstand Simulator (QUGS). The proposed method achieved 98.8 % accuracy on LUMO and 99.9 % on QUGS. Robustness tests showed accuracies above 96.5 % (LUMO) and 97 % (QUGS), even at low signal-to-noise ratio (0 dB). CNN-based compression significantly reduced training time. For instance, training time dropped from 295.7 to 12.1 h (LUMO) and from 1712.85 to 148.24 h (QUGS), maintaining accuracy above 98 %. The proposed dual-graph approach thus offers substantial improvements in structural damage detection and localization for complex civil structures."
+  }
+]

@@ -1,0 +1,193 @@
+[
+  {
+    "title": "Consensus representation of multiple cell\u2013cell graphs from gene signaling pathways for cell type annotation",
+    "year": 2025,
+    "cited": 34,
+    "doi": "https://doi.org/10.1186/s12915-025-02128-8",
+    "type": "article",
+    "venue": "BMC Biology",
+    "oa_url": "https://bmcbiol.biomedcentral.com/counter/pdf/10.1186/s12915-025-02128-8",
+    "authors": [
+      "Yu\u2010An Huang",
+      "Yue-Chao Li",
+      "Zhu-Hong You",
+      "Lun Hu",
+      "Pengwei Hu",
+      "Lei Wang",
+      "Yuzhong Peng",
+      "Zhi-An Huang"
+    ],
+    "abstract": "BACKGROUND: Recent advancements in single-cell RNA sequencing have greatly expanded our knowledge of the heterogeneous nature of tissues. However, robust and accurate cell type annotation continues to be a major challenge, hindered by issues such as marker specificity, batch effects, and a lack of comprehensive spatial and interaction data. Traditional annotation methods often fail to adequately address the complexity of cellular interactions and gene regulatory networks. RESULTS: We proposed scMCGraph, a comprehensive computational framework that integrates gene expression with pathway activity to accurately annotate cell types within diverse scRNA-seq datasets. Initially, our model constructs multiple pathway-specific views using various pathway databases, which reflect both gene expression and pathway activities. These pathway-specific views are then integrated into a consensus graph. The consensus graph is subsequently utilized to reconstruct the multiple pathway views. Our model demonstrated exceptional robustness and accuracy across various analyses, including cross-platform, cross-time, cross-sample, and clinical dataset evaluations. CONCLUSIONS: scMCGraph represents a significant advance in cell type annotation. The experiments have demonstrated that introducing pathway information significantly improves the learning of cell-cell graphs, with their resulting consensus graph enhancing the predictive performance of cell type prediction. Different pathway databases provide complementary data, and an increase in the number of pathways can also boost model performance. Extensive testing shows that in various cross-dataset application scenarios, scMCGraph consistently exhibits both accuracy and robustness."
+  },
+  {
+    "title": "SymphonyQG: Towards Symphonious Integration of Quantization and Graph for Approximate Nearest Neighbor Search",
+    "year": 2025,
+    "cited": 21,
+    "doi": "https://doi.org/10.1145/3709730",
+    "type": "article",
+    "venue": "Proceedings of the ACM on Management of Data",
+    "oa_url": "https://doi.org/10.1145/3709730",
+    "authors": [
+      "Yutong Gou",
+      "Jianyang Gao",
+      "Yuexuan Xu",
+      "Cheng Long"
+    ],
+    "abstract": "Approximate nearest neighbor (ANN) search in high-dimensional Euclidean space has a broad range of applications. Among existing ANN algorithms, graph-based methods have shown superior performance in terms of the time-accuracy trade-off. However, they face performance bottlenecks due to the random memory accesses caused by the searching process on the graph indices and the costs of computing exact distances to guide the searching process. To relieve the bottlenecks, a recent method named NGT-QG makes an attempt by integrating quantization and graph. It (1) replicates and stores the quantization codes of a vertex's neighbors compactly so that they can be accessed sequentially, and (2) uses a SIMD-based implementation named FastScan to efficiently estimate distances based on the quantization codes in batch for guiding the searching process. While NGT-QG achieves promising improvements over the vanilla graph-based methods, it has not fully unleashed the potential of integrating quantization and graph. For instance, it entails a re-ranking step to compute exact distances at the end, which introduces extra random memory accesses; its graph structure is not jointly designed considering the in-batch nature of FastScan, which causes wastes of computation in searching. In this work, following NGT-QG, we present a new method named SymphonyQG, which achieves more symphonious integration of quantization and graph (e.g., it avoids the explicit re-ranking step and refines the graph structure to be more aligned with FastScan). Based on extensive experiments on real-world datasets, SymphonyQG establishes the new state-of-the-art in terms of the time-accuracy trade-off: at 95% recall, SymphonyQG achieves 1.5x-4.5x QPS compared with the most competitive baselines and achieves 3.5x-17x QPS compared with the classical library HNSWlib across all tested datasets. At the same time, its indexing is at least 8x faster than NGT-QG."
+  },
+  {
+    "title": "Shale Gas Production Forecasting with Well Interference Based on Spatial-Temporal Graph Convolutional Network",
+    "year": 2024,
+    "cited": 19,
+    "doi": "https://doi.org/10.2118/215056-pa",
+    "type": "article",
+    "venue": "SPE Journal",
+    "oa_url": null,
+    "authors": [
+      "Ziming Xu",
+      "Juliana Y. Leung"
+    ],
+    "abstract": "Summary One of the core assumptions of most deep-learning-based data-driven models is that samples are independent. However, this assumption poses a key challenge in production forecasting\u2014performance is influenced by well interference and reservoir connectivity. Most shale gas wells are hydraulically fractured and exist in complex fracture systems, and the neighboring well characteristics should also be considered when constructing data-driven forecast models. Researchers have explored using the graph convolutional network (GCN) to address this issue by incorporating neighboring well characteristics into production forecasting models. However, applying GCN to field-scale studies is problematic, as it requires training on a full batch, leading to gigantic cache allocation. In addition, the transductive nature of GCN poses challenges for direct generalization to unseen nodes. To overcome these limitations, we adopt the graph sampling and aggregation (GraphSAGE) network architecture, which allows training large graphs with batches and generalizing predictions for previously unseen nodes. By utilizing the gated recurrent unit (GRU) network, the proposed spatial-temporal (ST)-GraphSAGE model can capture cross-time relationships between the target and the neighboring wells and generate promising prediction time series for the target wells, even if they are newly drilled wells. The proposed approach is validated and tested using the field data from 2,240 Montney shale gas wells, including formation properties, hydraulic fracture parameters, production history, and operational data. The algorithm aggregates the first-hop information to the target node for each timestep. The encoder-decoder (ED) architecture is used to generate forecasts for the subsequent 3-year production rate by using the 1-year production history of the wells. The trained model enables the evaluation of production predictions for newly developed wells at any location. We evaluate the model\u2019s performance using P10, P50, and P90 of the test data set\u2019s root mean square error (RMSE). Our method preserves the topological characteristics of wells and generalizes the prediction to unseen nodes while significantly reducing training complexity, making it applicable to larger data sets. By incorporating information from adjacent wells and integrating ST data, our ST-GraphSAGE model outperforms the traditional GRU-ED model and shows enhanced interpretability."
+  },
+  {
+    "title": "Double difference earthquake location with graph neural networks",
+    "year": 2025,
+    "cited": 8,
+    "doi": "https://doi.org/10.1186/s40623-025-02251-4",
+    "type": "article",
+    "venue": "Earth Planets and Space",
+    "oa_url": "https://doi.org/10.1186/s40623-025-02251-4",
+    "authors": [
+      "Ian W. McBrearty",
+      "Gregory C. Beroza"
+    ],
+    "abstract": "Abstract Double difference earthquake relocation is an essential component of many earthquake catalog development workflows. This technique produces high-resolution relative relocations between events by minimizing differential measurements of the arrival times of waves from nearby sources, which highlights the resolution of faults and improves interpretation of seismic activity. The inverse problem is typically solved iteratively using conjugate-gradient minimization for up to $$\\sim$$ \u223c 100,000\u2019s events, however, the cost scales significantly with the total number of sources and stations considered. Here, we propose a Graph Neural Network (GNN)-based earthquake double-difference relocation framework, Graph Double Difference (GraphDD), that is trained to minimize the double-difference residuals of a catalog to locate earthquakes. Through batching and sampling the method can scale to arbitrarily large catalogs. This is a distinct use of machine learning for earthquake catalog development, because the network is trained to minimize the double-difference residuals over an entire catalog simultaneously, rather than for individual per-event predictions. Our architecture uses one graph to represent the stations, a second graph to represent the sources, and creates the Cartesian product graph between the two graphs to capture the relationships between the sources and stations (e.g., the residuals and travel time partial derivatives). This key feature allows a natural architecture that can be used to minimize the double-difference residuals. We implement our model on several distinct test cases, including seismicity from northern California, T\u00fcrkiye, and northern Chile, which have highly variable data quality, and station and source distributions. We obtain high resolution relocations in these tests, and our model shows adaptability to variable types of loss functions and location objectives, including learning station corrections and mapping into the reference frame of a different catalog. Our results suggest that a GNN approach to double-difference relocation is a promising direction for scaling to very large catalogs and gaining new insights into the relocation problem. Graphical Abstract"
+  },
+  {
+    "title": "IGBT Module DPT Efficiency Enhancement via Multimodal Fusion Networks and Graph Convolution Networks",
+    "year": 2024,
+    "cited": 6,
+    "doi": "https://doi.org/10.1109/tie.2024.3368165",
+    "type": "article",
+    "venue": "IEEE Transactions on Industrial Electronics",
+    "oa_url": "https://eprints.whiterose.ac.uk/id/eprint/215522/1/IGBT_Module_DPT_Efficiency_Enhancement_Via_Multimodal_Fusion_Networks_and_Graph_Convolution_Networks.pdf",
+    "authors": [
+      "Xiaotian Zhang",
+      "Yihua Hu",
+      "Jingwei Zhang",
+      "Mohammad Nasr Esfahani",
+      "Timothy Tilford",
+      "Stoyan Stoyanov"
+    ],
+    "abstract": "The dynamic electrical characteristics of insulated-gate bipolar transistor (IGBT) are of great significance in practical high-power electrical applications and are usually evaluated through double pulse test (DPT). However, DPTs of IGBTs under various working conditions are time-consuming and laborious. Traditional estimation methods are based on detailed physical parameters and complex formula calculations, making deployment process challenging. This article proposes a novel DPT efficiency enhancement method based on graph convolution network (GCN) and feature fusion technology, which can estimate and supplement switching transient waveforms of all working conditions. Thereby, dynamic electrical characteristics of the IGBT are obtained by estimated waveforms of DPT. This method proposes a multimodal attention fusion network to capture and fuse the features of switching transient waveforms between different positions thereby improving the expressive power and performance of the model. Moreover, this method is novel in that it is the first to utilize GCN to embed DPT data under multiple working conditions into a graph structure, which can use the graph structure information to fuse the features of spatially correlated working conditions data to obtain reliable estimation results. The method has been verified to be effective and accurate on real dataset collected on two batches of IGBTs."
+  },
+  {
+    "title": "Time-Aware Projections: Truly Node-Private Graph Statistics under Continual Observation*",
+    "year": 2024,
+    "cited": 5,
+    "doi": "https://doi.org/10.1109/sp54263.2024.00196",
+    "type": "conference-paper",
+    "venue": null,
+    "oa_url": "https://arxiv.org/pdf/2403.04630",
+    "authors": [
+      "Palak Jain",
+      "Adam N. H. Smith",
+      "Connor Wagaman"
+    ],
+    "abstract": "Releasing differentially private statistics about social network data is challenging: one individual\u2019s data consists of a node and all of its connections, and typical analyses are sensitive to the insertion of a single unusual node in the network. This challenge is further complicated in the continual release setting, where the network varies over time and one wants to release information at many time points as the network grows. Previous work addresses node-private continual release by assuming an unenforced promise on the maximum degree in a graph; indeed, the algorithms from these works exhibit blatant privacy violations when the degree bound is not met.In this work, we describe the first algorithms that satisfy the standard notion of node-differential privacy in the continual release setting (i.e., without an assumed promise on the input streams). These algorithms are accurate on sparse graphs, for several fundamental graph problems: counting edges, triangles, other subgraphs, and connected components; and releasing degree histograms. Our unconditionally private algorithms generally have optimal error, up to polylogarithmic factors and lower-order terms.We provide general transformations that take a base algorithm for the continual release setting, which need only be private for streams satisfying a promised degree bound, and produce an algorithm that is unconditionally private yet mimics the base algorithm when the stream meets the degree bound (and adds only linear overhead to the time and space complexity of the base algorithm). To do so, we design new projection algorithms for graph streams, based on the batch-model techniques of [BBDS13; DLL16], which modify the stream to limit its degree. Our main technical innovation is to show that the projections are stable\u2014meaning that similar input graphs have similar projections\u2014when the input stream satisfies a privately testable safety condition. Our transformation then follows a novel online variant of the Propose-Test-Release framework [DL09], privately testing the safety condition before releasing output at each step."
+  },
+  {
+    "title": "Shale Gas Production Forecasting with Well Interference Based on Spatial-Temporal Graph Convolutional Network",
+    "year": 2023,
+    "cited": 5,
+    "doi": "https://doi.org/10.2118/215056-ms",
+    "type": "conference-paper",
+    "venue": "SPE Annual Technical Conference and Exhibition",
+    "oa_url": null,
+    "authors": [
+      "Ziming Xu",
+      "Juliana Y. Leung"
+    ],
+    "abstract": "Abstract One of the core assumptions of most deep learning-based data-driven models is that samples are independent. However, this assumption poses a key challenge in production forecasting - performance is influenced by well interference and reservoir connectivity. Most shale gas wells are hydraulically fractured and exist in complex fracture systems, and the neighbouring well characteristics should also be considered when constructing data-driven forecast models. Researchers have explored using the Graph Convolutional Network (GCN) to address this issue by incorporating neighbouring well characteristics into production forecasting models. However, applying GCN to field-scale studies is problematic, as it requires training on a full batch, leading to gigantic cache allocation. Additionally, the transductive nature of GCN poses challenges for direct generalization to unseen nodes. To overcome these limitations, we adopt the Graph Sampling and Aggregation (GraphSAGE) network architecture, which allows training large graphs with mini-batches and generalizing predictions for previously unseen nodes. By cooperating with the Gated Recurrent Unit (GRU) network, the proposed Spatial-Temporal (ST)- GraphSAGE model can capture cross-time relationships between the target and the neighbouring wells and generate promising prediction time series for the target wells, even if they are newly drilled wells. The data set is based on field data corresponding to 2,240 Montney shale gas wells and consists of formation properties, fracture parameters, production history and operational data. The algorithm aggregates the first-hop information to the target node for each timestep. The Encoder-Decoder (ED) architecture is employed to generate forecasts for the subsequent three-year production rate by using the one-year production history of the wells. The trained model enables the evaluation of production predictions for newly developed wells at any location. We evaluate the model's performance using P10, P50, and P90 of the test dataset's Root Mean Square Error (RMSE). Our method preserves the topological characteristics of wells and generalizes the prediction to unseen nodes while significantly reducing training complexity, making it applicable to larger oil/gas fields. By incorporating information from adjacent wells and integrating spatial-temporal data, our ST-GraphSAGE model outperforms the traditional GRU-ED model and shows enhanced interpretability."
+  },
+  {
+    "title": "Multi-Agent Flexible Job Shop Scheduling by Deep Learning on Graphs With Evolutionary Neural Topology",
+    "year": 2026,
+    "cited": 3,
+    "doi": "https://doi.org/10.1109/tsmc.2026.3659237",
+    "type": "article",
+    "venue": "IEEE Transactions on Systems Man and Cybernetics Systems",
+    "oa_url": null,
+    "authors": [
+      "Qiaoyun Wang",
+      "Shudong Sun"
+    ],
+    "abstract": "Increased competition in the market has formed a novel production model of multivariety and small batch to satisfy the demand of different users for personalized products. Since each user pursues different objectives, a multi-agent system is integrated into the novel production model to balance the satisfaction between diverse users and improve the overall benefit of the model. Multi-agent flexible job shop scheduling problem (MAFJSP) is researched in this article, with objectives including total tardiness (TTD) of user agents and delivery time balancing (DTB) of the job shop agent. Deep learning on graphs with evolutionary neural topology (GDL-ENT) is devised to address the MAFJSP. Aheterogeneous graph is designed to carefully represent the environment information containing the operation, machine, and user agents, while a heterogeneous attention network (HAN) is employed to hierarchically extract state features according to user agents. Meanwhile, the automatic generation of the structure and hyperparameters for the neural network in deep learning on graphs is achieved by the evolutionary neural topology search method. The performance and generalization of the GDL-ENT, as well as the influence of main components in the GDL-ENT, are analyzed on the randomly generated test suite, public benchmark instances, and the real-world dataset, respectively. The GDL-ENT has superior competitiveness compared to the state-of-the-art algorithms for solving the MAFJSP from experiment results."
+  },
+  {
+    "title": "An Analysis of Graph Neural Network Memory Access Patterns",
+    "year": 2023,
+    "cited": 3,
+    "doi": "https://doi.org/10.1145/3624062.3624168",
+    "type": "conference-paper",
+    "venue": null,
+    "oa_url": "https://dl.acm.org/doi/pdf/10.1145/3624062.3624168",
+    "authors": [
+      "Satoshi Iwata",
+      "Remzi H. Arpaci-Dusseau",
+      "Akihiko Kasagi"
+    ],
+    "abstract": "Graph Neural Networks (GNNs) are becoming increasingly popular for applying neural networks to graph data. However, as the size of the input graph increases, the GPU memory wall problem becomes an important issue. Since both current solutions to reduce the memory footprint, such as mini-batch approaches and the use of memory-efficient tensor manipulations, have drawbacks, we attempt to solve the problem by expanding the memory size using a virtual memory technology. To overcome the data transfer overhead of virtual memory technology, in this paper we focus on analyzing the memory access pattern of GNNs with the goal of reducing the data transfer latency perceived by the user. A preliminary result of applying optimization techniques guided by our analysis results shows a 40% reduction in the execution time of a combination of training and testing."
+  },
+  {
+    "title": "GraphFM: A Comprehensive Benchmark for Graph Foundation Model",
+    "year": 2024,
+    "cited": 2,
+    "doi": "https://doi.org/10.48550/arxiv.2406.08310",
+    "type": "preprint",
+    "venue": "arXiv (Cornell University)",
+    "oa_url": "https://arxiv.org/pdf/2406.08310",
+    "authors": [
+      "Yuhao Xu",
+      "Xinqi Liu",
+      "Keyu Duan",
+      "Yi Fang",
+      "Yu-Neng Chuang",
+      "Daochen Zha",
+      "Qiaoyu Tan"
+    ],
+    "abstract": "Foundation Models (FMs) serve as a general class for the development of artificial intelligence systems, offering broad potential for generalization across a spectrum of downstream tasks. Despite extensive research into self-supervised learning as the cornerstone of FMs, several outstanding issues persist in Graph Foundation Models that rely on graph self-supervised learning, namely: 1) Homogenization. The extent of generalization capability on downstream tasks remains unclear. 2) Scalability. It is unknown how effectively these models can scale to large datasets. 3) Efficiency. The training time and memory usage of these models require evaluation. 4) Training Stop Criteria. Determining the optimal stopping strategy for pre-training across multiple tasks to maximize performance on downstream tasks. To address these questions, we have constructed a rigorous benchmark that thoroughly analyzes and studies the generalization and scalability of self-supervised Graph Neural Network (GNN) models. Regarding generalization, we have implemented and compared the performance of various self-supervised GNN models, trained to generate node representations, across tasks such as node classification, link prediction, and node clustering. For scalability, we have compared the performance of various models after training using full-batch and mini-batch strategies. Additionally, we have assessed the training efficiency of these models by conducting experiments to test their GPU memory usage and throughput. Through these experiments, we aim to provide insights to motivate future research. The code for this benchmark is publicly available at https://github.com/NYUSHCS/GraphFM."
+  },
+  {
+    "title": "Sampling Graphs without Forbidden Subgraphs and Unbalanced Expanders with Negligible Error",
+    "year": 2023,
+    "cited": 2,
+    "doi": "https://doi.org/10.1137/22m1484134",
+    "type": "article",
+    "venue": "SIAM Journal on Computing",
+    "oa_url": null,
+    "authors": [
+      "Benny Applebaum",
+      "Eliran Kachlon"
+    ],
+    "abstract": "Abstract. Suppose that you wish to sample a random graph [Formula: see text] over [Formula: see text] vertices and [Formula: see text] edges conditioned on the event that [Formula: see text] does not contain a \u201csmall\u201d [Formula: see text]-size graph [Formula: see text] (e.g., clique) as a subgraph. Assuming that most such graphs are [Formula: see text]-free, the problem can be solved by a simple rejected-sampling algorithm (that tests for [Formula: see text]-cliques) with an expected running time of [Formula: see text]. Is it possible to solve the problem in a running time that does not grow polynomially with [Formula: see text]? In this paper, we introduce the general problem of sampling a \u201crandom looking\u201d graph [Formula: see text] with a given edge density that avoids some arbitrary predefined [Formula: see text]-size subgraph [Formula: see text]. As our main result, we show that the problem is solvable with respect to some specially crafted [Formula: see text]-wise independent distribution over graphs. That is, we design a sampling algorithm for [Formula: see text]-wise independent graphs that supports efficient testing for subgraph-freeness in time [Formula: see text], where [Formula: see text] is a function of [Formula: see text] and the constant [Formula: see text] in the exponent is independent of [Formula: see text]. Our solution extends to the case where both [Formula: see text] and [Formula: see text] are [Formula: see text]-uniform hypergraphs. We use these algorithms to obtain the first probabilistic construction of constant-degree polynomially unbalanced expander graphs whose failure probability is negligible in [Formula: see text] (i.e., [Formula: see text]). In particular, given constants [Formula: see text], we output a bipartite graph that has [Formula: see text] left nodes and [Formula: see text] right nodes with right-degree of [Formula: see text] so that any right set of size at most [Formula: see text] expands by factor of [Formula: see text]. This result is extended to the setting of unique expansion as well. We observe that such a negligible-error construction can be employed in many useful settings and present applications in coding theory (batch codes and low-density parity-check codes), pseudorandomness (low-bias generators and randomness extractors), and cryptography. Notably, we show that our constructions yield a collection of polynomial-stretch locally computable cryptographic pseudorandom generators based on Goldreich\u2019s one-wayness assumption resolving a central open problem in the area of parallel-time cryptography (e.g., Applebaum, Ishai, and Kushilevitz [ SIAM J. Comput., 36 (2006), pp. 845\u2013888] and Ishai et al. [ Proceedings of the 40 th Annual ACM Symposium on Theory of Computing, ACM, 2008, pp. 433\u2013442])."
+  },
+  {
+    "title": "A novel method for accurate and enhanced prediction of proton exchange membrane fuel cell performance based on graph neural networks",
+    "year": 2025,
+    "cited": 1,
+    "doi": "https://doi.org/10.1177/09576509251403016",
+    "type": "article",
+    "venue": "Proceedings of the Institution of Mechanical Engineers Part A Journal of Power and Energy",
+    "oa_url": null,
+    "authors": [
+      "Hongwei Li",
+      "Qiwen Wang",
+      "Lei Wang",
+      "Zhicheng Hou",
+      "Bin-Xin Qiao",
+      "Yue Yang"
+    ],
+    "abstract": "This study introduces a novel prediction method that utilizes graph neural networks (GNN) to enhance the prediction accuracy and thereby improve the durability of PEM fuel cell. This method leverages the ability of GNN to extract features from graph-structured data, effectively capturing the implicit variables and time dependencies in the operating parameters. The primary findings indicate that when the number of graph convolution layers, the number of LSTM layers, the batch size, and the learning rate are 3, 1, 32, and 0.000272 respectively, the mean square error after 18 iterations of the model is 4.8957 \u00d7 10 \u22126 . At this point, the performance of the GNN model is the best. This method is compared with five other classic benchmark models. The root mean square error on the training set is 2.213 \u00d7 10 \u22123 , and the error on the test set is 5.798 \u00d7 10 \u22123 . Compared with traditional methods, the error is reduced by 74.12% and 62.63% respectively. Its accuracy and fit are also superior to other models. By comparing the actual values of the output voltage of PEM fuel cell under dynamic load conditions with the output voltage predictions based on the GNN model, the GNN model is able to accurately fit the output voltage of the fuel cell under dynamic load conditions over a time span of 1008 h. By analyzing the average weight distribution of the graph attention layer, the GNN not only can capture the instantaneous correlation through short-term time information, but also extract long-term time information to predict the turning point of irreversible damage in PEM fuel cell, ultimately achieving highly accurate prediction results."
+  }
+]

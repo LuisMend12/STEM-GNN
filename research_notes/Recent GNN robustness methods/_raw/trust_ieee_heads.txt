@@ -1,0 +1,63 @@
+H2: I Introduction
+H3: I-A Trustworthiness
+H3: I-B From Trustworthy AI to Trustworthy GNNs
+H3: I-C Aspects of Trustworthy GNNs.
+H3: I-D Related Surveys
+H3: I-E Contributions and Organisation
+H2: II Concepts
+H2: III Robustness of GNNs
+H3: III-A Adversarial Attacks
+H4: III-A 1 Threat Models and Attack Categories
+H4: III-A 2 Attack Methods
+H3: III-B Defences
+H4: III-B 1 Defences before GNN Training
+H4: III-B 2 Defences during GNN Training
+H4: III-B 3 Defence after GNN Training
+H4: III-B 4 Summary
+H3: III-C Applications
+H3: III-D Future Directions of Robust GNNs
+H2: IV Explainability of GNNs
+H3: IV-A Concepts and Categories
+H3: IV-B Methods
+H4: IV-B 1 Intrinsically Interpretable GNNs
+H4: IV-B 2 Post-hoc Explainers for GNNs
+H3: IV-C Summary
+H4: IV-C 1 Interpretability and Explainability
+H4: IV-C 2 White/Grey/Black-box Knowledge
+H4: IV-C 3 Reasoning Rationale
+H4: IV-C 4 Other Limitations
+H4: IV-C 5 Complexity
+H3: IV-D Applications
+H3: IV-E Future Directions of Explainable GNNs
+H2: V Privacy of GNNs
+H3: V-A Privacy Attacks
+H3: V-B Privacy-preserving Techniques for GNNs
+H4: V-B 1 Federated Learning
+H4: V-B 2 Differential Privacy
+H4: V-B 3 Insusceptible Training
+H4: V-B 4 Security Computation
+H4: V-B 5 Summary
+H3: V-C Applications
+H3: V-D Future Directions of Private GNNs
+H2: VI Fairness of GNNs
+H3: VI-A Concepts and Categories
+H3: VI-B Methods
+H3: VI-C Summary
+H3: VI-D Applications
+H3: VI-E Future Directions of GNN Fairness
+H2: VII Accountability of GNNs
+H3: VII-A Methods
+H3: VII-B Applications
+H3: VII-C Future Directions of GNN Accountability
+H2: VIII Environmental Well-being of GNNs
+H3: VIII-A Methods
+H4: VIII-A 1 Scalable GNN Architectures and Efficient Data Communication
+H4: VIII-A 2 Model Compression Methods
+H4: VIII-A 3 Efficient Frameworks and Accelerators
+H3: VIII-B Applications
+H3: VIII-C Future Directions of Environmental Well-being in GNNs
+H2: IX Relations between Aspects of Trustworthy GNNs
+H2: X Conclusion and Trending Research Directions
+H2: Acknowledgments
+H2: Appendix A Datasets for Trustworthy GNNs
+H2: References

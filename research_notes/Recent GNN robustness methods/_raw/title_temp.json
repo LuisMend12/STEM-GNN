@@ -1,0 +1,242 @@
+[
+  {
+    "title": "Scalable and transferable graph neural networks for predicting temperature evolution in laser powder bed fusion",
+    "year": 2025,
+    "cited": 20,
+    "doi": "https://doi.org/10.1016/j.engappai.2025.110898",
+    "type": "article",
+    "venue": "Engineering Applications of Artificial Intelligence",
+    "oa_url": "https://doi.org/10.1016/j.engappai.2025.110898",
+    "authors": [
+      "Riddhiman Raut",
+      "Amit Kumar Ball",
+      "Amrita Basak"
+    ],
+    "abstract": "Predicting temperature distributions in laser powder bed fusion (L-PBF) processes is essential for mitigating thermal distortions and ensuring the structural integrity of manufactured parts. Traditional finite element analysis (FEA) methods, while accurate, are computationally intensive and struggle to scale to larger domains. To address these limitations, this study proposes novel predictive models based on Graph Neural Networks (GNNs) to simulate thermal dynamics in L-PBF processes. The models leverage high-fidelity FEA data from small-scale domains to generalize effectively to larger domains with minimal retraining. For single-laser setups, the GNN achieves a Mean Absolute Percentage Error (MAPE) of 3.77 %, while significantly reducing computational costs. For instance, a thermomechanical simulation for a 2 mm square domain typically takes about 4 h, whereas the single-laser model predicts thermal distributions almost instantly. When calibrated for larger domains, the models significantly enhance predictive performance, showing notable improvements for square domains of 3 mm and 4 mm. Additionally, the models show a decreasing trend in Root Mean Square Error when tuned to larger domains, suggesting the potential for becoming geometry-agnostic. The interaction of multiple lasers complicates heat transfer, necessitating larger model architectures and advanced feature engineering. Using hyperparameters from Gaussian process-based Bayesian optimization , the best multi-laser surrogate model demonstrates a 46.4 % improvement in MAPE over the baseline model. By providing scalable and efficient predictive tools alongside FEA, this work paves the way for thermal modeling in L-PBF."
+  },
+  {
+    "title": "Physics-Data Synergy in Structural Health Monitoring: A Multi-Scale Graph Contrastive Framework With Temperature-Adaptive Fusion",
+    "year": 2026,
+    "cited": 12,
+    "doi": "https://doi.org/10.1109/access.2026.3669746",
+    "type": "article",
+    "venue": "IEEE Access",
+    "oa_url": "https://doi.org/10.1109/access.2026.3669746",
+    "authors": [
+      "Shuxin Zhang",
+      "Lei Qiu",
+      "Ziyang Zeng"
+    ],
+    "abstract": "Operational Structural Health Monitoring (SHM) currently faces a tripartite dilemma: the scarcity of labeled damage data from real-world infrastructure, the masking effects of environmental variability, and the prohibitive computational costs associated with high-fidelity physics simulations. To resolve these conflicts, this article presents a physics-data dual-driven framework that harmonizes finite element analysis (FEA) with self-supervised contrastive learning. The architecture employs a novel dual-matrix strategy: a static, physics-based matrix encoding mechanical constraints derived from modal analysis, and a dynamic monitoring matrix learned via hierarchical InfoNCE objectives across node, subgraph, and global levels. To distinguish genuine structural degradation from benign environmental shifts, we introduce an attention-based temperature-adaptive fusion mechanism. This module dynamically modulates the weighting of physics-driven versus data-driven features based on observed thermal gradient patterns. Furthermore, by leveraging parametric damage simulations as negative training samples, the framework achieves open-set classification capabilities, enabling the detection of unforeseen failure modes. Extensive validation on three benchmark datasets (IASC-ASCE, Z24 Bridge, and Guangzhou Tower) demonstrates that this approach outperforms state-of-the-art methods by margins of 4.4-6.1%, achieving 94.2% accuracy on the IASC-ASCE benchmark with only 20% labeled data. Notably, the model exhibits exceptional label efficiency, retaining 89.7% accuracy with merely 5% labeled samples\u2014effectively matching supervised baselines that require sixfold more annotation. This work establishes a robust methodology for unifying structural mechanics with deep representation learning, ensuring reliability under limited supervision and varying thermal conditions."
+  },
+  {
+    "title": "Real-Time Temperature Prediction for Large-Scale Multi-Core Chips Based on Graph Convolutional Neural Networks",
+    "year": 2025,
+    "cited": 8,
+    "doi": "https://doi.org/10.3390/electronics14061223",
+    "type": "article",
+    "venue": "Electronics",
+    "oa_url": "https://doi.org/10.3390/electronics14061223",
+    "authors": [
+      "Dengbao Miao",
+      "Gaoxiang Duan",
+      "Danyan Chen",
+      "Yongxin Zhu",
+      "Xiaoying Zheng"
+    ],
+    "abstract": "The real-time temperature prediction of chips is a critical issue in the semiconductor field. As chip designs evolve towards 3D and high integration, traditional analytical methods such as finite element software and HotSpot face bottlenecks such as high difficulty in modeling, costly computation, and slow inference speeds when dealing with large-scale, multi-hotspot chip thermal analysis. To address these challenges, this paper proposes a real-time temperature prediction model for multi-core chips based on Graph Convolutional Neural Networks (GCNs) that includes the following specific steps: First, the multi-core chip and its temperature power information are represented by a graph according to the physical pattern of heat transfer; Second, three strategies\u2014full connection, setting a truncation radius, and clustering\u2014are proposed to construct the adjacency matrix of the graph, thus supporting the model to balance between computational complexity and accuracy; Third, the GCN model is improved by assigning learnable weights to the adjacency matrix, thereby enhancing its representational power for the temperature distribution of multiple cores. Experimental results show that, under different node numbers and distributions, our proposed method can control the Mean Squared Error (MSE) error of temperature prediction within 0.5, while the single inference time is within 2 ms, which is at least an order of magnitude faster than traditional methods such as HotSpot, meeting the requirements for real-time prediction."
+  },
+  {
+    "title": "Prediction of Water Temperature Based on Graph Neural Network in a Small-Scale Observation via Coastal Acoustic Tomography",
+    "year": 2024,
+    "cited": 8,
+    "doi": "https://doi.org/10.3390/rs16040646",
+    "type": "article",
+    "venue": "Remote Sensing",
+    "oa_url": "https://www.mdpi.com/2072-4292/16/4/646/pdf?version=1707463516",
+    "authors": [
+      "Pan Xu",
+      "Shijie Xu",
+      "Kequan Shi",
+      "Mingyu Ou",
+      "Hongna Zhu",
+      "Guojun Xu",
+      "Dongbao Gao",
+      "Guangming Li",
+      "Yun Cai Zhao"
+    ],
+    "abstract": "Coastal acoustic tomography (CAT) is a remote sensing technique that utilizes acoustic methodologies to measure the dynamic characteristics of the ocean in expansive marine domains. This approach leverages the speed of sound propagation to derive vital ocean parameters such as temperature and salinity by inversely estimating the acoustic ray speed during its traversal through the aquatic medium. Concurrently, analyzing the speed of different acoustic waves in their round-trip propagation enables the inverse estimation of dynamic hydrographic features, including flow velocity and directional attributes. An accurate forecasting of inversion answers in CAT rapidly contributes to a comprehensive analysis of the evolving ocean environment and its inherent characteristics. Graph neural network (GNN) is a new network architecture with strong spatial modeling and extraordinary generalization. We proposed a novel method: employing GraphSAGE to predict inversion answers in OAT, using experimental datasets collected at the Huangcai Reservoir for prediction. The results show an average error 0.01% for sound speed prediction and 0.29% for temperature predictions along each station pairwise. This adequately fulfills the real-time and exigent requirements for practical deployment."
+  },
+  {
+    "title": "MC-FSTG: A fine-grained spatio-temporal graph neural network based on multi-scale operating conditions for bearing temperature prediction in high-speed trains",
+    "year": 2026,
+    "cited": 1,
+    "doi": "https://doi.org/10.1016/j.eswa.2026.131355",
+    "type": "article",
+    "venue": "Expert Systems with Applications",
+    "oa_url": null,
+    "authors": [
+      "Huixin Tian",
+      "Xiaodong Wang",
+      "Daixu Ren"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "Intra-city Scale Graph Neural Networks Enhance Short-term Air Temperature Forecasting",
+    "year": 2025,
+    "cited": 1,
+    "doi": "https://doi.org/10.5194/egusphere-2025-3429",
+    "type": "preprint",
+    "venue": null,
+    "oa_url": "https://egusphere.copernicus.org/preprints/2025/egusphere-2025-3429/egusphere-2025-3429.pdf",
+    "authors": [
+      "Han Wang",
+      "Jianheng Tang",
+      "Jize Zhang",
+      "Jiachuan Yang"
+    ],
+    "abstract": "Abstract. Air temperature (Ta) has critical implications for various socioeconomic sectors, yet its dynamics are particularly complex in urban areas due to heterogeneous built environments, landscapes, and diverse anthropogenic activities. Physics-based models struggle with intra-city Ta forecasts due to inadequate urban representation and limited spatial resolution. While weather observation networks offer promising alternatives for direct local Ta modeling, an effective framework to leverage these intra-city data remains lacking. Here, we demonstrate that graph neural networks (GNNs) can harness observation network information to refine Ta prediction at individual locations and elucidate underlying mechanisms. Our novel Mix-n-Scale framework with GNNs achieves over 12 % improvement in short-term Ta forecasts compared to conventional time-series approaches. Further model evaluation disentangles performance variations with local Ta variability in diverse spatiotemporal contexts, indicating distinct patterns of intra-city heterogeneity across seasonal and diurnal scales. Our findings establish graph-based approaches for leveraging proliferating urban sensor data and advancing understanding of Ta spatiotemporal dynamics in complex urban environments."
+  },
+  {
+    "title": "HoTS: Homophily-Aware Temperature Scaling for Graph Neural Network Calibration",
+    "year": 2026,
+    "cited": 0,
+    "doi": "https://doi.org/10.48550/arxiv.2609.32426",
+    "type": "preprint",
+    "venue": "arXiv (Cornell University)",
+    "oa_url": "https://arxiv.org/pdf/2609.32426",
+    "authors": [
+      "Inwoo Tae",
+      "Yoontae Hwang",
+      "Yongjae Lee"
+    ],
+    "abstract": "For graph node classification, calibrated class probabilities are needed when confidence scores, usually the maximum predicted class probability, are used to rank predictions, defer uncertain nodes to human review, or control risk. Existing post-hoc calibrators either apply one global temperature or use graph-aware modules without a principled structural form. We study how local graph structure should enter node-level calibration. Our first results show that a logit-only temperature rule is insufficient when nodes with identical logits but different local homophily require different optimal temperatures. We then analyze a population-concentration contextual stochastic block model with Gaussian features and a one-layer linear GCN. Under equidistant class means, the Bayes posterior over class-template scores is a temperature-scaled softmax whose inverse-temperature is governed by a homophily-dependent signal strength. In the positive-signal homophilic regime, the resulting temperature decreases approximately inversely with normalized local homophily. This law motivates Homophily-aware Temperature Scaling (HoTS), a simple post-hoc calibrator that assigns each node a positive scalar temperature from entropy-based logit concentration and estimated local homophily. HoTS has three temperature parameters, preserves the predicted class, and learns the strength of the structural correction from calibration data. Across 18 node-classification benchmarks, two GNN backbones, and eight calibration baselines, HoTS achieves the best mean Expected Calibration Error (ECE) of 4.79%, the best average rank, and the most reliable confidence ranking in selective classification. Code is available at https://github.com/inu0104/HoTS."
+  },
+  {
+    "title": "Distinct spatiotemporal responses of soil-vegetation-hydrology to warming from 2005\u20132022 and predicting air temperature of provincial spatial scale using Kolmogorov-Arnold graph convolutional network in mainland China",
+    "year": 2026,
+    "cited": 0,
+    "doi": "https://doi.org/10.5194/egusphere-2026-2673",
+    "type": "preprint",
+    "venue": null,
+    "oa_url": "https://egusphere.copernicus.org/preprints/2026/egusphere-2026-2673/egusphere-2026-2673.pdf",
+    "authors": [
+      "J Q Xu",
+      "Yilei Yu",
+      "L Yang",
+      "Xin Wei"
+    ],
+    "abstract": "Abstract. Under global warming, accurately predicting regional temperature and understanding the response mechanisms of multi-dimensional environmental variables are crucial for climate adaptation. This study integrates multi-source remote sensing, reanalysis, and ground observation data to construct a monthly provincial-scale environmental dataset for China covering 2005\u20132022. Long-term trend analysis reveals a widespread increase in Mean Annual Temperature (MAT), which has enhanced vegetation activity, evidenced by rising NDVI and GPP, with rapid responses (0\u20131 month lag) especially in eastern humid regions. Conversely, deep soil moisture (100\u2013289 cm) has declined in northern China, exhibiting lags of up to 5\u20136 months, indicating prolonged soil drying under sustained warming. Shallow soil moisture (0\u20137 cm) shows variable lags, concentrated in the Yangtze River basin and Southwest China, while soil temperature responds within 0\u20133 months. Groundwater levels display weak direct correlation with air temperature. To capture complex spatial dependencies and non-linear interactions, we construct a provincial graph based on real geographic adjacency and develop a Graph Convolutional Network (GCN) coupled with Kolmogorov-Arnold Networks (KAN). The KAN-GCN model achieves state-of-the-art performance on the 2021\u20132022 test period (R2 = 0.9889, RMSE = 1.18 \u00b0C), reducing MAE by 15 % \u2013 30 % in ecologically fragile regions such as Xinjiang and Qinghai compared to conventional MLP-GCN. Feature importance analysis consistently identifies surface soil temperature (0\u20137 cm) as the most critical predictor, highlighting the pivotal role of soil-atmosphere thermal coupling. Furthermore, Local Indicators of Spatial Association (LISA) error clustering confirms that KAN-GCN eliminates the persistent high-error clusters observed with MLP-GCN over the Qinghai-Tibet Plateau, demonstrating superior spatial robustness and predictive reliability."
+  },
+  {
+    "title": "Multi-scale junction temperature modeling and lifetime assessment of IGBT power modules using graph neural networks",
+    "year": 2026,
+    "cited": 0,
+    "doi": "https://doi.org/10.1016/j.mejo.2026.107377",
+    "type": "article",
+    "venue": "Microelectronics Journal",
+    "oa_url": "https://doi.org/10.1016/j.mejo.2026.107377",
+    "authors": [
+      "Chunjiang Zhang",
+      "Mingyang Zhang",
+      "Zhizhong Kan",
+      "Fuxi Wang",
+      "Linan Zhang",
+      "Xiangdang Zhao"
+    ],
+    "abstract": "Driven by the global transition toward low-carbon power generation, photovoltaic power generation places increasing reliability demands on power electronic converters. As core components, IGBT power modules experience pronounced multi-scale junction temperature fluctuations under complex operating conditions, leading to thermal fatigue and performance degradation. Accurate junction temperature modeling and reliable lifetime assessment therefore remain critical challenges. This paper proposes a multi-scale modeling framework for IGBT power modules using graph neural networks. The framework integrates module topology and thermal characteristics to jointly model structural, operational, and temporal features. A spatiotemporal graph convolutional network captures inter-chip thermal coupling, while a multi-resolution temporal graph network describes junction temperature evolution across different time scales for lifetime assessment. Experimental results under various grid-connected photovoltaic operating conditions show an average relative error of about 2% in junction temperature prediction, while fatigue damage prediction errors remain within 3%\u20134%, indicating good accuracy and applicability under complex operating conditions."
+  },
+  {
+    "title": "Improving Reliability in Quantized Graph Neural Networks with Node-Wise Entropy-driven Temperature Scaling",
+    "year": 2026,
+    "cited": 0,
+    "doi": "https://doi.org/10.23919/date69613.2026.11539433",
+    "type": "conference-paper",
+    "venue": null,
+    "oa_url": null,
+    "authors": [
+      "Hadi Mousanejad Jeddi",
+      "Jose Nunez-Yanez"
+    ],
+    "abstract": "Graph Neural Networks (GNNs) are one of the most powerful learning methods for graph-structured data and their quantization significantly reduces memory and computational requirements on edge devices. In this paper, we show that the quantization of node features, edge connections, and hidden representations degrades confidence calibration. To address this issue we propose a node-wise temperature scaling method that dynamically calibrates model confidence by aggregating entropy-based uncertainty from graph-structured data. Our approach combines self-entropy, neighborhood-entropy, and shortest-path distances to labeled nodes into a unified feature representation followed by a learnable transformation to compute temperature values for each node. We integrate and evaluate our approach using a dataflow hardware accelerator optimized for multi-precision GNN models, which supports efficient training and inference on-device. Our method significantly improves calibration by reducing Expected Calibration Error (ECE) and Negative Log-Likelihood (NLL) by up to 95% and 66%, respectively, across multiple datasets, without decreasing accuracy after quantization. The implementation is publicly available.1"
+  },
+  {
+    "title": "Intra-city scale graph neural networks enhance short-term air temperature forecasting",
+    "year": 2026,
+    "cited": 0,
+    "doi": "https://doi.org/10.5194/acp-26-947-2026",
+    "type": "article",
+    "venue": "Atmospheric chemistry and physics",
+    "oa_url": "https://acp.copernicus.org/articles/26/947/2026/acp-26-947-2026.pdf",
+    "authors": [
+      "Han Wang",
+      "Jianheng Tang",
+      "Jize Zhang",
+      "Jiachuan Yang"
+    ],
+    "abstract": "Air temperature ( T a ) has critical implications for various socioeconomic sectors, yet its dynamics are particularly complex in urban areas due to heterogeneous built environments, landscapes, and diverse anthropogenic activities. Physics-based models struggle with intra-city T a forecasts due to inadequate urban representation and limited spatial resolution. While weather observation networks offer promising alternatives for direct modeling with local T a time-series, an effective framework to leverage these intra-city discrete sensor data remains lacking. Here, we demonstrate that graph neural networks (GNNs) can harness observation network information to refine T a prediction at individual locations and elucidate underlying mechanisms. Our novel Mix-n-Scale framework with GNNs achieves over 12 % improvement in short-term T a forecasts compared to conventional local time-series approaches. Further model evaluation disentangles performance variations with local T a variability in diverse spatiotemporal contexts, indicating distinct patterns of intra-city heterogeneity across seasonal and diurnal scales. Our findings establish graph-based approaches for leveraging proliferating urban sensor data and advancing understanding of T a spatiotemporal dynamics in complex urban environments."
+  },
+  {
+    "title": "Supplementary material to \"Intra-city Scale Graph Neural Networks Enhance Short-term Air Temperature Forecasting\"",
+    "year": 2025,
+    "cited": 0,
+    "doi": "https://doi.org/10.5194/egusphere-2025-3429-supplement",
+    "type": "supplementary-materials",
+    "venue": null,
+    "oa_url": "https://doi.org/10.5194/egusphere-2025-3429-supplement",
+    "authors": [
+      "Han Wang",
+      "Jianheng Tang",
+      "Jize Zhang",
+      "Jiachuan Yang"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "WATS: Calibrating Graph Neural Networks with Wavelet-Aware Temperature Scaling",
+    "year": 2025,
+    "cited": 0,
+    "doi": "https://doi.org/10.48550/arxiv.2506.23782",
+    "type": "preprint",
+    "venue": "arXiv (Cornell University)",
+    "oa_url": "https://arxiv.org/pdf/2506.23782",
+    "authors": [
+      "Xiaoyang Li",
+      "Linwei Tao",
+      "Haohui Lu",
+      "Minjing Dong",
+      "Junbin Gao",
+      "Chang Xin Xu"
+    ],
+    "abstract": "Graph Neural Networks (GNNs) have demonstrated strong predictive performance on relational data; however, their confidence estimates often misalign with actual predictive correctness, posing significant limitations for deployment in safety-critical settings. While existing graph-aware calibration methods seek to mitigate this limitation, they primarily depend on coarse one-hop statistics, such as neighbor-predicted confidence, or latent node embeddings, thereby neglecting the fine-grained structural heterogeneity inherent in graph topology. In this work, we propose Wavelet-Aware Temperature Scaling (WATS), a post-hoc calibration framework that assigns node-specific temperatures based on tunable heat-kernel graph wavelet features. Specifically, WATS harnesses the scalability and topology sensitivity of graph wavelets to refine confidence estimates, all without necessitating model retraining or access to neighboring logits or predictions. Extensive evaluations across seven benchmark datasets with varying graph structures and two GNN backbones demonstrate that WATS achieves the lowest Expected Calibration Error (ECE) among all compared methods, outperforming both classical and graph-specific baselines by up to 42.3\\% in ECE and reducing calibration variance by 17.24\\% on average compared with graph-specific methods. Moreover, WATS remains computationally efficient, scaling well across graphs of diverse sizes and densities. Code will be released based on publication."
+  },
+  {
+    "title": "Intra-city Scale Graph Neural Networks Enhance Short-term Air Temperature Forecasting",
+    "year": 2025,
+    "cited": 0,
+    "doi": "https://doi.org/10.5281/zenodo.14536237",
+    "type": "other",
+    "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+    "oa_url": "https://doi.org/10.5281/zenodo.14536237",
+    "authors": [
+      "Wang, Han"
+    ],
+    "abstract": "Model and Framework Implementation This repository contains the codebase for the paper: Intra-city scale graph neural networks enhance short-term air temperature forecasting - The GSAGE and GAT models are implemented using PyTorch Geometric (PyG) (Fey & Lenssen, 2019), a comprehensive library for graph-based machine learning built on top of PyTorch (Paszke et al., 2019). - The mix-n-scale framework leverages NNI (Neural Network Intelligence) (Microsoft, 2021), an open-source AutoML toolkit. This framework facilitates the training of models with diverse hyperparameters, including look-back length and the number of edges for each weather station."
+  },
+  {
+    "title": "MC-FSTG: A Fine-Grained Spatio-Temporal Graph Neural Network based on Multi-Scale Operating Conditions for Bearing Temperature Prediction in High-Speed Trains",
+    "year": 2025,
+    "cited": 0,
+    "doi": "https://doi.org/10.2139/ssrn.5974808",
+    "type": "preprint",
+    "venue": "SSRN Electronic Journal",
+    "oa_url": "https://doi.org/10.2139/ssrn.5974808",
+    "authors": [
+      "Huixin Tian",
+      "Xiaodong Alice Wang",
+      "Daixu Ren"
+    ],
+    "abstract": ""
+  }
+]

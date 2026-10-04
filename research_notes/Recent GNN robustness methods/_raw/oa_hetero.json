@@ -1,0 +1,381 @@
+[
+  {
+    "title": "Simple and Efficient Heterogeneous Graph Neural Network",
+    "year": 2023,
+    "cited": 224,
+    "doi": "https://doi.org/10.1609/aaai.v37i9.26283",
+    "type": "conference-paper",
+    "venue": "Proceedings of the AAAI Conference on Artificial Intelligence",
+    "venue_type": "conference",
+    "oa_url": "https://ojs.aaai.org/index.php/AAAI/article/download/26283/26055",
+    "authors": [
+      "Xiaocheng Yang",
+      "Mingyu Yan",
+      "Shirui Pan",
+      "Xiaochun Ye",
+      "Dongrui Fan"
+    ],
+    "abstract": "Heterogeneous graph neural networks (HGNNs) have the powerful capability to embed rich structural and semantic information of a heterogeneous graph into node representations. Existing HGNNs inherit many mechanisms from graph neural networks (GNNs) designed for homogeneous graphs, especially the attention mechanism and the multi-layer structure. These mechanisms bring excessive complexity, but seldom work studies whether they are really effective on heterogeneous graphs. In this paper, we conduct an in-depth and detailed study of these mechanisms and propose the Simple and Efficient Heterogeneous Graph Neural Network (SeHGNN). To easily capture structural information, SeHGNN pre-computes the neighbor aggregation using a light-weight mean aggregator, which reduces complexity by removing overused neighbor attention and avoiding repeated neighbor aggregation in every training epoch. To better utilize semantic information, SeHGNN adopts the single-layer structure with long metapaths to extend the receptive field, as well as a transformer-based semantic fusion module to fuse features from different metapaths. As a result, SeHGNN exhibits the characteristics of a simple network structure, high prediction accuracy, and fast training speed. Extensive experiments on five real-world heterogeneous graphs demonstrate the superiority of SeHGNN over the state-of-the-arts on both accuracy and training speed."
+  },
+  {
+    "title": "A Survey on Graph Representation Learning Methods",
+    "year": 2023,
+    "cited": 214,
+    "doi": "https://doi.org/10.1145/3633518",
+    "type": "article",
+    "venue": "ACM Transactions on Intelligent Systems and Technology",
+    "venue_type": "journal",
+    "oa_url": "https://dl.acm.org/doi/pdf/10.1145/3633518",
+    "authors": [
+      "Shima Khoshraftar",
+      "Aijun An"
+    ],
+    "abstract": "Graph representation learning has been a very active research area in recent years. The goal of graph representation learning is to generate graph representation vectors that capture the structure and features of large graphs accurately. This is especially important because the quality of the graph representation vectors will affect the performance of these vectors in downstream tasks such as node classification, link prediction and anomaly detection. Many techniques have been proposed for generating effective graph representation vectors, which generally fall into two categories: traditional graph embedding methods and graph neural network (GNN)\u2013based methods. These methods can be applied to both static and dynamic graphs. A static graph is a single fixed graph, whereas a dynamic graph evolves over time and its nodes and edges can be added or deleted from the graph. In this survey, we review the graph-embedding methods in both traditional and GNN-based categories for both static and dynamic graphs and include the recent papers published until the time of submission. In addition, we summarize a number of limitations of GNNs and the proposed solutions to these limitations. Such a summary has not been provided in previous surveys. Finally, we explore some open and ongoing research directions for future work."
+  },
+  {
+    "title": "Exploring the Potential of Large Language Models (LLMs)in Learning on Graphs",
+    "year": 2024,
+    "cited": 187,
+    "doi": "https://doi.org/10.1145/3655103.3655110",
+    "type": "article",
+    "venue": "ACM SIGKDD Explorations Newsletter",
+    "venue_type": "journal",
+    "oa_url": "https://dl.acm.org/doi/pdf/10.1145/3655103.3655110",
+    "authors": [
+      "Zhikai Chen",
+      "Haitao Mao",
+      "Hang Li",
+      "Wei Jin",
+      "Hongzhi Wen",
+      "Xiaochi Wei",
+      "Shuaiqiang Wang",
+      "Dawei Yin",
+      "Wenqi Fan",
+      "Hui Liu",
+      "Jiliang Tang"
+    ],
+    "abstract": "Learning on Graphs has attracted immense attention due to its wide real-world applications. The most popular pipeline for learning on graphs with textual node attributes primarily relies on Graph Neural Networks (GNNs), and utilizes shallow text embedding as initial node representations, which has limitations in general knowledge and profound semantic understanding. In recent years, Large Language Models (LLMs) have been proven to possess extensive common knowledge and powerful semantic comprehension abilities that have revolutionized existing workflows to handle text data. In this paper, we aim to explore the potential of LLMs in graph machine learning, especially the node classification task, and investigate two possible pipelines: LLMs-as-Enhancers and LLMs-as-Predictors. The former leverages LLMs to enhance nodes' text attributes with their massive knowledge and then generate predictions through GNNs. The latter attempts to directly employ LLMs as standalone predictors. We conduct comprehensive and systematical studies on these two pipelines under various settings. From comprehensive empirical results, we make original observations and find new insights that open new possibilities and suggest promising directions to leverage LLMs for learning on graphs. Our codes and datasets are available at: https://github.com/CurryTang/Graph-LLM ."
+  },
+  {
+    "title": "Exploring Progress in Multivariate Time Series Forecasting: Comprehensive Benchmarking and Heterogeneity Analysis",
+    "year": 2024,
+    "cited": 181,
+    "doi": "https://doi.org/10.1109/tkde.2024.3484454",
+    "type": "article",
+    "venue": "IEEE Transactions on Knowledge and Data Engineering",
+    "venue_type": "journal",
+    "oa_url": "https://arxiv.org/pdf/2310.06119",
+    "authors": [
+      "Zezhi Shao",
+      "Fei Wang",
+      "Yongjun Xu",
+      "Wei Wei",
+      "Chengqing Yu",
+      "Zhao Zhang",
+      "Di Yao",
+      "Tao Sun",
+      "Guangyin Jin",
+      "Xin Cao",
+      "Gao Cong",
+      "Christian S. Jensen"
+    ],
+    "abstract": "Multivariate Time Series (MTS) analysis is crucial to understanding and managing complex systems, such as traffic and energy systems, and a variety of approaches to MTS forecasting have been proposed recently. However, we often observe inconsistent or seemingly contradictory performance findings across different studies. This hinders our understanding of the merits of different approaches and slows down progress. We address the need for means of assessing MTS forecasting proposals reliably and fairly, in turn enabling better exploitation of MTS as seen in different applications. Specifically, we first propose BasicTS+, a benchmark designed to enable fair, comprehensive, and reproducible comparison of MTS forecasting solutions. BasicTS+ establishes a unified training pipeline and reasonable settings, enabling an unbiased evaluation. Second, we identify the heterogeneity across different MTS as an important consideration and enable classification of MTS based on their temporal and spatial characteristics. Disregarding this heterogeneity is a prime reason for difficulties in selecting the most promising technical directions. Third, we apply BasicTS+ along with rich datasets to assess the capabilities of more than 30 MTS forecasting solutions. This provides readers with an overall picture of the cutting-edge research on MTS forecasting."
+  },
+  {
+    "title": "Evaluating explainability for graph neural networks",
+    "year": 2023,
+    "cited": 179,
+    "doi": "https://doi.org/10.1038/s41597-023-01974-x",
+    "type": "data-paper",
+    "venue": "Scientific Data",
+    "venue_type": "journal",
+    "oa_url": "https://www.nature.com/articles/s41597-023-01974-x.pdf",
+    "authors": [
+      "Chirag Agarwal",
+      "Owen Queen",
+      "Himabindu Lakkaraju",
+      "Marinka \u017ditnik"
+    ],
+    "abstract": "As explanations are increasingly used to understand the behavior of graph neural networks (GNNs), evaluating the quality and reliability of GNN explanations is crucial. However, assessing the quality of GNN explanations is challenging as existing graph datasets have no or unreliable ground-truth explanations. Here, we introduce a synthetic graph data generator, SHAPEGGEN, which can generate a variety of benchmark datasets (e.g., varying graph sizes, degree distributions, homophilic vs. heterophilic graphs) accompanied by ground-truth explanations. The flexibility to generate diverse synthetic datasets and corresponding ground-truth explanations allows SHAPEGGEN to mimic the data in various real-world areas. We include SHAPEGGEN and several real-world graph datasets in a graph explainability library, GRAPHXAI. In addition to synthetic and real-world graph datasets with ground-truth explanations, GRAPHXAI provides data loaders, data processing functions, visualizers, GNN model implementations, and evaluation metrics to benchmark GNN explainability methods."
+  },
+  {
+    "title": "Federated Learning on Non-IID Graphs via Structural Knowledge Sharing",
+    "year": 2023,
+    "cited": 165,
+    "doi": "https://doi.org/10.1609/aaai.v37i8.26187",
+    "type": "conference-paper",
+    "venue": "Proceedings of the AAAI Conference on Artificial Intelligence",
+    "venue_type": "conference",
+    "oa_url": "https://ojs.aaai.org/index.php/AAAI/article/download/26187/25959",
+    "authors": [
+      "Yue Tan",
+      "Yixin Liu",
+      "Guodong Long",
+      "Jing Jiang",
+      "Qinghua Lu",
+      "Chengqi Zhang"
+    ],
+    "abstract": "Graph neural networks (GNNs) have shown their superiority in modeling graph data. Owing to the advantages of federated learning, federated graph learning (FGL) enables clients to train strong GNN models in a distributed manner without sharing their private data. A core challenge in federated systems is the non-IID problem, which also widely exists in real-world graph data. For example, local data of clients may come from diverse datasets or even domains, e.g., social networks and molecules, increasing the difficulty for FGL methods to capture commonly shared knowledge and learn a generalized encoder. From real-world graph datasets, we observe that some structural properties are shared by various domains, presenting great potential for sharing structural knowledge in FGL. Inspired by this, we propose FedStar, an FGL framework that extracts and shares the common underlying structure information for inter-graph federated learning tasks. To explicitly extract the structure information rather than encoding them along with the node features, we define structure embeddings and encode them with an independent structure encoder. Then, the structure encoder is shared across clients while the feature-based knowledge is learned in a personalized way, making FedStar capable of capturing more structure-based domain-invariant information and avoiding feature misalignment issues. We perform extensive experiments over both cross-dataset and cross-domain non-IID FGL settings, demonstrating the superiority of FedStar."
+  },
+  {
+    "title": "Addressing Heterophily in Graph Anomaly Detection: A Perspective of Graph Spectrum",
+    "year": 2023,
+    "cited": 153,
+    "doi": "https://doi.org/10.1145/3543507.3583268",
+    "type": "conference-paper",
+    "venue": null,
+    "venue_type": null,
+    "oa_url": "https://dl.acm.org/doi/pdf/10.1145/3543507.3583268",
+    "authors": [
+      "Yuan Gao",
+      "Xiang Wang",
+      "Xiangnan He",
+      "Zhenguang Liu",
+      "Huamin Feng",
+      "Yongdong Zhang"
+    ],
+    "abstract": "Graph anomaly detection (GAD) suffers from heterophily \u2014 abnormal nodes are sparse so that they are connected to vast normal nodes. The current solutions upon Graph Neural Networks (GNNs) blindly smooth the representation of neiboring nodes, thus undermining the discriminative information of the anomalies. To alleviate the issue, recent studies identify and discard inter-class edges through estimating and comparing the node-level representation similarity. However, the representation of a single node can be misleading when the prediction error is high, thus hindering the performance of the edge indicator."
+  },
+  {
+    "title": "Fake news detection: A survey of graph neural network methods",
+    "year": 2023,
+    "cited": 151,
+    "doi": "https://doi.org/10.1016/j.asoc.2023.110235",
+    "type": "article",
+    "venue": "Applied Soft Computing",
+    "venue_type": "journal",
+    "oa_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10036155/pdf/main.pdf",
+    "authors": [
+      "Huyen Trang Phan",
+      "Ngoc Thanh Nguy\u00ean",
+      "Dosam Hwang"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "Attention-based graph neural networks: a survey",
+    "year": 2023,
+    "cited": 129,
+    "doi": "https://doi.org/10.1007/s10462-023-10577-2",
+    "type": "article",
+    "venue": "Artificial Intelligence Review",
+    "venue_type": "journal",
+    "oa_url": "https://arxiv.org/pdf/2605.08679",
+    "authors": [
+      "Chengcheng Sun",
+      "Chenhao Li",
+      "Xiang Lin",
+      "Tianji Zheng",
+      "Fanrong Meng",
+      "Xiaobin Rui",
+      "Zhixiao Wang"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "Financial Crimes in Web3-Empowered Metaverse: Taxonomy, Countermeasures, and Opportunities",
+    "year": 2023,
+    "cited": 113,
+    "doi": "https://doi.org/10.1109/ojcs.2023.3245801",
+    "type": "article",
+    "venue": "IEEE Open Journal of the Computer Society",
+    "venue_type": "journal",
+    "oa_url": "https://ieeexplore.ieee.org/ielx7/8782664/9024218/10045768.pdf",
+    "authors": [
+      "Jiajing Wu",
+      "Kaixin Lin",
+      "Dan Lin",
+      "Ziye Zheng",
+      "Huawei Huang",
+      "Zibin Zheng"
+    ],
+    "abstract": "At present, the concept of metaverse has sparked widespread attention from the public to major industries. With the rapid development of blockchain and Web3 technologies, the decentralized metaverse ecology has attracted a large influx of users and capital. Due to the lack of industry standards and regulatory rules, the Web3-empowered metaverse ecosystem has witnessed a variety of financial crimes, such as scams, code exploit, wash trading, money laundering, and illegal services and shops. To this end, it is especially urgent and critical to summarize and classify the financial security threats on the Web3-empowered metaverse in order to maintain the long-term healthy development of its ecology. In this paper, we first outline the background, foundation, and applications of the Web3 metaverse. Then, we provide a comprehensive overview and taxonomy of the security risks and financial crimes that have emerged since the development of the decentralized metaverse. For each financial crime, we focus on three issues: a) existing definitions, b) relevant cases and analysis, and c) existing academic research on this type of crime. Next, from the perspective of academic research and government policy, we summarize the current anti-crime measurements and technologies in the metaverse. Finally, we discuss the opportunities and challenges in behavioral mining and the potential regulation of financial activities in the metaverse. The overview of this paper is expected to help readers better understand the potential security threats in this emerging ecology, and to provide insights and r"
+  },
+  {
+    "title": "Graph Neural Networks for Graphs With Heterophily: A Survey",
+    "year": 2026,
+    "cited": 107,
+    "doi": "https://doi.org/10.1109/tkde.2026.3680353",
+    "type": "article",
+    "venue": "IEEE Transactions on Knowledge and Data Engineering",
+    "venue_type": "journal",
+    "oa_url": "https://arxiv.org/pdf/2202.07082",
+    "authors": [
+      "Xin Zheng",
+      "Yi Wang",
+      "Yixin Liu",
+      "Ming Li",
+      "Miao Zhang",
+      "Di Jin",
+      "Philip S. Yu",
+      "Shirui Pan"
+    ],
+    "abstract": "Recent years have witnessed fast developments of graph neural networks (GNNs) that have benefited myriad graph analytic tasks and applications. Most GNNs rely on the homophily assumption that nodes belonging to the same class are more likely to be connected. However, as a ubiquitous graph property in numerous real-world scenarios, heterophily, i.e., nodes with different labels tend to be linked, significantly limits the performance of tailor-made homophilic GNNs. Hence,GNNs for heterophilic graphsare gaining increasing research attention to enhance graph learning with heterophily. In this paper, we provide a comprehensive review of GNNs for heterophilic graphs. Specifically, we propose a systematic taxonomy that governs existing heterophilic GNN models, along with general summaries and detailed analyses. Furthermore, we discuss the relationship between heterophily and various graph research domains, aiming to facilitate the development of more effective GNNs across a spectrum of practical applications and learning tasks in the graph research community. In the end, we point out potential directions to advance and inspire future research and applications on heterophilic graph learning with GNNs."
+  },
+  {
+    "title": "A systematic review of AI-enhanced techniques in credit card fraud detection",
+    "year": 2025,
+    "cited": 107,
+    "doi": "https://doi.org/10.1186/s40537-024-01048-8",
+    "type": "review",
+    "venue": "Journal Of Big Data",
+    "venue_type": "journal",
+    "oa_url": "https://journalofbigdata.springeropen.com/counter/pdf/10.1186/s40537-024-01048-8",
+    "authors": [
+      "Ibrahim Y. Hafez",
+      "Ahmed Y. Hafez",
+      "Ahmed Saleh",
+      "Amr A. Abd El-Mageed",
+      "Amr A. Abohany"
+    ],
+    "abstract": "Abstract The rapid increase of fraud attacks on banking systems, financial institutions, and even credit card holders demonstrate the high demand for enhanced fraud detection (FD) systems for these attacks. This paper provides a systematic review of enhanced techniques using Artificial Intelligence (AI), machine learning (ML), deep learning (DL), and meta-heuristic optimization (MHO) algorithms for credit card fraud detection (CCFD). Carefully selected recent research papers have been investigated to examine the effectiveness of these AI-integrated approaches in recognizing a wide range of fraud attacks. These AI techniques were evaluated and compared to discover the advantages and disadvantages of each one, leading to the exploration of existing limitations of ML or DL-enhanced models. Discovering the limitation is crucial for future work and research to increase the effectiveness and robustness of various AI models. The key finding from this study demonstrates the need for continuous development of AI models that could be alert to the latest fraudulent activities."
+  },
+  {
+    "title": "Correlation-Aware Spatial\u2013Temporal Graph Learning for Multivariate Time-Series Anomaly Detection",
+    "year": 2023,
+    "cited": 105,
+    "doi": "https://doi.org/10.1109/tnnls.2023.3325667",
+    "type": "article",
+    "venue": "IEEE Transactions on Neural Networks and Learning Systems",
+    "venue_type": "journal",
+    "oa_url": "https://arxiv.org/pdf/2307.08390",
+    "authors": [
+      "Yu Zheng",
+      "Huan Yee Koh",
+      "Ming Jin",
+      "Lianhua Chi",
+      "Khoa T. Phan",
+      "Shirui Pan",
+      "Yi\u2010Ping Phoebe Chen",
+      "Wei Xiang"
+    ],
+    "abstract": "Multivariate time-series anomaly detection is critically important in many applications, including retail, transportation, power grid, and water treatment plants. Existing approaches for this problem mostly employ either statistical models which cannot capture the nonlinear relations well or conventional deep learning (DL) models e.g., convolutional neural network (CNN) and long short-term memory (LSTM) that do not explicitly learn the pairwise correlations among variables. To overcome these limitations, we propose a novel method, correlation-aware spatial-temporal graph learning (termed ), for time-series anomaly detection. explicitly captures the pairwise correlations via a correlation learning (MTCL) module based on which a spatial-temporal graph neural network (STGNN) can be developed. Then, by employing a graph convolution network (GCN) that exploits one-and multihop neighbor information, our STGNN component can encode rich spatial information from complex pairwise dependencies between variables. With a temporal module that consists of dilated convolutional functions, the STGNN can further capture long-range dependence over time. A novel anomaly scoring component is further integrated into to estimate the degree of an anomaly in a purely unsupervised manner. Experimental results demonstrate that can detect and diagnose anomalies effectively in general settings as well as enable early detection across different time delays. Our code is available at https://github.com/huankoh/CST-GL."
+  },
+  {
+    "title": "A Survey on Oversmoothing in Graph Neural Networks",
+    "year": 2023,
+    "cited": 84,
+    "doi": "https://doi.org/10.48550/arxiv.2303.10993",
+    "type": "preprint",
+    "venue": "arXiv (Cornell University)",
+    "venue_type": "repository",
+    "oa_url": "https://arxiv.org/pdf/2303.10993",
+    "authors": [
+      "T. Konstantin Rusch",
+      "Michael M. Bronstein",
+      "Siddhartha Kumar Mishra"
+    ],
+    "abstract": "Node features of graph neural networks (GNNs) tend to become more similar with the increase of the network depth. This effect is known as over-smoothing, which we axiomatically define as the exponential convergence of suitable similarity measures on the node features. Our definition unifies previous approaches and gives rise to new quantitative measures of over-smoothing. Moreover, we empirically demonstrate this behavior for several over-smoothing measures on different graphs (small-, medium-, and large-scale). We also review several approaches for mitigating over-smoothing and empirically test their effectiveness on real-world graph datasets. Through illustrative examples, we demonstrate that mitigating over-smoothing is a necessary but not sufficient condition for building deep GNNs that are expressive on a wide range of graph learning tasks. Finally, we extend our definition of over-smoothing to the rapidly emerging field of continuous-time GNNs."
+  },
+  {
+    "title": "Graph Mamba: Towards Learning on Graphs with State Space Models",
+    "year": 2024,
+    "cited": 81,
+    "doi": "https://doi.org/10.1145/3637528.3672044",
+    "type": "conference-paper",
+    "venue": null,
+    "venue_type": null,
+    "oa_url": "https://dl.acm.org/doi/pdf/10.1145/3637528.3672044",
+    "authors": [
+      "Ali Behrouz",
+      "Farnoosh Hashemi"
+    ],
+    "abstract": "Graph Neural Networks (GNNs) have shown promising potential in graph representation learning.The majority of GNNs define a local message-passing mechanism, propagating information over the graph by stacking multiple layers.These methods, however, are known to suffer from two major limitations: over-squashing and poor capturing of long-range dependencies.Recently, Graph Transformers (GTs) emerged as a powerful alternative to Message-Passing Neural Networks (MPNNs).GTs, however, have quadratic computational cost, lack inductive biases on graph structures, and rely on complex Positional Encodings (PE).In this paper, we show that while Transformers, complex message-passing, and PE are sufficient for good performance in practice, neither is necessary.Motivated by the recent success of State Space Models (SSMs), we present Graph Mamba Networks (GMNs), a framework for a new class of GNNs based on selective SSMs.We discuss the new challenges when adapting SSMs to graph-structured data, and present four required steps to design GMNs, where we choose (1) Neighborhood Tokenization, (2) Token Ordering, (3) Architecture of SSM Encoder, and (4) Local Encoding.We provide theoretical justification for the power of GMNs, and experimentally show that GMNs attain an outstanding performance in various benchmark datasets.The code is available in this link."
+  },
+  {
+    "title": "A review of graph neural network applications in mechanics-related domains",
+    "year": 2024,
+    "cited": 78,
+    "doi": "https://doi.org/10.1007/s10462-024-10931-y",
+    "type": "article",
+    "venue": "Artificial Intelligence Review",
+    "venue_type": "journal",
+    "oa_url": "https://link.springer.com/content/pdf/10.1007/s10462-024-10931-y.pdf",
+    "authors": [
+      "Yingxue Zhao",
+      "Haoran Li",
+      "Haosu Zhou",
+      "Hamid Reza Attar",
+      "Tobias Pfaff",
+      "Nan Li"
+    ],
+    "abstract": "Abstract Mechanics-related tasks often present unique challenges in achieving accurate geometric and physical representations, particularly for non-uniform structures. Graph neural networks (GNNs) have emerged as a promising tool to tackle these challenges by adeptly learning from graph data with irregular underlying structures. Consequently, recent years have witnessed a surge in complex mechanics-related applications inspired by the advancements of GNNs. Despite this process, there is a notable absence of a systematic review addressing the recent advancement of GNNs in solving mechanics-related tasks. To bridge this gap, this review article aims to provide an in-depth overview of the GNN applications in mechanics-related domains while identifying key challenges and outlining potential future research directions. In this review article, we begin by introducing the fundamental algorithms of GNNs that are widely employed in mechanics-related applications. We provide a concise explanation of their underlying principles to establish a solid understanding that will serve as a basis for exploring the applications of GNNs in mechanics-related domains. The scope of this paper is intended to cover the categorisation of literature into solid mechanics, fluid mechanics, and interdisciplinary mechanics-related domains, providing a comprehensive summary of graph representation methodologies, GNN architectures, and further discussions in their respective subdomains. Additionally, open data and source codes relevant to these applications are summarised for the convenience of future resea"
+  },
+  {
+    "title": "NodeFormer: A Scalable Graph Structure Learning Transformer for Node Classification",
+    "year": 2023,
+    "cited": 74,
+    "doi": "https://doi.org/10.48550/arxiv.2306.08385",
+    "type": "preprint",
+    "venue": "arXiv (Cornell University)",
+    "venue_type": "repository",
+    "oa_url": "https://arxiv.org/pdf/2306.08385",
+    "authors": [
+      "Qitian Wu",
+      "Wentao Zhao",
+      "Zenan Li",
+      "David Wipf",
+      "Junchi Yan"
+    ],
+    "abstract": "Graph neural networks have been extensively studied for learning with inter-connected data. Despite this, recent evidence has revealed GNNs' deficiencies related to over-squashing, heterophily, handling long-range dependencies, edge incompleteness and particularly, the absence of graphs altogether. While a plausible solution is to learn new adaptive topology for message passing, issues concerning quadratic complexity hinder simultaneous guarantees for scalability and precision in large networks. In this paper, we introduce a novel all-pair message passing scheme for efficiently propagating node signals between arbitrary nodes, as an important building block for a pioneering Transformer-style network for node classification on large graphs, dubbed as \\textsc{NodeFormer}. Specifically, the efficient computation is enabled by a kernerlized Gumbel-Softmax operator that reduces the algorithmic complexity to linearity w.r.t. node numbers for learning latent graph structures from large, potentially fully-connected graphs in a differentiable manner. We also provide accompanying theory as justification for our design. Extensive experiments demonstrate the promising efficacy of the method in various tasks including node classification on graphs (with up to 2M nodes) and graph-enhanced applications (e.g., image classification) where input graphs are missing."
+  },
+  {
+    "title": "Alleviating Structural Distribution Shift in Graph Anomaly Detection",
+    "year": 2023,
+    "cited": 67,
+    "doi": "https://doi.org/10.1145/3539597.3570377",
+    "type": "conference-paper",
+    "venue": null,
+    "venue_type": null,
+    "oa_url": "https://arxiv.org/pdf/2401.14155",
+    "authors": [
+      "Yuan Gao",
+      "Xiang Wang",
+      "Xiangnan He",
+      "Zhenguang Liu",
+      "Huamin Feng",
+      "Yongdong Zhang"
+    ],
+    "abstract": "Graph anomaly detection (GAD) is a challenging binary classification problem due to its different structural distribution between anomalies and normal nodes --- abnormal nodes are a minority, therefore holding high heterophily and low homophily compared to normal nodes. Furthermore, due to various time factors and the annotation preferences of human experts, the heterophily and homophily can change across training and testing data, which is called structural distribution shift (SDS) in this paper. The mainstream methods are built on graph neural networks (GNNs), benefiting the classification of normals from aggregating homophilous neighbors, yet ignoring the SDS issue for anomalies and suffering from poor generalization."
+  },
+  {
+    "title": "Self-supervised Graph-level Representation Learning with Adversarial Contrastive Learning",
+    "year": 2023,
+    "cited": 66,
+    "doi": "https://doi.org/10.1145/3624018",
+    "type": "article",
+    "venue": "ACM Transactions on Knowledge Discovery from Data",
+    "venue_type": "journal",
+    "oa_url": "https://dl.acm.org/doi/pdf/10.1145/3624018",
+    "authors": [
+      "Xiao Luo",
+      "Wei Ju",
+      "Yiyang Gu",
+      "Zhengyang Mao",
+      "Luchen Liu",
+      "Yuhui Yuan",
+      "Ming Zhang"
+    ],
+    "abstract": "The recently developed unsupervised graph representation learning approaches apply contrastive learning into graph-structured data and achieve promising performance. However, these methods mainly focus on graph augmentation for positive samples, while the negative mining strategies for graph contrastive learning are less explored, leading to sub-optimal performance. To tackle this issue, we propose a Graph Adversarial Contrastive Learning (GraphACL) scheme that learns a bank of negative samples for effective self-supervised whole-graph representation learning. Our GraphACL consists of (i) a graph encoding branch that generates the representations of positive samples and (ii) an adversarial generation branch that produces a bank of negative samples. To generate more powerful hard negative samples, our method minimizes the contrastive loss during encoding updating while maximizing the contrastive loss adversarially over the negative samples for providing the challenging contrastive task. Moreover, the quality of representations produced by the adversarial generation branch is enhanced through the regularization of carefully designed bank divergence loss and bank orthogonality loss. We optimize the parameters of the graph encoding branch and adversarial generation branch alternately. Extensive experiments on 14 real-world benchmarks on both graph classification and transfer learning tasks demonstrate the effectiveness of the proposed approach over existing graph self-supervised representation learning methods."
+  },
+  {
+    "title": "Heterogeneity-Informed Meta-Parameter Learning for Spatiotemporal Time Series Forecasting",
+    "year": 2024,
+    "cited": 65,
+    "doi": "https://doi.org/10.1145/3637528.3671961",
+    "type": "conference-paper",
+    "venue": null,
+    "venue_type": null,
+    "oa_url": "https://dl.acm.org/doi/pdf/10.1145/3637528.3671961",
+    "authors": [
+      "Zheng Dong",
+      "Renhe Jiang",
+      "Haotian Gao",
+      "Hangchen Liu",
+      "Jinliang Deng",
+      "Qingsong Wen",
+      "Xuan Song"
+    ],
+    "abstract": "Spatiotemporal time series forecasting plays a key role in a wide range of real-world applications. While significant progress has been made in this area, fully capturing and leveraging spatiotemporal heterogeneity remains a fundamental challenge. Therefore, we propose a novel Heterogeneity-Informed Meta-Parameter Learning scheme. Specifically, our approach implicitly captures spatiotemporal heterogeneity through learning spatial and temporal embeddings, which can be viewed as a clustering process. Then, a novel spatiotemporal meta-parameter learning paradigm is proposed to learn spatiotemporal-specific parameters from meta-parameter pools, which is informed by the captured heterogeneity. Based on these ideas, we develop a Heterogeneity-Informed Spatiotemporal Meta-Network (HimNet) for spatiotemporal time series forecasting. Extensive experiments on five widely-used benchmarks demonstrate our method achieves state-of-the-art performance while exhibiting superior interpretability. Our code is available at https://github.com/XDZhelheim/HimNet."
+  }
+]

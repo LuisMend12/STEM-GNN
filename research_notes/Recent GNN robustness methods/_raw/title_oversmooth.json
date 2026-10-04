@@ -1,0 +1,31 @@
+[
+  {
+    "title": "A Survey on Oversmoothing in Graph Neural Networks",
+    "year": 2023,
+    "cited": 84,
+    "doi": "https://doi.org/10.48550/arxiv.2303.10993",
+    "type": "preprint",
+    "venue": "arXiv (Cornell University)",
+    "oa_url": "https://arxiv.org/pdf/2303.10993",
+    "authors": [
+      "T. Konstantin Rusch",
+      "Michael M. Bronstein",
+      "Siddhartha Kumar Mishra"
+    ],
+    "abstract": "Node features of graph neural networks (GNNs) tend to become more similar with the increase of the network depth. This effect is known as over-smoothing, which we axiomatically define as the exponential convergence of suitable similarity measures on the node features. Our definition unifies previous approaches and gives rise to new quantitative measures of over-smoothing. Moreover, we empirically demonstrate this behavior for several over-smoothing measures on different graphs (small-, medium-, and large-scale). We also review several approaches for mitigating over-smoothing and empirically test their effectiveness on real-world graph datasets. Through illustrative examples, we demonstrate that mitigating over-smoothing is a necessary but not sufficient condition for building deep GNNs that are expressive on a wide range of graph learning tasks. Finally, we extend our definition of over-smoothing to the rapidly emerging field of continuous-time GNNs."
+  },
+  {
+    "title": "Oversmoothing alleviation in graph neural networks: a survey and unified view",
+    "year": 2025,
+    "cited": 14,
+    "doi": "https://doi.org/10.1007/s10115-025-02548-6",
+    "type": "article",
+    "venue": "Knowledge and Information Systems",
+    "oa_url": "https://arxiv.org/pdf/2405.01663",
+    "authors": [
+      "Yufei Jin",
+      "Xingquan Zhu"
+    ],
+    "abstract": ""
+  }
+]

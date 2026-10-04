@@ -1,0 +1,406 @@
+[
+  {
+    "title": "On the Road to 6G: Visions, Requirements, Key Technologies, and Testbeds",
+    "year": 2023,
+    "cited": 2333,
+    "doi": "https://doi.org/10.1109/comst.2023.3249835",
+    "type": "article",
+    "venue": "IEEE Communications Surveys & Tutorials",
+    "venue_type": "journal",
+    "oa_url": "https://liu.diva-portal.org/smash/get/diva2:1775943/FULLTEXT01",
+    "authors": [
+      "Cheng\u2010Xiang Wang",
+      "Xiaohu You",
+      "Xiqi Gao",
+      "Xiuming Zhu",
+      "Zixin Li",
+      "Chuan Zhang",
+      "Haiming Wang",
+      "Yongming Huang",
+      "Yunfei Chen",
+      "Harald Haas",
+      "John Thompson",
+      "Erik G. Larsson"
+    ],
+    "abstract": "Fifth generation (5G) mobile communication systems have entered the stage of commercial deployment, providing users with new services, improved user experiences as well as a host of novel opportunities to various industries. However, 5G still faces many challenges. To address these challenges, international industrial, academic, and standards organizations have commenced research on sixth generation (6G) wireless communication systems. A series of white papers and survey papers have been published, which aim to define 6G in terms of requirements, application scenarios, key technologies, etc. Although ITU-R has been working on the 6G vision and it is expected to reach a consensus on what 6G will be by mid-2023, the related global discussions are still wide open and the existing literature has identified numerous open issues. This paper first provides a comprehensive portrayal of the 6G vision, technical requirements, and application scenarios, covering the current common understanding of 6G. Then, a critical appraisal of the 6G network architecture and key technologies is presented. Furthermore, existing testbeds and advanced 6G verification platforms are detailed for the first time. In addition, future research directions and open challenges are identified to stimulate the on-going global debate. Finally, lessons learned to date concerning 6G networks are discussed."
+  },
+  {
+    "title": "Interpreting Black-Box Models: A Review on Explainable Artificial Intelligence",
+    "year": 2023,
+    "cited": 2066,
+    "doi": "https://doi.org/10.1007/s12559-023-10179-8",
+    "type": "article",
+    "venue": "Cognitive Computation",
+    "venue_type": "journal",
+    "oa_url": "https://link.springer.com/content/pdf/10.1007/s12559-023-10179-8.pdf",
+    "authors": [
+      "Vikas Hassija",
+      "Vinay Chamola",
+      "Atmesh Mahapatra",
+      "Abhinandan Singal",
+      "Divyansh Goel",
+      "Kaizhu Huang",
+      "Simone Scardapane",
+      "Indro Spinelli",
+      "Mufti Mahmud",
+      "Amir Hussain"
+    ],
+    "abstract": "Abstract Recent years have seen a tremendous growth in Artificial Intelligence (AI)-based methodological development in a broad range of domains. In this rapidly evolving field, large number of methods are being reported using machine learning (ML) and Deep Learning (DL) models. Majority of these models are inherently complex and lacks explanations of the decision making process causing these models to be termed as 'Black-Box'. One of the major bottlenecks to adopt such models in mission-critical application domains, such as banking, e-commerce, healthcare, and public services and safety, is the difficulty in interpreting them. Due to the rapid proleferation of these AI models, explaining their learning and decision making process are getting harder which require transparency and easy predictability. Aiming to collate the current state-of-the-art in interpreting the black-box models, this study provides a comprehensive analysis of the explainable AI (XAI) models. To reduce false negative and false positive outcomes of these back-box models, finding flaws in them is still difficult and inefficient. In this paper, the development of XAI is reviewed meticulously through careful selection and analysis of the current state-of-the-art of XAI research. It also provides a comprehensive and in-depth evaluation of the XAI frameworks and their efficacy to serve as a starting point of XAI for applied and theoretical researchers. Towards the end, it highlights emerging and critical issues pertaining to XAI research to showcase major, model-specific trends for better explanation, enhance"
+  },
+  {
+    "title": "Explainable Artificial Intelligence (XAI): What we know and what is left to attain Trustworthy Artificial Intelligence",
+    "year": 2023,
+    "cited": 1739,
+    "doi": "https://doi.org/10.1016/j.inffus.2023.101805",
+    "type": "article",
+    "venue": "Information Fusion",
+    "venue_type": "journal",
+    "oa_url": "https://doi.org/10.1016/j.inffus.2023.101805",
+    "authors": [
+      "Sajid Ali",
+      "Tamer Abuhmed",
+      "Shaker El\u2013Sappagh",
+      "Khan Muhammad",
+      "Jos\u00e9 M. Alonso",
+      "Roberto Confalonieri",
+      "Riccardo Guidotti",
+      "Javier Del Ser",
+      "Natalia D\u00edaz-Rodr\u00edguez",
+      "Francisco Herrera"
+    ],
+    "abstract": "Artificial intelligence (AI) is currently being utilized in a wide range of sophisticated applications, but the outcomes of many AI models are challenging to comprehend and trust due to their black-box nature. Usually, it is essential to understand the reasoning behind an AI model\u2019s decision-making. Thus, the need for eXplainable AI (XAI) methods for improving trust in AI models has arisen. XAI has become a popular research subject within the AI field in recent years. Existing survey papers have tackled the concepts of XAI, its general terms, and post-hoc explainability methods but there have not been any reviews that have looked at the assessment methods, available tools, XAI datasets, and other related aspects. Therefore, in this comprehensive study, we provide readers with an overview of the current research and trends in this rapidly emerging area with a case study example. The study starts by explaining the background of XAI, common definitions, and summarizing recently proposed techniques in XAI for supervised machine learning. The review divides XAI techniques into four axes using a hierarchical categorization system: (i) data explainability, (ii) model explainability, (iii) post-hoc explainability, and (iv) assessment of explanations. We also introduce available evaluation metrics as well as open-source packages and datasets with future research directions. Then, the significance of explainability in terms of legal demands, user viewpoints, and application orientation is outlined, termed as XAI concerns. This paper advocates for tailoring explanation content to spec"
+  },
+  {
+    "title": "A survey of uncertainty in deep neural networks",
+    "year": 2023,
+    "cited": 1404,
+    "doi": "https://doi.org/10.1007/s10462-023-10562-9",
+    "type": "article",
+    "venue": "Artificial Intelligence Review",
+    "venue_type": "journal",
+    "oa_url": "https://link.springer.com/content/pdf/10.1007/s10462-023-10562-9.pdf",
+    "authors": [
+      "Jakob Gawlikowski",
+      "Cedrique Rovile Njieutcheu Tassi",
+      "Mohsin Ali",
+      "Jong\u2010Seok Lee",
+      "Matthias Humt",
+      "Jianxiang Feng",
+      "Anna Kruspe",
+      "Rudolph Triebel",
+      "Peter Jung",
+      "Ribana Roscher",
+      "Muhammad Shahzad",
+      "Wen Chuan Yang"
+    ],
+    "abstract": "Abstract Over the last decade, neural networks have reached almost every field of science and become a crucial part of various real world applications. Due to the increasing spread, confidence in neural network predictions has become more and more important. However, basic neural networks do not deliver certainty estimates or suffer from over- or under-confidence, i.e. are badly calibrated. To overcome this, many researchers have been working on understanding and quantifying uncertainty in a neural network\u2019s prediction. As a result, different types and sources of uncertainty have been identified and various approaches to measure and quantify uncertainty in neural networks have been proposed. This work gives a comprehensive overview of uncertainty estimation in neural networks, reviews recent advances in the field, highlights current challenges, and identifies potential research opportunities. It is intended to give anyone interested in uncertainty estimation in neural networks a broad overview and introduction, without presupposing prior knowledge in this field. For that, a comprehensive introduction to the most crucial sources of uncertainty is given and their separation into reducible model uncertainty and irreducible data uncertainty is presented. The modeling of these uncertainties based on deterministic neural networks, Bayesian neural networks (BNNs), ensemble of neural networks, and test-time data augmentation approaches is introduced and different branches of these fields as well as the latest developments are discussed. For a practical application, we discuss diffe"
+  },
+  {
+    "title": "New Era of Artificial Intelligence in Education: Towards a Sustainable Multifaceted Revolution",
+    "year": 2023,
+    "cited": 1073,
+    "doi": "https://doi.org/10.3390/su151612451",
+    "type": "article",
+    "venue": "Sustainability",
+    "venue_type": "journal",
+    "oa_url": "https://www.mdpi.com/2071-1050/15/16/12451/pdf?version=1692181759",
+    "authors": [
+      "Firuz Kamalov",
+      "David Santandreu Calonge",
+      "Ikhlaas Gurrib"
+    ],
+    "abstract": "The recent high performance of ChatGPT on several standardized academic tests has thrust the topic of artificial intelligence (AI) into the mainstream conversation about the future of education. As deep learning is poised to shift the teaching paradigm, it is essential to have a clear understanding of its effects on the current education system to ensure sustainable development and deployment of AI-driven technologies at schools and universities. This research aims to investigate the potential impact of AI on education through review and analysis of the existing literature across three major axes: applications, advantages, and challenges. Our review focuses on the use of artificial intelligence in collaborative teacher\u2013student learning, intelligent tutoring systems, automated assessment, and personalized learning. We also report on the potential negative aspects, ethical issues, and possible future routes for AI implementation in education. Ultimately, we find that the only way forward is to embrace the new technology, while implementing guardrails to prevent its abuse."
+  },
+  {
+    "title": "A survey on large language model (LLM) security and privacy: The Good, The Bad, and The Ugly",
+    "year": 2024,
+    "cited": 1053,
+    "doi": "https://doi.org/10.1016/j.hcc.2024.100211",
+    "type": "article",
+    "venue": "High-Confidence Computing",
+    "venue_type": "journal",
+    "oa_url": "https://doi.org/10.1016/j.hcc.2024.100211",
+    "authors": [
+      "Yifan Yao",
+      "Jinhao Duan",
+      "Kaidi Xu",
+      "Yuanfang Cai",
+      "Zhibo Sun",
+      "Yue Zhang"
+    ],
+    "abstract": "Large Language Models (LLMs), such as ChatGPT and Bard, have revolutionized natural language understanding and generation. They possess deep language comprehension, human-like text generation capabilities, contextual awareness, and robust problem-solving skills, making them invaluable in various domains (e.g., search engines, customer support, translation). In the meantime, LLMs have also gained traction in the security community, revealing security vulnerabilities and showcasing their potential in security-related tasks. This paper explores the intersection of LLMs with security and privacy. Specifically, we investigate how LLMs positively impact security and privacy, potential risks and threats associated with their use, and inherent vulnerabilities within LLMs. Through a comprehensive literature review, the paper categorizes the papers into \u201cThe Good\u201d (beneficial LLM applications), \u201cThe Bad\u201d (offensive applications), and \u201cThe Ugly\u201d (vulnerabilities of LLMs and their defenses). We have some interesting findings. For example, LLMs have proven to enhance code security (code vulnerability detection) and data privacy (data confidentiality protection), outperforming traditional methods. However, they can also be harnessed for various attacks (particularly user-level attacks) due to their human-like reasoning abilities. We have identified areas that require further research efforts. For example, Research on model and parameter extraction attacks is limited and often theoretical, hindered by LLM parameter scale and confidentiality. Safe instruction tuning, a recent development, "
+  },
+  {
+    "title": "Practical and ethical challenges of large language models in education: A systematic scoping review",
+    "year": 2023,
+    "cited": 937,
+    "doi": "https://doi.org/10.1111/bjet.13370",
+    "type": "article",
+    "venue": "British Journal of Educational Technology",
+    "venue_type": "journal",
+    "oa_url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/bjet.13370",
+    "authors": [
+      "Lixiang Yan",
+      "Lele Sha",
+      "Linxuan Zhao",
+      "Yuheng Li",
+      "Roberto Mart\u00ednez\u2010Maldonado",
+      "Guanliang Chen",
+      "Xinyu Li",
+      "Yueqiao Jin",
+      "Dragan Ga\u0161evi\u0107"
+    ],
+    "abstract": "Abstract Educational technology innovations leveraging large language models (LLMs) have shown the potential to automate the laborious process of generating and analysing textual content. While various innovations have been developed to automate a range of educational tasks (eg, question generation, feedback provision, and essay grading), there are concerns regarding the practicality and ethicality of these innovations. Such concerns may hinder future research and the adoption of LLMs\u2010based innovations in authentic educational contexts. To address this, we conducted a systematic scoping review of 118 peer\u2010reviewed papers published since 2017 to pinpoint the current state of research on using LLMs to automate and support educational tasks. The findings revealed 53 use cases for LLMs in automating education tasks, categorised into nine main categories: profiling/labelling, detection, grading, teaching support, prediction, knowledge representation, feedback, content generation, and recommendation. Additionally, we also identified several practical and ethical challenges, including low technological readiness, lack of replicability and transparency and insufficient privacy and beneficence considerations. The findings were summarised into three recommendations for future studies, including updating existing innovations with state\u2010of\u2010the\u2010art models (eg, GPT\u20103/4), embracing the initiative of open\u2010sourcing models/systems, and adopting a human\u2010centred approach throughout the developmental process. As the intersection of AI and education is continuously evolving, the findings of this"
+  },
+  {
+    "title": "The Role of AI in Hospitals and Clinics: Transforming Healthcare in the 21st Century",
+    "year": 2024,
+    "cited": 928,
+    "doi": "https://doi.org/10.3390/bioengineering11040337",
+    "type": "article",
+    "venue": "Bioengineering",
+    "venue_type": "journal",
+    "oa_url": "https://www.mdpi.com/2306-5354/11/4/337/pdf?version=1711712822",
+    "authors": [
+      "Shiva Maleki Varnosfaderani",
+      "Mohamad Forouzanfar"
+    ],
+    "abstract": "As healthcare systems around the world face challenges such as escalating costs, limited access, and growing demand for personalized care, artificial intelligence (AI) is emerging as a key force for transformation. This review is motivated by the urgent need to harness AI's potential to mitigate these issues and aims to critically assess AI's integration in different healthcare domains. We explore how AI empowers clinical decision-making, optimizes hospital operation and management, refines medical image analysis, and revolutionizes patient care and monitoring through AI-powered wearables. Through several case studies, we review how AI has transformed specific healthcare domains and discuss the remaining challenges and possible solutions. Additionally, we will discuss methodologies for assessing AI healthcare solutions, ethical challenges of AI deployment, and the importance of data privacy and bias mitigation for responsible technology use. By presenting a critical assessment of AI's transformative potential, this review equips researchers with a deeper understanding of AI's current and future impact on healthcare. It encourages an interdisciplinary dialogue between researchers, clinicians, and technologists to navigate the complexities of AI implementation, fostering the development of AI-driven solutions that prioritize ethical standards, equity, and a patient-centered approach."
+  },
+  {
+    "title": "A Review of the Role of Artificial Intelligence in Healthcare",
+    "year": 2023,
+    "cited": 904,
+    "doi": "https://doi.org/10.3390/jpm13060951",
+    "type": "article",
+    "venue": "Journal of Personalized Medicine",
+    "venue_type": "journal",
+    "oa_url": "https://www.mdpi.com/2075-4426/13/6/951/pdf?version=1685933257",
+    "authors": [
+      "Ahmed Al Kuwaiti",
+      "Khalid Nazer",
+      "Abdullah H. Alreedy",
+      "Shaher D AlShehri",
+      "Afnan Almuhanna",
+      "Arun Vijay Subbarayalu",
+      "Dhoha Al Muhanna",
+      "Fahad Al\u2010Muhanna"
+    ],
+    "abstract": "Artificial intelligence (AI) applications have transformed healthcare. This study is based on a general literature review uncovering the role of AI in healthcare and focuses on the following key aspects: (i) medical imaging and diagnostics, (ii) virtual patient care, (iii) medical research and drug discovery, (iv) patient engagement and compliance, (v) rehabilitation, and (vi) other administrative applications. The impact of AI is observed in detecting clinical conditions in medical imaging and diagnostic services, controlling the outbreak of coronavirus disease 2019 (COVID-19) with early diagnosis, providing virtual patient care using AI-powered tools, managing electronic health records, augmenting patient engagement and compliance with the treatment plan, reducing the administrative workload of healthcare professionals (HCPs), discovering new drugs and vaccines, spotting medical prescription errors, extensive data storage and analysis, and technology-assisted rehabilitation. Nevertheless, this science pitch meets several technical, ethical, and social challenges, including privacy, safety, the right to decide and try, costs, information and consent, access, and efficacy, while integrating AI into healthcare. The governance of AI applications is crucial for patient safety and accountability and for raising HCPs' belief in enhancing acceptance and boosting significant health consequences. Effective governance is a prerequisite to precisely address regulatory, ethical, and trust issues while advancing the acceptance and implementation of AI. Since COVID-19 hit the global hea"
+  },
+  {
+    "title": "A survey on deep learning tools dealing with data scarcity: definitions, challenges, solutions, tips, and applications",
+    "year": 2023,
+    "cited": 904,
+    "doi": "https://doi.org/10.1186/s40537-023-00727-2",
+    "type": "article",
+    "venue": "Journal Of Big Data",
+    "venue_type": "journal",
+    "oa_url": "https://journalofbigdata.springeropen.com/counter/pdf/10.1186/s40537-023-00727-2",
+    "authors": [
+      "Laith Alzubaidi",
+      "Jinshuai Bai",
+      "Aiman Al-Sabaawi",
+      "Jos\u00e9 Santamar\u00eda",
+      "Ahmed Shihab Albahri",
+      "Bashar Sami Nayyef Al-dabbagh",
+      "Mohammed Abdulraheem Fadhel",
+      "Mohamed Manoufali",
+      "Jinglan Zhang",
+      "Ali Hussein Al-Timemy",
+      "Ye Duan",
+      "Amjed A. Abdullah"
+    ],
+    "abstract": "Abstract Data scarcity is a major challenge when training deep learning (DL) models. DL demands a large amount of data to achieve exceptional performance. Unfortunately, many applications have small or inadequate data to train DL frameworks. Usually, manual labeling is needed to provide labeled data, which typically involves human annotators with a vast background of knowledge. This annotation process is costly, time-consuming, and error-prone. Usually, every DL framework is fed by a significant amount of labeled data to automatically learn representations. Ultimately, a larger amount of data would generate a better DL model and its performance is also application dependent. This issue is the main barrier for many applications dismissing the use of DL. Having sufficient data is the first step toward any successful and trustworthy DL application. This paper presents a holistic survey on state-of-the-art techniques to deal with training DL models to overcome three challenges including small, imbalanced datasets, and lack of generalization. This survey starts by listing the learning techniques. Next, the types of DL architectures are introduced. After that, state-of-the-art solutions to address the issue of lack of training data are listed, such as Transfer Learning (TL), Self-Supervised Learning (SSL), Generative Adversarial Networks (GANs), Model Architecture (MA), Physics-Informed Neural Network (PINN), and Deep Synthetic Minority Oversampling Technique (DeepSMOTE). Then, these solutions were followed by some related tips about data acquisition needed prior to training purp"
+  },
+  {
+    "title": "Small data machine learning in materials science",
+    "year": 2023,
+    "cited": 868,
+    "doi": "https://doi.org/10.1038/s41524-023-01000-z",
+    "type": "article",
+    "venue": "npj Computational Materials",
+    "venue_type": "journal",
+    "oa_url": "https://www.nature.com/articles/s41524-023-01000-z.pdf",
+    "authors": [
+      "Pengcheng Xu",
+      "Xiaobo Ji",
+      "Minjie Li",
+      "Wencong Lu"
+    ],
+    "abstract": "Abstract This review discussed the dilemma of small data faced by materials machine learning. First, we analyzed the limitations brought by small data. Then, the workflow of materials machine learning has been introduced. Next, the methods of dealing with small data were introduced, including data extraction from publications, materials database construction, high-throughput computations and experiments from the data source level; modeling algorithms for small data and imbalanced learning from the algorithm level; active learning and transfer learning from the machine learning strategy level. Finally, the future directions for small data machine learning in materials science were proposed."
+  },
+  {
+    "title": "A Review on Large Language Models: Architectures, Applications, Taxonomies, Open Issues and Challenges",
+    "year": 2024,
+    "cited": 834,
+    "doi": "https://doi.org/10.1109/access.2024.3365742",
+    "type": "article",
+    "venue": "IEEE Access",
+    "venue_type": "journal",
+    "oa_url": "https://ieeexplore.ieee.org/ielx7/6287639/6514899/10433480.pdf",
+    "authors": [
+      "Mohaimenul Azam Khan Raiaan",
+      "Md. Saddam Hossain Mukta",
+      "Kaniz Fatema",
+      "Nur Mohammad Fahad",
+      "Sadman Sakib",
+      "Most. Marufatul Jannat Mim",
+      "Jubaer Ahmad",
+      "Mohammed Eunus Ali",
+      "Sami Azam"
+    ],
+    "abstract": "Large Language Models (LLMs) recently demonstrated extraordinary capability, including natural language processing (NLP), language translation, text generation, question answering, etc. Moreover, LLMs are a new and essential part of computerized language processing, having the ability to understand complex verbal patterns and generate coherent and appropriate replies for the situation. Though this success of LLMs has prompted a substantial increase in research contributions, rapid growth has made it difficult to understand the overall impact of these improvements. Since a lot of new research on LLMs is coming out quickly, it is getting tough to get an overview of all of them in a short note. Consequently, the research community would benefit from a short but thorough review of the recent changes in this area. This article thoroughly overviews LLMs, including their history, architectures, transformers, resources, training methods, applications, impacts, challenges, etc. This paper begins by discussing the fundamental concepts of LLMs with its traditional pipeline of the LLMs training phase. It then provides an overview of the existing works, the history of LLMs, their evolution over time, the architecture of transformers in LLMs, the different resources of LLMs, and the different training methods that have been used to train them. It also demonstrated the datasets utilized in the studies. After that, the paper discusses the wide range of applications of LLMs, including biomedical and healthcare, education, social, business, and agriculture. It also illustrates how LLMs creat"
+  },
+  {
+    "title": "Practical guide to SHAP analysis: Explaining supervised machine learning model predictions in drug development",
+    "year": 2024,
+    "cited": 820,
+    "doi": "https://doi.org/10.1111/cts.70056",
+    "type": "article",
+    "venue": "Clinical and Translational Science",
+    "venue_type": "journal",
+    "oa_url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/cts.70056",
+    "authors": [
+      "Ana Victoria Ponce Bobadilla",
+      "Vanessa Schmitt",
+      "Corinna S. Maier",
+      "Sven Mensing",
+      "Sven Stodtmann"
+    ],
+    "abstract": "Despite increasing interest in using Artificial Intelligence (AI) and Machine Learning (ML) models for drug development, effectively interpreting their predictions remains a challenge, which limits their impact on clinical decisions. We address this issue by providing a practical guide to SHapley Additive exPlanations (SHAP), a popular feature-based interpretability method, which can be seamlessly integrated into supervised ML models to gain a deeper understanding of their predictions, thereby enhancing their transparency and trustworthiness. This tutorial focuses on the application of SHAP analysis to standard ML black-box models for regression and classification problems. We provide an overview of various visualization plots and their interpretation, available software for implementing SHAP, and highlight best practices, as well as special considerations, when dealing with binary endpoints and time-series models. To enhance the reader's understanding for the method, we also apply it to inherently explainable regression models. Finally, we discuss the limitations and ongoing advancements aimed at tackling the current drawbacks of the method."
+  },
+  {
+    "title": "Fake news, disinformation and misinformation in social media: a review",
+    "year": 2023,
+    "cited": 773,
+    "doi": "https://doi.org/10.1007/s13278-023-01028-5",
+    "type": "article",
+    "venue": "Social Network Analysis and Mining",
+    "venue_type": "journal",
+    "oa_url": "https://link.springer.com/content/pdf/10.1007/s13278-023-01028-5.pdf",
+    "authors": [
+      "Esma A\u0131\u0308meur",
+      "Sabrine Amri",
+      "Gilles Brassard"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "A Survey on RAG Meeting LLMs: Towards Retrieval-Augmented Large Language Models",
+    "year": 2024,
+    "cited": 764,
+    "doi": "https://doi.org/10.1145/3637528.3671470",
+    "type": "conference-paper",
+    "venue": null,
+    "venue_type": null,
+    "oa_url": "https://dl.acm.org/doi/pdf/10.1145/3637528.3671470",
+    "authors": [
+      "Wenqi Fan",
+      "Yujuan Ding",
+      "Liangbo Ning",
+      "Shijie Wang",
+      "Hengyun Li",
+      "Dawei Yin",
+      "Tat\u2010Seng Chua",
+      "Qing Li"
+    ],
+    "abstract": "As one of the most advanced techniques in AI, Retrieval-Augmented Generation (RAG) can offer reliable and up-to-date external knowledge, providing huge convenience for numerous tasks. Particularly in the era of AI-Generated Content (AIGC), the powerful capacity of retrieval in providing additional knowledge enables RAG to assist existing generative AI in producing high-quality outputs. Recently, Large Language Models (LLMs) have demonstrated revolutionary abilities in language understanding and generation, while still facing inherent limitations such as hallucinations and out-of-date internal knowledge. Given the powerful abilities of RAG in providing the latest and helpful auxiliary information, Retrieval-Augmented Large Language Models (RA-LLMs) have emerged to harness external and authoritative knowledge bases, rather than solely relying on the model's internal knowledge, to augment the quality of the generated content of LLMs. In this survey, we comprehensively review existing research studies in RA-LLMs, covering three primary technical perspectives: Furthermore, to deliver deeper insights, we discuss current limitations and several promising directions for future research. Updated information about this survey can be found at: https://advanced-recommender-systems.github.io/RAG-Meets-LLMs/"
+  },
+  {
+    "title": "Connecting the dots in trustworthy Artificial Intelligence: From AI principles, ethics, and key requirements to responsible AI systems and regulation",
+    "year": 2023,
+    "cited": 764,
+    "doi": "https://doi.org/10.1016/j.inffus.2023.101896",
+    "type": "article",
+    "venue": "Information Fusion",
+    "venue_type": "journal",
+    "oa_url": "https://doi.org/10.1016/j.inffus.2023.101896",
+    "authors": [
+      "Natalia D\u00edaz-Rodr\u00edguez",
+      "Javier Del Ser",
+      "Mark Coeckelbergh",
+      "Marcos L\u00f3pez de Prado",
+      "Enrique Herrera\u2010Viedma",
+      "Francisco Herrera"
+    ],
+    "abstract": "Trustworthy Artificial Intelligence (AI) is based on seven technical requirements sustained over three main pillars that should be met throughout the system\u2019s entire life cycle: it should be (1) lawful, (2) ethical, and (3) robust, both from a technical and a social perspective. However, attaining truly trustworthy AI concerns a wider vision that comprises the trustworthiness of all processes and actors that are part of the system\u2019s life cycle, and considers previous aspects from different lenses. A more holistic vision contemplates four essential axes: the global principles for ethical use and development of AI-based systems, a philosophical take on AI ethics, a risk-based approach to AI regulation, and the mentioned pillars and requirements. The seven requirements (human agency and oversight; robustness and safety; privacy and data governance; transparency; diversity, non-discrimination and fairness; societal and environmental wellbeing; and accountability) are analyzed from a triple perspective: What each requirement for trustworthy AI is, Why it is needed, and How each requirement can be implemented in practice. On the other hand, a practical approach to implement trustworthy AI systems allows defining the concept of responsibility of AI-based systems facing the law, through a given auditing process. Therefore, a responsible AI system is the resulting notion we introduce in this work, and a concept of utmost necessity that can be realized through auditing processes, subject to the challenges posed by the use of regulatory sandboxes. Our multidisciplinary vision of trust"
+  },
+  {
+    "title": "A Survey of Graph Neural Networks for Recommender Systems: Challenges, Methods, and Directions",
+    "year": 2023,
+    "cited": 744,
+    "doi": "https://doi.org/10.1145/3568022",
+    "type": "article",
+    "venue": "ACM Transactions on Recommender Systems",
+    "venue_type": "journal",
+    "oa_url": "https://dl.acm.org/doi/pdf/10.1145/3568022",
+    "authors": [
+      "Chen Gao",
+      "Yu Zheng",
+      "Nian Li",
+      "Yinfeng Li",
+      "Yingrong Qin",
+      "Jinghua Piao",
+      "Yuhan Quan",
+      "Jianxin Chang",
+      "Depeng Jin",
+      "Xiangnan He",
+      "Yong Li"
+    ],
+    "abstract": "Recommender system is one of the most important information services on today\u2019s Internet. Recently, graph neural networks have become the new state-of-the-art approach to recommender systems. In this survey, we conduct a comprehensive review of the literature on graph neural network-based recommender systems. We first introduce the background and the history of the development of both recommender systems and graph neural networks. For recommender systems, in general, there are four aspects for categorizing existing works: stage, scenario, objective, and application. For graph neural networks, the existing methods consist of two categories: spectral models and spatial ones. We then discuss the motivation of applying graph neural networks into recommender systems, mainly consisting of the high-order connectivity, the structural property of data and the enhanced supervision signal. We then systematically analyze the challenges in graph construction, embedding propagation/aggregation, model optimization, and computation efficiency. Afterward and primarily, we provide a comprehensive overview of a multitude of existing works of graph neural network-based recommender systems, following the taxonomy above. Finally, we raise discussions on the open problems and promising future directions in this area. We summarize the representative papers along with their code repositories in https://github.com/tsinghua-fib-lab/GNN-Recommender-Systems ."
+  },
+  {
+    "title": "Transfer Learning in Deep Reinforcement Learning: A Survey",
+    "year": 2023,
+    "cited": 735,
+    "doi": "https://doi.org/10.1109/tpami.2023.3292075",
+    "type": "article",
+    "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+    "venue_type": "journal",
+    "oa_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11018366/pdf/nihms-1982062.pdf",
+    "authors": [
+      "Zhuangdi Zhu",
+      "Kaixiang Lin",
+      "Anil Kumar Jain",
+      "Jiayu Zhou"
+    ],
+    "abstract": "Reinforcement learning is a learning paradigm for solving sequential decision-making problems. Recent years have witnessed remarkable progress in reinforcement learning upon the fast development of deep neural networks. Along with the promising prospects of reinforcement learning in numerous domains such as robotics and game-playing, transfer learning has arisen to tackle various challenges faced by reinforcement learning, by transferring knowledge from external expertise to facilitate the efficiency and effectiveness of the learning process. In this survey, we systematically investigate the recent progress of transfer learning approaches in the context of deep reinforcement learning. Specifically, we provide a framework for categorizing the state-of-the-art transfer learning approaches, under which we analyze their goals, methodologies, compatible reinforcement learning backbones, and practical applications. We also draw connections between transfer learning and other relevant topics from the reinforcement learning perspective and explore their potential challenges that await future research progress."
+  },
+  {
+    "title": "Algorithmic fairness in artificial intelligence for medicine and healthcare",
+    "year": 2023,
+    "cited": 730,
+    "doi": "https://doi.org/10.1038/s41551-023-01056-8",
+    "type": "article",
+    "venue": "Nature Biomedical Engineering",
+    "venue_type": "journal",
+    "oa_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10632090/pdf/nihms-1940941.pdf",
+    "authors": [
+      "Richard J. Chen",
+      "Judy Jiaqi Wang",
+      "Drew F. K. Williamson",
+      "Tiffany Chen",
+      "Jana Lipkov\u00e1",
+      "Ming Y. Lu",
+      "Sharifa Sahai",
+      "Faisal Mahmood"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "ChatGPT and Open-AI Models: A Preliminary Review",
+    "year": 2023,
+    "cited": 726,
+    "doi": "https://doi.org/10.3390/fi15060192",
+    "type": "article",
+    "venue": "Future Internet",
+    "venue_type": "journal",
+    "oa_url": "https://www.mdpi.com/1999-5903/15/6/192/pdf?version=1685089354",
+    "authors": [
+      "Konstantinos I. Roumeliotis",
+      "Nikolaos D. Tselikas"
+    ],
+    "abstract": "According to numerous reports, ChatGPT represents a significant breakthrough in the field of artificial intelligence. ChatGPT is a pre-trained AI model designed to engage in natural language conversations, utilizing sophisticated techniques from Natural Language Processing (NLP), Supervised Learning, and Reinforcement Learning to comprehend and generate text comparable to human-generated text. This article provides an overview of the training process and fundamental functionality of ChatGPT, accompanied by a preliminary review of the relevant literature. Notably, this article presents the first comprehensive literature review of this technology at the time of publication, aiming to aggregate all the available pertinent articles to facilitate further developments in the field. Ultimately, the authors aim to offer an appraisal of the technology\u2019s potential implications on existing knowledge and technology, along with potential challenges that must be addressed."
+  }
+]

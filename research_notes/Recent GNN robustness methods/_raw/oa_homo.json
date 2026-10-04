@@ -1,0 +1,371 @@
+[
+  {
+    "title": "A Comprehensive Survey on Deep Graph Representation Learning",
+    "year": 2024,
+    "cited": 349,
+    "doi": "https://doi.org/10.1016/j.neunet.2024.106207",
+    "type": "article",
+    "venue": "Neural Networks",
+    "venue_type": "journal",
+    "oa_url": "https://arxiv.org/pdf/2304.05055",
+    "authors": [
+      "Wei Ju",
+      "Zheng Fang",
+      "Yiyang Gu",
+      "Zequn Liu",
+      "Qingqing Long",
+      "Ziyue Qiao",
+      "Yifang Qin",
+      "Jianhao Shen",
+      "Fang Sun",
+      "Zhiping Xiao",
+      "Junwei Yang",
+      "Jingyang Yuan"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "Large language models empowered agent-based modeling and simulation: a survey and perspectives",
+    "year": 2024,
+    "cited": 267,
+    "doi": "https://doi.org/10.1057/s41599-024-03611-3",
+    "type": "article",
+    "venue": "Humanities and Social Sciences Communications",
+    "venue_type": "journal",
+    "oa_url": "https://www.nature.com/articles/s41599-024-03611-3.pdf",
+    "authors": [
+      "Chen Gao",
+      "Xiaochong Lan",
+      "Nian Li",
+      "Yuan Yuan",
+      "Jingtao Ding",
+      "Zhilun Zhou",
+      "Fengli Xu",
+      "Yong Li"
+    ],
+    "abstract": "Abstract Agent-based modeling and simulation have evolved as a powerful tool for modeling complex systems, offering insights into emergent behaviors and interactions among diverse agents. Recently, integrating large language models into agent-based modeling and simulation presents a promising avenue for enhancing simulation capabilities. This paper surveys the landscape of utilizing large language models in agent-based modeling and simulation, discussing their challenges and promising future directions. In this survey, since this is an interdisciplinary field, we first introduce the background of agent-based modeling and simulation and large language model-empowered agents. We then discuss the motivation for applying large language models to agent-based simulation and systematically analyze the challenges in environment perception, human alignment, action generation, and evaluation. Most importantly, we provide a comprehensive overview of the recent works of large language model-empowered agent-based modeling and simulation in multiple scenarios, which can be divided into four domains: cyber, physical, social, and hybrid, covering simulation of both real-world and virtual environments, and how these works address the above challenges. Finally, since this area is new and quickly evolving, we discuss the open problems and promising future directions. We summarize the representative papers along with their code repositories in https://github.com/tsinghua-fib-lab/LLM-Agent-Based-Modeling-and-Simulation ."
+  },
+  {
+    "title": "A Survey on Graph Representation Learning Methods",
+    "year": 2023,
+    "cited": 214,
+    "doi": "https://doi.org/10.1145/3633518",
+    "type": "article",
+    "venue": "ACM Transactions on Intelligent Systems and Technology",
+    "venue_type": "journal",
+    "oa_url": "https://dl.acm.org/doi/pdf/10.1145/3633518",
+    "authors": [
+      "Shima Khoshraftar",
+      "Aijun An"
+    ],
+    "abstract": "Graph representation learning has been a very active research area in recent years. The goal of graph representation learning is to generate graph representation vectors that capture the structure and features of large graphs accurately. This is especially important because the quality of the graph representation vectors will affect the performance of these vectors in downstream tasks such as node classification, link prediction and anomaly detection. Many techniques have been proposed for generating effective graph representation vectors, which generally fall into two categories: traditional graph embedding methods and graph neural network (GNN)\u2013based methods. These methods can be applied to both static and dynamic graphs. A static graph is a single fixed graph, whereas a dynamic graph evolves over time and its nodes and edges can be added or deleted from the graph. In this survey, we review the graph-embedding methods in both traditional and GNN-based categories for both static and dynamic graphs and include the recent papers published until the time of submission. In addition, we summarize a number of limitations of GNNs and the proposed solutions to these limitations. Such a summary has not been provided in previous surveys. Finally, we explore some open and ongoing research directions for future work."
+  },
+  {
+    "title": "Global droughts connected by linkages between drought hubs",
+    "year": 2023,
+    "cited": 197,
+    "doi": "https://doi.org/10.1038/s41467-022-35531-8",
+    "type": "article",
+    "venue": "Nature Communications",
+    "venue_type": "journal",
+    "oa_url": "https://www.nature.com/articles/s41467-022-35531-8.pdf",
+    "authors": [
+      "Somnath Mondal",
+      "Ashok Kumar Mishra",
+      "Lai-Yung Ruby Leung",
+      "Benjamin I. Cook"
+    ],
+    "abstract": "Quantifying the spatial and interconnected structure of regional to continental scale droughts is one of the unsolved global hydrology problems, which is important for understanding the looming risk of mega-scale droughts and the resulting water and food scarcity and their cascading impact on the worldwide economy. Using a Complex Network analysis, this study explores the topological characteristics of global drought events based on the self-calibrated Palmer Drought Severity Index. Event Synchronization is used to measure the strength of association between the onset of droughts at different spatial locations within the time lag of 1-3 months. The network coefficients derived from the synchronization network indicate a highly heterogeneous connectivity structure underlying global drought events. Drought hotspot regions such as Southern Europe, Northeast Brazil, Australia, and Northwest USA behave as drought hubs that synchronize regionally and with other hubs at inter-continental or even inter-hemispheric scale. This observed affinity among drought hubs is equivalent to the 'rich-club phenomenon' in Network Theory, where 'rich' nodes (here, drought hubs) are tightly interconnected to form a club, implicating the possibility of simultaneous large-scale droughts over multiple continents."
+  },
+  {
+    "title": "Exploring the Potential of Large Language Models (LLMs)in Learning on Graphs",
+    "year": 2024,
+    "cited": 187,
+    "doi": "https://doi.org/10.1145/3655103.3655110",
+    "type": "article",
+    "venue": "ACM SIGKDD Explorations Newsletter",
+    "venue_type": "journal",
+    "oa_url": "https://dl.acm.org/doi/pdf/10.1145/3655103.3655110",
+    "authors": [
+      "Zhikai Chen",
+      "Haitao Mao",
+      "Hang Li",
+      "Wei Jin",
+      "Hongzhi Wen",
+      "Xiaochi Wei",
+      "Shuaiqiang Wang",
+      "Dawei Yin",
+      "Wenqi Fan",
+      "Hui Liu",
+      "Jiliang Tang"
+    ],
+    "abstract": "Learning on Graphs has attracted immense attention due to its wide real-world applications. The most popular pipeline for learning on graphs with textual node attributes primarily relies on Graph Neural Networks (GNNs), and utilizes shallow text embedding as initial node representations, which has limitations in general knowledge and profound semantic understanding. In recent years, Large Language Models (LLMs) have been proven to possess extensive common knowledge and powerful semantic comprehension abilities that have revolutionized existing workflows to handle text data. In this paper, we aim to explore the potential of LLMs in graph machine learning, especially the node classification task, and investigate two possible pipelines: LLMs-as-Enhancers and LLMs-as-Predictors. The former leverages LLMs to enhance nodes' text attributes with their massive knowledge and then generate predictions through GNNs. The latter attempts to directly employ LLMs as standalone predictors. We conduct comprehensive and systematical studies on these two pipelines under various settings. From comprehensive empirical results, we make original observations and find new insights that open new possibilities and suggest promising directions to leverage LLMs for learning on graphs. Our codes and datasets are available at: https://github.com/CurryTang/Graph-LLM ."
+  },
+  {
+    "title": "Exploring Progress in Multivariate Time Series Forecasting: Comprehensive Benchmarking and Heterogeneity Analysis",
+    "year": 2024,
+    "cited": 181,
+    "doi": "https://doi.org/10.1109/tkde.2024.3484454",
+    "type": "article",
+    "venue": "IEEE Transactions on Knowledge and Data Engineering",
+    "venue_type": "journal",
+    "oa_url": "https://arxiv.org/pdf/2310.06119",
+    "authors": [
+      "Zezhi Shao",
+      "Fei Wang",
+      "Yongjun Xu",
+      "Wei Wei",
+      "Chengqing Yu",
+      "Zhao Zhang",
+      "Di Yao",
+      "Tao Sun",
+      "Guangyin Jin",
+      "Xin Cao",
+      "Gao Cong",
+      "Christian S. Jensen"
+    ],
+    "abstract": "Multivariate Time Series (MTS) analysis is crucial to understanding and managing complex systems, such as traffic and energy systems, and a variety of approaches to MTS forecasting have been proposed recently. However, we often observe inconsistent or seemingly contradictory performance findings across different studies. This hinders our understanding of the merits of different approaches and slows down progress. We address the need for means of assessing MTS forecasting proposals reliably and fairly, in turn enabling better exploitation of MTS as seen in different applications. Specifically, we first propose BasicTS+, a benchmark designed to enable fair, comprehensive, and reproducible comparison of MTS forecasting solutions. BasicTS+ establishes a unified training pipeline and reasonable settings, enabling an unbiased evaluation. Second, we identify the heterogeneity across different MTS as an important consideration and enable classification of MTS based on their temporal and spatial characteristics. Disregarding this heterogeneity is a prime reason for difficulties in selecting the most promising technical directions. Third, we apply BasicTS+ along with rich datasets to assess the capabilities of more than 30 MTS forecasting solutions. This provides readers with an overall picture of the cutting-edge research on MTS forecasting."
+  },
+  {
+    "title": "Evaluating explainability for graph neural networks",
+    "year": 2023,
+    "cited": 179,
+    "doi": "https://doi.org/10.1038/s41597-023-01974-x",
+    "type": "data-paper",
+    "venue": "Scientific Data",
+    "venue_type": "journal",
+    "oa_url": "https://www.nature.com/articles/s41597-023-01974-x.pdf",
+    "authors": [
+      "Chirag Agarwal",
+      "Owen Queen",
+      "Himabindu Lakkaraju",
+      "Marinka \u017ditnik"
+    ],
+    "abstract": "As explanations are increasingly used to understand the behavior of graph neural networks (GNNs), evaluating the quality and reliability of GNN explanations is crucial. However, assessing the quality of GNN explanations is challenging as existing graph datasets have no or unreliable ground-truth explanations. Here, we introduce a synthetic graph data generator, SHAPEGGEN, which can generate a variety of benchmark datasets (e.g., varying graph sizes, degree distributions, homophilic vs. heterophilic graphs) accompanied by ground-truth explanations. The flexibility to generate diverse synthetic datasets and corresponding ground-truth explanations allows SHAPEGGEN to mimic the data in various real-world areas. We include SHAPEGGEN and several real-world graph datasets in a graph explainability library, GRAPHXAI. In addition to synthetic and real-world graph datasets with ground-truth explanations, GRAPHXAI provides data loaders, data processing functions, visualizers, GNN model implementations, and evaluation metrics to benchmark GNN explainability methods."
+  },
+  {
+    "title": "AI Fairness in Data Management and Analytics: A Review on Challenges, Methodologies and Applications",
+    "year": 2023,
+    "cited": 155,
+    "doi": "https://doi.org/10.3390/app131810258",
+    "type": "article",
+    "venue": "Applied Sciences",
+    "venue_type": "journal",
+    "oa_url": "https://www.mdpi.com/2076-3417/13/18/10258/pdf?version=1694597295",
+    "authors": [
+      "Pu Chen",
+      "Linna Wu",
+      "Lei Wang"
+    ],
+    "abstract": "This article provides a comprehensive overview of the fairness issues in artificial intelligence (AI) systems, delving into its background, definition, and development process. The article explores the fairness problem in AI through practical applications and current advances and focuses on bias analysis and fairness training as key research directions. The paper explains in detail the concept, implementation, characteristics, and use cases of each method. The paper explores strategies to reduce bias and improve fairness in AI systems, reviews challenges and solutions to real-world AI fairness applications, and proposes future research directions. In addition, this study provides an in-depth comparative analysis of the various approaches, utilizing cutting-edge research information to elucidate their different characteristics, strengths, and weaknesses. The results of the comparison provide guidance for future research. The paper concludes with an overview of existing challenges in practical applications and suggests priorities and solutions for future research. The conclusions provide insights for promoting fairness in AI systems. The information reviewed in this paper is drawn from reputable sources, including leading academic journals, prominent conference proceedings, and well-established online repositories dedicated to AI fairness. However, it is important to recognize that research nuances, sample sizes, and contextual factors may create limitations that affect the generalizability of the findings."
+  },
+  {
+    "title": "Addressing Heterophily in Graph Anomaly Detection: A Perspective of Graph Spectrum",
+    "year": 2023,
+    "cited": 153,
+    "doi": "https://doi.org/10.1145/3543507.3583268",
+    "type": "conference-paper",
+    "venue": null,
+    "venue_type": null,
+    "oa_url": "https://dl.acm.org/doi/pdf/10.1145/3543507.3583268",
+    "authors": [
+      "Yuan Gao",
+      "Xiang Wang",
+      "Xiangnan He",
+      "Zhenguang Liu",
+      "Huamin Feng",
+      "Yongdong Zhang"
+    ],
+    "abstract": "Graph anomaly detection (GAD) suffers from heterophily \u2014 abnormal nodes are sparse so that they are connected to vast normal nodes. The current solutions upon Graph Neural Networks (GNNs) blindly smooth the representation of neiboring nodes, thus undermining the discriminative information of the anomalies. To alleviate the issue, recent studies identify and discard inter-class edges through estimating and comparing the node-level representation similarity. However, the representation of a single node can be misleading when the prediction error is high, thus hindering the performance of the edge indicator."
+  },
+  {
+    "title": "A Comprehensive Survey on Trustworthy Graph Neural Networks: Privacy, Robustness, Fairness, and Explainability",
+    "year": 2024,
+    "cited": 152,
+    "doi": "https://doi.org/10.1007/s11633-024-1510-8",
+    "type": "article",
+    "venue": "Machine Intelligence Research",
+    "venue_type": "journal",
+    "oa_url": "https://link.springer.com/content/pdf/10.1007/s11633-024-1510-8.pdf",
+    "authors": [
+      "Enyan Dai",
+      "Tianxiang Zhao",
+      "Huaisheng Zhu",
+      "Junjie Xu",
+      "Zhimeng Guo",
+      "Hui Liu",
+      "Jiliang Tang",
+      "Suhang Wang"
+    ],
+    "abstract": "Abstract Graph neural networks (GNNs) have made rapid developments in the recent years. Due to their great ability in modeling graph-structured data, GNNs are vastly used in various applications, including high-stakes scenarios such as financial analysis, traffic predictions, and drug discovery. Despite their great potential in benefiting humans in the real world, recent study shows that GNNs can leak private information, are vulnerable to adversarial attacks, can inherit and magnify societal bias from training data and lack interpretability, which have risk of causing unintentional harm to the users and society. For example, existing works demonstrate that attackers can fool the GNNs to give the outcome they desire with unnoticeable perturbation on training graph. GNNs trained on social networks may embed the discrimination in their decision process, strengthening the undesirable societal bias. Consequently, trust-worthy GNNs in various aspects are emerging to prevent the harm from GNN models and increase the users\u2019 trust in GNNs. In this paper, we give a comprehensive survey of GNNs in the computational aspects of privacy, robustness, fairness, and explainability. For each aspect, we give the taxonomy of the related methods and formulate the general frameworks for the multiple categories of trustworthy GNNs. We also discuss the future research directions of each aspect and connections between these aspects to help achieve trustworthiness."
+  },
+  {
+    "title": "Non-White scientists appear on fewer editorial boards, spend more time under review, and receive fewer citations",
+    "year": 2023,
+    "cited": 139,
+    "doi": "https://doi.org/10.1073/pnas.2215324120",
+    "type": "paratext",
+    "venue": "Proceedings of the National Academy of Sciences",
+    "venue_type": "journal",
+    "oa_url": "https://doi.org/10.1073/pnas.2215324120",
+    "authors": [
+      "Fengyuan Liu",
+      "Talal Rahwan",
+      "Bedoor AlShebli"
+    ],
+    "abstract": "Disparities continue to pose major challenges in various aspects of science. One such aspect is editorial board composition, which has been shown to exhibit racial and geographical disparities. However, the literature on this subject lacks longitudinal studies quantifying the degree to which the racial composition of editors reflects that of scientists. Other aspects that may exhibit racial disparities include the time spent between the submission and acceptance of a manuscript and the number of citations a paper receives relative to textually similar papers, but these have not been studied to date. To fill this gap, we compile a dataset of 1,000,000 papers published between 2001 and 2020 by six publishers, while identifying the handling editor of each paper. Using this dataset, we show that most countries in Asia, Africa, and South America (where the majority of the population is ethnically non-White) have fewer editors than would be expected based on their share of authorship. Focusing on US-based scientists reveals Black as the most underrepresented race. In terms of acceptance delay, we find, again, that papers from Asia, Africa, and South America spend more time compared to other papers published in the same journal and the same year. Regression analysis of US-based papers reveals that Black authors suffer from the greatest delay. Finally, by analyzing citation rates of US-based papers, we find that Black and Hispanic scientists receive significantly fewer citations compared to White ones doing similar research. Taken together, these findings highlight significant chal"
+  },
+  {
+    "title": "From Pretraining Data to Language Models to Downstream Tasks: Tracking the Trails of Political Biases Leading to Unfair NLP Models",
+    "year": 2023,
+    "cited": 137,
+    "doi": "https://doi.org/10.18653/v1/2023.acl-long.656",
+    "type": "conference-paper",
+    "venue": null,
+    "venue_type": null,
+    "oa_url": "https://aclanthology.org/2023.acl-long.656.pdf",
+    "authors": [
+      "Shangbin Feng",
+      "Chan Young Park",
+      "Yuhan Liu",
+      "Yulia Tsvetkov"
+    ],
+    "abstract": "Language models (LMs) are pretrained on diverse data sources, including news, discussion forums, books, and online encyclopedias.A significant portion of this data includes opinions and perspectives which, on one hand, celebrate democracy and diversity of ideas, and on the other hand are inherently socially biased.Our work develops new methods to (1) measure political biases in LMs trained on such corpora, along social and economic axes, and (2) measure the fairness of downstream NLP models trained on top of politically biased LMs.We focus on hate speech and misinformation detection, aiming to empirically quantify the effects of political (social, economic) biases in pretraining data on the fairness of high-stakes social-oriented tasks.Our findings reveal that pretrained LMs do have political leanings that reinforce the polarization present in pretraining corpora, propagating social biases into hate speech predictions and misinformation detectors.We discuss the implications of our findings for NLP research and propose future directions to mitigate unfairness. 1 Warning: This paper contains examples of hate speech."
+  },
+  {
+    "title": "Representation Bias in Data: A Survey on Identification and Resolution Techniques",
+    "year": 2023,
+    "cited": 132,
+    "doi": "https://doi.org/10.1145/3588433",
+    "type": "article",
+    "venue": "ACM Computing Surveys",
+    "venue_type": "journal",
+    "oa_url": "https://dl.acm.org/doi/pdf/10.1145/3588433",
+    "authors": [
+      "Nima Shahbazi",
+      "Lin Yin",
+      "Abolfazl Asudeh",
+      "H. V. Jagadish"
+    ],
+    "abstract": "Data-driven algorithms are only as good as the data they work with, while datasets, especially social data, often fail to represent minorities adequately. Representation Bias in data can happen due to various reasons, ranging from historical discrimination to selection and sampling biases in the data acquisition and preparation methods. Given that \u201cbias in, bias out,\u201d one cannot expect AI-based solutions to have equitable outcomes for societal applications, without addressing issues such as representation bias. While there has been extensive study of fairness in machine learning models, including several review papers, bias in the data has been less studied. This article reviews the literature on identifying and resolving representation bias as a feature of a dataset, independent of how consumed later. The scope of this survey is bounded to structured (tabular) and unstructured (e.g., image, text, graph) data. It presents taxonomies to categorize the studied techniques based on multiple design dimensions and provides a side-by-side comparison of their properties. There is still a long way to fully address representation bias issues in data. The authors hope that this survey motivates researchers to approach these challenges in the future by observing existing work within their respective domains."
+  },
+  {
+    "title": "NLP techniques for automating responses to customer queries: a systematic review",
+    "year": 2023,
+    "cited": 125,
+    "doi": "https://doi.org/10.1007/s44163-023-00065-5",
+    "type": "review",
+    "venue": "Discover Artificial Intelligence",
+    "venue_type": "journal",
+    "oa_url": "https://link.springer.com/content/pdf/10.1007/s44163-023-00065-5.pdf",
+    "authors": [
+      "Peter Adebowale Olujimi",
+      "Abejide Ade-Ibijola"
+    ],
+    "abstract": "Abstract The demand for automated customer support approaches in customer-centric environments has increased significantly in the past few years. Natural Language Processing (NLP) advancement has enabled conversational AI to comprehend human language and respond to enquiries from customers automatically independent of the intervention of humans. Customers can now access prompt responses from NLP chatbots without interacting with human agents. This application has been implemented in numerous business sectors, including banking, manufacturing, education, law, and healthcare, among others. This study reviewed earlier studies on automating customer queries using NLP approaches. Using a systematic review methodology, 73 articles were analysed from reputable digital resources. The evaluated result offers an in-depth review of prior studies investigating the use of NLP techniques for automated customer service responses, including details on existing studies, benefits, and potential future study topics on the use of NLP techniques for business applications. The implications of the results were discussed and, recommendations made."
+  },
+  {
+    "title": "Graph Neural Networks for Graphs With Heterophily: A Survey",
+    "year": 2026,
+    "cited": 107,
+    "doi": "https://doi.org/10.1109/tkde.2026.3680353",
+    "type": "article",
+    "venue": "IEEE Transactions on Knowledge and Data Engineering",
+    "venue_type": "journal",
+    "oa_url": "https://arxiv.org/pdf/2202.07082",
+    "authors": [
+      "Xin Zheng",
+      "Yi Wang",
+      "Yixin Liu",
+      "Ming Li",
+      "Miao Zhang",
+      "Di Jin",
+      "Philip S. Yu",
+      "Shirui Pan"
+    ],
+    "abstract": "Recent years have witnessed fast developments of graph neural networks (GNNs) that have benefited myriad graph analytic tasks and applications. Most GNNs rely on the homophily assumption that nodes belonging to the same class are more likely to be connected. However, as a ubiquitous graph property in numerous real-world scenarios, heterophily, i.e., nodes with different labels tend to be linked, significantly limits the performance of tailor-made homophilic GNNs. Hence,GNNs for heterophilic graphsare gaining increasing research attention to enhance graph learning with heterophily. In this paper, we provide a comprehensive review of GNNs for heterophilic graphs. Specifically, we propose a systematic taxonomy that governs existing heterophilic GNN models, along with general summaries and detailed analyses. Furthermore, we discuss the relationship between heterophily and various graph research domains, aiming to facilitate the development of more effective GNNs across a spectrum of practical applications and learning tasks in the graph research community. In the end, we point out potential directions to advance and inspire future research and applications on heterophilic graph learning with GNNs."
+  },
+  {
+    "title": "What's Behind the Mask: Understanding Masked Graph Modeling for Graph Autoencoders",
+    "year": 2023,
+    "cited": 105,
+    "doi": "https://doi.org/10.1145/3580305.3599546",
+    "type": "conference-paper",
+    "venue": null,
+    "venue_type": null,
+    "oa_url": "https://dl.acm.org/doi/pdf/10.1145/3580305.3599546",
+    "authors": [
+      "Jintang Li",
+      "Ruofan Wu",
+      "Wangbin Sun",
+      "Liang Chen",
+      "Sheng Feng Tian",
+      "Liang Zhu",
+      "Changhua Meng",
+      "Zibin Zheng",
+      "Weiqiang Wang"
+    ],
+    "abstract": "The last years have witnessed the emergence of a promising self-supervised learning strategy, referred to as masked autoencoding. However, there is a lack of theoretical understanding of how masking matters on graph autoencoders (GAEs). In this work, we present masked graph autoencoder (MaskGAE), a self-supervised learning framework for graph-structured data. Different from standard GAEs, MaskGAE adopts masked graph modeling (MGM) as a principled pretext task - masking a portion of edges and attempting to reconstruct the missing part with partially visible, unmasked graph structure. To understand whether MGM can help GAEs learn better representations, we provide both theoretical and empirical evidence to comprehensively justify the benefits of this pretext task. Theoretically, we establish close connections between GAEs and contrastive learning, showing that MGM significantly improves the self-supervised learning scheme of GAEs. Empirically, we conduct extensive experiments on a variety of graph benchmarks, demonstrating the superiority of MaskGAE over several state-of-the-arts on both link prediction and node classification tasks."
+  },
+  {
+    "title": "Can ChatGPT Be Addictive? A Call to Examine the Shift from Support to Dependence in AI Conversational Large Language Models",
+    "year": 2025,
+    "cited": 96,
+    "doi": "https://doi.org/10.1007/s44230-025-00090-w",
+    "type": "article",
+    "venue": "Human-Centric Intelligent Systems",
+    "venue_type": "journal",
+    "oa_url": "https://link.springer.com/content/pdf/10.1007/s44230-025-00090-w.pdf",
+    "authors": [
+      "Ala Yankouskaya",
+      "Magnus Liebherr",
+      "Raian Ali"
+    ],
+    "abstract": "Abstract The rapid rise of ChatGPT has introduced a transformative tool that enhances productivity, communication, and task automation across industries. However, concerns are emerging regarding the addictive potential of AI large language models. This paper explores how ChatGPT fosters dependency through key features such as personalised responses, emotional validation, and continuous engagement. By offering instant gratification and adaptive dialogue, ChatGPT may blur the line between AI and human interaction, creating pseudosocial bonds that can replace genuine human relationships. Additionally, its ability to streamline decision-making and boost productivity may lead to over-reliance, reducing users' critical thinking skills and contributing to compulsive usage patterns. These behavioural tendencies align with known features of addiction, such as increased tolerance and conflict with daily life priorities. This viewpoint paper highlights the need for further research into the psychological and social impacts of prolonged interaction with AI tools like ChatGPT."
+  },
+  {
+    "title": "Recent Advances in Deep Learning for Protein-Protein Interaction Analysis: A Comprehensive Review",
+    "year": 2023,
+    "cited": 91,
+    "doi": "https://doi.org/10.3390/molecules28135169",
+    "type": "article",
+    "venue": "Molecules",
+    "venue_type": "journal",
+    "oa_url": "https://www.mdpi.com/1420-3049/28/13/5169/pdf?version=1688363394",
+    "authors": [
+      "Minhyeok Lee"
+    ],
+    "abstract": "Deep learning, a potent branch of artificial intelligence, is steadily leaving its transformative imprint across multiple disciplines. Within computational biology, it is expediting progress in the understanding of Protein-Protein Interactions (PPIs), key components governing a wide array of biological functionalities. Hence, an in-depth exploration of PPIs is crucial for decoding the intricate biological system dynamics and unveiling potential avenues for therapeutic interventions. As the deployment of deep learning techniques in PPI analysis proliferates at an accelerated pace, there exists an immediate demand for an exhaustive review that encapsulates and critically assesses these novel developments. Addressing this requirement, this review offers a detailed analysis of the literature from 2021 to 2023, highlighting the cutting-edge deep learning methodologies harnessed for PPI analysis. Thus, this review stands as a crucial reference for researchers in the discipline, presenting an overview of the recent studies in the field. This consolidation helps elucidate the dynamic paradigm of PPI analysis, the evolution of deep learning techniques, and their interdependent dynamics. This scrutiny is expected to serve as a vital aid for researchers, both well-established and newcomers, assisting them in maneuvering the rapidly shifting terrain of deep learning applications in PPI analysis."
+  },
+  {
+    "title": "A systematic review of machine learning techniques for stance detection and its applications",
+    "year": 2023,
+    "cited": 86,
+    "doi": "https://doi.org/10.1007/s00521-023-08285-7",
+    "type": "review",
+    "venue": "Neural Computing and Applications",
+    "venue_type": "journal",
+    "oa_url": "https://link.springer.com/content/pdf/10.1007/s00521-023-08285-7.pdf",
+    "authors": [
+      "Nora Alturayeif",
+      "Hamzah Luqman",
+      "Moataz Ahmed"
+    ],
+    "abstract": ""
+  },
+  {
+    "title": "Graph Mamba: Towards Learning on Graphs with State Space Models",
+    "year": 2024,
+    "cited": 81,
+    "doi": "https://doi.org/10.1145/3637528.3672044",
+    "type": "conference-paper",
+    "venue": null,
+    "venue_type": null,
+    "oa_url": "https://dl.acm.org/doi/pdf/10.1145/3637528.3672044",
+    "authors": [
+      "Ali Behrouz",
+      "Farnoosh Hashemi"
+    ],
+    "abstract": "Graph Neural Networks (GNNs) have shown promising potential in graph representation learning.The majority of GNNs define a local message-passing mechanism, propagating information over the graph by stacking multiple layers.These methods, however, are known to suffer from two major limitations: over-squashing and poor capturing of long-range dependencies.Recently, Graph Transformers (GTs) emerged as a powerful alternative to Message-Passing Neural Networks (MPNNs).GTs, however, have quadratic computational cost, lack inductive biases on graph structures, and rely on complex Positional Encodings (PE).In this paper, we show that while Transformers, complex message-passing, and PE are sufficient for good performance in practice, neither is necessary.Motivated by the recent success of State Space Models (SSMs), we present Graph Mamba Networks (GMNs), a framework for a new class of GNNs based on selective SSMs.We discuss the new challenges when adapting SSMs to graph-structured data, and present four required steps to design GMNs, where we choose (1) Neighborhood Tokenization, (2) Token Ordering, (3) Architecture of SSM Encoder, and (4) Local Encoding.We provide theoretical justification for the power of GMNs, and experimentally show that GMNs attain an outstanding performance in various benchmark datasets.The code is available in this link."
+  }
+]
