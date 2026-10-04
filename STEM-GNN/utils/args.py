@@ -162,6 +162,18 @@ def get_args_finetune(default_params=None):
         default=0.0,
         help="Lipschitz regularization strength for the GNN encoder backbone (Frobenius norm on conv weights).",
     )
+    parser.add_argument(
+        "--propagation_lip_coeff",
+        type=float,
+        default=0.0,
+        help="Penalty on how much node states move when a fraction of edges is dropped. Full-batch node classification only.",
+    )
+    parser.add_argument(
+        "--propagation_drop_prob",
+        type=float,
+        default=0.3,
+        help="Edge-drop rate used inside the propagation Lipschitz penalty.",
+    )
 
     if default_params:
         parser.set_defaults(**default_params)

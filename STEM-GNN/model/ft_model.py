@@ -36,6 +36,8 @@ class TaskModel(nn.Module):
         self.separate_decoder_for_each_head = params["separate_decoder_for_each_head"]
         self.decoder_jac_coeff = params.get("decoder_jac_coeff", 0.0)
         self.encoder_lip_coeff = params.get("encoder_lip_coeff", 0.0)
+        self.propagation_lip_coeff = params.get("propagation_lip_coeff", 0.0)
+        self.propagation_drop_prob = params.get("propagation_drop_prob", 0.3)
         self.use_vq = params.get("use_vq", 1)
 
         if self.separate_decoder_for_each_head:
@@ -52,6 +54,15 @@ class TaskModel(nn.Module):
 
     def encoder_lipschitz_penalty(self):
         return self.encoder.lipschitz_penalty(self.encoder_lip_coeff)
+
+    def propagation_sensitivity_penalty(self, x, edge_index, edge_attr=None):
+        if self.propagation_lip_coeff <= 0:
+            return torch.zeros((), device=x.device)
+        return self.encoder.propagation_sensitivity_penalty(
+            x, edge_index, edge_attr,
+            drop_prob=self.propagation_drop_prob,
+            coeff=self.propagation_lip_coeff,
+        )
 
     @staticmethod
     def _get_linear_weight(module: nn.Module):

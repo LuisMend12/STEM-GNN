@@ -267,6 +267,7 @@ def run(params, on_split_end=None):
                 "train/env_loss": loss['env_loss'],
                 "train/jac_loss": loss['jac_loss'],
                 "train/lip_loss": loss['lip_loss'],
+                "train/prop_loss": loss.get('prop_loss', 0.0),
                 "train/loss": loss['loss'],
                 "train/train_value": result['train'],
                 "train/val_value": result['val'],

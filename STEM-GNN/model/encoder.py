@@ -11,7 +11,50 @@ from torch_geometric.nn.aggr import Aggregation, MultiAggregation
 from torch_geometric.nn.dense.linear import Linear
 from torch_geometric.typing import Adj, OptPairTensor, Size, SparseTensor
 from torch_geometric.utils import spmm
-from torch_scatter import scatter_mean
+
+try:
+    from torch_scatter import scatter_mean
+except ImportError:  # no torch_scatter wheel for this interpreter
+    from torch_geometric.utils import scatter as _pyg_scatter
+
+    def scatter_mean(src, index, dim=0, dim_size=None):
+        return _pyg_scatter(src, index, dim=dim, dim_size=dim_size, reduce="mean")
+
+
+def drop_undirected_edges(edge_index, edge_attr=None, drop_prob=0.3, node_scope=None, generator=None):
+    """Drop a fraction of undirected edges, removing both directions together.
+
+    node_scope, when given, restricts candidates to edges touching those nodes.
+    At least one candidate pair is kept so the graph is never fully emptied.
+    """
+    if drop_prob <= 0 or edge_index.numel() == 0:
+        return edge_index, edge_attr
+
+    src, dst = edge_index
+    num_nodes = int(edge_index.max().item()) + 1
+    if node_scope is None:
+        candidate = torch.ones(edge_index.size(1), dtype=torch.bool, device=edge_index.device)
+    else:
+        scope = node_scope.to(device=edge_index.device, dtype=torch.bool)
+        candidate = scope[src] | scope[dst]
+
+    cand_idx = candidate.nonzero(as_tuple=False).view(-1)
+    if cand_idx.numel() == 0:
+        return edge_index, edge_attr
+
+    key = torch.minimum(src, dst).long() * num_nodes + torch.maximum(src, dst).long()
+    unique, inverse = torch.unique(key[cand_idx], return_inverse=True)
+    rand = torch.rand(unique.size(0), device=edge_index.device, generator=generator)
+    drop_pairs = rand < drop_prob
+    if bool(drop_pairs.all()):
+        drop_pairs[int(rand.argmax().item())] = False
+
+    keep = torch.ones(edge_index.size(1), dtype=torch.bool, device=edge_index.device)
+    keep[cand_idx] = ~drop_pairs[inverse]
+    edge_index = edge_index[:, keep]
+    if edge_attr is not None:
+        edge_attr = edge_attr[keep]
+    return edge_index, edge_attr
 
 
 class MySAGEConv(MessagePassing):
@@ -78,8 +121,10 @@ class MySAGEConv(MessagePassing):
         if self.project and hasattr(self, 'lin'):
             x = (self.lin(x[0]).relu(), x[1])
 
-        # propagate_type: (x: OptPairTensor)
-        out = self.propagate(edge_index, x=x, size=size, xe=edge_attr)
+        # PyG 2.5+ replaces propagate with a generated signature that drops
+        # the untyped edge feature. The original implementation still accepts it.
+        propagate = getattr(self, "_orig_propagate", self.propagate)
+        out = propagate(edge_index, x=x, size=size, xe=edge_attr)
         out = self.lin_l(out)
 
         x_r = x[1]
@@ -91,7 +136,7 @@ class MySAGEConv(MessagePassing):
 
         return out
 
-    def message(self, x_j: Tensor, xe) -> Tensor:
+    def message(self, x_j: Tensor, xe: Optional[Tensor] = None) -> Tensor:
         if xe is not None:
             x_j = x_j + xe
         return F.relu(x_j)
@@ -442,6 +487,41 @@ class Encoder(nn.Module):
                 if param.dim() >= 2 and "weight" in name.lower():
                     total = total + param.pow(2).sum()
         return coeff * total
+
+    def propagation_sensitivity_penalty(
+        self, x, edge_index, edge_attr=None, drop_prob: float = 0.3, coeff: float = 0.0,
+    ) -> Tensor:
+        """Finite-difference Lipschitz penalty on the propagation map A -> f(X, A).
+
+        Weight-Frobenius regularization bounds how much a layer can amplify
+        features. It does not penalize dependence on which edges exist. This
+        term drops a fraction of undirected edges and penalizes the relative
+        change in node states, with dropout disabled so the difference is the
+        structural one. The denominator is detached so the model cannot shrink
+        the ratio by inflating representation norms.
+        """
+        device = x.device
+        if coeff <= 0 or drop_prob <= 0:
+            return torch.zeros((), device=device)
+
+        dropout_state = []
+        for module in self.modules():
+            if isinstance(module, nn.Dropout):
+                dropout_state.append((module, module.training))
+                module.eval()
+        try:
+            clean = self.encode(x, edge_index, edge_attr)
+            dropped_index, dropped_attr = drop_undirected_edges(
+                edge_index, edge_attr, drop_prob=drop_prob,
+            )
+            perturbed = self.encode(x, dropped_index, dropped_attr)
+        finally:
+            for module, was_training in dropout_state:
+                module.train(was_training)
+
+        change = (clean - perturbed).norm(dim=-1)
+        scale = clean.detach().norm(dim=-1).clamp_min(1e-6)
+        return coeff * (change / scale).mean()
 
 
 class InnerProductDecoder(torch.nn.Module):
