@@ -73,3 +73,9 @@ H1–H4 and their decision rules above are confirmatory. Anything else is explor
 - PRBCD runs at reduced CPU scale (block 100k, 100 epochs).
 - Evasion only.
 - The text encoder is MiniLM-384, not STEM-GNN's 768-d encoder.
+
+## Amendments (2026-10-20, during the run; from the smoke test and the Codex design review)
+
+- **H4 diagnostic is mis-specified.** The zero-row fraction is measured after early stopping restores the epoch-0 weights. Per-epoch tracing (exploratory) shows every ReLU unit dies by about epoch 6, with the penalty spiking to around 400. The global-denominator repair also collapses. The repo's penalty applies to the final encoder output, which has no activation, so it is closer to the "preact" variant. That variant trained normally, but it is still a layer-1 proxy, not the repo's penalty.
+- **H1 terminology.** "Hard-VQ PRBCD" means zero-gradient PRBCD with forward candidate selection. A gap of 2–5 points is inconclusive, not a refutation.
+- **STEM-lite deviates from the repo** by adding a 0.25·commitment loss, summed over dimensions. The repo has none. Results in this run carry that caveat.
