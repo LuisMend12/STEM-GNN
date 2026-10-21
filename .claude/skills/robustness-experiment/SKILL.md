@@ -57,6 +57,7 @@ If the user agrees, commit the protocol before running (`research(protocol): <sl
 
    Non-differentiable parts (VQ quantization, hard thresholds, argmax routing) need a straight-through or BPDA surrogate, or a transfer attack.
 4. **Same text encoder** for every baseline that uses text similarity, because the encoder alone changes rankings (TGRB).
+4b. **Attack-strength check.** PRBCD can badly overestimate robustness. On Certified Token Voting it reported 68.0 at 20% while an exact attack reached 46.5 (`experiments/certified-token-voting/analysis.md`). Whenever a model's flip cost can be computed exactly (linear or voting heads), run the exact attack. Otherwise run PRBCD with more epochs and restarts. Treat any defense that "beats" baselines only under PRBCD as unverified.
 5. **Tune per variant on validation only**, on the clean validation set, then freeze the setting before attacking. Record the grid.
 6. **Sanity checks** before trusting numbers: the run converged, the baseline reproduces (SAGE about 80% on OFA Cora split 0), and attack budgets are counted in undirected edges.
 
