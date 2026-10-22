@@ -1,0 +1,2 @@
+{"variant": "S0", "depth": 2, "split": 0, "seed": 0, "val": 0.7519999742507935, "test": 0.7814313173294067, "seconds": 29.4}
+{"variant": "S1", "depth": 2, "split": 0, "seed": 0, "val": 0.7620000243186951, "test": 0.780464231967926, "seconds": 33.1}

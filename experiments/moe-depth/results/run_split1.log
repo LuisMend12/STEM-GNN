@@ -2,3 +2,39 @@
 {"variant": "V0", "depth": 2, "split": 1, "seed": 0, "threads": 4, "val": 0.842, "test": 0.8104, "V1_test": 0.8104, "routing_tv": 0.2856, "seconds": 9.1}
 {"variant": "V2", "depth": 2, "split": 1, "seed": 0, "threads": 4, "val": 0.828, "test": 0.8017, "seconds": 13.9}
 {"variant": "V3", "depth": 2, "split": 1, "seed": 0, "threads": 4, "val": 0.834, "test": 0.8037, "seconds": 20.1}
+{"variant": "SAGE", "depth": 16, "split": 1, "seed": 0, "threads": 4, "val": 0.798, "test": 0.7553, "seconds": 64.0}
+{"variant": "V0", "depth": 16, "split": 1, "seed": 0, "threads": 4, "val": 0.78, "test": 0.7282, "V1_test": 0.7389, "routing_tv": 0.3031, "seconds": 57.3}
+{"variant": "V2", "depth": 16, "split": 1, "seed": 0, "threads": 4, "val": 0.816, "test": 0.7544, "seconds": 81.8}
+{"variant": "V3", "depth": 16, "split": 1, "seed": 0, "threads": 4, "val": 0.806, "test": 0.7582, "seconds": 37.6}
+{"variant": "SAGE", "depth": 2, "split": 1, "seed": 1, "threads": 4, "val": 0.806, "test": 0.7751, "seconds": 5.2}
+{"variant": "V0", "depth": 2, "split": 1, "seed": 1, "threads": 4, "val": 0.836, "test": 0.8037, "V1_test": 0.8042, "routing_tv": 0.2568, "seconds": 8.7}
+{"variant": "V2", "depth": 2, "split": 1, "seed": 1, "threads": 4, "val": 0.83, "test": 0.795, "seconds": 9.2}
+{"variant": "V3", "depth": 2, "split": 1, "seed": 1, "threads": 4, "val": 0.83, "test": 0.8061, "seconds": 6.1}
+{"variant": "SAGE", "depth": 16, "split": 1, "seed": 1, "threads": 4, "val": 0.808, "test": 0.7587, "seconds": 67.5}
+{"variant": "V0", "depth": 16, "split": 1, "seed": 1, "threads": 4, "val": 0.792, "test": 0.7563, "V1_test": 0.7645, "routing_tv": 0.2779, "seconds": 63.8}
+{"variant": "V2", "depth": 16, "split": 1, "seed": 1, "threads": 4, "val": 0.778, "test": 0.7476, "seconds": 1117.9}
+{"variant": "V3", "depth": 16, "split": 1, "seed": 1, "threads": 4, "val": 0.806, "test": 0.7529, "seconds": 74.7}
+{"variant": "SAGE", "depth": 2, "split": 1, "seed": 2, "threads": 4, "val": 0.828, "test": 0.7863, "seconds": 4.2}
+{"variant": "V0", "depth": 2, "split": 1, "seed": 2, "threads": 4, "val": 0.828, "test": 0.7969, "V1_test": 0.7964, "routing_tv": 0.2751, "seconds": 8.2}
+{"variant": "V2", "depth": 2, "split": 1, "seed": 2, "threads": 4, "val": 0.814, "test": 0.7824, "seconds": 5.6}
+{"variant": "V3", "depth": 2, "split": 1, "seed": 2, "threads": 4, "val": 0.812, "test": 0.7829, "seconds": 6.9}
+{"variant": "SAGE", "depth": 16, "split": 1, "seed": 2, "threads": 4, "val": 0.806, "test": 0.7655, "seconds": 42.2}
+{"variant": "V0", "depth": 16, "split": 1, "seed": 2, "threads": 4, "val": 0.818, "test": 0.7568, "V1_test": 0.7664, "routing_tv": 0.2799, "seconds": 81.5}
+{"variant": "V2", "depth": 16, "split": 1, "seed": 2, "threads": 4, "val": 0.808, "test": 0.7756, "seconds": 50.2}
+{"variant": "V3", "depth": 16, "split": 1, "seed": 2, "threads": 4, "val": 0.806, "test": 0.7592, "seconds": 45.5}
+{"variant": "SAGE", "depth": 2, "split": 1, "seed": 3, "threads": 4, "val": 0.752, "test": 0.7258, "seconds": 4.3}
+{"variant": "V0", "depth": 2, "split": 1, "seed": 3, "threads": 4, "val": 0.826, "test": 0.7959, "V1_test": 0.8022, "routing_tv": 0.2878, "seconds": 7.2}
+{"variant": "V2", "depth": 2, "split": 1, "seed": 3, "threads": 4, "val": 0.824, "test": 0.7964, "seconds": 8.9}
+{"variant": "V3", "depth": 2, "split": 1, "seed": 3, "threads": 4, "val": 0.82, "test": 0.7853, "seconds": 594.2}
+{"variant": "SAGE", "depth": 16, "split": 1, "seed": 3, "threads": 4, "val": 0.77, "test": 0.7423, "seconds": 64.1}
+{"variant": "V0", "depth": 16, "split": 1, "seed": 3, "threads": 4, "val": 0.748, "test": 0.6915, "V1_test": 0.6818, "routing_tv": 0.2755, "seconds": 118.7}
+{"variant": "V2", "depth": 16, "split": 1, "seed": 3, "threads": 4, "val": 0.82, "test": 0.7819, "seconds": 42.4}
+{"variant": "V3", "depth": 16, "split": 1, "seed": 3, "threads": 4, "val": 0.81, "test": 0.7645, "seconds": 55.5}
+{"variant": "SAGE", "depth": 2, "split": 1, "seed": 4, "threads": 4, "val": 0.826, "test": 0.8177, "seconds": 3.4}
+{"variant": "V0", "depth": 2, "split": 1, "seed": 4, "threads": 4, "val": 0.836, "test": 0.8124, "V1_test": 0.8158, "routing_tv": 0.2978, "seconds": 6.6}
+{"variant": "V2", "depth": 2, "split": 1, "seed": 4, "threads": 4, "val": 0.828, "test": 0.7945, "seconds": 5.5}
+{"variant": "V3", "depth": 2, "split": 1, "seed": 4, "threads": 4, "val": 0.834, "test": 0.8017, "seconds": 8.1}
+{"variant": "SAGE", "depth": 16, "split": 1, "seed": 4, "threads": 4, "val": 0.788, "test": 0.7307, "seconds": 80.6}
+{"variant": "V0", "depth": 16, "split": 1, "seed": 4, "threads": 4, "val": 0.728, "test": 0.6867, "V1_test": 0.6987, "routing_tv": 0.2902, "seconds": 38.5}
+{"variant": "V2", "depth": 16, "split": 1, "seed": 4, "threads": 4, "val": 0.782, "test": 0.7166, "seconds": 63.6}
+{"variant": "V3", "depth": 16, "split": 1, "seed": 4, "threads": 4, "val": 0.798, "test": 0.7611, "seconds": 46.4}

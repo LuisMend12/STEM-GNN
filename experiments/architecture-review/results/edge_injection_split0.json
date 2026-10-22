@@ -1,0 +1,49 @@
+{
+ "args": {
+  "splits": [
+   0
+  ],
+  "seeds": [
+   0,
+   1,
+   2,
+   3,
+   4
+  ],
+  "depths": [
+   2,
+   4
+  ],
+  "threads": 4
+ },
+ "edge_text": "feature edge. connected papers are cited together by other papers.",
+ "rows": [
+  {
+   "variant": "S0",
+   "depth": 2,
+   "split": 0,
+   "seed": 0,
+   "val": 0.7519999742507935,
+   "test": 0.7814313173294067,
+   "seconds": 29.4
+  },
+  {
+   "variant": "S1",
+   "depth": 2,
+   "split": 0,
+   "seed": 0,
+   "val": 0.7620000243186951,
+   "test": 0.780464231967926,
+   "seconds": 33.1
+  },
+  {
+   "variant": "S2",
+   "depth": 2,
+   "split": 0,
+   "seed": 0,
+   "val": 0.7639999985694885,
+   "test": 0.7794970870018005,
+   "seconds": 32.7
+  }
+ ]
+}
