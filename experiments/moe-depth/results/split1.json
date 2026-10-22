@@ -1,0 +1,63 @@
+{
+ "args": {
+  "splits": [
+   1
+  ],
+  "seeds": [
+   0,
+   1,
+   2,
+   3,
+   4
+  ],
+  "depths": [
+   2,
+   16
+  ],
+  "threads": 4
+ },
+ "rows": [
+  {
+   "variant": "SAGE",
+   "depth": 2,
+   "split": 1,
+   "seed": 0,
+   "threads": 4,
+   "val": 0.8199999928474426,
+   "test": 0.7973887920379639,
+   "seconds": 4.6
+  },
+  {
+   "variant": "V0",
+   "depth": 2,
+   "split": 1,
+   "seed": 0,
+   "threads": 4,
+   "val": 0.8420000076293945,
+   "test": 0.8104448914527893,
+   "V1_test": 0.8104448914527893,
+   "routing_tv": 0.28556686639785767,
+   "seconds": 9.1
+  },
+  {
+   "variant": "V2",
+   "depth": 2,
+   "split": 1,
+   "seed": 0,
+   "threads": 4,
+   "val": 0.828000009059906,
+   "test": 0.801740825176239,
+   "seconds": 13.9
+  },
+  {
+   "variant": "V3",
+   "depth": 2,
+   "split": 1,
+   "seed": 0,
+   "threads": 4,
+   "val": 0.8339999914169312,
+   "test": 0.8036750555038452,
+   "seconds": 20.1
+  }
+ ]
+}

@@ -61,3 +61,7 @@ All "drop" quantities are depth-16 accuracy minus depth-2 accuracy.
 - BatchNorm on.
 - τ = 1 only.
 - V1 averages logits, not probabilities.
+
+## Amendment (2026-10-22, before any usable result)
+
+The first launch had an operator-precedence bug in V1's Gumbel noise: `-log(u).clamp_min(...)` clamped before negating, which produced NaN logits. That gave V1 accuracy 0.07 and NaN routing TV. It was caught on the first rows, then fixed and verified: Gumbel-max frequencies of 0.599/0.299/0.102 against the expected 0.6/0.3/0.1, and V1 = 82.6 vs V0 = 82.5 at depth 2. The partial results were deleted and the run relaunched. No hypotheses or variants changed.

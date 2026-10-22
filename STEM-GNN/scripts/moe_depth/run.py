@@ -47,7 +47,8 @@ def freeze_uniform_router(model):
 def gumbel_hooks(model, store):
     """Eval-time Gumbel routing: softmax((logits + g)/tau) == a Gumbel-softmax draw."""
     def hook(_m, _i, out):
-        g = -torch.log(-torch.log(torch.rand_like(out).clamp_min(1e-10)).clamp_min(1e-10))
+        u = torch.rand_like(out).clamp(1e-10, 1 - 1e-7)
+        g = -torch.log((-torch.log(u)).clamp_min(1e-10))
         store.append((F.softmax(out, -1), F.softmax(out + g, -1)))
         return (out + g) / model.enc.tau
     return [lin.register_forward_hook(hook) for lin in model.enc.env_encoders]

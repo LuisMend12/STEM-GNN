@@ -1,0 +1,4 @@
+{"variant": "SAGE", "depth": 2, "split": 2, "seed": 0, "threads": 4, "val": 0.72, "test": 0.7036, "seconds": 4.5}
+{"variant": "V0", "depth": 2, "split": 2, "seed": 0, "threads": 4, "val": 0.798, "test": 0.7935, "V1_test": 0.7959, "routing_tv": 0.2225, "seconds": 16.9}
+{"variant": "V2", "depth": 2, "split": 2, "seed": 0, "threads": 4, "val": 0.77, "test": 0.7751, "seconds": 11.7}
+{"variant": "V3", "depth": 2, "split": 2, "seed": 0, "threads": 4, "val": 0.774, "test": 0.7814, "seconds": 11.8}
