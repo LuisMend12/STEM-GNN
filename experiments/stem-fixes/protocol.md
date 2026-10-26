@@ -73,6 +73,65 @@ Both defects are verified in the repo code (`../architecture-review/findings.md`
 | **H32** | It uses more of the codebook | C-ema code perplexity > C-fixed | — |
 | **H33** | Context only: the size of quantization's information loss | C-none − best(C-*) | — |
 
+## Amendment 1 (2026-10-26, from the Codex design review, BEFORE any full run)
+
+Only the 1-seed smoke test had been run. These amendments supersede the matching parts above.
+
+**Corrected defect statement (X2).** With outer `learnable_codebook=False`, *neither* reconstruction *nor* commitment updates the codebook. Commitment trains the encoder and `project_in` path. The codebook's only gradient is the orthogonality loss, plus AdamW weight decay.
+
+**X1 pairing.** Both arms build identical encoder, router, BatchNorm and head weights from one initialization seed. M-expert re-initializes only the expert tensors, inside `torch.random.fork_rng`. All RNGs (Python, NumPy, Torch) are then reset to the same training seed for both arms.
+
+**X1 hypotheses (all in percentage points).** Define depth_drop(v) = acc(v, depth 2) − acc(v, depth 16), so positive means a loss with depth. Define depth_benefit = depth_drop(M-stack) − depth_drop(M-expert).
+
+| ID | Role | Support | Refute | Otherwise |
+|---|---|---|---|---|
+| **H27 (PRIMARY)** | depth_benefit | ≥ +2 and the paired 95% CI excludes 0 | ≤ +0.5 | inconclusive |
+| **H28 (secondary)** | M-expert − M-stack at depth 16 | ≥ +1.5 | — | — |
+| **H29 (secondary, non-inferiority)** | M-expert − M-stack at depth 2 | ≥ −1, i.e. no shallow loss larger than 1 point | — | — |
+| **H30 (manipulation check)** | mean per-layer mixed transform/residual ratio at init | ≥ 5× larger under M-expert | — | — |
+
+H30 is a manipulation check, not evidence that the ratio explains accuracy. The X1 diagnostics now include per-layer *individual* and *router-mixed* ratios, captured with forward pre-hooks, plus both entropy of mean routing and mean per-node routing entropy.
+
+**X2 renamed: "STEM-component VQ pilot"** (feature + topology reconstruction with the real Encoder and VQ). It is not a faithful miniature of STEM pretraining: the repo uses loss weights 100 / 0.01 / 10, a semantic teacher, edge reconstruction, lr 1e-4, gradient clipping and a scheduler. Conclusions are limited to this objective.
+
+**X2 arms (replacing C-fixed and C-ema).** All keep outer `learnable_codebook=False`:
+
+| Arm | `ema_update` | `orthogonal_reg_weight` | Role |
+|---|---|---|---|
+| C-repo | False | 1 | repo reference |
+| C-random | False | 0 | fixed random codebook (a buffer) |
+| C-ema | True | 0 | EMA-fitted codebook |
+| C-none | — | — | no VQ |
+
+**X2 hypotheses:**
+
+| ID | Role | Support | Refute | Otherwise |
+|---|---|---|---|---|
+| **H31 (PRIMARY)** | C-ema − C-random code-probe accuracy | ≥ +2 points and the paired CI excludes 0 | ≤ 0 | inconclusive |
+| **H32 (secondary diagnostic)** | perplexity(C-ema) > perplexity(C-random), per head | as stated | — | — |
+| **H33 (renamed)** | continuous-reference gap, C-none − each C-* arm | descriptive only; not "information loss" | — | — |
+
+**X2 diagnostics and pairing:**
+
+- Probes on frozen `z` from every pretrained encoder, to separate encoder quality from token quality.
+- 3 probe seeds per frozen representation (mean reported), separate from the pretraining seed.
+- Decoders are built *before* the VQ, so shared modules initialize identically across arms.
+- Augmentation and negative sampling are re-seeded every epoch from (pretraining seed, epoch), so every arm sees the same corruptions.
+- Final reconstruction diagnostics are computed in eval mode on clean inputs with fixed negatives.
+- Per-head perplexity and dead-code fraction.
+
+Decay stays at 0.8 (repo config); no tuning on test.
+
+**Reporting:**
+
+- Every paired contrast, means by split, and the overall mean.
+- Uncertainty is labeled as conditional on this graph and these splits.
+- Run files are unique per launch and record the package versions.
+- Splits {0, 1, 2}.
+- A fresh-process repeatability check is run before launch.
+
+**Not a general STEM fix without confirmation:** a larger width and another codebook size would be pre-specified follow-ups.
+
 ## Threats to validity
 
 - One dataset.

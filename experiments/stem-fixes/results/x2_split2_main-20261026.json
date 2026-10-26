@@ -1,0 +1,557 @@
+{
+ "args": {
+  "exp": "x2",
+  "splits": [
+   2
+  ],
+  "seeds": [
+   0,
+   1,
+   2,
+   3,
+   4
+  ],
+  "depths": [
+   2,
+   16
+  ],
+  "hid": 128,
+  "pt_epochs": 200,
+  "threads": 2,
+  "tag": "main-20261026"
+ },
+ "env": {
+  "python": "3.13.9",
+  "torch": "2.12.1+cpu",
+  "pyg": "2.8.0.post1",
+  "threads": 2,
+  "device": "cpu"
+ },
+ "rows": [
+  {
+   "exp": "x2",
+   "variant": "C-repo",
+   "depth": null,
+   "split": 2,
+   "seed": 0,
+   "final_feat_loss": 0.0018294863402843475,
+   "final_topo_loss": 0.8700299859046936,
+   "code_perplexity_per_head": [
+    11.32021427154541,
+    11.914703369140625,
+    13.236861228942871,
+    9.820199966430664
+   ],
+   "code_perplexity": 11.572994709014893,
+   "dead_code_frac_per_head": [
+    0.75,
+    0.75,
+    0.734375,
+    0.75
+   ],
+   "dead_code_frac": 0.74609375,
+   "feat_dim_z": 128,
+   "z_probe_val": 0.7799999912579855,
+   "z_probe_test": 0.7730496525764465,
+   "feat_dim_codes": 512,
+   "val": 0.7653333147366842,
+   "test": 0.771276593208313,
+   "seconds": 113.2
+  },
+  {
+   "exp": "x2",
+   "variant": "C-random",
+   "depth": null,
+   "split": 2,
+   "seed": 0,
+   "final_feat_loss": 0.0018268467392772436,
+   "final_topo_loss": 0.8691439628601074,
+   "code_perplexity_per_head": [
+    12.256057739257812,
+    14.629229545593262,
+    14.009834289550781,
+    11.319190979003906
+   ],
+   "code_perplexity": 13.05357813835144,
+   "dead_code_frac_per_head": [
+    0.6796875,
+    0.671875,
+    0.6875,
+    0.6015625
+   ],
+   "dead_code_frac": 0.66015625,
+   "feat_dim_z": 128,
+   "z_probe_val": 0.7820000052452087,
+   "z_probe_test": 0.7717601458231608,
+   "feat_dim_codes": 512,
+   "val": 0.737333337465922,
+   "test": 0.75,
+   "seconds": 104.2
+  },
+  {
+   "exp": "x2",
+   "variant": "C-ema",
+   "depth": null,
+   "split": 2,
+   "seed": 0,
+   "final_feat_loss": 0.0018151621334254742,
+   "final_topo_loss": 0.8746025562286377,
+   "code_perplexity_per_head": [
+    95.85751342773438,
+    97.06832885742188,
+    98.02637481689453,
+    92.55432891845703
+   ],
+   "code_perplexity": 95.87663650512695,
+   "dead_code_frac_per_head": [
+    0.109375,
+    0.1171875,
+    0.09375,
+    0.1484375
+   ],
+   "dead_code_frac": 0.1171875,
+   "feat_dim_z": 128,
+   "z_probe_val": 0.7833333412806193,
+   "z_probe_test": 0.7899742126464844,
+   "feat_dim_codes": 512,
+   "val": 0.7759999831517538,
+   "test": 0.7707930207252502,
+   "seconds": 122.1
+  },
+  {
+   "exp": "x2",
+   "variant": "C-none",
+   "depth": null,
+   "split": 2,
+   "seed": 0,
+   "final_feat_loss": 0.004119247663766146,
+   "final_topo_loss": 0.9123721718788147,
+   "feat_dim_z": 128,
+   "z_probe_val": 0.8026666641235352,
+   "z_probe_test": 0.7959381143252054,
+   "val": 0.8026666641235352,
+   "test": 0.7959381143252054,
+   "seconds": 62.7
+  },
+  {
+   "exp": "x2",
+   "variant": "C-repo",
+   "depth": null,
+   "split": 2,
+   "seed": 1,
+   "final_feat_loss": 0.0017963850405067205,
+   "final_topo_loss": 0.8686004877090454,
+   "code_perplexity_per_head": [
+    11.724438667297363,
+    14.035557746887207,
+    13.315000534057617,
+    14.819432258605957
+   ],
+   "code_perplexity": 13.473607301712036,
+   "dead_code_frac_per_head": [
+    0.8125,
+    0.765625,
+    0.7734375,
+    0.7421875
+   ],
+   "dead_code_frac": 0.7734375,
+   "feat_dim_z": 128,
+   "z_probe_val": 0.781333327293396,
+   "z_probe_test": 0.7786911527315775,
+   "feat_dim_codes": 512,
+   "val": 0.7613333264986674,
+   "test": 0.7309800187746683,
+   "seconds": 109.7
+  },
+  {
+   "exp": "x2",
+   "variant": "C-random",
+   "depth": null,
+   "split": 2,
+   "seed": 1,
+   "final_feat_loss": 0.0017992332577705383,
+   "final_topo_loss": 0.8606107831001282,
+   "code_perplexity_per_head": [
+    12.295269966125488,
+    16.381467819213867,
+    13.826128959655762,
+    17.019071578979492
+   ],
+   "code_perplexity": 14.880484580993652,
+   "dead_code_frac_per_head": [
+    0.6796875,
+    0.6484375,
+    0.7734375,
+    0.7109375
+   ],
+   "dead_code_frac": 0.703125,
+   "feat_dim_z": 128,
+   "z_probe_val": 0.7673333287239075,
+   "z_probe_test": 0.7698259154955546,
+   "feat_dim_codes": 512,
+   "val": 0.765333334604899,
+   "test": 0.7422630588213602,
+   "seconds": 106.6
+  },
+  {
+   "exp": "x2",
+   "variant": "C-ema",
+   "depth": null,
+   "split": 2,
+   "seed": 1,
+   "final_feat_loss": 0.0018253566231578588,
+   "final_topo_loss": 0.8702459931373596,
+   "code_perplexity_per_head": [
+    92.89690399169922,
+    93.30168151855469,
+    92.43004608154297,
+    96.3730239868164
+   ],
+   "code_perplexity": 93.75041389465332,
+   "dead_code_frac_per_head": [
+    0.1328125,
+    0.1328125,
+    0.1171875,
+    0.1328125
+   ],
+   "dead_code_frac": 0.12890625,
+   "feat_dim_z": 128,
+   "z_probe_val": 0.75,
+   "z_probe_test": 0.7714377840360006,
+   "feat_dim_codes": 512,
+   "val": 0.7680000066757202,
+   "test": 0.7707930405934652,
+   "seconds": 108.3
+  },
+  {
+   "exp": "x2",
+   "variant": "C-none",
+   "depth": null,
+   "split": 2,
+   "seed": 1,
+   "final_feat_loss": 0.004204206634312868,
+   "final_topo_loss": 0.9074068665504456,
+   "feat_dim_z": 128,
+   "z_probe_val": 0.812666674455007,
+   "z_probe_test": 0.8006125092506409,
+   "val": 0.812666674455007,
+   "test": 0.8006125092506409,
+   "seconds": 62.9
+  },
+  {
+   "exp": "x2",
+   "variant": "C-repo",
+   "depth": null,
+   "split": 2,
+   "seed": 2,
+   "final_feat_loss": 0.001803941442631185,
+   "final_topo_loss": 0.8702399134635925,
+   "code_perplexity_per_head": [
+    10.863785743713379,
+    12.796585083007812,
+    11.115997314453125,
+    13.928686141967773
+   ],
+   "code_perplexity": 12.176263570785522,
+   "dead_code_frac_per_head": [
+    0.78125,
+    0.796875,
+    0.71875,
+    0.703125
+   ],
+   "dead_code_frac": 0.75,
+   "feat_dim_z": 128,
+   "z_probe_val": 0.8040000001589457,
+   "z_probe_test": 0.7851386070251465,
+   "feat_dim_codes": 512,
+   "val": 0.7620000243186951,
+   "test": 0.7530625263849894,
+   "seconds": 117.3
+  },
+  {
+   "exp": "x2",
+   "variant": "C-random",
+   "depth": null,
+   "split": 2,
+   "seed": 2,
+   "final_feat_loss": 0.0018080535810440779,
+   "final_topo_loss": 0.8690516948699951,
+   "code_perplexity_per_head": [
+    11.419960975646973,
+    15.023755073547363,
+    11.562248229980469,
+    16.128772735595703
+   ],
+   "code_perplexity": 13.533684253692627,
+   "dead_code_frac_per_head": [
+    0.7109375,
+    0.703125,
+    0.703125,
+    0.625
+   ],
+   "dead_code_frac": 0.685546875,
+   "feat_dim_z": 128,
+   "z_probe_val": 0.7866666714350382,
+   "z_probe_test": 0.7757898171742758,
+   "feat_dim_codes": 512,
+   "val": 0.7473333477973938,
+   "test": 0.753223717212677,
+   "seconds": 103.4
+  },
+  {
+   "exp": "x2",
+   "variant": "C-ema",
+   "depth": null,
+   "split": 2,
+   "seed": 2,
+   "final_feat_loss": 0.0018721979577094316,
+   "final_topo_loss": 0.897314727306366,
+   "code_perplexity_per_head": [
+    93.09183502197266,
+    91.20051574707031,
+    93.52764892578125,
+    95.26237487792969
+   ],
+   "code_perplexity": 93.27059364318848,
+   "dead_code_frac_per_head": [
+    0.1015625,
+    0.1171875,
+    0.1171875,
+    0.1015625
+   ],
+   "dead_code_frac": 0.109375,
+   "feat_dim_z": 128,
+   "z_probe_val": 0.781333327293396,
+   "z_probe_test": 0.7746615012486776,
+   "feat_dim_codes": 512,
+   "val": 0.7866666714350382,
+   "test": 0.759671171506246,
+   "seconds": 105.9
+  },
+  {
+   "exp": "x2",
+   "variant": "C-none",
+   "depth": null,
+   "split": 2,
+   "seed": 2,
+   "final_feat_loss": 0.004407878499478102,
+   "final_topo_loss": 0.896598219871521,
+   "feat_dim_z": 128,
+   "z_probe_val": 0.8239999810854594,
+   "z_probe_test": 0.804964542388916,
+   "val": 0.8239999810854594,
+   "test": 0.804964542388916,
+   "seconds": 65.6
+  },
+  {
+   "exp": "x2",
+   "variant": "C-repo",
+   "depth": null,
+   "split": 2,
+   "seed": 3,
+   "final_feat_loss": 0.0018027033656835556,
+   "final_topo_loss": 0.8580681085586548,
+   "code_perplexity_per_head": [
+    14.305608749389648,
+    14.097588539123535,
+    17.06341552734375,
+    15.393526077270508
+   ],
+   "code_perplexity": 15.21503472328186,
+   "dead_code_frac_per_head": [
+    0.765625,
+    0.734375,
+    0.75,
+    0.6640625
+   ],
+   "dead_code_frac": 0.728515625,
+   "feat_dim_z": 128,
+   "z_probe_val": 0.7719999949137369,
+   "z_probe_test": 0.7735332051912943,
+   "feat_dim_codes": 512,
+   "val": 0.7353333433469137,
+   "test": 0.7441972891489664,
+   "seconds": 114.5
+  },
+  {
+   "exp": "x2",
+   "variant": "C-random",
+   "depth": null,
+   "split": 2,
+   "seed": 3,
+   "final_feat_loss": 0.0018134774873033166,
+   "final_topo_loss": 0.8624313473701477,
+   "code_perplexity_per_head": [
+    15.516722679138184,
+    14.576993942260742,
+    16.856576919555664,
+    18.9594669342041
+   ],
+   "code_perplexity": 16.477440118789673,
+   "dead_code_frac_per_head": [
+    0.734375,
+    0.7265625,
+    0.6796875,
+    0.5625
+   ],
+   "dead_code_frac": 0.67578125,
+   "feat_dim_z": 128,
+   "z_probe_val": 0.7706666588783264,
+   "z_probe_test": 0.7733720143636068,
+   "feat_dim_codes": 512,
+   "val": 0.7559999823570251,
+   "test": 0.7406511902809143,
+   "seconds": 112.9
+  },
+  {
+   "exp": "x2",
+   "variant": "C-ema",
+   "depth": null,
+   "split": 2,
+   "seed": 3,
+   "final_feat_loss": 0.0018415218219161034,
+   "final_topo_loss": 0.880310595035553,
+   "code_perplexity_per_head": [
+    90.9181137084961,
+    94.09782409667969,
+    93.03144073486328,
+    97.5802993774414
+   ],
+   "code_perplexity": 93.90691947937012,
+   "dead_code_frac_per_head": [
+    0.140625,
+    0.1640625,
+    0.1484375,
+    0.1171875
+   ],
+   "dead_code_frac": 0.142578125,
+   "feat_dim_z": 128,
+   "z_probe_val": 0.7653333147366842,
+   "z_probe_test": 0.7811089555422465,
+   "feat_dim_codes": 512,
+   "val": 0.8160000046094259,
+   "test": 0.7935203115145365,
+   "seconds": 116.9
+  },
+  {
+   "exp": "x2",
+   "variant": "C-none",
+   "depth": null,
+   "split": 2,
+   "seed": 3,
+   "final_feat_loss": 0.004024564288556576,
+   "final_topo_loss": 0.8959808945655823,
+   "feat_dim_z": 128,
+   "z_probe_val": 0.8086666663487753,
+   "z_probe_test": 0.8020631869633993,
+   "val": 0.8086666663487753,
+   "test": 0.8020631869633993,
+   "seconds": 69.5
+  },
+  {
+   "exp": "x2",
+   "variant": "C-repo",
+   "depth": null,
+   "split": 2,
+   "seed": 4,
+   "final_feat_loss": 0.0018197392346337438,
+   "final_topo_loss": 0.8674378395080566,
+   "code_perplexity_per_head": [
+    12.57155704498291,
+    12.409820556640625,
+    13.37576961517334,
+    15.656556129455566
+   ],
+   "code_perplexity": 13.50342583656311,
+   "dead_code_frac_per_head": [
+    0.796875,
+    0.7421875,
+    0.671875,
+    0.6796875
+   ],
+   "dead_code_frac": 0.72265625,
+   "feat_dim_z": 128,
+   "z_probe_val": 0.8086666663487753,
+   "z_probe_test": 0.7954545617103577,
+   "feat_dim_codes": 512,
+   "val": 0.7453333338101705,
+   "test": 0.731947124004364,
+   "seconds": 114.1
+  },
+  {
+   "exp": "x2",
+   "variant": "C-random",
+   "depth": null,
+   "split": 2,
+   "seed": 4,
+   "final_feat_loss": 0.001829754444770515,
+   "final_topo_loss": 0.8616130948066711,
+   "code_perplexity_per_head": [
+    13.940759658813477,
+    13.66350269317627,
+    13.308478355407715,
+    16.26799774169922
+   ],
+   "code_perplexity": 14.29518461227417,
+   "dead_code_frac_per_head": [
+    0.671875,
+    0.6953125,
+    0.6953125,
+    0.6875
+   ],
+   "dead_code_frac": 0.6875,
+   "feat_dim_z": 128,
+   "z_probe_val": 0.7900000015894572,
+   "z_probe_test": 0.7838491400082906,
+   "feat_dim_codes": 512,
+   "val": 0.7206666866938273,
+   "test": 0.7285622159639994,
+   "seconds": 131.4
+  },
+  {
+   "exp": "x2",
+   "variant": "C-ema",
+   "depth": null,
+   "split": 2,
+   "seed": 4,
+   "final_feat_loss": 0.0018408158794045448,
+   "final_topo_loss": 0.8922790288925171,
+   "code_perplexity_per_head": [
+    96.5741958618164,
+    97.40322875976562,
+    99.00553131103516,
+    97.16436767578125
+   ],
+   "code_perplexity": 97.53683090209961,
+   "dead_code_frac_per_head": [
+    0.1328125,
+    0.1171875,
+    0.1171875,
+    0.125
+   ],
+   "dead_code_frac": 0.123046875,
+   "feat_dim_z": 128,
+   "z_probe_val": 0.7900000015894572,
+   "z_probe_test": 0.786105732123057,
+   "feat_dim_codes": 512,
+   "val": 0.8133333325386047,
+   "test": 0.7960993051528931,
+   "seconds": 138.2
+  },
+  {
+   "exp": "x2",
+   "variant": "C-none",
+   "depth": null,
+   "split": 2,
+   "seed": 4,
+   "final_feat_loss": 0.0044190785847604275,
+   "final_topo_loss": 0.8945921063423157,
+   "feat_dim_z": 128,
+   "z_probe_val": 0.8206666509310404,
+   "z_probe_test": 0.7983558773994446,
+   "val": 0.8206666509310404,
+   "test": 0.7983558773994446,
+   "seconds": 69.3
+  }
+ ]
+}

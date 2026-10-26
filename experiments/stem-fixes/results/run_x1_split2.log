@@ -1,0 +1,15 @@
+G:\broswer download\STEM-GNN\STEM-GNN\scripts\stem_fixes\..\..\model\vq.py:438: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  @autocast(enabled = False)
+G:\broswer download\STEM-GNN\STEM-GNN\scripts\stem_fixes\..\..\model\vq.py:623: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  @autocast(enabled = False)
+{"exp": "x1", "variant": "SAGE", "depth": 2, "split": 2, "seed": 0, "val": 0.738, "test": 0.7316, "epochs_trained": 127, "seconds": 39.5}
+{"exp": "x1", "variant": "M-stack", "depth": 2, "split": 2, "seed": 0, "ratio_init_mixed_mean": 0.0681, "val": 0.822, "test": 0.81, "epochs_trained": 69, "ratio_trained_mixed_mean": 1.8446, "entropy_of_mean_routing": 0.7992, "mean_per_node_entropy": 0.7617, "seconds": 25.8}
+{"exp": "x1", "variant": "M-expert", "depth": 2, "split": 2, "seed": 0, "ratio_init_mixed_mean": 0.6416, "val": 0.802, "test": 0.8046, "epochs_trained": 70, "ratio_trained_mixed_mean": 2.0649, "entropy_of_mean_routing": 0.8163, "mean_per_node_entropy": 0.775, "seconds": 25.4}
+{"exp": "x1", "variant": "SAGE", "depth": 16, "split": 2, "seed": 0, "val": 0.722, "test": 0.7016, "epochs_trained": 122, "seconds": 223.9}
+{"exp": "x1", "variant": "M-stack", "depth": 16, "split": 2, "seed": 0, "ratio_init_mixed_mean": 0.0679, "val": 0.7, "test": 0.7379, "epochs_trained": 110, "ratio_trained_mixed_mean": 2.7208, "entropy_of_mean_routing": 0.8448, "mean_per_node_entropy": 0.7506, "seconds": 286.0}
+{"exp": "x1", "variant": "M-expert", "depth": 16, "split": 2, "seed": 0, "ratio_init_mixed_mean": 0.6578, "val": 0.614, "test": 0.5996, "epochs_trained": 216, "ratio_trained_mixed_mean": 3.7462, "entropy_of_mean_routing": 0.734, "mean_per_node_entropy": 0.5408, "seconds": 552.7}
+{"exp": "x1", "variant": "SAGE", "depth": 2, "split": 2, "seed": 1, "val": 0.76, "test": 0.7456, "epochs_trained": 133, "seconds": 35.5}
+{"exp": "x1", "variant": "M-stack", "depth": 2, "split": 2, "seed": 1, "ratio_init_mixed_mean": 0.0664, "val": 0.804, "test": 0.7892, "epochs_trained": 188, "ratio_trained_mixed_mean": 0.9817, "entropy_of_mean_routing": 0.8257, "mean_per_node_entropy": 0.7826, "seconds": 80.9}
+{"exp": "x1", "variant": "M-expert", "depth": 2, "split": 2, "seed": 1, "ratio_init_mixed_mean": 0.6038, "val": 0.764, "test": 0.7616, "epochs_trained": 93, "ratio_trained_mixed_mean": 1.8398, "entropy_of_mean_routing": 0.9559, "mean_per_node_entropy": 0.9126, "seconds": 37.2}
+{"exp": "x1", "variant": "SAGE", "depth": 16, "split": 2, "seed": 1, "val": 0.704, "test": 0.6862, "epochs_trained": 147, "seconds": 264.4}
+{"exp": "x1", "variant": "M-stack", "depth": 16, "split": 2, "seed": 1, "ratio_init_mixed_mean": 0.0663, "val": 0.772, "test": 0.78, "epochs_trained": 126, "ratio_trained_mixed_mean": 3.3651, "entropy_of_mean_routing": 0.8622, "mean_per_node_entropy": 0.726, "seconds": 397.9}

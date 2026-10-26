@@ -1,0 +1,20 @@
+G:\broswer download\STEM-GNN\STEM-GNN\scripts\stem_fixes\..\..\model\vq.py:438: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  @autocast(enabled = False)
+G:\broswer download\STEM-GNN\STEM-GNN\scripts\stem_fixes\..\..\model\vq.py:623: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  @autocast(enabled = False)
+{"exp": "x1", "variant": "SAGE", "depth": 2, "split": 1, "seed": 0, "val": 0.822, "test": 0.7838, "epochs_trained": 81, "seconds": 26.0}
+{"exp": "x1", "variant": "M-stack", "depth": 2, "split": 1, "seed": 0, "ratio_init_mixed_mean": 0.0657, "val": 0.83, "test": 0.81, "epochs_trained": 67, "ratio_trained_mixed_mean": 1.5255, "entropy_of_mean_routing": 0.9263, "mean_per_node_entropy": 0.8954, "seconds": 25.7}
+{"exp": "x1", "variant": "M-expert", "depth": 2, "split": 1, "seed": 0, "ratio_init_mixed_mean": 0.6305, "val": 0.842, "test": 0.8187, "epochs_trained": 111, "ratio_trained_mixed_mean": 1.403, "entropy_of_mean_routing": 0.8444, "mean_per_node_entropy": 0.7518, "seconds": 40.4}
+{"exp": "x1", "variant": "SAGE", "depth": 16, "split": 1, "seed": 0, "val": 0.756, "test": 0.7132, "epochs_trained": 153, "seconds": 275.3}
+{"exp": "x1", "variant": "M-stack", "depth": 16, "split": 1, "seed": 0, "ratio_init_mixed_mean": 0.0676, "val": 0.742, "test": 0.7103, "epochs_trained": 110, "ratio_trained_mixed_mean": 3.1731, "entropy_of_mean_routing": 0.9231, "mean_per_node_entropy": 0.8585, "seconds": 285.7}
+{"exp": "x1", "variant": "M-expert", "depth": 16, "split": 1, "seed": 0, "ratio_init_mixed_mean": 0.6503, "val": 0.412, "test": 0.3854, "epochs_trained": 70, "ratio_trained_mixed_mean": 4.6635, "entropy_of_mean_routing": 0.9255, "mean_per_node_entropy": 0.8595, "seconds": 183.8}
+{"exp": "x1", "variant": "SAGE", "depth": 2, "split": 1, "seed": 1, "val": 0.816, "test": 0.7645, "epochs_trained": 84, "seconds": 25.8}
+{"exp": "x1", "variant": "M-stack", "depth": 2, "split": 1, "seed": 1, "ratio_init_mixed_mean": 0.0672, "val": 0.832, "test": 0.808, "epochs_trained": 56, "ratio_trained_mixed_mean": 0.8692, "entropy_of_mean_routing": 0.9843, "mean_per_node_entropy": 0.9804, "seconds": 22.2}
+{"exp": "x1", "variant": "M-expert", "depth": 2, "split": 1, "seed": 1, "ratio_init_mixed_mean": 0.6407, "val": 0.844, "test": 0.8119, "epochs_trained": 65, "ratio_trained_mixed_mean": 1.9563, "entropy_of_mean_routing": 0.9546, "mean_per_node_entropy": 0.9354, "seconds": 24.9}
+{"exp": "x1", "variant": "SAGE", "depth": 16, "split": 1, "seed": 1, "val": 0.748, "test": 0.722, "epochs_trained": 142, "seconds": 238.7}
+{"exp": "x1", "variant": "M-stack", "depth": 16, "split": 1, "seed": 1, "ratio_init_mixed_mean": 0.0677, "val": 0.798, "test": 0.7447, "epochs_trained": 114, "ratio_trained_mixed_mean": 3.0496, "entropy_of_mean_routing": 0.834, "mean_per_node_entropy": 0.6999, "seconds": 322.1}
+{"exp": "x1", "variant": "M-expert", "depth": 16, "split": 1, "seed": 1, "ratio_init_mixed_mean": 0.6451, "val": 0.368, "test": 0.3501, "epochs_trained": 124, "ratio_trained_mixed_mean": 4.9556, "entropy_of_mean_routing": 0.9014, "mean_per_node_entropy": 0.7634, "seconds": 365.9}
+{"exp": "x1", "variant": "SAGE", "depth": 2, "split": 1, "seed": 2, "val": 0.81, "test": 0.7693, "epochs_trained": 53, "seconds": 20.8}
+{"exp": "x1", "variant": "M-stack", "depth": 2, "split": 1, "seed": 2, "ratio_init_mixed_mean": 0.0712, "val": 0.828, "test": 0.793, "epochs_trained": 95, "ratio_trained_mixed_mean": 1.8878, "entropy_of_mean_routing": 0.5734, "mean_per_node_entropy": 0.5631, "seconds": 49.3}
+{"exp": "x1", "variant": "M-expert", "depth": 2, "split": 1, "seed": 2, "ratio_init_mixed_mean": 0.6507, "val": 0.822, "test": 0.8066, "epochs_trained": 67, "ratio_trained_mixed_mean": 2.117, "entropy_of_mean_routing": 0.8869, "mean_per_node_entropy": 0.8681, "seconds": 33.4}
+{"exp": "x1", "variant": "SAGE", "depth": 16, "split": 1, "seed": 2, "val": 0.77, "test": 0.7079, "epochs_trained": 192, "seconds": 252.9}
