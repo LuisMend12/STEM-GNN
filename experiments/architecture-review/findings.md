@@ -23,7 +23,7 @@ So the codebook's only gradient comes from the orthogonality regularizer (on at 
 
 **Test:** backpropagate each loss separately and inspect codebook gradients; reconstruction and commitment should give zero. Then compare an EMA-updated or truly learnable codebook against the current one.
 
-### 2. MoE experts are initialized about 512× too small (MEDIUM–HIGH, MoE) **[verified]**
+### 2. MoE experts are initialized about 512× smaller than per-matrix Xavier (verified). **The proposed fix is WITHDRAWN** after `../stem-fixes` X1: per-expert Xavier with unchanged training cut depth-16 accuracy by 27.6 points (CI [−36.4, −18.8]). Treat initialization scale as a design choice that needs joint optimizer validation.
 
 `nn.init.xavier_uniform_` on the stacked `[K, 2d, d]` tensor (`encoder.py:161-165`) computes fan from the 3D shape, so the variance is about 2/[d(2d+K)] instead of 2/(3d) per matrix. At d=768 and K=3:
 
