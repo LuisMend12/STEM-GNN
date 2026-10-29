@@ -1,0 +1,32 @@
+{"encoder": "SAGE", "depth": 2, "method": "baseline", "split": 1, "val": 0.82, "test": 0.7974, "energy_ratio": 0.1364, "mad": 0.4996, "eff_rank": 32.1101, "seconds": 5.9}
+{"encoder": "SAGE", "depth": 2, "method": "TAEF", "split": 1, "val": 0.812, "test": 0.7834, "energy_ratio": 0.1385, "mad": 0.4503, "eff_rank": 34.1165, "seconds": 11.3}
+{"encoder": "SAGE", "depth": 2, "method": "GEF", "split": 1, "val": 0.826, "test": 0.7901, "energy_ratio": 0.1419, "mad": 0.5059, "eff_rank": 31.4705, "seconds": 11.5}
+{"encoder": "SAGE", "depth": 2, "method": "TAEF-rho0.25[EXPL]", "split": 1, "val": 0.822, "test": 0.7988, "energy_ratio": 0.1455, "mad": 0.5336, "eff_rank": 31.132, "seconds": 11.3}
+{"encoder": "SAGE", "depth": 4, "method": "baseline", "split": 1, "val": 0.804, "test": 0.7911, "energy_ratio": 0.2239, "mad": 0.9663, "eff_rank": 15.0293, "seconds": 14.1}
+{"encoder": "SAGE", "depth": 4, "method": "TAEF", "split": 1, "val": 0.69, "test": 0.6499, "energy_ratio": 1.0083, "mad": 0.9449, "eff_rank": 27.9885, "seconds": 50.5}
+{"encoder": "SAGE", "depth": 4, "method": "GEF", "split": 1, "val": 0.784, "test": 0.7529, "energy_ratio": 0.3781, "mad": 0.974, "eff_rank": 17.312, "seconds": 41.0}
+{"encoder": "SAGE", "depth": 4, "method": "TAEF-rho0.25[EXPL]", "split": 1, "val": 0.778, "test": 0.7418, "energy_ratio": 0.5452, "mad": 0.9427, "eff_rank": 23.9792, "seconds": 35.7}
+{"encoder": "SAGE", "depth": 8, "method": "baseline", "split": 1, "val": 0.814, "test": 0.7558, "energy_ratio": 0.1695, "mad": 0.9804, "eff_rank": 10.608, "seconds": 21.7}
+{"encoder": "SAGE", "depth": 8, "method": "TAEF", "split": 1, "val": 0.766, "test": 0.7287, "energy_ratio": 0.197, "mad": 0.9575, "eff_rank": 13.606, "seconds": 48.2}
+{"encoder": "SAGE", "depth": 8, "method": "GEF", "split": 1, "val": 0.722, "test": 0.6939, "energy_ratio": 0.252, "mad": 0.9625, "eff_rank": 13.2124, "seconds": 48.1}
+{"encoder": "SAGE", "depth": 8, "method": "TAEF-rho0.25[EXPL]", "split": 1, "val": 0.77, "test": 0.7336, "energy_ratio": 0.1864, "mad": 0.9727, "eff_rank": 11.8625, "seconds": 50.2}
+{"encoder": "SAGE", "depth": 16, "method": "baseline", "split": 1, "val": 0.798, "test": 0.7553, "energy_ratio": 0.1498, "mad": 0.9307, "eff_rank": 8.8375, "seconds": 60.0}
+{"encoder": "SAGE", "depth": 16, "method": "TAEF", "split": 1, "val": 0.784, "test": 0.7447, "energy_ratio": 0.146, "mad": 0.933, "eff_rank": 9.3227, "seconds": 102.6}
+{"encoder": "SAGE", "depth": 16, "method": "GEF", "split": 1, "val": 0.806, "test": 0.7495, "energy_ratio": 0.1446, "mad": 0.931, "eff_rank": 9.0069, "seconds": 124.1}
+{"encoder": "SAGE", "depth": 16, "method": "TAEF-rho0.25[EXPL]", "split": 1, "val": 0.786, "test": 0.7432, "energy_ratio": 0.1505, "mad": 0.9241, "eff_rank": 8.9266, "seconds": 110.6}
+{"encoder": "MoE", "depth": 2, "method": "baseline", "split": 1, "val": 0.842, "test": 0.8104, "energy_ratio": 0.222, "mad": 0.899, "eff_rank": 24.1078, "expert_entropy": 0.8488, "seconds": 10.1}
+{"encoder": "MoE", "depth": 2, "method": "TAEF", "split": 1, "val": 0.832, "test": 0.8114, "energy_ratio": 0.1385, "mad": 0.6183, "eff_rank": 27.5069, "expert_entropy": 0.9786, "seconds": 11.9}
+{"encoder": "MoE", "depth": 2, "method": "GEF", "split": 1, "val": 0.84, "test": 0.8095, "energy_ratio": 0.2296, "mad": 0.8903, "eff_rank": 24.8241, "expert_entropy": 0.8599, "seconds": 15.5}
+{"encoder": "MoE", "depth": 2, "method": "TAEF-rho0.25[EXPL]", "split": 1, "val": 0.842, "test": 0.808, "energy_ratio": 0.2324, "mad": 0.8892, "eff_rank": 25.4022, "expert_entropy": 0.8621, "seconds": 16.2}
+{"encoder": "MoE", "depth": 4, "method": "baseline", "split": 1, "val": 0.83, "test": 0.8013, "energy_ratio": 0.1942, "mad": 0.9166, "eff_rank": 18.1728, "expert_entropy": 0.887, "seconds": 17.8}
+{"encoder": "MoE", "depth": 4, "method": "TAEF", "split": 1, "val": 0.784, "test": 0.7597, "energy_ratio": 0.2107, "mad": 0.8064, "eff_rank": 24.2654, "expert_entropy": 0.937, "seconds": 26.4}
+{"encoder": "MoE", "depth": 4, "method": "GEF", "split": 1, "val": 0.828, "test": 0.7998, "energy_ratio": 0.2095, "mad": 0.8957, "eff_rank": 20.4263, "expert_entropy": 0.8947, "seconds": 22.2}
+{"encoder": "MoE", "depth": 4, "method": "TAEF-rho0.25[EXPL]", "split": 1, "val": 0.824, "test": 0.7984, "energy_ratio": 0.1938, "mad": 0.8838, "eff_rank": 19.9984, "expert_entropy": 0.911, "seconds": 26.3}
+{"encoder": "MoE", "depth": 8, "method": "baseline", "split": 1, "val": 0.816, "test": 0.7838, "energy_ratio": 0.2083, "mad": 0.926, "eff_rank": 12.7918, "expert_entropy": 0.936, "seconds": 69.4}
+{"encoder": "MoE", "depth": 8, "method": "TAEF", "split": 1, "val": 0.8, "test": 0.7655, "energy_ratio": 0.1643, "mad": 0.9248, "eff_rank": 12.1028, "expert_entropy": 0.9458, "seconds": 43.4}
+{"encoder": "MoE", "depth": 8, "method": "GEF", "split": 1, "val": 0.812, "test": 0.7747, "energy_ratio": 0.227, "mad": 0.9318, "eff_rank": 13.7286, "expert_entropy": 0.9451, "seconds": 72.1}
+{"encoder": "MoE", "depth": 8, "method": "TAEF-rho0.25[EXPL]", "split": 1, "val": 0.798, "test": 0.7776, "energy_ratio": 0.1557, "mad": 0.947, "eff_rank": 11.5413, "expert_entropy": 0.9533, "seconds": 37.6}
+{"encoder": "MoE", "depth": 16, "method": "baseline", "split": 1, "val": 0.792, "test": 0.7713, "energy_ratio": 0.1486, "mad": 0.9431, "eff_rank": 9.192, "expert_entropy": 0.961, "seconds": 57.1}
+{"encoder": "MoE", "depth": 16, "method": "TAEF", "split": 1, "val": 0.804, "test": 0.7505, "energy_ratio": 0.1609, "mad": 0.9607, "eff_rank": 10.0068, "expert_entropy": 0.877, "seconds": 171.5}
+{"encoder": "MoE", "depth": 16, "method": "GEF", "split": 1, "val": 0.808, "test": 0.7853, "energy_ratio": 0.1592, "mad": 0.9503, "eff_rank": 7.9973, "expert_entropy": 0.956, "seconds": 86.2}
+{"encoder": "MoE", "depth": 16, "method": "TAEF-rho0.25[EXPL]", "split": 1, "val": 0.79, "test": 0.7669, "energy_ratio": 0.1467, "mad": 0.933, "eff_rank": 9.1254, "expert_entropy": 0.9348, "seconds": 90.7}

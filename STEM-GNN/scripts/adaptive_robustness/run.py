@@ -129,11 +129,23 @@ def camouflage(x, ei, y, test_idx, budget, gen):
     """Each of `budget` random test nodes gets one edge to its highest-cosine
     node with a different label (attacker knows labels: worst case for gates)."""
     xn = F.normalize(x, dim=-1)
-    targets = test_idx[torch.randperm(test_idx.numel(), generator=gen)[:budget]]
-    sim = xn[targets] @ xn.t()
-    sim[y[targets].unsqueeze(1) == y.unsqueeze(0)] = -2.0
-    partners = sim.argmax(-1)
-    add = torch.stack([targets, partners])
+    existing = set(map(tuple, ei.t().tolist()))
+    order = test_idx[torch.randperm(test_idx.numel(), generator=gen)]
+    sim = xn[order] @ xn.t()
+    sim[y[order].unsqueeze(1) == y.unsqueeze(0)] = -2.0
+    ranked = sim.argsort(-1, descending=True)
+    new, rank = [], 0
+    # Round-robin over test nodes, skipping existing/duplicate pairs, until the
+    # budget of unique undirected edges is spent (Codex review finding 8).
+    while len(new) < budget and rank < ranked.size(1):
+        for t, row in zip(order.tolist(), ranked[:, rank].tolist()):
+            if len(new) >= budget:
+                break
+            if t != row and (t, row) not in existing and y[t] != y[row]:
+                existing.update({(t, row), (row, t)})
+                new.append((t, row))
+        rank += 1
+    add = torch.tensor(new).t()
     return coalesce(torch.cat([ei, to_undirected(add)], 1))
 
 
