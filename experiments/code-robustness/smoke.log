@@ -1,0 +1,8 @@
+G:\broswer download\STEM-GNN\STEM-GNN\scripts\stem_fixes\..\..\model\vq.py:438: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  @autocast(enabled = False)
+G:\broswer download\STEM-GNN\STEM-GNN\scripts\stem_fixes\..\..\model\vq.py:623: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  @autocast(enabled = False)
+{"method": "B0", "split": 0, "seed": 0, "val": 0.776, "clean": 0.7568, "ste_edits@0.1": 527, "ste@0.1": 0.6248, "transfer@0.1": 0.6654, "worst@0.1": 0.5793, "code_change@0.1": 0.1649, "seconds": 176.2}
+{"method": "B1", "split": 0, "seed": 0, "val": 0.842, "clean": 0.8341, "ste_edits@0.1": 527, "ste@0.1": 0.6949, "transfer@0.1": 0.764, "worst@0.1": 0.6605, "code_change@0.1": 0.1846, "seconds": 177.4}
+{"method": "CAC", "split": 0, "seed": 0, "val": 0.758, "clean": 0.7544, "ste_edits@0.1": 527, "ste@0.1": 0.6871, "transfer@0.1": 0.7394, "worst@0.1": 0.6813, "code_change@0.1": 0.0826, "seconds": 184.7}
+{"method": "VBM", "split": 0, "seed": 0, "val": 0.79, "clean": 0.734, "ste_edits@0.1": 527, "ste@0.1": 0.6074, "transfer@0.1": 0.6692, "worst@0.1": 0.5667, "code_change@0.1": 0.1585, "seconds": 185.2}

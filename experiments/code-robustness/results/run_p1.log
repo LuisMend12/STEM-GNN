@@ -1,0 +1,4 @@
+G:\broswer download\STEM-GNN\STEM-GNN\scripts\stem_fixes\..\..\model\vq.py:438: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  @autocast(enabled = False)
+G:\broswer download\STEM-GNN\STEM-GNN\scripts\stem_fixes\..\..\model\vq.py:623: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  @autocast(enabled = False)
