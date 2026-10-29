@@ -52,6 +52,7 @@ def main():
     ap.add_argument("--threads", type=int, default=6)
     ap.add_argument("--batch", type=int, default=8)
     ap.add_argument("--limit", type=int, default=None, help="only the first N nodes (timing check)")
+    ap.add_argument("--dtype", default="float32", choices=["float32", "bfloat16"])
     args = ap.parse_args()
     torch.set_num_threads(args.threads)
     from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -65,7 +66,7 @@ def main():
     os.makedirs(OUT, exist_ok=True)
 
     tok = AutoTokenizer.from_pretrained(args.model, padding_side="left")
-    model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype=torch.bfloat16).eval()
+    model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype=getattr(torch, args.dtype)).eval()
     ids = letter_ids(tok)
 
     probs = torch.full((len(texts), len(names)), float("nan"))
