@@ -79,6 +79,7 @@ def main():
     ap.add_argument("--nodes_file", default=None, help="score only these node ids (one per line)")
     ap.add_argument("--perm", type=int, default=0)
     ap.add_argument("--dtype", default="float32", choices=["float32", "bfloat16"])
+    ap.add_argument("--device", default="cpu")
     args = ap.parse_args()
     torch.set_num_threads(args.threads)
     from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -95,7 +96,7 @@ def main():
     os.makedirs(OUT, exist_ok=True)
 
     tok = AutoTokenizer.from_pretrained(args.model, padding_side="left")
-    model = AutoModelForCausalLM.from_pretrained(args.model, dtype=getattr(torch, args.dtype)).eval()
+    model = AutoModelForCausalLM.from_pretrained(args.model, dtype=getattr(torch, args.dtype)).to(args.device).eval()
     ids = letter_ids(tok, build_prompt(tok, texts[0], names, args.perm))
     shown = order(len(names), args.perm)
     meta = metadata(args, names, texts, args.model, build_prompt(tok, "", names, args.perm))
@@ -111,9 +112,9 @@ def main():
     t0 = time.time()
     for b in range(0, len(todo), args.batch):
         idx = todo[b:b + args.batch]
-        batch = tok([build_prompt(tok, texts[i], names, args.perm) for i in idx], return_tensors="pt", padding=True)
+        batch = tok([build_prompt(tok, texts[i], names, args.perm) for i in idx], return_tensors="pt", padding=True).to(args.device)
         with torch.no_grad():
-            full = model(**batch).logits[:, -1, :].float()
+            full = model(**batch).logits[:, -1, :].float().cpu()
         letter_logits = full[:, ids]                     # [B, 7] in displayed-letter order
         back = torch.empty_like(letter_logits)
         back[:, shown] = letter_logits                   # map to original class order
