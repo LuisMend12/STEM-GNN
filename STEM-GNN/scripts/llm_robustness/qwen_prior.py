@@ -63,12 +63,11 @@ def letter_ids(tok, sample_prompt):
     return ids
 
 
-def metadata(args, names, texts, tok_name):
-    prompt_template = build_prompt.__code__.co_consts
+def metadata(args, names, texts, tok_name, prompt_template):
     return {"version": VERSION, "model": args.model, "tokenizer": tok_name, "dtype": args.dtype,
             "max_chars": MAX_CHARS, "label_order": names, "perm": args.perm, "n_nodes": len(texts),
             "text_hash": hashlib.sha256("\x00".join(texts).encode()).hexdigest(),
-            "prompt_hash": hashlib.sha256(repr(prompt_template).encode()).hexdigest()}
+            "prompt_hash": hashlib.sha256(prompt_template.encode()).hexdigest()}
 
 
 def main():
@@ -99,7 +98,7 @@ def main():
     model = AutoModelForCausalLM.from_pretrained(args.model, dtype=getattr(torch, args.dtype)).eval()
     ids = letter_ids(tok, build_prompt(tok, texts[0], names, args.perm))
     shown = order(len(names), args.perm)
-    meta = metadata(args, names, texts, args.model)
+    meta = metadata(args, names, texts, args.model, build_prompt(tok, "", names, args.perm))
 
     store = {"meta": meta, "logits": torch.full((len(texts), len(names)), float("nan")),
              "letter_mass": torch.full((len(texts),), float("nan"))}
