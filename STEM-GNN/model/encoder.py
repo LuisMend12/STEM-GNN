@@ -180,7 +180,7 @@ class Encoder(nn.Module):
                  normalize='none', dropout=0.0,
                  moe=False, num_experts=3, tau=1.0,
                  moe_layers='all', aux_router_dim=0,
-                 use_llm_router=False):
+                 use_llm_router=False, router_input_dim=None):
         super(Encoder, self).__init__()
 
         self.input_dim = input_dim
@@ -217,7 +217,7 @@ class Encoder(nn.Module):
                 self.layers.append(moe_layer)
                 if self.use_llm_router:
                     # Router uses original LLM text features (input_dim) — structure-invariant
-                    router_in_dim = input_dim
+                    router_in_dim = input_dim if router_input_dim is None else router_input_dim
                 else:
                     router_in_dim = in_dim + self.aux_router_dim if layer_idx == 0 else in_dim
                 self.env_encoders.append(nn.Linear(router_in_dim, self.num_experts))
@@ -377,8 +377,9 @@ class Encoder(nn.Module):
             self._reset_moe_usage()
         return usage
 
-    def forward(self, x, edge_index, edge_attr=None, aux_router_feat=None):
-        z = self.encode(x, edge_index, edge_attr, aux_router_feat=aux_router_feat)
+    def forward(self, x, edge_index, edge_attr=None, aux_router_feat=None, router_features=None):
+        z = self.encode(x, edge_index, edge_attr, aux_router_feat=aux_router_feat,
+                        router_features=router_features)
         return z
 
     def encode_with_bn_adaptation(self, x, edge_index, edge_attr=None, aux_router_feat=None):
@@ -409,7 +410,7 @@ class Encoder(nn.Module):
                 m.running_var.copy_(running_var)
                 m.num_batches_tracked.copy_(num_batches_tracked)
 
-    def encode(self, x, edge_index, edge_attr=None, aux_router_feat=None):
+    def encode(self, x, edge_index, edge_attr=None, aux_router_feat=None, router_features=None):
         z = x
         x_orig = x  # preserve original LLM features for structure-invariant routing
         env_idx = 0
@@ -422,7 +423,7 @@ class Encoder(nn.Module):
             if isinstance(layer, MixtureSageLayer):
                 if self.use_llm_router:
                     # Route using original LLM text features — invariant to graph structure shifts
-                    router_input = x_orig
+                    router_input = x_orig if router_features is None else router_features
                 else:
                     router_input = z
                     if i == 0 and aux_router_feat is not None:
