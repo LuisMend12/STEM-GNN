@@ -1,1 +1,9 @@
 Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   0%|          | 1/338 [00:01<06:59,  1.24s/it]Loading weights:  40%|####      | 136/338 [00:01<00:01, 139.40it/s]Loading weights:  63%|######3   | 214/338 [00:02<00:01, 101.02it/s]Loading weights:  77%|#######6  | 260/338 [00:03<00:01, 60.78it/s] Loading weights:  86%|########5 | 289/338 [00:05<00:01, 42.92it/s]Loading weights:  91%|#########1| 309/338 [00:06<00:00, 32.26it/s]Loading weights:  96%|#########5| 323/338 [00:07<00:00, 34.81it/s]Loading weights:  99%|#########9| 335/338 [00:07<00:00, 37.44it/s]Loading weights: 100%|##########| 338/338 [00:07<00:00, 46.83it/s]
+{"done": 200, "todo": 2708, "nodes_per_s": 0.124, "eta_min": 337.1}
+{"done": 400, "todo": 2708, "nodes_per_s": 0.096, "eta_min": 401.9}
+{"done": 600, "todo": 2708, "nodes_per_s": 0.103, "eta_min": 341.5}
+{"done": 800, "todo": 2708, "nodes_per_s": 0.028, "eta_min": 1140.6}
+{"done": 1000, "todo": 2708, "nodes_per_s": 0.033, "eta_min": 858.0}
+{"done": 1200, "todo": 2708, "nodes_per_s": 0.038, "eta_min": 657.3}
+{"done": 1400, "todo": 2708, "nodes_per_s": 0.043, "eta_min": 505.1}
+{"done": 1600, "todo": 2708, "nodes_per_s": 0.045, "eta_min": 407.1}
