@@ -146,3 +146,60 @@ H61 and H62 form the Holm family. Anything else is descriptive. A positive H61 w
 **Leakage disclosures.** The 53.5% zero-shot figure and the rotation accuracies on the audit sample were printed on all scored nodes, so aggregate test performance has been seen, though neither is used by Stage 1. The Qwen prior isn't used in Stage 1. The feature loader checks the text hash, so node order mismatches fail.
 
 **Not in Stage 1.** Low-label runs, MIX/MLP controls, the anchor and the learned-global router all wait for Stage 2. So Stage 1 can't show integration beats trusting the LLM directly.
+
+## Amendment 2 (2026-11-02, Stage 2, written after the Stage 1 analysis and before any Stage 2 result)
+
+Stage 1 gave no support for routing, so the router is left at S0's message-passed z and the R×V×A factorial becomes V×A. The learned-global router is dropped. Stage 2 keeps every S0 setting, the frozen penalty coefficient 0.001, the attack suite, the shared union and the 15 cells.
+
+**Attacked arms** (each gets all 5 own attacks at 10% and 20%):
+
+| Arm | Change from S0 | Tests |
+|---|---|---|
+| S0 | None | Baseline |
+| S-F | Qwen embedding replaces MiniLM as input and reconstruction target | Input placement |
+| S-V | Pretraining adds cosine loss (weight 1) from a linear map of `vq.project_in(z)` to the Qwen embedding; the map is discarded | VQ-side distillation |
+| S-VP | S-V with the target from the wrong node | Whether S-V is specific to the node's own text |
+| S-A | Finetuning adds KL(calibrated Qwen prior ‖ model), λ = 1, on nodes outside train and validation | Head placement |
+| S-AP | S-A with the prior from the wrong node | Whether S-A is specific to the node's own text |
+| S-VA | S-V and S-A together | Descriptive combination |
+| MIX | S0's prediction mixed with the prior, α ∈ {0, .25, .5, .75, 1} chosen on clean validation, ties to the smallest; attacked directly | Whether simply trusting the LLM at prediction time is enough |
+
+**Graph-free baselines, not attacked because edges can't reach them:** MLP-M (MLP on MiniLM), MLP-Q (MLP on Qwen embedding), QWEN (the calibrated prior alone). They go through the same evaluation code, so their worst-node accuracy equals their clean accuracy. This was missing from Stage 1, and it matters because S0's worst-node accuracy is about 33%, which the 53.5% Qwen-alone figure already exceeds.
+
+**Prior.** Temperature from {0.5, 1, 2, 4} on validation NLL per split. Validation is used only for calibration, α and checkpoint selection, and is excluded from the KL. The Amendment 1 rule of `../llm-anchor` is applied before any Stage 2 run: if averaging the 7 rotations gains at least 2 points over identity order on the audit sample's validation nodes, the prior uses rotations {0, 2, 4}; otherwise identity. The sample is small, so this is a rule, not a finding.
+
+**Generalization.** Low-label: 3 training nodes per class per cell (21 labels, original validation budget), reusing the same unsupervised encoders. Clean test accuracy only. Low-label models are not attacked, so Stage 2 makes no claim about low-label robustness.
+
+**Hypotheses.** n = 15 run-level cells, paired t, intervals conditional on this graph, per-split effects reported. Worst-node is over the shared union.
+
+| ID | Comparison | Endpoint | Support | Evidence against |
+|---|---|---|---|---|
+| H70 | S-F − S0 | Worst-node@20% | ≥ +2, Holm p < .05, clean change ≥ −1 | upper CI < +1 |
+| H71 | S-V − S0 | Worst-node@20% | same | same |
+| H72 | S-A − S0 | Worst-node@20% | same | same |
+| H73 | S-F − S0 | Low-label clean | ≥ +2, Holm p < .05 | upper CI < +1 |
+| H74 | S-V − S0 | Low-label clean | same | same |
+| H75 | S-A − S0 | Low-label clean | same | same |
+
+H70–H72 form one Holm family and H73–H75 another. There is no single primary, because placement is the question.
+
+**Staged claims, for any arm that meets support.** All of these are required before saying the LLM integrated into STEM adds value:
+
+1. **Specific to the node's text:** S-A − S-AP or S-V − S-VP is ≥ +1 with the CI excluding 0. S-F has no placebo here, so it can claim only that Qwen features beat MiniLM features.
+2. **Beats simple use of the LLM:** the arm − MIX is ≥ +1 with the CI excluding 0 on the same endpoint.
+3. **Beats ignoring the graph:** the arm − max(MLP-M, MLP-Q, QWEN) per cell is ≥ +1 with the CI excluding 0 on the same endpoint. Failing this means a graph-free model is the better choice under this attacker, and the report must say so even if the arm beats S0.
+
+S-VA and all other contrasts are descriptive.
+
+**Corrections from the Codex Stage 2 review (`../reviews/codex_llm_stem_stage2_review_2026-11-02.md`), before any Stage 2 result:**
+
+- **Clean guardrail:** clean change ≥ −1 as a point estimate, and its lower 95% limit above −2. A +2 estimate whose CI excludes 0 doesn't show the true effect exceeds +2; reports will say so.
+- **Staged claims:** all staged contrasts that get tested form one Holm family, two-sided. Failing the graph-free comparison means the arm didn't beat the best of three graph-free baselines chosen per cell, an oracle benchmark. It doesn't show that any particular graph-free model is better.
+- **RNG:** each module init and each random pretraining step (feature mask, edge dropout, negative sampling, encoder stochasticity, VQ) has its own seed, so S-F's input size and S-V's predictor leave the other streams unchanged.
+- **Prior audit:** the decision is frozen to `results_stage2/prior_audit.json` and read by every cell job. It pools the audit sample's validation nodes across splits 0–2; a pooled node can be a test node in another split. That is declared.
+- **MIX attack strength:** MIX's edge gradient is scaled by 1 − α, so its own attacks may be weaker. S0's own attacks target MIX's base model at full gradient strength and are in the shared union. MIX results are still only accuracy on this finite suite.
+- **Recovery:** each cell saves its trained models and candidate graphs, and a rerun resumes from them rather than retraining.
+
+**Diagnostics.** Teacher: accuracy of each arm on Qwen-correct and Qwen-wrong test nodes, computed for reporting only. MIX's chosen α per cell. If an anchored arm's gain comes with its predictions approaching Qwen's, it is falling back to the LLM rather than improving the GNN. Expert-output shift, unreported in Stage 1, stays out of scope because routing isn't under test.
+
+**Limits declared now.** Cora, one LLM, one λ and semantic weight, no text attacks, and test nodes' text used transductively. S-F changes the input dimension and thus the first-layer parameter count. A no-VQ control for S-V runs only if S-V meets support. The attacker sees test labels. MLP and Qwen are immune here only because the threat model is edges alone; a text attacker would reach them directly.
