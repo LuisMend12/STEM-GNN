@@ -17,8 +17,11 @@ import hashlib
 import importlib.util
 import json
 import logging
+import io
 import os
 import platform
+import random
+import sys
 import time
 
 import torch
@@ -31,6 +34,7 @@ spec = importlib.util.spec_from_file_location("ls", os.path.join(HERE, "run.py")
 ls = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(ls)
 cr, fx = ls.cr, ls.fx
+sys.modules.update({"ls": ls, "cr": cr, "fx": fx})  # so checkpointed models can be unpickled
 
 log = logging.getLogger("llm_stem2")
 ROOT = os.path.join(HERE, "..", "..", "..")
@@ -77,10 +81,16 @@ def calibrate(logits, y, va):
 
 
 def seeded(seed, fn, *args, **kwargs):
-    """Run fn on its own RNG stream, so input size can't shift other streams."""
-    with torch.random.fork_rng(devices=[]):
-        torch.manual_seed(seed)
-        return fn(*args, **kwargs)
+    """Run fn on its own torch and Python RNG streams (PyG negative sampling uses Python's),
+    so input size can't shift other streams."""
+    state = random.getstate()
+    try:
+        with torch.random.fork_rng(devices=[]):
+            torch.manual_seed(seed)
+            random.seed(seed)
+            return fn(*args, **kwargs)
+    finally:
+        random.setstate(state)
 
 
 def make_predictor(vq, out_dim, seed):
@@ -269,14 +279,23 @@ def attack_suite(models, meta, sur, x, ei, y, test_idx, budgets, base, arms):
     return graphs
 
 
-def run_cell(split, seed, x, qwen, ei, y, tr, va, te, logits, pt_epochs, arms=ATTACKED, rates=ls.RATES, ckpt=None):
-    """ckpt holds trained models and candidate graphs, so a rerun resumes on the same models."""
+def code_hash():
+    blob = b"".join(open(os.path.join(HERE, f), "rb").read() for f in ("stage2.py", "run.py"))
+    return hashlib.sha256(blob).hexdigest()
+
+
+def run_cell(split, seed, x, qwen, ei, y, tr, va, te, logits, pt_epochs, arms=ATTACKED, rates=ls.RATES,
+             ckpt=None, config=None):
+    """ckpt holds trained models and candidate graphs, so a rerun resumes on the same models.
+    It is used only if its config (arms, prior, epochs, code) matches this run exactly."""
     base = 1000 * seed + split
     test_idx = te.nonzero().view(-1)
     budgets = {r: int(r * len(cr.undirected(ei))) for r in rates}
     prior, temperature = calibrate(logits, y, va)
-    if ckpt and os.path.exists(ckpt):
-        state = torch.load(ckpt, weights_only=False)
+    state = torch.load(ckpt, weights_only=False) if ckpt and os.path.exists(ckpt) else None
+    if state is not None and state["config"] != config:
+        raise RuntimeError(f"checkpoint {ckpt} was made with a different configuration; refusing to resume")
+    if state is not None:
         models, meta, graphs, encoders = state["models"], state["meta"], state["graphs"], state["encoders"]
         log.info(json.dumps({"resumed": ckpt}))
     else:
@@ -286,7 +305,7 @@ def run_cell(split, seed, x, qwen, ei, y, tr, va, te, logits, pt_epochs, arms=AT
         fx.fit(list(sur.parameters()), lambda: sur(x, ei), y, tr, va, modules=(sur,))
         graphs = attack_suite(models, meta, sur, x, ei, y, test_idx, budgets, base, arms)
         if ckpt:
-            torch.save({"models": models, "meta": meta, "graphs": graphs, "encoders": encoders}, ckpt)
+            torch.save({"config": config, "models": models, "meta": meta, "graphs": graphs, "encoders": encoders}, ckpt)
     edits = {"|".join(map(str, k)): cr.validate(ei, g, x.size(0), budgets[k[2]]) for k, g in graphs.items()}
     low = low_label_mask(y, tr, base)
     low_models, low_meta, _ = train_all(x, qwen, ei, y, low, va, prior, pt_epochs, base, encoders)
@@ -324,7 +343,9 @@ def audit(y, vam, texts_hash):
         assert blob["meta"]["text_hash"] == texts_hash
         logits.append(blob["logits"].float())
     logits = torch.stack(logits)
-    have = ~torch.isnan(logits).any(-1).any(0)
+    if os.path.exists(AUDIT_FILE):
+        raise SystemExit(f"{AUDIT_FILE} is frozen; delete it by hand only to redo the audit deliberately")
+    have = torch.isfinite(logits).all(-1).all(0)
     val = torch.stack([vam[s] for s in STUDY_SPLITS])
     assert val.dtype == torch.bool and val.shape == (len(STUDY_SPLITS), y.size(0))
     nodes = (have & val.any(0)).nonzero().view(-1)
@@ -332,7 +353,8 @@ def audit(y, vam, texts_hash):
     per_rotation = [(logits[k, nodes].argmax(-1) == y[nodes]).float().mean().item() for k in range(7)]
     average = (logits[:, nodes].mean(0).argmax(-1) == y[nodes]).float().mean().item()
     gain = average - per_rotation[0]
-    decision = {"audit_val_nodes": nodes.tolist(), "per_rotation": per_rotation, "average": average,
+    decision = {"text_hash": texts_hash, "rule": f"rotations [0, 2, 4] if gain >= {AUDIT_GAIN} else [0]",
+                "audit_val_nodes": nodes.tolist(), "per_rotation": per_rotation, "average": average,
                 "gain_over_identity": gain, "prior_perms": [0, 2, 4] if gain >= AUDIT_GAIN else [0]}
     with open(AUDIT_FILE, "w") as f:
         json.dump(decision, f, indent=1)
@@ -403,6 +425,14 @@ def selfcheck(x, qwen, ei, y, tr, va, logits):
     mlp = fit_mlp(x, y, tr, va, base)
     empty = torch.empty((2, 0), dtype=torch.long)
     check("MLP ignores edges", torch.equal(cr.correct(mlp, x, ei, y), cr.correct(mlp, x, empty, y)))
+    buffer = io.BytesIO()
+    torch.save({"models": {"S0": m0, "MIX": mix, "MLP": mlp}, "encoders": {"S0": (enc, vq)}}, buffer)
+    buffer.seek(0)
+    back = torch.load(buffer, weights_only=False)["models"]
+    with torch.no_grad():
+        check("checkpoint round trip", torch.equal(back["MIX"](x, ei), mix(x, ei)) and torch.equal(back["S0"](x, ei), m0(x, ei)))
+    neg = [seeded(7, negative_sampling, ei, x.size(0)) for _ in range(2)]
+    check("negative sampling seeded", torch.equal(neg[0], neg[1]))
     low = low_label_mask(y, tr, base)
     check("low-label mask", int(low.sum()) == LOW_LABEL_PER_CLASS * (int(y.max()) + 1) and not bool((low & ~tr).any()))
 
@@ -426,20 +456,29 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     if args.audit:
         return audit(y, vam, texts_hash)
-    with open(AUDIT_FILE) as f:
-        prior_perms = json.load(f)["prior_perms"]
+    with open(AUDIT_FILE, "rb") as f:
+        raw = f.read()
+    decision = json.loads(raw)
+    prior_perms = decision["prior_perms"]
+    expected = [0, 2, 4] if decision["gain_over_identity"] >= AUDIT_GAIN else [0]
+    if decision.get("text_hash") != texts_hash or prior_perms != expected:
+        raise RuntimeError("prior audit manifest doesn't match these texts or its own rule")
+    audit_hash = hashlib.sha256(raw).hexdigest()
     qwen = ls.load_qwen(texts_hash)
     logits = load_prior_logits(texts_hash, prior_perms)
     s = args.split
     if args.selfcheck:
         return selfcheck(x, qwen, ei, y, trm[s], vam[s], logits)
     t0 = time.time()
-    name = f"stage2_split{s}_seed{args.seed}_pt{args.pt_epochs}"
+    config = {"arms": sorted(args.arms), "pt_epochs": args.pt_epochs, "prior_perms": prior_perms,
+              "audit_hash": audit_hash, "code_hash": code_hash()}
+    tag = hashlib.sha256(json.dumps(config, sort_keys=True).encode()).hexdigest()[:10]
+    name = f"stage2_split{s}_seed{args.seed}_{tag}"
     rows, edits, pernode, qwen_pred, low_ids = run_cell(
         s, args.seed, x, qwen, ei, y, trm[s], vam[s], tem[s], logits, args.pt_epochs, args.arms,
-        ckpt=os.path.join(OUT, f"{name}_ckpt.pt"))
+        ckpt=os.path.join(OUT, f"{name}_ckpt.pt"), config=config)
     env = {"python": platform.python_version(), "torch": torch.__version__, "threads": args.threads,
-           "seconds": round(time.time() - t0, 1), "prior_perms": prior_perms}
+           "seconds": round(time.time() - t0, 1), **config}
     with open(os.path.join(OUT, f"{name}.json"), "w") as f:
         json.dump({"args": vars(args), "env": env, "rows": rows, "edits": edits, "low_label_nodes": low_ids.tolist()}, f, indent=1)
     torch.save({"pernode": pernode, "test_mask": tem[s], "qwen_pred": qwen_pred, "y": y}, os.path.join(OUT, f"{name}_pernode.pt"))

@@ -200,6 +200,8 @@ S-VA and all other contrasts are descriptive.
 - **MIX attack strength:** MIX's edge gradient is scaled by 1 − α, so its own attacks may be weaker. S0's own attacks target MIX's base model at full gradient strength and are in the shared union. MIX results are still only accuracy on this finite suite.
 - **Recovery:** each cell saves its trained models and candidate graphs, and a rerun resumes from them rather than retraining.
 
+**Audit outcome and disclosure (2026-11-02, before any Stage 2 cell ran).** 30 audit validation nodes: identity order 43.3%, rotation average 56.7%, a 13.3-point gain, so the rule chose rotations {0, 2, 4}. When rotations 2 and 4 were scored, the existing script printed their zero-shot accuracy over all 2,708 nodes (61.5% and 58.3%), so aggregate test performance was seen again. Neither number was used for any choice.
+
 **Diagnostics.** Teacher: accuracy of each arm on Qwen-correct and Qwen-wrong test nodes, computed for reporting only. MIX's chosen α per cell. If an anchored arm's gain comes with its predictions approaching Qwen's, it is falling back to the LLM rather than improving the GNN. Expert-output shift, unreported in Stage 1, stays out of scope because routing isn't under test.
 
 **Limits declared now.** Cora, one LLM, one λ and semantic weight, no text attacks, and test nodes' text used transductively. S-F changes the input dimension and thus the first-layer parameter count. A no-VQ control for S-V runs only if S-V meets support. The attacker sees test labels. MLP and Qwen are immune here only because the threat model is edges alone; a text attacker would reach them directly.
