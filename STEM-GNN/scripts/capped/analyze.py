@@ -28,13 +28,18 @@ def load() -> dict:
 
 def paired(diff: np.ndarray) -> dict:
     d = 100 * diff
+    assert np.isfinite(d).all() and len(d) >= 2, "paired: need >= 2 finite differences"
     n, m, se = len(d), d.mean(), d.std(ddof=1) / np.sqrt(len(d))
     half = stats.t.ppf(0.975, n - 1) * se
-    p = 2 * stats.t.sf(abs(m / se), n - 1) if se > 0 else float("nan")
+    if se > 0:
+        p = 2 * stats.t.sf(abs(m / se), n - 1)
+    else:  # constant differences: identical arms (p = 1) or a deterministic shift (p = 0)
+        p = 1.0 if m == 0 else 0.0
     return {"mean": m, "lo": m - half, "hi": m + half, "p": p, "wins": int((d > 0).sum()), "n": n}
 
 
 def holm(ps: dict) -> dict:
+    assert all(np.isfinite(p) for p in ps.values()), f"non-finite p-value: {ps}"
     order = sorted(ps, key=ps.get)
     out, running = {}, 0.0
     for i, k in enumerate(order):
