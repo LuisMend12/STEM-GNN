@@ -1,0 +1,142 @@
+Check: clean, certified and protocol-union worst-node (both budgets) reproduced for all original arms (max drift 0.0e+00); extended union never raises worst-node
+
+## Arm means over 15 cells (points, extended union): clean / worst-node@10% / worst-node@20% / worst-graph@20% / own-attack worst-node@20% / SAGE transfer@20% / certified
+S0             78.3 / 40.1 / 31.0 / 54.9 / 46.8 / 65.8 / -
+RES            76.8 / 48.0 / 40.9 / 60.1 / 53.4 / 68.0 / -
+CAP0.1         71.0 / 68.6 / 68.2 / 69.6 / 69.0 / 70.5 / 65.9
+CAP0.25        72.7 / 66.0 / 64.6 / 68.7 / 66.7 / 71.1 / 58.8
+CAP0.5         75.0 / 59.7 / 56.8 / 65.7 / 61.0 / 71.0 / 43.1
+CAP0.75        76.2 / 54.9 / 50.2 / 63.9 / 56.8 / 70.8 / 23.0
+CAP0.9         76.5 / 50.4 / 44.3 / 61.7 / 52.2 / 69.3 / 9.7
+CAP*           71.0 / 68.6 / 68.2 / 69.6 / 69.0 / 70.5 / 65.9
+MLP-M          70.0 / 70.0 / 70.0 / 70.0 / 70.0 / 70.0 / -
+GCN            81.7 / 33.2 / 22.1 / 48.5 / 38.2 / 68.7 / -
+SAGE           81.4 / 37.3 / 27.1 / 54.4 / 46.5 / 65.2 / -
+APPNP-lite     81.9 / 27.3 / 14.3 / 45.1 / 25.5 / 66.9 / -
+RUNG-lite      81.7 / 57.2 / 49.9 / 68.7 / 63.7 / 76.7 / -
+SAGE+TextGate  79.4 / 57.0 / 48.7 / 59.5 / 52.5 / 77.5 / -
+ENS0.1         75.3 / 55.6 / 51.3 / 62.6 / 57.8 / 69.6 / -
+ENS0.25        77.1 / 48.3 / 41.7 / 58.4 / 50.2 / 68.5 / -
+ENS0.5         78.3 / 43.2 / 34.9 / 56.1 / 46.3 / 67.4 / -
+ENS0.75        78.5 / 40.9 / 31.9 / 55.3 / 46.5 / 66.3 / -
+ENS0.9         78.4 / 40.3 / 31.3 / 55.1 / 46.6 / 66.0 / -
+
+## Family B (one Holm family): CAP* - X, worst-node@20%, extended union
+(robustness of the fixed selected arm only; not a frontier test)
+CAP*-GCN: +46.06 [+44.54, +47.59] p=0.0000 wins 15/15 holm=0.0000
+CAP*-SAGE: +41.07 [+39.68, +42.45] p=0.0000 wins 15/15 holm=0.0000
+CAP*-APPNP-lite: +53.89 [+52.39, +55.39] p=0.0000 wins 15/15 holm=0.0000
+CAP*-RUNG-lite: +18.29 [+14.58, +22.00] p=0.0000 wins 15/15 holm=0.0000
+CAP*-SAGE+TextGate: +19.47 [+18.39, +20.54] p=0.0000 wins 15/15 holm=0.0000
+CAP*-ENS0.1: +16.92 [+9.65, +24.19] p=0.0002 wins 15/15 holm=0.0002
+CAP*-ENS0.25: +26.43 [+19.60, +33.26] p=0.0000 wins 15/15 holm=0.0000
+CAP*-ENS0.5: +33.23 [+29.76, +36.69] p=0.0000 wins 15/15 holm=0.0000
+CAP*-ENS0.75: +36.24 [+34.16, +38.32] p=0.0000 wins 15/15 holm=0.0000
+CAP*-ENS0.9: +36.88 [+34.94, +38.82] p=0.0000 wins 15/15 holm=0.0000
+
+Clean, CAP* - X (descriptive):
+CAP*-MLP-M: +1.03 [+0.70, +1.36] p=0.0000 wins 14/15
+CAP*-GCN: -10.73 [-11.89, -9.57] p=0.0000 wins 0/15
+CAP*-SAGE: -10.37 [-11.25, -9.49] p=0.0000 wins 0/15
+CAP*-APPNP-lite: -10.93 [-12.03, -9.83] p=0.0000 wins 0/15
+CAP*-RUNG-lite: -10.68 [-11.96, -9.40] p=0.0000 wins 0/15
+CAP*-SAGE+TextGate: -8.40 [-9.41, -7.39] p=0.0000 wins 0/15
+CAP*-ENS0.1: -4.33 [-5.91, -2.75] p=0.0000 wins 0/15
+CAP*-ENS0.25: -6.07 [-7.29, -4.84] p=0.0000 wins 0/15
+CAP*-ENS0.5: -7.35 [-8.52, -6.18] p=0.0000 wins 0/15
+CAP*-ENS0.75: -7.51 [-8.89, -6.12] p=0.0000 wins 0/15
+CAP*-ENS0.9: -7.45 [-8.90, -6.00] p=0.0000 wins 0/15
+
+## Family F (one Holm family): matched-clean frontier, CAP(q) - baseline envelope, worst-node@20%
+envelope = best baseline worst-node among baselines with clean >= CAP(q) clean - 0.5 pt, per cell
+CAP0.1: +9.62 [+4.75, +14.48] p=0.0008 wins 11/15 holm=0.0025 cells without eligible baseline=0 -> CAP above envelope
+CAP0.25: +8.96 [+5.74, +12.18] p=0.0000 wins 13/15 holm=0.0002 cells without eligible baseline=0 -> CAP above envelope
+CAP0.5: +1.74 [-0.04, +3.52] p=0.0552 wins 9/15 holm=0.0552 cells without eligible baseline=0 -> no difference shown
+CAP0.75: -4.67 [-7.26, -2.09] p=0.0017 wins 3/15 holm=0.0034 cells without eligible baseline=0 -> CAP below envelope
+CAP0.9: -10.59 [-14.42, -6.76] p=0.0000 wins 1/15 holm=0.0002 cells without eligible baseline=0 -> CAP below envelope
+
+## Pareto set of arm means (clean, worst-node@20%), descriptive
+MLP-M: clean 70.0, worst-node 70.0
+CAP0.1: clean 71.0, worst-node 68.2
+CAP0.25: clean 72.7, worst-node 64.6
+CAP0.5: clean 75.0, worst-node 56.8
+ENS0.1: clean 75.3, worst-node 51.3
+CAP0.75: clean 76.2, worst-node 50.2
+RUNG-lite: clean 81.7, worst-node 49.9
+GCN: clean 81.7, worst-node 22.1
+APPNP-lite: clean 81.9, worst-node 14.3
+
+## Pairwise (exploratory, uncorrected): CAP(q)/RES vs baseline X, delta clean and delta worst-node@20%
+'dominates' = both lower 95% CI bounds > 0; 'dominated' = both upper bounds < 0
+CAP0.1 vs MLP-M: clean +1.03 [+0.70,+1.36]  worst -1.78 [-2.27,-1.29]  
+CAP0.1 vs GCN: clean -10.73 [-11.89,-9.57]  worst +46.06 [+44.54,+47.59]  
+CAP0.1 vs SAGE: clean -10.37 [-11.25,-9.49]  worst +41.07 [+39.68,+42.45]  
+CAP0.1 vs APPNP-lite: clean -10.93 [-12.03,-9.83]  worst +53.89 [+52.39,+55.39]  
+CAP0.1 vs RUNG-lite: clean -10.68 [-11.96,-9.40]  worst +18.29 [+14.58,+22.00]  
+CAP0.1 vs SAGE+TextGate: clean -8.40 [-9.41,-7.39]  worst +19.47 [+18.39,+20.54]  
+CAP0.1 vs ENS0.1: clean -4.33 [-5.91,-2.75]  worst +16.92 [+9.65,+24.19]  
+CAP0.1 vs ENS0.25: clean -6.07 [-7.29,-4.84]  worst +26.43 [+19.60,+33.26]  
+CAP0.1 vs ENS0.5: clean -7.35 [-8.52,-6.18]  worst +33.23 [+29.76,+36.69]  
+CAP0.1 vs ENS0.75: clean -7.51 [-8.89,-6.12]  worst +36.24 [+34.16,+38.32]  
+CAP0.1 vs ENS0.9: clean -7.45 [-8.90,-6.00]  worst +36.88 [+34.94,+38.82]  
+CAP0.25 vs MLP-M: clean +2.76 [+1.92,+3.59]  worst -5.39 [-6.94,-3.84]  
+CAP0.25 vs GCN: clean -9.00 [-10.21,-7.80]  worst +42.45 [+40.51,+44.40]  
+CAP0.25 vs SAGE: clean -8.64 [-9.63,-7.65]  worst +37.46 [+35.73,+39.19]  
+CAP0.25 vs APPNP-lite: clean -9.21 [-10.36,-8.05]  worst +50.28 [+48.59,+51.97]  
+CAP0.25 vs RUNG-lite: clean -8.95 [-10.25,-7.66]  worst +14.68 [+10.34,+19.03]  
+CAP0.25 vs SAGE+TextGate: clean -6.68 [-7.82,-5.53]  worst +15.86 [+14.09,+17.63]  
+CAP0.25 vs ENS0.1: clean -2.61 [-4.22,-1.00]  worst +13.31 [+6.49,+20.12]  
+CAP0.25 vs ENS0.25: clean -4.34 [-5.65,-3.04]  worst +22.82 [+16.65,+28.99]  
+CAP0.25 vs ENS0.5: clean -5.63 [-7.07,-4.18]  worst +29.62 [+26.75,+32.48]  
+CAP0.25 vs ENS0.75: clean -5.78 [-7.43,-4.14]  worst +32.63 [+30.56,+34.70]  
+CAP0.25 vs ENS0.9: clean -5.73 [-7.42,-4.03]  worst +33.27 [+31.22,+35.33]  
+CAP0.5 vs MLP-M: clean +5.01 [+3.48,+6.54]  worst -13.18 [-16.86,-9.49]  
+CAP0.5 vs GCN: clean -6.75 [-8.22,-5.27]  worst +34.67 [+31.03,+38.31]  
+CAP0.5 vs SAGE: clean -6.39 [-7.74,-5.04]  worst +29.67 [+26.25,+33.10]  
+CAP0.5 vs APPNP-lite: clean -6.95 [-8.41,-5.50]  worst +42.50 [+39.09,+45.90]  
+CAP0.5 vs RUNG-lite: clean -6.70 [-8.14,-5.26]  worst +6.90 [+0.82,+12.97]  
+CAP0.5 vs SAGE+TextGate: clean -4.42 [-5.99,-2.86]  worst +8.07 [+4.44,+11.71]  
+CAP0.5 vs ENS0.1: clean -0.35 [-2.16,+1.45]  worst +5.52 [-0.88,+11.93]  
+CAP0.5 vs ENS0.25: clean -2.09 [-3.63,-0.54]  worst +15.04 [+9.54,+20.53]  
+CAP0.5 vs ENS0.5: clean -3.37 [-5.20,-1.54]  worst +21.83 [+19.09,+24.58]  
+CAP0.5 vs ENS0.75: clean -3.53 [-5.52,-1.54]  worst +24.85 [+21.61,+28.08]  
+CAP0.5 vs ENS0.9: clean -3.47 [-5.48,-1.46]  worst +25.49 [+22.15,+28.83]  
+CAP0.75 vs MLP-M: clean +6.29 [+4.25,+8.32]  worst -19.72 [-25.44,-14.00]  
+CAP0.75 vs GCN: clean -5.47 [-7.13,-3.81]  worst +28.12 [+22.81,+33.44]  
+CAP0.75 vs SAGE: clean -5.11 [-6.76,-3.46]  worst +23.13 [+18.00,+28.25]  
+CAP0.75 vs APPNP-lite: clean -5.68 [-7.29,-4.07]  worst +35.95 [+30.82,+41.08]  
+CAP0.75 vs RUNG-lite: clean -5.42 [-7.04,-3.80]  worst +0.35 [-7.51,+8.21]  
+CAP0.75 vs SAGE+TextGate: clean -3.15 [-4.88,-1.41]  worst +1.53 [-4.01,+7.06]  
+CAP0.75 vs ENS0.1: clean +0.92 [-1.06,+2.90]  worst -1.02 [-6.67,+4.63]  
+CAP0.75 vs ENS0.25: clean -0.81 [-2.44,+0.81]  worst +8.49 [+4.32,+12.67]  
+CAP0.75 vs ENS0.5: clean -2.10 [-4.14,-0.05]  worst +15.29 [+12.14,+18.43]  
+CAP0.75 vs ENS0.75: clean -2.25 [-4.46,-0.05]  worst +18.30 [+13.66,+22.94]  
+CAP0.75 vs ENS0.9: clean -2.20 [-4.39,-0.00]  worst +18.94 [+14.07,+23.81]  
+CAP0.9 vs MLP-M: clean +6.51 [+4.47,+8.55]  worst -25.62 [-33.11,-18.13]  
+CAP0.9 vs GCN: clean -5.25 [-6.71,-3.78]  worst +22.23 [+15.09,+29.36]  
+CAP0.9 vs SAGE: clean -4.89 [-6.42,-3.35]  worst +17.23 [+10.27,+24.19]  
+CAP0.9 vs APPNP-lite: clean -5.45 [-6.98,-3.92]  worst +30.05 [+23.22,+36.88]  
+CAP0.9 vs RUNG-lite: clean -5.20 [-6.63,-3.76]  worst -5.54 [-14.96,+3.87]  
+CAP0.9 vs SAGE+TextGate: clean -2.92 [-4.64,-1.20]  worst -4.37 [-11.67,+2.94]  
+CAP0.9 vs ENS0.1: clean +1.15 [-0.97,+3.27]  worst -6.92 [-12.81,-1.03]  
+CAP0.9 vs ENS0.25: clean -0.59 [-2.26,+1.09]  worst +2.60 [-2.08,+7.27]  
+CAP0.9 vs ENS0.5: clean -1.87 [-3.79,+0.05]  worst +9.39 [+4.66,+14.12]  
+CAP0.9 vs ENS0.75: clean -2.03 [-4.09,+0.04]  worst +12.40 [+6.06,+18.75]  
+CAP0.9 vs ENS0.9: clean -1.97 [-4.05,+0.11]  worst +13.05 [+6.46,+19.63]  
+RES vs MLP-M: clean +6.87 [+4.61,+9.13]  worst -29.09 [-38.03,-20.14]  
+RES vs GCN: clean -4.89 [-6.51,-3.27]  worst +18.76 [+10.23,+27.28]  
+RES vs SAGE: clean -4.53 [-6.17,-2.89]  worst +13.76 [+5.45,+22.06]  
+RES vs APPNP-lite: clean -5.09 [-6.72,-3.46]  worst +26.58 [+18.16,+35.00]  
+RES vs RUNG-lite: clean -4.84 [-6.30,-3.37]  worst -9.02 [-19.71,+1.68]  
+RES vs SAGE+TextGate: clean -2.56 [-4.41,-0.71]  worst -7.84 [-16.44,+0.76]  
+RES vs ENS0.1: clean +1.51 [-0.77,+3.78]  worst -10.39 [-17.40,-3.38]  
+RES vs ENS0.25: clean -0.23 [-2.00,+1.55]  worst -0.88 [-6.57,+4.81]  
+RES vs ENS0.5: clean -1.51 [-3.54,+0.52]  worst +5.92 [-0.33,+12.17]  
+RES vs ENS0.75: clean -1.67 [-3.82,+0.48]  worst +8.93 [+1.11,+16.76]  
+RES vs ENS0.9: clean -1.61 [-3.76,+0.53]  worst +9.57 [+1.53,+17.62]  
+
+## Per-split CAP* - best-baseline worst-node@20% (split sensitivity)
+0 {'MLP-M': '-1.96', 'GCN': '+46.00', 'SAGE': '+41.20', 'APPNP-lite': '+52.93', 'RUNG-lite': '+13.99', 'SAGE+TextGate': '+19.33', 'ENS0.1': '+11.04', 'ENS0.25': '+25.05', 'ENS0.5': '+33.15', 'ENS0.75': '+35.55', 'ENS0.9': '+36.28'}
+1 {'MLP-M': '-1.24', 'GCN': '+47.63', 'SAGE': '+42.15', 'APPNP-lite': '+54.21', 'RUNG-lite': '+23.57', 'SAGE+TextGate': '+20.50', 'ENS0.1': '+13.68', 'ENS0.25': '+22.14', 'ENS0.5': '+31.35', 'ENS0.75': '+37.14', 'ENS0.9': '+38.10'}
+2 {'MLP-M': '-2.14', 'GCN': '+44.56', 'SAGE': '+39.85', 'APPNP-lite': '+54.54', 'RUNG-lite': '+17.31', 'SAGE+TextGate': '+18.57', 'ENS0.1': '+26.03', 'ENS0.25': '+32.11', 'ENS0.5': '+35.17', 'ENS0.75': '+36.03', 'ENS0.9': '+36.27'}
+ANALYSIS_EXIT=0
