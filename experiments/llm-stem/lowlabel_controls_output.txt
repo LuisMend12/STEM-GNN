@@ -1,0 +1,66 @@
+Stage 2 reproduction, max |V500 - Stage 2 low_clean| (points): {'S0': 0.0, 'S-A': 0.0, 'MLP-M': 0.0, 'QWEN': 0.0} (within 0.5 points)
+
+## Low-label test accuracy, mean ± sd over 15 cells (points)
+V500 {'S0': '65.59±4.86', 'S-A': '72.57±2.14', 'S-A0': '64.24±3.28', 'S-U': '61.89±5.66', 'S-T': '65.54±5.58', 'MIX': '70.11±2.10', 'QWEN': '62.36±0.38', 'QWEN0': '53.48±0.40', 'MLP-M': '54.22±5.18'}
+V21 {'S0': '62.96±4.40', 'S-A': '68.62±4.61', 'S-A0': '61.98±4.62', 'S-U': '59.61±6.73', 'S-T': '59.72±7.81', 'MIX': '64.43±4.76', 'QWEN': '62.36±0.38', 'QWEN0': '53.48±0.40', 'MLP-M': '51.32±7.04'}
+
+## H90-H94 (one Holm family; run-level intervals conditional on Cora)
+H90 S-A - S-U (V500): +10.68 [+7.45, +13.91] p=0.0000 wins 15/15 holm=0.0000 -> SUPPORTED
+H91 S-A - S-T (V500): +7.03 [+3.98, +10.08] p=0.0002 wins 15/15 holm=0.0009 -> SUPPORTED
+H92 S-A0 - S0 (V21): -0.97 [-4.86, +2.91] p=0.5991 wins 5/15 holm=0.7232 -> INCONCLUSIVE
+H93 S-A0 - S-U (V21): +2.37 [-1.78, +6.53] p=0.2411 wins 7/15 holm=0.7232 -> INCONCLUSIVE
+H94 S-A0 - S-T (V21): +2.27 [-2.69, +7.22] p=0.3435 wins 7/15 holm=0.7232 -> INCONCLUSIVE
+Claim A, Qwen-prior gain beyond the uniform target with the full validation set (H90): SUPPORTED
+Claim B, gain survives a strict 21 + 21 label budget (H92 and H93): NOT MET
+Superiority over the MiniLM-MLP teacher: V500 (H91) SUPPORTED | V21 (H94) INCONCLUSIVE
+
+## Descriptive (paired, uncorrected)
+S-A - S0 (V500): +6.98 [+4.34, +9.61] p=0.0001 wins 15/15
+S-A0 - S0 (V500): -1.35 [-4.84, +2.15] p=0.4220 wins 4/15
+S-U - S0 (V500): -3.70 [-6.19, -1.22] p=0.0065 wins 2/15
+S-T - S0 (V500): -0.05 [-2.43, +2.32] p=0.9613 wins 5/15
+MIX - S0 (V500): +4.52 [+2.48, +6.57] p=0.0003 wins 14/15
+QWEN - S0 (V500): -3.23 [-5.92, -0.53] p=0.0222 wins 3/15
+QWEN0 - S0 (V500): -12.11 [-14.80, -9.41] p=0.0000 wins 0/15
+MLP-M - S0 (V500): -11.37 [-13.94, -8.81] p=0.0000 wins 0/15
+S-A - S0 (V21): +5.66 [+2.25, +9.08] p=0.0031 wins 12/15
+S-A0 - S0 (V21): -0.97 [-4.86, +2.91] p=0.5991 wins 5/15
+S-U - S0 (V21): -3.35 [-6.37, -0.33] p=0.0323 wins 4/15
+S-T - S0 (V21): -3.24 [-7.04, +0.56] p=0.0891 wins 5/15
+MIX - S0 (V21): +1.47 [+0.04, +2.90] p=0.0443 wins 4/15
+QWEN - S0 (V21): -0.59 [-3.03, +1.84] p=0.6091 wins 7/15
+QWEN0 - S0 (V21): -9.47 [-11.91, -7.04] p=0.0000 wins 0/15
+MLP-M - S0 (V21): -11.64 [-15.13, -8.14] p=0.0000 wins 0/15
+S-A - S-A0 (V21): +6.64 [+3.98, +9.30] p=0.0001 wins 14/15
+S-A - S0 (V21), Stage 2 prior under the small validation: +5.66 [+2.25, +9.08] p=0.0031 wins 12/15
+S0 V21 - V500: -2.63 [-4.40, -0.87] p=0.0064 wins 2/15
+S-A V21 - V500: -3.95 [-6.20, -1.69] p=0.0021 wins 4/15
+S-A0 V21 - V500: -2.26 [-4.24, -0.28] p=0.0283 wins 4/15
+S-U V21 - V500: -2.28 [-5.33, +0.77] p=0.1319 wins 5/15
+S-T V21 - V500: -5.82 [-10.05, -1.59] p=0.0105 wins 3/15
+MIX V21 - V500: -5.69 [-8.14, -3.24] p=0.0002 wins 1/15
+QWEN V21 - V500: +0.00 [+0.00, +0.00] p=1.0000 wins 0/15
+QWEN0 V21 - V500: +0.00 [+0.00, +0.00] p=1.0000 wins 0/15
+MLP-M V21 - V500: -2.90 [-4.66, -1.14] p=0.0034 wins 2/15
+V500: temperatures {'qwen': [2.0], 'qwen0': [2.0], 'mlp': [0.5, 1.0, 2.0]}, MIX alpha [0.0, 0.25, 0.5, 0.75]
+V21: temperatures {'qwen': [1.0, 2.0], 'qwen0': [1.0, 2.0, 4.0], 'mlp': [0.5, 1.0]}, MIX alpha [0.0, 0.25, 0.5]
+
+## Accuracy on teacher-correct vs teacher-wrong test nodes (points; pooled counts over cells)
+V500 S-A on QWEN-correct 87.7 (n=19345 node-cell obs.) / QWEN-wrong 47.4 (n=11675 node-cell obs.)
+V500 S-A0 on QWEN0-correct 83.7 (n=16590 node-cell obs.) / QWEN0-wrong 41.9 (n=14430 node-cell obs.)
+V500 S-T on MLP-M-correct 87.0 (n=16818 node-cell obs.) / MLP-M-wrong 40.1 (n=14202 node-cell obs.)
+V500 S0 on QWEN0-correct 72.9 (n=16590 node-cell obs.) / QWEN0-wrong 57.2 (n=14430 node-cell obs.)
+V500 S0 on MLP-M-correct 85.4 (n=16818 node-cell obs.) / MLP-M-wrong 42.2 (n=14202 node-cell obs.)
+V21 S-A on QWEN-correct 87.0 (n=19345 node-cell obs.) / QWEN-wrong 38.2 (n=11675 node-cell obs.)
+V21 S-A0 on QWEN0-correct 82.3 (n=16590 node-cell obs.) / QWEN0-wrong 38.6 (n=14430 node-cell obs.)
+V21 S-T on MLP-M-correct 84.2 (n=15919 node-cell obs.) / MLP-M-wrong 33.9 (n=15101 node-cell obs.)
+V21 S0 on QWEN0-correct 69.2 (n=16590 node-cell obs.) / QWEN0-wrong 55.8 (n=14430 node-cell obs.)
+V21 S0 on MLP-M-correct 83.5 (n=15919 node-cell obs.) / MLP-M-wrong 41.3 (n=15101 node-cell obs.)
+
+## Per-split means (points), split-level sensitivity
+V500 S-A-S-U: ['+9.26', '+13.06', '+9.73']
+V500 S-A-S-T: ['+9.05', '+3.42', '+8.62']
+V21 S-A0-S0: ['+0.68', '-5.47', '+1.88']
+V21 S-A0-S-U: ['+1.65', '+0.46', '+5.00']
+V21 S-A0-S-T: ['+2.11', '+1.05', '+3.64']
+ANALYSIS_EXIT=0
