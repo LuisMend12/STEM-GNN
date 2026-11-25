@@ -1,0 +1,153 @@
+{
+ "args": {
+  "part": "R",
+  "level": 500,
+  "graph": 8,
+  "split": 0,
+  "seed": 0,
+  "threads": 8,
+  "selfcheck": false
+ },
+ "env": {
+  "code_hash": "c8f6f4e8e941736c017fcc34e2de0846d40192c25bb8cedbf2b22dad43b19510",
+  "tau": 0.3,
+  "eps": 0.2,
+  "pt_epochs": 200,
+  "vgae": [
+   64,
+   64,
+   32,
+   200,
+   0.01
+  ],
+  "threads": 8,
+  "torch": "2.12.1+cu130",
+  "pyg": "2.8.0.post1",
+  "python": "3.13.13",
+  "data_sha": "80bf9563cf56f1d9c0b2456331760ab52f3b45f113b2d7f62b20a3ac5b521b6d",
+  "seconds": 39.0
+ },
+ "rows": [
+  {
+   "part": "R",
+   "level": 500,
+   "graph": 8,
+   "split": 2,
+   "arm": "S0",
+   "val": 0.75,
+   "orig_undirected_edges": 5278,
+   "injected_pct": 9.473285335354301,
+   "acc": 0.7635396718978882,
+   "macro_f1": 0.756496860237092
+  },
+  {
+   "part": "R",
+   "level": 500,
+   "graph": 8,
+   "split": 2,
+   "arm": "S-VG",
+   "val": 0.75,
+   "tau": 0.3,
+   "eps": 0.2,
+   "orig_undirected_edges": 5278,
+   "injected_pct": 9.473285335354301,
+   "acc": 0.761605441570282,
+   "macro_f1": 0.7518023161066385
+  },
+  {
+   "part": "R",
+   "level": 500,
+   "graph": 8,
+   "split": 2,
+   "arm": "S-VGr",
+   "val": 0.765999972820282,
+   "tau": 0.3,
+   "eps": 0.2,
+   "orig_undirected_edges": 5278,
+   "injected_pct": 9.473285335354301,
+   "acc": 0.7374274730682373,
+   "macro_f1": 0.7236060559347679
+  },
+  {
+   "part": "R",
+   "level": 500,
+   "graph": 8,
+   "split": 2,
+   "arm": "S-SJ",
+   "val": 0.7919999957084656,
+   "tau": 0.3,
+   "eps": 0.2,
+   "orig_undirected_edges": 5278,
+   "injected_pct": 9.473285335354301,
+   "acc": 0.771276593208313,
+   "macro_f1": 0.7647371325817477
+  },
+  {
+   "part": "R",
+   "level": 500,
+   "graph": 8,
+   "split": 2,
+   "arm": "SAGE",
+   "val": 0.8159999847412109,
+   "orig_undirected_edges": 5278,
+   "injected_pct": 9.473285335354301,
+   "acc": 0.7978723645210266,
+   "macro_f1": 0.7827445046592107
+  },
+  {
+   "part": "R",
+   "level": 500,
+   "graph": 8,
+   "split": 2,
+   "arm": "GCN",
+   "val": 0.828000009059906,
+   "orig_undirected_edges": 5278,
+   "injected_pct": 9.473285335354301,
+   "acc": 0.8167311549186707,
+   "macro_f1": 0.8027748029137435
+  },
+  {
+   "part": "R",
+   "level": 500,
+   "graph": 8,
+   "split": 2,
+   "arm": "RUNG-lite",
+   "val": 0.8320000171661377,
+   "orig_undirected_edges": 5278,
+   "injected_pct": 9.473285335354301,
+   "acc": 0.8118955492973328,
+   "macro_f1": 0.7942864164081761
+  },
+  {
+   "part": "R",
+   "level": 500,
+   "graph": 8,
+   "split": 2,
+   "arm": "SAGE-VG",
+   "val": 0.8159999847412109,
+   "tau": 0.3,
+   "eps": 0.2,
+   "orig_undirected_edges": 5278,
+   "injected_pct": 9.473285335354301,
+   "acc": 0.7988394498825073,
+   "macro_f1": 0.7832360323203283
+  },
+  {
+   "part": "R",
+   "level": 500,
+   "graph": 8,
+   "split": 2,
+   "arm": "MLP-M",
+   "val": 0.671999990940094,
+   "orig_undirected_edges": 5278,
+   "injected_pct": 9.473285335354301,
+   "acc": 0.667794942855835,
+   "macro_f1": 0.6453619982079841
+  }
+ ],
+ "edge_auc": {
+  "S-VG": 0.7617220538082607,
+  "S-VGr": 0.5969649488442592,
+  "S-SJ": 0.7589259189086776
+ }
+}
