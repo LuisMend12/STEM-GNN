@@ -32,6 +32,22 @@ def node_texts():
     return texts, [n["label"] for n in meta["nodes"]], meta
 
 
+@torch.no_grad()
+def encode(texts, batch_size=128, max_len=256):
+    """all-MiniLM-L6-v2 as sentence-transformers runs it (masked mean pooling, then L2 normalisation, 256
+    tokens), via transformers, so the shared environment is not changed."""
+    from transformers import AutoModel, AutoTokenizer
+    tok = AutoTokenizer.from_pretrained(ENCODER)
+    model = AutoModel.from_pretrained(ENCODER).eval()
+    out = []
+    for i in range(0, len(texts), batch_size):
+        batch = tok(texts[i: i + batch_size], padding=True, truncation=True, max_length=max_len, return_tensors="pt")
+        h = model(**batch).last_hidden_state
+        mask = batch["attention_mask"].unsqueeze(-1).float()
+        out.append(torch.nn.functional.normalize((h * mask).sum(1) / mask.sum(1).clamp_min(1e-9), dim=-1))
+    return torch.cat(out)
+
+
 def main():
     pyg = WikiCS(RAW, is_undirected=True)[0]
     texts, meta_labels, meta = node_texts()
@@ -50,9 +66,9 @@ def main():
         raise SystemExit("metadata label sequence does not match PyG WikiCS labels")
     if pyg.train_mask.shape != (n, 20) or pyg.val_mask.shape != (n, 20) or pyg.test_mask.shape != (n,):
         raise SystemExit("unexpected Wiki-CS train/validation/test mask shapes")
-    from sentence_transformers import SentenceTransformer
-    enc = SentenceTransformer(ENCODER, device="cpu")
-    x = torch.from_numpy(enc.encode(texts, batch_size=128, show_progress_bar=True, convert_to_numpy=True)).float()
+    x = encode(texts)
+    cora_x = torch.load(os.path.join(WDIR, "..", "Cora", "cora.pt"), weights_only=False).x.float()
+    print(json.dumps({"cora_x_norm_mean": cora_x.norm(dim=1).mean().item(), "wikics_x_norm_mean": x.norm(dim=1).mean().item()}))
     if x.shape != (n, 384) or not torch.isfinite(x).all():
         raise SystemExit(f"bad embeddings {tuple(x.shape)}")
     splits = pyg.train_mask.size(1)

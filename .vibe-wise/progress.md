@@ -10,7 +10,8 @@ No learning events recorded yet.
 - Learner said "try our experimental setup on these datasets". Wiki-CS (node task, setup applies unchanged) was approved at an Implementation checkpoint and is being implemented as descriptive only (Amendment 1). Still awaiting: the threat model and metric for link tasks (WN18RR, FB15K237) and graph tasks (HIV, PCBA), Arxiv's cost, and the meaning of Avg.
 
 ## Pending decision
-- 2026-11-25: learner asked for Codex to draft answers to all open questions; Codex draft saved at experiments/vgae-followup/design_options_codex_draft.md (proposals only, not learner decisions). Awaiting learner's choice and reasoning, starting with Q1.
+- 2026-11-25: learner asked for Codex to draft answers to all open questions; Codex draft saved at experiments/vgae-followup/design_options_codex_draft.md (proposals only, not learner decisions).
+- 2026-11-26: Q1 resolved: learner adopted Codex's option B criteria verbatim (no own reasoning given), recorded as protocol Amendment 2 before Cora accuracy was inspected; AI chose the implementation details (per-node recompute from checkpoints; interim Bonferroni x8 bound). Q2-Q5 still awaiting the learner's choice.
 - Decision: criteria for telling attack weakness (gradient obstruction) from real robustness in the VGAE follow-up, before any smoke or grid run.
 - Stage: awaiting reasoning (Build checkpoint).
 - Current AI-proposed plan: H110 (S-VG − S0 ≥ +2 on the expanded union) is the deciding test; the drop in S-VG's own-attack worst-node when weight-aware attacks are added is a descriptive flag (≤ −3 points).

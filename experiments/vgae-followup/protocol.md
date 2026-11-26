@@ -205,7 +205,7 @@ The user asked to extend the setup to more datasets.
 - node text from the repo's OFA recipe. Metadata and PyG label sequences are compared after mapping label
   names to integer IDs. This detects label-sequence mismatches but not permutations within a class; the
   upstream dataset documents a shared metadata and vectorized-data ordering;
-- 384-d `all-MiniLM-L6-v2` embeddings. The repo doesn't record the encoder of Cora's and Pubmed's features, so
+- 384-d `all-MiniLM-L6-v2` embeddings, computed with `transformers` using sentence-transformers' recipe (masked mean pooling, L2 normalization, 256 tokens), because `sentence-transformers` is not installed and installing it could change the torch version the queued Pubmed jobs check. The repo doesn't record the encoder of Cora's and Pubmed's features, so
   comparability is assumed, not verified.
 
 **Code.** `followup_extra.py` runs `followup.py` unchanged. The queued Cora and Pubmed cells check
@@ -223,3 +223,41 @@ inspected, and results from an altered suite will be labeled accordingly.
 
 **Not yet decided:** Arxiv's cost, and the link (WN18RR, FB15K237) and graph (HIV, PCBA) tasks. The setup
 isn't defined for them; that decision is pending.
+
+## Amendment 2 (2026-11-26, before any Cora Part A or Part R accuracy was inspected): Q1 diagnostic classification
+
+The user adopted the Codex-drafted Q1 criteria (`design_options_codex_draft.md`, option B). They are
+*diagnostic classifications* added next to H110. They replace no hypothesis and prove no mechanism. They apply
+to Cora at the 20% budget; Pubmed and Wiki-CS get the same diagnostics, reported separately.
+
+**Definitions (per cell, then mean over the 15 Cora cells):**
+- **Base set B** for an arm: its own standard suite plus its own strong true-gradient PRBCD graphs (`s_lr*`,
+  `s_soft`, `s_tanh`), at budgets ≤ 20%, plus the clean graph.
+- **Families F:**
+  - greedy: the arm's own GRBCD graphs;
+  - gcn: the GCN-transfer graphs;
+  - bpda_flat, detach, twin: the arm's own graphs of that name, S-VG only.
+- **Incremental drop for F:** worst-node(B ∪ F) − worst-node(B), in points.
+- **Gap shrinkage:** old-union S-VG − S0 worst-node@20% (the original suite; reproduces H103) versus the H110
+  estimate on the expanded union.
+
+**Classification for S-VG versus S0:**
+- **Consistent with attack weakness:** (H110 mean < +1, or H110 upper CI < +1) *and* at least one family F
+  gives S-VG a mean incremental drop of ≤ −3 points.
+- **Consistent with suite-specific robustness:** H110 meets its support rule and clean guardrail; S-VG − S0
+  worst-node@20% is positive in all three split means; and no family gives S-VG a mean incremental drop of ≤ −3
+  points.
+- **Otherwise inconclusive.**
+
+**Also reported:**
+- each family's drop for S-VG and S0, where defined;
+- the number of test nodes each family newly breaks;
+- the learning-rate sweep (×0.1 / ×1 / ×10) separately.
+
+A learning-rate gain suggests optimization sensitivity; transfer or altered-backward attacks beating the
+true-gradient ones can suggest obstruction. Neither proves it, and no drop does not rule it out. Convergence
+can't be assessed, because loss trajectories were not saved.
+
+**Interim Cora report.** Pubmed's cells (H114, H115) are still running, so the Cora hypotheses are reported with
+a conservative Bonferroni bound, 8 × p, which is at least the Holm-adjusted p. "Support" is declared early only
+if the bound is < .05; otherwise the verdict waits for the full Holm family.

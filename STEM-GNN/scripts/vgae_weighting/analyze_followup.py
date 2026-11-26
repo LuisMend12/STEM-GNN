@@ -113,9 +113,91 @@ def reproduction(R, A):
     print(f"Cora R: all 50 cells x {len(OLD_R_ARMS)} shared arms reproduce the original accuracy and macro-F1 exactly")
 
 
-def main():
-    data = {ds: collect(ds) for ds in ("cora", "pubmed")}
-    for ds in DESCRIPTIVE_ONLY:
+FAMILY_SIZE = 8  # H110-H117
+Q1_FAMILIES = ("greedy", "gcn", "bpda_flat", "detach", "twin")
+
+
+def load_q1(ds):
+    """The per-dataset diagnostic summary, refused unless it is complete and matches the result JSONs analysed."""
+    import hashlib
+    path = os.path.join(RESULTS, f"q1_diagnostic_{ds}.json")
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"{path}: run q1_diagnostic.py --dataset {ds} before analysis")
+    with open(path) as f:
+        q1 = json.load(f)
+    assert set(q1) == {f"{s}_{e}" for s, e in A_CELLS[ds]}, f"{ds}: Q1 diagnostic incomplete"
+    expected = {"S-VG": set(Q1_FAMILIES), "S0": {"greedy", "gcn"}}
+    for cell, result in q1.items():
+        for arm, families in expected.items():
+            if set(result[arm]["families"]) != families:
+                raise ValueError(f"{ds} {cell} {arm}: incomplete or unexpected Q1 families")
+        split, seed = map(int, cell.split("_"))
+        matches = glob.glob(os.path.join(RESULTS, f"{ds}_A_s{split}_e{seed}_*[0-9a-f].json"))
+        if len(matches) != 1 or os.path.basename(matches[0]) != result["result_json"]:
+            raise ValueError(f"{ds} {cell}: Q1 result filename does not match the analysed cell")
+        with open(matches[0], "rb") as f:
+            if hashlib.sha256(f.read()).hexdigest() != result["result_sha256"]:
+                raise ValueError(f"{ds} {cell}: Q1 summary is stale (result JSON changed)")
+        with open(matches[0][: -len(".json")] + "_ckpt.pt", "rb") as f:
+            if hashlib.sha256(f.read()).hexdigest() != result["checkpoint_sha256"]:
+                raise ValueError(f"{ds} {cell}: Q1 summary does not match the checkpoint")
+    return q1
+
+
+def q1_classification(ds, h, guard_ok, split_means, support_p, descriptive=False):
+    """Protocol Amendment 2: diagnostic classification of S-VG vs S0 at the 20% budget.
+    h: an.paired result (points) for S-VG - S0 worst-node@20% on the expanded union; support_p: the p used
+    for the support rule (Holm, or the interim Bonferroni bound)."""
+    q1 = load_q1(ds)
+    tag = " [DESCRIPTIVE ONLY]" if descriptive else ""
+    print(f"\n# Q1 diagnostic, {ds}{tag} (Amendment 2; 20% budget; points; mean over {len(q1)} cells)")
+    drops = {}
+    for arm in ("S-VG", "S0"):
+        print(f"{arm}: base (own standard + strong true-gradient) worst-node "
+              f"{100 * np.mean([c[arm]['base_worst_node'] for c in q1.values()]):.2f}")
+        for fam in Q1_FAMILIES:
+            vals = [c[arm]["families"][fam] for c in q1.values() if fam in c[arm]["families"]]
+            if not vals:
+                continue
+            d = np.array([v["drop"] for v in vals])
+            drops[(arm, fam)] = 100 * d.mean()
+            print(f"  + {fam:<9} drop {100 * d.mean():+.2f} (cells {[round(100 * v, 1) for v in d]}); "
+                  f"newly broken test nodes per cell, mean {np.mean([v['newly_broken'] for v in vals]):.1f}")
+        for lr in ("x0.1", "x1", "x10"):
+            d = np.array([c[arm]["lr_sweep"][lr]["drop_vs_std"] for c in q1.values()])
+            acc = np.mean([a for c in q1.values() for a in c[arm]["lr_sweep"][lr]["single_graph_acc"]])
+            print(f"  lr {lr:<4}: worst-node drop vs standard suite {100 * d.mean():+.2f}; mean single-graph accuracy {100 * acc:.1f}")
+    big = [f for f in Q1_FAMILIES if drops[("S-VG", f)] <= -3]
+    weak = (h["mean"] < 1 or h["hi"] < 1) and bool(big)  # an.paired reports points
+    robust = h["mean"] >= 2 and support_p < 0.05 and guard_ok and all(m > 0 for m in split_means) and not big
+    label = ("CONSISTENT WITH ATTACK WEAKNESS" if weak else
+             "CONSISTENT WITH SUITE-SPECIFIC ROBUSTNESS" if robust else "INCONCLUSIVE")
+    print(f"S-VG families with a mean incremental drop <= -3 points: {big or 'none'}")
+    print(f"S-VG - S0 worst-node@20% mean {h['mean']:+.2f}, upper CI {h['hi']:+.2f}, support p {support_p:.4f}; "
+          f"split means {[round(100 * m, 2) for m in split_means]}; guardrail {'MET' if guard_ok else 'NOT MET'}")
+    print(f"Q1 classification ({ds}{tag}): {label}")
+    print("(A classification, not a mechanism: no drop does not rule out masking; convergence was not recorded.)")
+
+
+def split_means(A, ds):
+    cells = A_CELLS[ds]
+    d = np.array([A[("S-VG", s, e)]["worst_node@0.2"] - A[("S0", s, e)]["worst_node@0.2"] for s, e in cells])
+    sp = np.array([s for s, _ in cells])
+    return [d[sp == s].mean() for s in range(3)]
+
+
+def svg_s0(A, ds, metric):
+    return np.array([A[("S-VG", s, e)][metric] - A[("S0", s, e)][metric] for s, e in A_CELLS[ds]])
+
+
+def main(interim=False):
+    if interim:
+        print("INTERIM CORA REPORT (Amendment 2): Pubmed (H114, H115) still running; Cora p-values bounded by "
+              f"Bonferroni x{FAMILY_SIZE}, which is >= the final Holm-adjusted p.")
+        data = {"cora": collect("cora")}
+    else:
+        data = {ds: collect(ds) for ds in ("cora", "pubmed")}
+    for ds in DESCRIPTIVE_ONLY if not interim else ():
         a_files = glob.glob(os.path.join(RESULTS, f"{ds}_A_*[0-9a-f].json"))
         r_files = glob.glob(os.path.join(RESULTS, f"{ds}_R_*[0-9a-f].json"))
         if len(a_files) == len(A_CELLS[ds]) and len(r_files) == LEVELS * GRAPHS:
@@ -197,6 +279,11 @@ def main():
             d = a(x, "worst_node@0.2") - a(y, "worst_node@0.2")
             print(f"{x} - {y}:", [f"{100 * d[sp == s].mean():+.2f}" for s in range(3)])
 
+    print(f"Sensitivity diagnostic (Cora): weight-aware attacks change S-VG own worst-node@20% by "
+          f"{100 * masking.mean():+.2f} beyond standard+strong; per cell {[round(100 * v, 1) for v in masking]}; "
+          f"{'FLAG (sensitive to the added attacks; cause not identified)' if 100 * masking.mean() <= -3 else 'no flag (does not rule out masking)'}")
+    if interim:
+        return interim_verdicts(tests, guards, data["cora"][1])
     print("\n# H110-H117 (one Holm family; operational rules conditional on these fixed graphs and splits)")
     print("Paired cell differences (points), every hypothesis and guardrail:")
     for k, d in {**tests, **guards}.items():
@@ -223,10 +310,39 @@ def main():
           "MET" if c4m else "NOT MET", "| S-VGp", "MET" if c4p else "NOT MET")
     print("Replication signal on two fixed graphs (C1 and C2):", "MET" if ok("H110") and ok("H114") else "NOT MET",
           "(a signal, not by itself a new frontier)")
-    print(f"Sensitivity diagnostic (Cora): weight-aware attacks change S-VG own worst-node@20% by "
-          f"{100 * masking.mean():+.2f} beyond standard+strong; per cell {[round(100 * v, 1) for v in masking]}; "
-          f"{'FLAG (sensitive to the added attacks; cause not identified)' if 100 * masking.mean() <= -3 else 'no flag (does not rule out masking)'}")
+    for ds, hyp in (("cora", "H110 cora S-VG - S0, A worst-node@20% (expanded union)"),
+                    ("pubmed", "H114 pubmed S-VG - S0, A worst-node@20% (expanded union)")):
+        q1_classification(ds, res[hyp], gres[hyp[:4]], split_means(data[ds][1], ds), ph[hyp])
+    for ds in DESCRIPTIVE_ONLY:
+        if ds in data:  # descriptive: raw p, never a Holm-family verdict
+            h = an.paired(svg_s0(data[ds][1], ds, "worst_node@0.2"))
+            q1_classification(ds, h, guard(an.paired(svg_s0(data[ds][1], ds, "clean"))),
+                              split_means(data[ds][1], ds), h["p"], descriptive=True)
+
+
+def interim_verdicts(tests, guards, A):
+    print("\n# Cora hypotheses, interim (support only if mean >= +2 and Bonferroni bound 8p < .05; "
+          "against if upper CI < +1; otherwise pending the full Holm family)")
+    print("Paired cell differences (points):")
+    for k, d in {**tests, **guards}.items():
+        print(f"  {k}: {[round(100 * v, 2) for v in d]}")
+    res = {}
+    for k, d in tests.items():
+        v = an.paired(d)
+        v["bound"] = min(1.0, FAMILY_SIZE * v["p"])
+        res[k] = v
+        verdict = ("SUPPORTED (early)" if v["mean"] >= 2 and v["bound"] < 0.05 else
+                   "AGAINST" if v["hi"] < 1 else "PENDING full Holm")
+        print(f"{k}: {an.fmt(v)} raw p={v['p']:.4f} bound={v['bound']:.4f} -> {verdict}")
+    gres = {}
+    for k, d in guards.items():
+        gres[k[2:6]] = guard(an.paired(d))
+        print(f"Guardrail {k}: {an.fmt(an.paired(d))} -> {'MET' if gres[k[2:6]] else 'NOT MET'}")
+    h = res["H110 cora S-VG - S0, A worst-node@20% (expanded union)"]
+    q1_classification("cora", h, gres["H110"], split_means(A, "cora"), h["bound"])
+    print("(interim: support judged by the Bonferroni bound 8p)")
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    main(interim="--interim" in sys.argv)
