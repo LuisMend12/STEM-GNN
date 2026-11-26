@@ -2,6 +2,10 @@
 
 No learning events recorded yet.
 
+## Pending decision: failed Part R reproduction check
+- 2026-11-26: the pre-declared exact-reproduction check failed for Cora Part R: 7/50 cells differ from the original run in the STEM-based arms (and sometimes SAGE-VG); Part A reproduces exactly. Same CPU type everywhere; likely run-to-run floating-point nondeterminism. A probe rerunning two mismatched cells twice each is running (job 34203625).
+- Stage: awaiting reasoning (Build checkpoint): how to treat the failed check in the analysis and write-up.
+
 ## Pending decision: dataset extension
 - Learner asked (2026-11-25) to also run on PubMed, Wiki-CS, Arxiv, WN18RR, FB15K237, HIV, PCBA, plus an "Avg." column.
 - Stage: awaiting reasoning (Build checkpoint).
