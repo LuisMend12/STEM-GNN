@@ -2,7 +2,15 @@
 
 No learning events recorded yet.
 
+## Pending decision: dataset extension
+- Learner asked (2026-11-25) to also run on PubMed, Wiki-CS, Arxiv, WN18RR, FB15K237, HIV, PCBA, plus an "Avg." column.
+- Stage: awaiting reasoning (Build checkpoint).
+- Facts given: only Cora/Pubmed have ready .pt files; Wiki-CS and Arxiv need download and text encoding (Arxiv 169k nodes, very costly attacks); WN18RR/FB15K237 are link tasks and HIV/PCBA are graph tasks, needing new threat models and metrics; averaging mixes accuracy, AUC and AP.
+- Awaiting: learner's scope, threat model and metric per task type, meaning of Avg., and Arxiv cost handling.
+- Learner said "try our experimental setup on these datasets". Wiki-CS (node task, setup applies unchanged) was approved at an Implementation checkpoint and is being implemented as descriptive only (Amendment 1). Still awaiting: the threat model and metric for link tasks (WN18RR, FB15K237) and graph tasks (HIV, PCBA), Arxiv's cost, and the meaning of Avg.
+
 ## Pending decision
+- 2026-11-25: learner asked for Codex to draft answers to all open questions; Codex draft saved at experiments/vgae-followup/design_options_codex_draft.md (proposals only, not learner decisions). Awaiting learner's choice and reasoning, starting with Q1.
 - Decision: criteria for telling attack weakness (gradient obstruction) from real robustness in the VGAE follow-up, before any smoke or grid run.
 - Stage: awaiting reasoning (Build checkpoint).
 - Current AI-proposed plan: H110 (S-VG − S0 ≥ +2 on the expanded union) is the deciding test; the drop in S-VG's own-attack worst-node when weight-aware attacks are added is a descriptive flag (≤ −3 points).

@@ -190,3 +190,36 @@ GRBCD and the standard suite are kept.
 - **Pubmed has a large test set (about 19k nodes) and a 60-label training set.** Attack budgets are
   graph-global.
 - **No novelty claim.** Masked-edge GAEs (MaskGAE), structural pruning and similarity reweighting are known.
+
+## Amendment 1 (2026-11-25, after the Cora/Pubmed smoke cells, before any accuracy was inspected): Wiki-CS, descriptive only
+
+The user asked to extend the setup to more datasets.
+- **Wiki-CS is a node-classification graph, so the setup applies unchanged.** It uses the same arms, attack
+  suite, levels (Cora's fractions), seeds and endpoints, with 9 Part A cells (splits 0–2 × seeds 0–2) and 50
+  Part R cells.
+- **It is reported as descriptive only.** It is added after the Holm family was fixed, so it is never added to
+  the family, the claims or the frontier criterion.
+
+**Data.** `STEM-GNN/scripts/vgae_weighting/prep_wikics.py` builds the dataset:
+- the PyG WikiCS graph, with its 20 train/val splits and the shared test set;
+- node text from the repo's OFA recipe. Metadata and PyG label sequences are compared after mapping label
+  names to integer IDs. This detects label-sequence mismatches but not permutations within a class; the
+  upstream dataset documents a shared metadata and vectorized-data ordering;
+- 384-d `all-MiniLM-L6-v2` embeddings. The repo doesn't record the encoder of Cora's and Pubmed's features, so
+  comparability is assumed, not verified.
+
+**Code.** `followup_extra.py` runs `followup.py` unchanged. The queued Cora and Pubmed cells check
+`followup.py`'s hash, so it isn't edited. The wrapper's own source is folded into the Wiki-CS code hash.
+
+**Wiki-CS feasibility gate.** Before launching the full grid:
+1. Record the loaded graph's undirected edge count, the two integer attack budgets and the five injection
+   counts, and verify each attack budget is strictly below its candidate block size.
+2. Run one Part A cell and one Part R cell at the largest injection level, recording peak memory, wall time,
+   per-attack timing and graph-file size.
+
+Don't launch the remaining Wiki-CS cells unless these fit the allocated resources. Any change to the attack
+suite, or a resource-driven stopping rule, will be recorded as an amendment before Wiki-CS accuracy is
+inspected, and results from an altered suite will be labeled accordingly.
+
+**Not yet decided:** Arxiv's cost, and the link (WN18RR, FB15K237) and graph (HIV, PCBA) tasks. The setup
+isn't defined for them; that decision is pending.

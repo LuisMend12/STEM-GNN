@@ -15,7 +15,9 @@ ROOT = os.path.join(HERE, "..", "..", "..", "experiments")
 RESULTS = os.path.join(ROOT, "vgae-followup", "results")
 OLD = os.path.join(ROOT, "vgae-weighting", "results")
 LEVELS, GRAPHS = 5, 10
-A_CELLS = {"cora": [(s, e) for s in range(3) for e in range(5)], "pubmed": [(s, e) for s in range(3) for e in range(3)]}
+A_CELLS = {"cora": [(s, e) for s in range(3) for e in range(5)], "pubmed": [(s, e) for s in range(3) for e in range(3)],
+           "wikics": [(s, e) for s in range(3) for e in range(3)]}
+DESCRIPTIVE_ONLY = ("wikics",)  # added after the protocol was fixed: reported, never in the Holm family
 A_ARMS = ("S0", "S-VG", "S-SJ", "SAGE", "SAGE-VG", "GCN", "RUNG-lite", "RUNG-VG", "MLP-M")
 R_ARMS = ("S0", "S-VG", "S-VGm", "S-VGp", "S-SJ", "SAGE", "SAGE-VG", "GCN", "RUNG-lite", "RUNG-VG", "MLP-M")
 ATTACKED = ("S0", "S-VG", "SAGE", "SAGE-VG", "RUNG-lite", "RUNG-VG")
@@ -113,13 +115,21 @@ def reproduction(R, A):
 
 def main():
     data = {ds: collect(ds) for ds in ("cora", "pubmed")}
+    for ds in DESCRIPTIVE_ONLY:
+        a_files = glob.glob(os.path.join(RESULTS, f"{ds}_A_*[0-9a-f].json"))
+        r_files = glob.glob(os.path.join(RESULTS, f"{ds}_R_*[0-9a-f].json"))
+        if len(a_files) == len(A_CELLS[ds]) and len(r_files) == LEVELS * GRAPHS:
+            data[ds] = collect(ds)
+        elif a_files or r_files:
+            print(f"{ds}: descriptive grid incomplete; skipping ({len(a_files)} A files, {len(r_files)} R files)")
     reproduction(data["cora"][0], data["cora"][1])
     tests, guards = {}, {}
     for ds, (R, A, aucs) in data.items():
         r = lambda arm, li, m="acc": np.array([R[(arm, li, g)][m] for g in range(GRAPHS)], dtype=float)
         a = lambda arm, m: np.array([A[(arm, s, e)][m] for s, e in A_CELLS[ds]], dtype=float)
         lv = sorted({(v["level_idx"], v["level"], round(v["injected_pct"], 1)) for v in R.values()})
-        print(f"\n# {ds.upper()}  (levels: {lv}; original undirected edges {R[('S0', 0, 0)]['orig_undirected_edges']})")
+        tag = "  [DESCRIPTIVE ONLY: added after the protocol was fixed]" if ds in DESCRIPTIVE_ONLY else ""
+        print(f"\n# {ds.upper()}{tag}  (levels: {lv}; original undirected edges {R[('S0', 0, 0)]['orig_undirected_edges']})")
         print("## Part R: test accuracy by level (mean ± sd over 10 graphs, points)")
         for arm in R_ARMS:
             print(arm.ljust(10), *[f"{100 * r(arm, l).mean():6.2f}±{100 * r(arm, l).std(ddof=1):4.2f}" for l in range(LEVELS)])
@@ -176,7 +186,7 @@ def main():
             guards["G-H112 cora S-VGm - S0 R 0 edges"] = r("S-VGm", 0) - r("S0", 0)
             guards["G-H113 cora S-VGp - S0 R 0 edges"] = r("S-VGp", 0) - r("S0", 0)
             masking = a("S-VG", "own_all@0.2") - a("S-VG", "own_strong@0.2")
-        else:
+        elif ds == "pubmed":
             tests["H114 pubmed S-VG - S0, A worst-node@20% (expanded union)"] = a("S-VG", "worst_node@0.2") - a("S0", "worst_node@0.2")
             tests["H115 pubmed RUNG-VG - RUNG-lite, A worst-node@20%"] = a("RUNG-VG", "worst_node@0.2") - a("RUNG-lite", "worst_node@0.2")
             guards["G-H114 pubmed S-VG - S0 A clean"] = a("S-VG", "clean") - a("S0", "clean")
