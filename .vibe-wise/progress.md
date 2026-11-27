@@ -5,6 +5,7 @@ No learning events recorded yet.
 ## Pending decision: failed Part R reproduction check
 - 2026-11-26: the pre-declared exact-reproduction check failed for Cora Part R: 7/50 cells differ from the original run in the STEM-based arms (and sometimes SAGE-VG); Part A reproduces exactly. Same CPU type everywhere; likely run-to-run floating-point nondeterminism. A probe rerunning two mismatched cells twice each is running (job 34203625).
 - Stage: awaiting reasoning (Build checkpoint): how to treat the failed check in the analysis and write-up.
+- Probe result (2026-11-26): the new code is deterministic (2 reruns x 2 cells on 3 nodes are bit-identical to the grid). The 7 mismatches are in the ORIGINAL experiment's runs (up to 2.3 points for S-VG at 2000 edges, graph 2), cause unidentified. The nondeterminism hypothesis is refuted for current runs. The original H100 at 2000 edges used 4 of the 7 affected cells.
 
 ## Pending decision: dataset extension
 - Learner asked (2026-11-25) to also run on PubMed, Wiki-CS, Arxiv, WN18RR, FB15K237, HIV, PCBA, plus an "Avg." column.
